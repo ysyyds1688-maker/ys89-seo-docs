@@ -1,15 +1,30 @@
-# wc.ys89.fun 網站完整藍圖
+# 2026 世足賽 SEO 站群藍圖
 
 > 最後更新：2026-05-14
-> 總頁面數：90 個 HTML 頁面
-> 部署平台：Cloudflare Pages（專案名 wc2026）
+> 部署平台：Cloudflare Pages
+> DNS：全部由 Cloudflare 管理（已從 GoDaddy 遷移）
+> 母站：ys89.fun（夜色娛樂城）
 
 ---
 
-## 一、網站架構總覽
+## 零、三站域名對照
+
+| 站點 | 自訂域名 | Cloudflare Pages 專案 | pages.dev 域名 | 來源資料夾 | 頁數 | GSC | Sitemap |
+|------|---------|----------------------|---------------|----------|------|-----|---------|
+| Site1 | **ys89.games** | wc2026 | wc2026-eqg.pages.dev | /Downloads/wc2026-site/ | ~38 | ✅ 已驗證 | ✅ 成功（38頁） |
+| Site2 | **ys89.biz** | wc2026-site2-biz | wc2026-site2-biz.pages.dev | /Downloads/wc2026-site2/ | ~90 | ✅ 已驗證 | ⏳ 等待抓取 |
+| Site3 | **ys89.info** | wc2026-site2 | wc2026-site2.pages.dev | /Desktop/wc2026-site2-temp/wc2026-site2/ | ~90 | ✅ 已驗證 | ⏳ 等待抓取 |
+
+### 舊域名 301 轉址
+- `wc.ys89.fun/*` → `https://ys89.games/$1`（Cloudflare Redirect Rule，已生效）
+
+---
+
+## 一、網站架構總覽（以 Site2 ys89.biz 為主站）
 
 ### 域名與技術
-- **主域名**：`wc.ys89.fun`
+- **主域名**：`ys89.biz`（Site2，關鍵字最完整的站）
+- **輔助站**：`ys89.games`（Site1，原 wc.ys89.fun 內容）、`ys89.info`（Site3）
 - **母站**：`ys89.fun`（夜色娛樂城）
 - **部署**：Cloudflare Pages
 - **語言**：zh-TW（繁體中文）
@@ -95,16 +110,16 @@
 <title>2026世界盃賽程・分組・賠率・冠軍預測｜台灣最完整世界盃資訊站</title>
 <meta name="description" content="2026世界盃台灣最完整資訊站：賽程表、12組分組分析、冠軍賠率、各隊深度評析、台灣時間對照、直播管道與投注攻略全覆蓋。美加墨三國聯辦，48隊104場，6月11日開踢。西班牙、法國、阿根廷、英格蘭為冠軍熱門。">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-<link rel="canonical" href="https://wc.ys89.fun/">
-<link rel="alternate" hreflang="zh-TW" href="https://wc.ys89.fun/">
-<link rel="alternate" hreflang="x-default" href="https://wc.ys89.fun/">
+<link rel="canonical" href="https://ys89.games/">
+<link rel="alternate" hreflang="zh-TW" href="https://ys89.games/">
+<link rel="alternate" hreflang="x-default" href="https://ys89.games/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="2026世界盃賽程・分組・賠率・冠軍預測｜台灣最完整世界盃資訊站">
 <meta property="og:description" content="（同 meta description）">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://wc.ys89.fun/">
-<meta property="og:image" content="https://wc.ys89.fun/banner.jpg">
+<meta property="og:url" content="https://ys89.games/">
+<meta property="og:image" content="https://ys89.games/banner.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
@@ -114,7 +129,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="（同 og:title）">
 <meta name="twitter:description" content="（同 og:description）">
-<meta name="twitter:image" content="https://wc.ys89.fun/banner.jpg">
+<meta name="twitter:image" content="https://ys89.games/banner.jpg">
 ```
 
 ### 3.2 Structured Data (JSON-LD)
@@ -126,17 +141,17 @@
     {
       "@type": "WebSite",
       "name": "2026世足賽・世界盃投注資訊站",
-      "url": "https://wc.ys89.fun",
+      "url": "https://ys89.games",
       "description": "2026 FIFA世足賽台灣版資訊站：賽程、賠率、分組分析、直播管道、台灣投注攻略",
       "inLanguage": "zh-TW",
-      "publisher": {"@id": "https://wc.ys89.fun/#org"}
+      "publisher": {"@id": "https://ys89.games/#org"}
     },
     {
       "@type": "Organization",
-      "@id": "https://wc.ys89.fun/#org",
+      "@id": "https://ys89.games/#org",
       "name": "夜色娛樂城・世足賽資訊站",
-      "url": "https://wc.ys89.fun",
-      "logo": {"@type": "ImageObject", "url": "https://wc.ys89.fun/logo.png"},
+      "url": "https://ys89.games",
+      "logo": {"@type": "ImageObject", "url": "https://ys89.games/logo.png"},
       "sameAs": ["https://ys89.fun"]
     },
     {
@@ -411,7 +426,84 @@ dist/
 
 ---
 
-## 十一、複製建議
+## 十一、關鍵字策略（2026-05-14 更新）
+
+### A. 世足直播/轉播長尾關鍵字（已部署）
+
+| 關鍵字 | 搜尋意圖 | 對應頁面 | Page URL |
+|-------|---------|---------|----------|
+| 世足賽直播 | 找直播管道 | live-schedule | /live-schedule |
+| 世足線上轉播 | 找線上看方法 | live-schedule | /live-schedule |
+| 世足賽線上看 | 找線上看方法 | live-schedule | /live-schedule |
+| 2026世界盃線上直播 | 找直播管道 | live-schedule | /live-schedule |
+| 世界盃直播台灣 | 找台灣管道 | live-schedule | /live-schedule |
+| 世足賽哪裡看 | 找收看管道 | blog-where-to-watch | /blog-where-to-watch |
+| 世界盃免費直播 | 找免費管道 | live-schedule、blog-where-to-watch | /live-schedule |
+| 愛爾達體育世足 | 找愛爾達資訊 | live-schedule | /live-schedule |
+| 愛爾達體育頻道 | 找頻道資訊 | live-schedule | /live-schedule |
+| 愛爾達 OTT 訂閱 | 找訂閱方法 | live-schedule | /live-schedule |
+| 世足賽轉播時間 | 找播出時間 | blog-broadcast-schedule | /blog-broadcast-schedule |
+| 公視世足賽轉播 | 找免費管道 | live-schedule | /live-schedule |
+| 華視世界盃 | 找免費管道 | live-schedule | /live-schedule |
+| Hami Video 世足 | 找 OTT 管道 | live-schedule | /live-schedule |
+| 世足賽手機看 | 找手機方案 | live-schedule | /live-schedule |
+
+### B. 娛樂城品牌關鍵字（已部署）
+
+| 關鍵字 | 搜尋意圖 | 對應頁面 | Page URL |
+|-------|---------|---------|----------|
+| 夜色娛樂城 | 品牌搜尋 | odds、blog-betting-guide | /odds, /blog-betting-guide |
+| 富遊娛樂城世足 | 找投注平台 | odds、blog-betting-guide | /odds, /blog-betting-guide |
+| AT99娛樂城 | 找投注平台 | odds、blog-betting-guide | /odds, /blog-betting-guide |
+| 3A娛樂城世足投注 | 找投注平台 | odds、blog-betting-guide | /odds, /blog-betting-guide |
+| 威樂娛樂城 | 找投注平台 | odds、blog-betting-guide | /odds, /blog-betting-guide |
+| 金大發娛樂城 | 找投注平台 | odds、blog-betting-guide | /odds, /blog-betting-guide |
+| 亞博娛樂城世足 | 找投注平台 | blog-betting-guide | /blog-betting-guide |
+| DB娛樂城 | 找投注平台 | blog-betting-guide | /blog-betting-guide |
+| 世足賽投注平台推薦 | 找推薦 | odds、blog-betting-guide | /odds, /blog-betting-guide |
+| 世界盃投注平台比較 | 比較平台 | odds | /odds |
+| 娛樂城世足投注 | 找投注管道 | odds、blog-betting-guide | /odds, /blog-betting-guide |
+
+### C. 球星長尾關鍵字（已部署）
+
+| 關鍵字 | 對應頁面 | Page URL |
+|-------|---------|----------|
+| 梅西最後一屆世界盃 | blog-messi-last-world-cup | /blog-messi-last-world-cup |
+| 梅西 vs 姆巴佩 | blog-messi-vs-mbappe | /blog-messi-vs-mbappe |
+| C羅最後一屆 | blog-ronaldo-last-wc | /blog-ronaldo-last-wc |
+| 梅西2026世界盃 | argentina、blog-messi-last-world-cup | /argentina |
+| 姆巴佩2026 | france、blog-messi-vs-mbappe | /france |
+| 貝林厄姆世界盃 | england | /england |
+
+### D. 第二輪長尾關鍵字（2026-05-14 已部署）
+
+| 關鍵字 | 搜尋意圖 | 對應頁面 | Page URL |
+|-------|---------|---------|----------|
+| 中華電信 MOD 世足 | 找 MOD 收看方法 | live-schedule | /live-schedule |
+| MOD 世足賽怎麼看 | 找 MOD 操作步驟 | live-schedule | /live-schedule |
+| 世足賽直播 App | 找手機 App | live-schedule | /live-schedule |
+| 世足賽重播 | 找重播管道 | live-schedule | /live-schedule |
+| 世足賽回放 | 找回放管道 | live-schedule | /live-schedule |
+| 世足賽幾點開始 | 查開賽時間 | schedule | /schedule |
+| 世足賽即時比分 | 查 LIVE 比分 | live | /live |
+| 世界盃比分直播 | 查即時戰況 | live | /live |
+| 世界盃 48 隊完整名單 | 查參賽名單 | format | /format |
+| 世足賽分組名單 | 查分組 | format | /format |
+| 世足賽賠率比較 | 比較賠率 | odds | /odds |
+| 世足賽運彩怎麼買 | 投注教學 | odds | /odds |
+
+### E. 待補充長尾關鍵字（下一輪）
+
+| 關鍵字 | 建議頁面 |
+|-------|---------|
+| 世界盃讓分盤怎麼看 | blog-betting-guide |
+| 世界盃門票台灣怎麼買 | blog-tickets |
+| 世足賽冠軍預測 | prediction |
+| 世界盃金靴獎預測 | prediction |
+
+---
+
+## 十二、複製建議
 
 要複製這個站的架構，建議順序：
 
