@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 世足站群 — 站點總覽</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2128;--border:#30363d;
+  --green:#3fb950;--blue:#58a6ff;--yellow:#d29922;--red:#f85149;
+  --purple:#bc8cff;--orange:#f0883e;--cyan:#39d3f5;--pink:#ff7eb6;
+  --text:#e6edf3;--muted:#8b949e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.logo{font-size:1.1em;font-weight:800;font-family:monospace;color:var(--green)}
+.header-meta{color:var(--muted);font-size:0.78em;font-family:monospace}
+
+.page{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+
+/* TABS */
+.tab-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:28px;overflow-x:auto;flex-wrap:nowrap}
+.tab-btn{padding:10px 20px;font-size:0.82em;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--text);border-bottom-color:currentColor}
+.tab-btn.t-games{--c:var(--green)}.tab-btn.t-games.active{color:var(--green)}
+.tab-btn.t-info{--c:var(--blue)}.tab-btn.t-info.active{color:var(--blue)}
+.tab-btn.t-biz{--c:var(--orange)}.tab-btn.t-biz.active{color:var(--orange)}
+.tab-btn.t-me{--c:var(--cyan)}.tab-btn.t-me.active{color:var(--cyan)}
+.tab-btn.t-wctw{--c:var(--pink)}.tab-btn.t-wctw.active{color:var(--pink)}
+
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* SITE HEADER BLOCK */
+.site-hero{border-radius:10px;padding:20px 24px;margin-bottom:20px;border:1px solid var(--border)}
+.site-hero-top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.site-emoji{font-size:2em;line-height:1}
+.site-title{font-size:1.2em;font-weight:900}
+.site-url-link{font-size:0.8em;margin-top:3px}
+.tag{display:inline-block;font-size:0.68em;padding:3px 10px;border-radius:20px;font-weight:700;border:1px solid;margin-left:10px;vertical-align:middle}
+
+/* SECTION */
+.sec{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden}
+.sec-head{padding:12px 18px;border-bottom:1px solid var(--border);font-size:0.78em;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:flex;align-items:center;gap:8px}
+.sec-body{padding:16px 18px}
+
+/* OG META */
+.og-row{display:flex;gap:10px;margin-bottom:10px;font-size:0.83em;align-items:flex-start}
+.og-label{color:var(--muted);font-family:monospace;min-width:100px;flex-shrink:0;font-size:0.9em;padding-top:1px}
+.og-val{color:var(--text);line-height:1.5}
+
+/* LIHI TABLE */
+.lihi-table{width:100%;border-collapse:collapse;font-size:0.82em}
+.lihi-table th{text-align:left;padding:8px 12px;color:var(--muted);font-weight:700;font-size:0.85em;border-bottom:1px solid var(--border)}
+.lihi-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.lihi-table tr:last-child td{border-bottom:none}
+.lihi-link{font-family:monospace;color:var(--yellow);font-size:0.95em}
+.lihi-pages{color:var(--muted);font-size:0.88em}
+
+/* KEYWORDS */
+.kw-group{margin-bottom:14px}
+.kw-group-title{font-size:0.75em;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px}
+.kw-chips{display:flex;flex-wrap:wrap;gap:6px}
+.kw-chip{font-size:0.75em;padding:3px 10px;border-radius:14px;border:1px solid var(--border);color:var(--text)}
+.kw-chip.core{border-color:rgba(240,136,62,.4);color:var(--orange);background:rgba(240,136,62,.06)}
+.kw-chip.long{border-color:rgba(88,166,255,.35);color:var(--blue);background:rgba(88,166,255,.06)}
+.kw-chip.brand{border-color:rgba(63,185,80,.35);color:var(--green);background:rgba(63,185,80,.06)}
+
+/* POSITIONING */
+.pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.83em}
+@media(max-width:580px){.pos-grid{grid-template-columns:1fr}}
+.pos-item{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.pos-label{color:var(--muted);font-size:0.8em;margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.pos-val{color:var(--text);line-height:1.5}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">YS89 <span>世足站群 · 站點總覽</span></div>
+  <div class="header-meta">2026-05-18 · 內部文件 &nbsp;|&nbsp; <a href="KEYWORDS.html">關鍵字地圖</a> &nbsp;|&nbsp; <a href="PROJECT-OVERVIEW.html">專案總覽</a></div>
+</header>
+
+<div class="page">
+
+  <div class="tab-nav">
+    <button class="tab-btn t-games active" onclick="switchTab('games',this)">⚽ ys89.games</button>
+    <button class="tab-btn t-info" onclick="switchTab('info',this)">📡 ys89.info</button>
+    <button class="tab-btn t-biz" onclick="switchTab('biz',this)">💰 ys89.biz</button>
+    <button class="tab-btn t-me" onclick="switchTab('me',this)">🌐 ys89.me</button>
+    <button class="tab-btn t-wctw" onclick="switchTab('wctw',this)">🌍 world-cup.tw</button>
+  </div>
+
+  <!-- ===== ys89.games ===== -->
+  <div class="tab-panel active" id="tab-games">
+
+    <div class="site-hero" style="background:rgba(63,185,80,.04);border-color:rgba(63,185,80,.25)">
+      <div class="site-hero-top">
+        <div class="site-emoji">⚽</div>
+        <div>
+          <div class="site-title" style="color:var(--green)">ys89.games <span class="tag" style="color:var(--green);border-color:rgba(63,185,80,.4);background:rgba(63,185,80,.08)">賽程・直播・賠率</span></div>
+          <div class="site-url-link"><a href="https://ys89.games" target="_blank">https://ys89.games ↗</a></div>
+          <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：賽程・直播・賠率綜合站，資訊型 + 導流。台灣最完整世界盃資訊站，涵蓋分組、賠率、預測。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OG META -->
+    <div class="sec">
+      <div class="sec-head">🏷️ OG Meta</div>
+      <div class="sec-body">
+        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世界盃賽程・分組・賠率・冠軍預測｜台灣最完整世界盃資訊站</div></div>
+        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026世界盃台灣最完整資訊站：賽程表、12組分組分析、冠軍賠率、各隊深度評析、台灣時間對照、直播管道與投注攻略全覆蓋。美加墨三國聯辦，48隊104場，6月11日開踢。西班牙、法國、阿根廷、英格蘭為冠軍熱門。</div></div>
+        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://ys89.games/" target="_blank">https://ys89.games/</a></div></div>
+        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世界盃賽程・分組・賠率・冠軍預測｜台灣最完整世界盃資訊站</div></div>
+      </div>
+    </div>
+
+    <!-- LIHI -->
+    <div class="sec">
+      <div class="sec-head">🔗 Lihi 短連結使用狀況</div>
+      <div class="sec-body" style="padding:0">
+        <table class="lihi-table">
+          <tr><th>Lihi 短連結</th><th>用於哪些頁面</th></tr>
+          <tr>
+            <td><span class="lihi-link">lihi1.me/6HJ58</span></td>
+            <td><span class="lihi-pages">live-104.html（主 CTA）</span></td>
+          </tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/yOhjI</span></td>
+            <td><span class="lihi-pages">live-104.html（次要 CTA）</span></td>
+          </tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/vrDxN</span></td>
+            <td><span class="lihi-pages">index / blog / messi-2026 / mbappe-2026 / dark-horses / streaming-guide 等通用頁</span></td>
+          </tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/6rGhK</span></td>
+            <td><span class="lihi-pages">隊伍頁・分組頁（group-a～l）・odds / live / venues / taiwan-time 等</span></td>
+          </tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/4ncNq</span></td>
+            <td><span class="lihi-pages">schedule / blog-where-to-watch / blog-broadcast-schedule 等賽程&直播類 blog</span></td>
+          </tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/9Qqmk</span></td>
+            <td><span class="lihi-pages">prediction.html</span></td>
+          </tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/wTd66</span></td>
+            <td><span class="lihi-pages">odds.html</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- POSITIONING -->
+    <div class="sec">
+      <div class="sec-head">🎯 內容定位</div>
+      <div class="sec-body">
+        <div class="pos-grid">
+          <div class="pos-item"><div class="pos-label">站點主題</div><div class="pos-val">賽程・直播・賠率・分組 綜合資訊站</div></div>
+          <div class="pos-item"><div class="pos-label">搜尋意圖</div><div class="pos-val">資訊型 + 導流（流量 → 娛樂城）</div></div>
+          <div class="pos-item"><div class="pos-label">目標受眾</div><div class="pos-val">想查賽程/賠率的球迷，潛在投注玩家</div></div>
+          <div class="pos-item"><div class="pos-label">頁面規模</div><div class="pos-val">~100 頁（隊伍頁 + 分組 + blog + 功能頁）</div></div>
+          <div class="pos-item"><div class="pos-label">主力頁面</div><div class="pos-val">live-104 / odds / prediction / schedule / streaming-guide</div></div>
+          <div class="pos-item"><div class="pos-label">競爭關鍵字</div><div class="pos-val">世界盃賽程、世足賠率、世界盃冠軍預測</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEYWORDS -->
+    <div class="sec">
+      <div class="sec-head">🔍 關鍵字（45個）</div>
+      <div class="sec-body">
+        <div class="kw-group">
+          <div class="kw-group-title">核心關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip core">2026世界盃</span><span class="kw-chip core">世足賽程</span><span class="kw-chip core">世界盃分組</span><span class="kw-chip core">世足賠率</span><span class="kw-chip core">世界盃直播</span><span class="kw-chip core">世足預測</span><span class="kw-chip core">世界盃台灣時間</span><span class="kw-chip core">世足分析</span><span class="kw-chip core">世界盃比分</span><span class="kw-chip core">世界盃冠軍</span><span class="kw-chip core">世足門票</span><span class="kw-chip core">世界盃投注</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">長尾關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip long">2026世界盃賽程表</span><span class="kw-chip long">世界盃分組出線預測</span><span class="kw-chip long">世足冠軍賠率比較</span><span class="kw-chip long">世足台灣時間幾點</span><span class="kw-chip long">世界盃幾隊幾場</span><span class="kw-chip long">世足黑馬分析</span><span class="kw-chip long">2026世界盃在哪裡舉辦</span><span class="kw-chip long">梅西最後一屆世界盃</span><span class="kw-chip long">姆巴佩世界盃表現</span><span class="kw-chip long">世足死亡之組</span><span class="kw-chip long">世界盃場館介紹</span><span class="kw-chip long">世足主題曲</span><span class="kw-chip long">世界盃日本分組</span><span class="kw-chip long">世足台灣幾點看</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-games -->
+
+
+  <!-- ===== ys89.info ===== -->
+  <div class="tab-panel" id="tab-info">
+
+    <div class="site-hero" style="background:rgba(88,166,255,.04);border-color:rgba(88,166,255,.25)">
+      <div class="site-hero-top">
+        <div class="site-emoji">📡</div>
+        <div>
+          <div class="site-title" style="color:var(--blue)">ys89.info <span class="tag" style="color:var(--blue);border-color:rgba(88,166,255,.4);background:rgba(88,166,255,.08)">台灣觀賽直播攻略</span></div>
+          <div class="site-url-link"><a href="https://ys89.info" target="_blank">https://ys89.info ↗</a></div>
+          <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：台灣觀賽直播攻略站，資訊型（哪裡看・怎麼看）。以愛爾達/MOD/華視轉播攻略為核心，帶動直播→投注轉換。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🏷️ OG Meta</div>
+      <div class="sec-body">
+        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世界盃直播哪裡看？賽程・賠率・分組完整攻略｜台灣觀賽指南</div></div>
+        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026世足賽台灣最完整直播攻略！愛爾達體育、MOD、華視轉播管道全整理，含104場台灣時間賽程、冠軍賠率比較、分組分析，開賽不怕找不到直播。</div></div>
+        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://ys89.info/" target="_blank">https://ys89.info/</a></div></div>
+        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世界盃直播哪裡看？賽程・賠率・分組完整攻略｜台灣觀賽指南</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🔗 Lihi 短連結使用狀況</div>
+      <div class="sec-body" style="padding:0">
+        <table class="lihi-table">
+          <tr><th>Lihi 短連結</th><th>用於哪些頁面</th></tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/SGvyv</span></td>
+            <td><span class="lihi-pages">全站主 CTA（live-104 / live / streaming-guide / taiwan-time 等）</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🎯 內容定位</div>
+      <div class="sec-body">
+        <div class="pos-grid">
+          <div class="pos-item"><div class="pos-label">站點主題</div><div class="pos-val">台灣觀賽直播攻略（哪裡看・怎麼看）</div></div>
+          <div class="pos-item"><div class="pos-label">搜尋意圖</div><div class="pos-val">資訊型（找直播管道的人）</div></div>
+          <div class="pos-item"><div class="pos-label">目標受眾</div><div class="pos-val">想找世足直播、不知道哪裡看的一般球迷</div></div>
+          <div class="pos-item"><div class="pos-label">主力頁面</div><div class="pos-val">live-104 / streaming-guide / where-watch-worldcup-taiwan / live-broadcast-complete-guide</div></div>
+          <div class="pos-item"><div class="pos-label">轉換路徑</div><div class="pos-val">直播攻略 → 邊看邊投注 → lihi2.me/SGvyv → 娛樂城</div></div>
+          <div class="pos-item"><div class="pos-label">頁面規模</div><div class="pos-val">~115 頁（含隊伍頁、分組、blog）</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🔍 關鍵字（17個）</div>
+      <div class="sec-body">
+        <div class="kw-group">
+          <div class="kw-group-title">核心關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip core">世足哪裡看</span><span class="kw-chip core">世界盃直播</span><span class="kw-chip core">愛爾達世界盃</span><span class="kw-chip core">MOD世足</span><span class="kw-chip core">公視世界盃</span><span class="kw-chip core">世足直播管道</span><span class="kw-chip core">世界盃台灣轉播</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">長尾關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip long">世足賽哪裡看直播</span><span class="kw-chip long">愛爾達體育費用多少</span><span class="kw-chip long">世足免費直播台灣</span><span class="kw-chip long">世界盃華視轉播幾台</span><span class="kw-chip long">Hami Video世界盃</span><span class="kw-chip long">世足賽台灣時間幾點</span><span class="kw-chip long">世界盃直播不用錢</span><span class="kw-chip long">2026世足轉播管道整理</span><span class="kw-chip long">世足賽手機看直播</span><span class="kw-chip long">世界盃MOD哪個頻道</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-info -->
+
+
+  <!-- ===== ys89.biz ===== -->
+  <div class="tab-panel" id="tab-biz">
+
+    <div class="site-hero" style="background:rgba(240,136,62,.04);border-color:rgba(240,136,62,.25)">
+      <div class="site-hero-top">
+        <div class="site-emoji">💰</div>
+        <div>
+          <div class="site-title" style="color:var(--orange)">ys89.biz <span class="tag" style="color:var(--orange);border-color:rgba(240,136,62,.4);background:rgba(240,136,62,.08)">投注攻略教學</span></div>
+          <div class="site-url-link"><a href="https://ys89.biz" target="_blank">https://ys89.biz ↗</a></div>
+          <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：世足賽投注攻略教學站，商業型（投注意圖）。讓球盤、大小球、波膽、串關等投注技巧深度內容，鎖定有投注意圖的高價值用戶。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🏷️ OG Meta</div>
+      <div class="sec-body">
+        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世足直播・投注攻略・冠軍賠率｜台灣觀賽投注平台</div></div>
+        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026世界盃直播免費看！104場賽程、愛爾達・MOD・華視台灣時間全覆蓋，冠軍賠率比較・投注攻略一站搞定，解鎖完整觀賽專區。</div></div>
+        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://ys89.biz/" target="_blank">https://ys89.biz/</a></div></div>
+        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世足投注攻略・讓分盤・波膽・串關完整教學｜ys89.biz</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🔗 Lihi 短連結使用狀況</div>
+      <div class="sec-body" style="padding:0">
+        <table class="lihi-table">
+          <tr><th>Lihi 短連結</th><th>用於哪些頁面</th></tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/rbtE5</span></td>
+            <td><span class="lihi-pages">全站主 CTA（live-104 / live-betting-guide / handicap-guide / betting-tutorial 等）</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🎯 內容定位</div>
+      <div class="sec-body">
+        <div class="pos-grid">
+          <div class="pos-item"><div class="pos-label">站點主題</div><div class="pos-val">世足投注攻略教學（讓球/大小球/波膽/串關）</div></div>
+          <div class="pos-item"><div class="pos-label">搜尋意圖</div><div class="pos-val">商業型（有投注意圖的高意願用戶）</div></div>
+          <div class="pos-item"><div class="pos-label">目標受眾</div><div class="pos-val">想學投注技巧的玩家，有過投注經驗的用戶</div></div>
+          <div class="pos-item"><div class="pos-label">主力頁面</div><div class="pos-val">live-104 / betting-tutorial / handicap-guide / over-under-guide / parlay-guide / correct-score</div></div>
+          <div class="pos-item"><div class="pos-label">差異化特色</div><div class="pos-val">深度投注教學頁（讓球/大小/波膽/串關各獨立頁）</div></div>
+          <div class="pos-item"><div class="pos-label">轉換路徑</div><div class="pos-val">投注教學 → 想實際投注 → lihi2.me/rbtE5 → 娛樂城</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🔍 關鍵字（15個）</div>
+      <div class="sec-body">
+        <div class="kw-group">
+          <div class="kw-group-title">核心關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip core">世足投注</span><span class="kw-chip core">世足讓球</span><span class="kw-chip core">世界盃大小球</span><span class="kw-chip core">世足波膽</span><span class="kw-chip core">世足串關</span><span class="kw-chip core">世界盃滾球</span><span class="kw-chip core">世足即時投注</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">長尾關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip long">世足讓球怎麼玩</span><span class="kw-chip long">世界盃大小球教學</span><span class="kw-chip long">世足波膽賠率怎麼算</span><span class="kw-chip long">世界盃串關技巧</span><span class="kw-chip long">世足滾球盤口</span><span class="kw-chip long">世界盃投注攻略新手</span><span class="kw-chip long">世足賽比賠率哪家好</span><span class="kw-chip long">2026世界盃投注推薦</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-biz -->
+
+
+  <!-- ===== ys89.me ===== -->
+  <div class="tab-panel" id="tab-me">
+
+    <div class="site-hero" style="background:rgba(57,211,245,.04);border-color:rgba(57,211,245,.25)">
+      <div class="site-hero-top">
+        <div class="site-emoji">🌐</div>
+        <div>
+          <div class="site-title" style="color:var(--cyan)">ys89.me <span class="tag" style="color:var(--cyan);border-color:rgba(57,211,245,.4);background:rgba(57,211,245,.08)">分組分析・球隊球星</span></div>
+          <div class="site-url-link"><a href="https://ys89.me" target="_blank">https://ys89.me ↗</a></div>
+          <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：分組分析・球隊介紹站，資訊型（球隊深度分析）。鎖定球迷搜尋特定球隊/球星資訊，12組分組各有獨立深度分析頁。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🏷️ OG Meta</div>
+      <div class="sec-body">
+        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世界盃分組分析・48隊球隊介紹・球星完整資訊｜世足情報站</div></div>
+        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026世界盃48隊完整分組分析、各組晉級預測、球隊介紹、梅西姆巴佩等球星資訊，台灣最完整世足分組資訊站。</div></div>
+        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://ys89.me/" target="_blank">https://ys89.me/</a></div></div>
+        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世界盃分組分析・48隊球隊介紹・球星完整資訊｜世足情報站</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🔗 Lihi 短連結使用狀況</div>
+      <div class="sec-body" style="padding:0">
+        <table class="lihi-table">
+          <tr><th>Lihi 短連結</th><th>用於哪些頁面</th></tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/Cs2Af</span></td>
+            <td><span class="lihi-pages">全站主 CTA（live-104 / group-a～l / live / odds / messi-2026 等）</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🎯 內容定位</div>
+      <div class="sec-body">
+        <div class="pos-grid">
+          <div class="pos-item"><div class="pos-label">站點主題</div><div class="pos-val">分組分析・球隊介紹・球星資訊</div></div>
+          <div class="pos-item"><div class="pos-label">搜尋意圖</div><div class="pos-val">資訊型（球迷查特定球隊/球星）</div></div>
+          <div class="pos-item"><div class="pos-label">目標受眾</div><div class="pos-val">足球愛好者・球星粉絲・想看分組分析的人</div></div>
+          <div class="pos-item"><div class="pos-label">主力頁面</div><div class="pos-val">live-104 / group-a～l（12頁）/ messi-2026 / mbappe-2026</div></div>
+          <div class="pos-item"><div class="pos-label">差異化特色</div><div class="pos-val">12組分組各有獨立深度分析，球隊頁覆蓋48隊</div></div>
+          <div class="pos-item"><div class="pos-label">PBN角色</div><div class="pos-val">足球愛好者流量入口，透過投注連結導流</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🔍 關鍵字（15個）</div>
+      <div class="sec-body">
+        <div class="kw-group">
+          <div class="kw-group-title">核心關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip core">世界盃分組</span><span class="kw-chip core">世足球隊</span><span class="kw-chip core">梅西2026</span><span class="kw-chip core">姆巴佩世界盃</span><span class="kw-chip core">世足球星</span><span class="kw-chip core">世界盃死亡之組</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">長尾關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip long">2026世界盃分組籤表</span><span class="kw-chip long">阿根廷世界盃分組分析</span><span class="kw-chip long">梅西最後一屆世界盃</span><span class="kw-chip long">日本世界盃分組幾組</span><span class="kw-chip long">西班牙世界盃陣容</span><span class="kw-chip long">法國隊世界盃2026</span><span class="kw-chip long">世足A組分析晉級預測</span><span class="kw-chip long">韓國世界盃分組賽程</span><span class="kw-chip long">世界盃最強球隊排名</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-me -->
+
+
+  <!-- ===== world-cup.tw ===== -->
+  <div class="tab-panel" id="tab-wctw">
+
+    <div class="site-hero" style="background:rgba(255,126,182,.04);border-color:rgba(255,126,182,.25)">
+      <div class="site-hero-top">
+        <div class="site-emoji">🌍</div>
+        <div>
+          <div class="site-title" style="color:var(--pink)">world-cup.tw <span class="tag" style="color:var(--pink);border-color:rgba(255,126,182,.4);background:rgba(255,126,182,.08)">純資訊站 · AEO</span></div>
+          <div class="site-url-link"><a href="https://world-cup.tw" target="_blank">https://world-cup.tw ↗</a> <span style="color:var(--muted);font-size:0.8em">（域名購買中）</span></div>
+          <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：純資訊站（白底設計），AI搜尋 AEO/GEO 導向。外觀不像博彩站，提供真實世界盃資訊，針對 Google AI Overview / Bing AI 優化。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🏷️ OG Meta</div>
+      <div class="sec-body">
+        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世界盃｜賽程、直播、球隊完整攻略</div></div>
+        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026 FIFA 世界盃完整資訊站：台灣時間完整賽程、48隊球隊介紹、直播平台比較，一站掌握世界盃所有資訊。</div></div>
+        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://world-cup.tw/" target="_blank">https://world-cup.tw/</a></div></div>
+        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世界盃完整攻略・賽程台灣時間・直播平台・48隊名單｜world-cup.tw</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🔗 Lihi 短連結使用狀況</div>
+      <div class="sec-body" style="padding:0">
+        <table class="lihi-table">
+          <tr><th>Lihi 短連結</th><th>用於哪些頁面</th></tr>
+          <tr>
+            <td><span class="lihi-link">lihi2.me/LiqMX</span></td>
+            <td><span class="lihi-pages">全站主 CTA（index / live / schedule / teams 等，低調置入）</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🎯 內容定位</div>
+      <div class="sec-body">
+        <div class="pos-grid">
+          <div class="pos-item"><div class="pos-label">站點主題</div><div class="pos-val">純資訊站（白底）・AEO/GEO 優化</div></div>
+          <div class="pos-item"><div class="pos-label">搜尋意圖</div><div class="pos-val">資訊型（AI搜尋回答・語音搜尋）</div></div>
+          <div class="pos-item"><div class="pos-label">目標受眾</div><div class="pos-val">一般球迷・AEO/GEO 受眾・AI Overview 曝光</div></div>
+          <div class="pos-item"><div class="pos-label">主力頁面</div><div class="pos-val">index / schedule / taiwan-time / teams / live / champion-prediction</div></div>
+          <div class="pos-item"><div class="pos-label">特殊設計</div><div class="pos-val">白底設計、不像博彩站，FAQ schema / Speakable / HowTo 全覆蓋</div></div>
+          <div class="pos-item"><div class="pos-label">頁面規模</div><div class="pos-val">21頁（6分組 + 4球星 + 5主題 + 6基礎）</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">🔍 關鍵字（AEO 導向）</div>
+      <div class="sec-body">
+        <div class="kw-group">
+          <div class="kw-group-title">核心問句（AEO）</div>
+          <div class="kw-chips">
+            <span class="kw-chip core">2026世界盃幾隊</span><span class="kw-chip core">世界盃在哪裡</span><span class="kw-chip core">世界盃幾月幾號</span><span class="kw-chip core">世界盃台灣時間</span><span class="kw-chip core">世界盃幾場</span><span class="kw-chip core">世界盃誰會贏</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">長尾關鍵字</div>
+          <div class="kw-chips">
+            <span class="kw-chip long">2026世界盃幾月開始</span><span class="kw-chip long">世界盃在哪個國家辦</span><span class="kw-chip long">世界盃台灣直播哪裡看</span><span class="kw-chip long">梅西2026世界盃參賽</span><span class="kw-chip long">世界盃冠軍預測2026</span><span class="kw-chip long">世界盃淘汰賽制說明</span><span class="kw-chip long">world cup 2026 taiwan time</span><span class="kw-chip long">世界盃決賽台灣時間幾點</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">品牌／域名</div>
+          <div class="kw-chips">
+            <span class="kw-chip brand">world-cup.tw</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-wctw -->
+
+  <div style="text-align:center;color:var(--muted);font-size:0.73em;padding-top:24px;border-top:1px solid var(--border);margin-top:8px">
+    🔒 內部文件 · 2026-05-18 · YS89 世足站群
+    &nbsp;|&nbsp; <a href="KEYWORDS.html">關鍵字地圖</a>
+    &nbsp;|&nbsp; <a href="PROJECT-OVERVIEW.html">專案總覽</a>
+  </div>
+
+</div>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
