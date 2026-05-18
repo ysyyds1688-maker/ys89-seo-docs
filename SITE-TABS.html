@@ -54,6 +54,13 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
 .og-row{display:flex;gap:10px;margin-bottom:10px;font-size:0.83em;align-items:flex-start}
 .og-label{color:var(--muted);font-family:monospace;min-width:100px;flex-shrink:0;font-size:0.9em;padding-top:1px}
 .og-val{color:var(--text);line-height:1.5}
+.og-loading{color:var(--muted);font-size:0.82em;display:flex;align-items:center;gap:8px}
+.og-loading::before{content:'';display:inline-block;width:12px;height:12px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+.og-img{max-width:100%;border-radius:6px;margin-top:10px;border:1px solid var(--border)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.og-status{display:inline-block;font-size:0.68em;padding:2px 8px;border-radius:10px;font-weight:700;margin-left:8px}
+.og-live{color:var(--green);background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3)}
+.og-err{color:var(--red);background:rgba(248,81,73,.1);border:1px solid rgba(248,81,73,.3)}
 
 /* LIHI TABLE */
 .lihi-table{width:100%;border-collapse:collapse;font-size:0.82em}
@@ -113,13 +120,8 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
 
     <!-- OG META -->
     <div class="sec">
-      <div class="sec-head">🏷️ OG Meta</div>
-      <div class="sec-body">
-        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世界盃賽程・分組・賠率・冠軍預測｜台灣最完整世界盃資訊站</div></div>
-        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026世界盃台灣最完整資訊站：賽程表、12組分組分析、冠軍賠率、各隊深度評析、台灣時間對照、直播管道與投注攻略全覆蓋。美加墨三國聯辦，48隊104場，6月11日開踢。西班牙、法國、阿根廷、英格蘭為冠軍熱門。</div></div>
-        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://ys89.games/" target="_blank">https://ys89.games/</a></div></div>
-        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世界盃賽程・分組・賠率・冠軍預測｜台灣最完整世界盃資訊站</div></div>
-      </div>
+      <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-games-status">即時抓取中…</span></div>
+      <div class="sec-body" id="og-games"><div class="og-loading">從 ys89.games 抓取 OG meta…</div></div>
     </div>
 
     <!-- LIHI -->
@@ -212,13 +214,8 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
     </div>
 
     <div class="sec">
-      <div class="sec-head">🏷️ OG Meta</div>
-      <div class="sec-body">
-        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世界盃直播哪裡看？賽程・賠率・分組完整攻略｜台灣觀賽指南</div></div>
-        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026世足賽台灣最完整直播攻略！愛爾達體育、MOD、華視轉播管道全整理，含104場台灣時間賽程、冠軍賠率比較、分組分析，開賽不怕找不到直播。</div></div>
-        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://ys89.info/" target="_blank">https://ys89.info/</a></div></div>
-        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世界盃直播哪裡看？賽程・賠率・分組完整攻略｜台灣觀賽指南</div></div>
-      </div>
+      <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-info-status">即時抓取中…</span></div>
+      <div class="sec-body" id="og-info"><div class="og-loading">從 ys89.info 抓取 OG meta…</div></div>
     </div>
 
     <div class="sec">
@@ -284,13 +281,8 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
     </div>
 
     <div class="sec">
-      <div class="sec-head">🏷️ OG Meta</div>
-      <div class="sec-body">
-        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世足直播・投注攻略・冠軍賠率｜台灣觀賽投注平台</div></div>
-        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026世界盃直播免費看！104場賽程、愛爾達・MOD・華視台灣時間全覆蓋，冠軍賠率比較・投注攻略一站搞定，解鎖完整觀賽專區。</div></div>
-        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://ys89.biz/" target="_blank">https://ys89.biz/</a></div></div>
-        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世足投注攻略・讓分盤・波膽・串關完整教學｜ys89.biz</div></div>
-      </div>
+      <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-biz-status">即時抓取中…</span></div>
+      <div class="sec-body" id="og-biz"><div class="og-loading">從 ys89.biz 抓取 OG meta…</div></div>
     </div>
 
     <div class="sec">
@@ -356,13 +348,8 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
     </div>
 
     <div class="sec">
-      <div class="sec-head">🏷️ OG Meta</div>
-      <div class="sec-body">
-        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世界盃分組分析・48隊球隊介紹・球星完整資訊｜世足情報站</div></div>
-        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026世界盃48隊完整分組分析、各組晉級預測、球隊介紹、梅西姆巴佩等球星資訊，台灣最完整世足分組資訊站。</div></div>
-        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://ys89.me/" target="_blank">https://ys89.me/</a></div></div>
-        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世界盃分組分析・48隊球隊介紹・球星完整資訊｜世足情報站</div></div>
-      </div>
+      <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-me-status">即時抓取中…</span></div>
+      <div class="sec-body" id="og-me"><div class="og-loading">從 ys89.me 抓取 OG meta…</div></div>
     </div>
 
     <div class="sec">
@@ -428,13 +415,8 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
     </div>
 
     <div class="sec">
-      <div class="sec-head">🏷️ OG Meta</div>
-      <div class="sec-body">
-        <div class="og-row"><div class="og-label">og:title</div><div class="og-val">2026世界盃｜賽程、直播、球隊完整攻略</div></div>
-        <div class="og-row"><div class="og-label">og:description</div><div class="og-val">2026 FIFA 世界盃完整資訊站：台灣時間完整賽程、48隊球隊介紹、直播平台比較，一站掌握世界盃所有資訊。</div></div>
-        <div class="og-row"><div class="og-label">og:url</div><div class="og-val"><a href="https://world-cup.tw/" target="_blank">https://world-cup.tw/</a></div></div>
-        <div class="og-row" style="margin-bottom:0"><div class="og-label">&lt;title&gt;</div><div class="og-val">2026世界盃完整攻略・賽程台灣時間・直播平台・48隊名單｜world-cup.tw</div></div>
-      </div>
+      <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-wctw-status">即時抓取中…</span></div>
+      <div class="sec-body" id="og-wctw"><div class="og-loading">從 world-cup.tw 抓取 OG meta…</div></div>
     </div>
 
     <div class="sec">
@@ -505,6 +487,54 @@ function switchTab(id, btn) {
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
 }
+
+var OG_SITES = [
+  {id:'games', url:'https://ys89.games'},
+  {id:'info',  url:'https://ys89.info'},
+  {id:'biz',   url:'https://ys89.biz'},
+  {id:'me',    url:'https://ys89.me'},
+  {id:'wctw',  url:'https://world-cup.tw'},
+];
+
+function renderOGRows(d) {
+  function row(label, val) {
+    return '<div class="og-row"><div class="og-label">'+label+'</div><div class="og-val">'+val+'</div></div>';
+  }
+  var html = '';
+  if (d.title)       html += row('og:title',       escH(d.title));
+  if (d.description) html += row('og:description', escH(d.description));
+  if (d.url)         html += row('og:url', '<a href="'+escH(d.url)+'" target="_blank">'+escH(d.url)+'</a>');
+  if (d.image && d.image.url) html += row('og:image', '<img class="og-img" src="'+escH(d.image.url)+'" loading="lazy" alt="og image">');
+  if (d.lang)        html += row('lang', escH(d.lang));
+  return html || '<div style="color:var(--muted);font-size:.82em">無資料回傳</div>';
+}
+
+function escH(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fetchOG(site) {
+  var container = document.getElementById('og-'+site.id);
+  var statusEl  = document.getElementById('og-'+site.id+'-status');
+  fetch('https://api.microlink.io/?url='+encodeURIComponent(site.url))
+    .then(function(r){ return r.json(); })
+    .then(function(json){
+      if (json.status === 'success') {
+        container.innerHTML = renderOGRows(json.data);
+        statusEl.textContent = '✓ 即時資料';
+        statusEl.className = 'og-status og-live';
+      } else {
+        throw new Error('api error');
+      }
+    })
+    .catch(function(){
+      container.innerHTML = '<div style="color:var(--muted);font-size:.82em">⚠ 無法抓取（站點可能未上線）</div>';
+      statusEl.textContent = '離線';
+      statusEl.className = 'og-status og-err';
+    });
+}
+
+OG_SITES.forEach(fetchOG);
 </script>
 </body>
 </html>
