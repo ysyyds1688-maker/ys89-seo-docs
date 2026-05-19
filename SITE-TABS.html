@@ -28,6 +28,7 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
 .tab-btn{padding:10px 20px;font-size:0.82em;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--text);border-bottom-color:currentColor}
+.tab-btn.t-fun{--c:var(--purple)}.tab-btn.t-fun.active{color:var(--purple)}
 .tab-btn.t-games{--c:var(--green)}.tab-btn.t-games.active{color:var(--green)}
 .tab-btn.t-info{--c:var(--blue)}.tab-btn.t-info.active{color:var(--blue)}
 .tab-btn.t-biz{--c:var(--orange)}.tab-btn.t-biz.active{color:var(--orange)}
@@ -85,24 +86,119 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
 .pos-item{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
 .pos-label{color:var(--muted);font-size:0.8em;margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .pos-val{color:var(--text);line-height:1.5}
+
+/* DR STATS */
+.dr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-size:0.83em}
+@media(max-width:680px){.dr-grid{grid-template-columns:repeat(2,1fr)}}
+.dr-stat{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;text-align:center}
+.dr-stat-label{color:var(--muted);font-size:0.73em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.dr-stat-val{font-size:1.8em;font-weight:900;line-height:1}
+.dr-warn{margin-top:12px;padding:10px 14px;background:rgba(248,81,73,.06);border:1px solid rgba(248,81,73,.2);border-radius:8px;font-size:0.78em;color:var(--muted)}
+.dr-ok{margin-top:12px;padding:10px 14px;background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.2);border-radius:8px;font-size:0.78em;color:var(--muted)}
+.dr-neutral{margin-top:12px;padding:10px 14px;background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.2);border-radius:8px;font-size:0.78em;color:var(--muted)}
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">YS89 <span>世足站群 · 站點總覽</span></div>
-  <div class="header-meta">2026-05-18 · 內部文件 &nbsp;|&nbsp; <a href="KEYWORDS.html">關鍵字地圖</a> &nbsp;|&nbsp; <a href="PROJECT-OVERVIEW.html">專案總覽</a></div>
+  <div class="header-meta">2026-05-19 · 內部文件 &nbsp;|&nbsp; <a href="KEYWORDS.html">關鍵字地圖</a> &nbsp;|&nbsp; <a href="PROJECT-OVERVIEW.html">專案總覽</a></div>
 </header>
 
 <div class="page">
 
   <div class="tab-nav">
+    <button class="tab-btn t-fun" onclick="switchTab('fun',this)">🏠 ys89.fun（母站）</button>
     <button class="tab-btn t-games active" onclick="switchTab('games',this)">⚽ ys89.games</button>
     <button class="tab-btn t-info" onclick="switchTab('info',this)">📡 ys89.info</button>
     <button class="tab-btn t-biz" onclick="switchTab('biz',this)">💰 ys89.biz</button>
     <button class="tab-btn t-me" onclick="switchTab('me',this)">🌐 ys89.me</button>
-    <button class="tab-btn t-wctw" onclick="switchTab('wctw',this)">🌍 world-cup.tw</button>
+    <button class="tab-btn t-wctw" onclick="switchTab('wctw',this)">🌍 fifa-worldcups.tw</button>
   </div>
+
+
+  <!-- ===== ys89.fun 母站 ===== -->
+  <div class="tab-panel" id="tab-fun">
+
+    <div class="site-hero" style="background:rgba(188,140,255,.04);border-color:rgba(188,140,255,.25)">
+      <div class="site-hero-top">
+        <div class="site-emoji">🏠</div>
+        <div>
+          <div class="site-title" style="color:var(--purple)">ys89.fun <span class="tag" style="color:var(--purple);border-color:rgba(188,140,255,.4);background:rgba(188,140,255,.08)">母站 · WordPress</span></div>
+          <div class="site-url-link"><a href="https://ys89.fun" target="_blank">https://ys89.fun ↗</a></div>
+          <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：夜色娛樂城品牌主站，投注攻略 + 娛樂城推薦。WordPress 架設，Cloudways 主機（152.42.250.98），176篇文章目標。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DR DATA -->
+    <div class="sec">
+      <div class="sec-head">📊 Ahrefs DR / 反向連結 <span style="font-size:0.8em;font-weight:400;margin-left:6px;color:var(--muted)">2026-05-19 快照</span></div>
+      <div class="sec-body">
+        <div class="dr-grid">
+          <div class="dr-stat"><div class="dr-stat-label">Domain Rating</div><div class="dr-stat-val" style="color:var(--red)">0</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">反向連結總數</div><div class="dr-stat-val">104</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">連結來源網域</div><div class="dr-stat-val">88</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">Dofollow 佔比</div><div class="dr-stat-val" style="font-size:1.2em">38%</div></div>
+        </div>
+        <div class="dr-warn">⚠ 現有104條反向連結全部來自垃圾 SEO 服務（linkrankboost.shop、seo-high-ranking.shop、pbnseolinks.shop 等），Google / Ahrefs 忽略不計，DR 無法提升。需購入 DR20+ 過期域名建立 PBN 才能有效傳遞權重。</div>
+      </div>
+    </div>
+
+    <!-- OG META -->
+    <div class="sec">
+      <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-fun-status">即時抓取中…</span></div>
+      <div class="sec-body" id="og-fun"><div class="og-loading">從 ys89.fun 抓取 OG meta…</div></div>
+    </div>
+
+    <!-- POSITIONING -->
+    <div class="sec">
+      <div class="sec-head">🎯 內容定位</div>
+      <div class="sec-body">
+        <div class="pos-grid">
+          <div class="pos-item"><div class="pos-label">站點主題</div><div class="pos-val">夜色娛樂城品牌主站 + 投注攻略</div></div>
+          <div class="pos-item"><div class="pos-label">平台</div><div class="pos-val">WordPress / Cloudways（IP: 152.42.250.98）</div></div>
+          <div class="pos-item"><div class="pos-label">文章目標</div><div class="pos-val">176篇（現況：已上線 ~50+ 篇）</div></div>
+          <div class="pos-item"><div class="pos-label">主力分類</div><div class="pos-val">世足賽投注（35篇）、娛樂城通用（30篇）、YS89品牌（24篇）、詐騙/黑名單（21篇）</div></div>
+          <div class="pos-item"><div class="pos-label">主 CTA</div><div class="pos-val">lihi2.me/LiqMX（NT$368 體驗金）</div></div>
+          <div class="pos-item"><div class="pos-label">待辦</div><div class="pos-val">Post 752 替換 A/B/C 佔位符；landing-page.html 行動版重設計</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEYWORDS -->
+    <div class="sec">
+      <div class="sec-head">🔍 主力關鍵字</div>
+      <div class="sec-body">
+        <div class="kw-group">
+          <div class="kw-group-title">YS89 品牌</div>
+          <div class="kw-chips">
+            <span class="kw-chip brand">夜色娛樂城</span><span class="kw-chip brand">YS89官方網站</span><span class="kw-chip brand">夜色娛樂城評測</span><span class="kw-chip brand">夜色娛樂城安全嗎</span><span class="kw-chip brand">夜色體驗金NT$368</span><span class="kw-chip brand">夜色娛樂城APP下載</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">娛樂城通用</div>
+          <div class="kw-chips">
+            <span class="kw-chip core">娛樂城推薦</span><span class="kw-chip core">台灣娛樂城推薦2026</span><span class="kw-chip core">娛樂城排行榜</span><span class="kw-chip core">娛樂城體驗金免流水</span><span class="kw-chip core">娛樂城出金速度比較2026</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">詐騙/黑名單（21篇）</div>
+          <div class="kw-chips">
+            <span class="kw-chip long">娛樂城詐騙</span><span class="kw-chip long">娛樂城黑名單2026</span><span class="kw-chip long">TU娛樂城詐騙</span><span class="kw-chip long">TU娛樂城不出金</span><span class="kw-chip long">九州娛樂城不出金</span><span class="kw-chip long">LEO娛樂城倒閉</span><span class="kw-chip long">皇家RY娛樂城詐騙</span>
+          </div>
+        </div>
+        <div class="kw-group">
+          <div class="kw-group-title">世足賽投注（35篇）★ 現階段主攻</div>
+          <div class="kw-chips">
+            <span class="kw-chip core">2026世界盃冠軍賠率分析</span><span class="kw-chip core">世足讓球盤攻略</span><span class="kw-chip core">梅西阿根廷2026世界盃</span><span class="kw-chip core">姆巴佩法國2026世界盃</span><span class="kw-chip core">世足射手王金靴賠率</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-fun -->
+
 
   <!-- ===== ys89.games ===== -->
   <div class="tab-panel active" id="tab-games">
@@ -115,6 +211,20 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
           <div class="site-url-link"><a href="https://ys89.games" target="_blank">https://ys89.games ↗</a></div>
           <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：賽程・直播・賠率綜合站，資訊型 + 導流。台灣最完整世界盃資訊站，涵蓋分組、賠率、預測。</div>
         </div>
+      </div>
+    </div>
+
+    <!-- DR DATA -->
+    <div class="sec">
+      <div class="sec-head">📊 Ahrefs DR / 反向連結 <span style="font-size:0.8em;font-weight:400;margin-left:6px;color:var(--muted)">2026-05-19 快照</span></div>
+      <div class="sec-body">
+        <div class="dr-grid">
+          <div class="dr-stat"><div class="dr-stat-label">Domain Rating</div><div class="dr-stat-val" style="color:var(--yellow)">3.2</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">反向連結總數</div><div class="dr-stat-val">102</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">連結來源網域</div><div class="dr-stat-val">12</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">Dofollow 佔比</div><div class="dr-stat-val" style="font-size:1.2em">8%</div></div>
+        </div>
+        <div class="dr-warn">⚠ DR 3.2 是站群中唯一非零站，但反向連結仍以垃圾連結為主（itxoft 等），來源網域僅12個。Dofollow 佔比僅8%，實際傳遞的權重極低。</div>
       </div>
     </div>
 
@@ -213,6 +323,20 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
       </div>
     </div>
 
+    <!-- DR DATA -->
+    <div class="sec">
+      <div class="sec-head">📊 Ahrefs DR / 反向連結 <span style="font-size:0.8em;font-weight:400;margin-left:6px;color:var(--muted)">2026-05-19 快照</span></div>
+      <div class="sec-body">
+        <div class="dr-grid">
+          <div class="dr-stat"><div class="dr-stat-label">Domain Rating</div><div class="dr-stat-val" style="color:var(--red)">0</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">反向連結總數</div><div class="dr-stat-val">28</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">連結來源網域</div><div class="dr-stat-val">23</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">Dofollow 佔比</div><div class="dr-stat-val" style="font-size:1.2em">—</div></div>
+        </div>
+        <div class="dr-warn">⚠ DR 0，28條反向連結皆為垃圾 SEO 服務，Ahrefs 不計入。需靠 PBN 或自然外鏈提升。</div>
+      </div>
+    </div>
+
     <div class="sec">
       <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-info-status">即時抓取中…</span></div>
       <div class="sec-body" id="og-info"><div class="og-loading">從 ys89.info 抓取 OG meta…</div></div>
@@ -277,6 +401,20 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
           <div class="site-url-link"><a href="https://ys89.biz" target="_blank">https://ys89.biz ↗</a></div>
           <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：世足賽投注攻略教學站，商業型（投注意圖）。讓球盤、大小球、波膽、串關等投注技巧深度內容，鎖定有投注意圖的高價值用戶。</div>
         </div>
+      </div>
+    </div>
+
+    <!-- DR DATA -->
+    <div class="sec">
+      <div class="sec-head">📊 Ahrefs DR / 反向連結 <span style="font-size:0.8em;font-weight:400;margin-left:6px;color:var(--muted)">2026-05-19 快照</span></div>
+      <div class="sec-body">
+        <div class="dr-grid">
+          <div class="dr-stat"><div class="dr-stat-label">Domain Rating</div><div class="dr-stat-val" style="color:var(--red)">0</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">反向連結總數</div><div class="dr-stat-val">32</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">連結來源網域</div><div class="dr-stat-val">26</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">Dofollow 佔比</div><div class="dr-stat-val" style="font-size:1.2em">—</div></div>
+        </div>
+        <div class="dr-warn">⚠ DR 0，32條反向連結皆為垃圾 SEO 服務，Ahrefs 不計入。需靠 PBN 或自然外鏈提升。</div>
       </div>
     </div>
 
@@ -347,6 +485,20 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
       </div>
     </div>
 
+    <!-- DR DATA -->
+    <div class="sec">
+      <div class="sec-head">📊 Ahrefs DR / 反向連結 <span style="font-size:0.8em;font-weight:400;margin-left:6px;color:var(--muted)">2026-05-19 快照</span></div>
+      <div class="sec-body">
+        <div class="dr-grid">
+          <div class="dr-stat"><div class="dr-stat-label">Domain Rating</div><div class="dr-stat-val" style="color:var(--red)">0</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">反向連結總數</div><div class="dr-stat-val">4</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">連結來源網域</div><div class="dr-stat-val">4</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">Dofollow 佔比</div><div class="dr-stat-val" style="font-size:1.2em">—</div></div>
+        </div>
+        <div class="dr-neutral">ℹ 幾乎無外部連結（僅4條），屬於全新站，反向連結狀況最差。PBN 注入效果理論上最顯著。</div>
+      </div>
+    </div>
+
     <div class="sec">
       <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-me-status">即時抓取中…</span></div>
       <div class="sec-body" id="og-me"><div class="og-loading">從 ys89.me 抓取 OG meta…</div></div>
@@ -400,23 +552,37 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
   </div><!-- /tab-me -->
 
 
-  <!-- ===== world-cup.tw ===== -->
+  <!-- ===== fifa-worldcups.tw ===== -->
   <div class="tab-panel" id="tab-wctw">
 
     <div class="site-hero" style="background:rgba(255,126,182,.04);border-color:rgba(255,126,182,.25)">
       <div class="site-hero-top">
         <div class="site-emoji">🌍</div>
         <div>
-          <div class="site-title" style="color:var(--pink)">world-cup.tw <span class="tag" style="color:var(--pink);border-color:rgba(255,126,182,.4);background:rgba(255,126,182,.08)">純資訊站 · AEO</span></div>
-          <div class="site-url-link"><a href="https://world-cup.tw" target="_blank">https://world-cup.tw ↗</a> <span style="color:var(--muted);font-size:0.8em">（域名購買中）</span></div>
-          <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：純資訊站（白底設計），AI搜尋 AEO/GEO 導向。外觀不像博彩站，提供真實世界盃資訊，針對 Google AI Overview / Bing AI 優化。</div>
+          <div class="site-title" style="color:var(--pink)">fifa-worldcups.tw <span class="tag" style="color:var(--pink);border-color:rgba(255,126,182,.4);background:rgba(255,126,182,.08)">純資訊站 · AEO</span></div>
+          <div class="site-url-link"><a href="https://fifa-worldcups.tw" target="_blank">https://fifa-worldcups.tw ↗</a></div>
+          <div style="margin-top:8px;font-size:0.82em;color:var(--muted)">定位：純資訊站（白底設計），AI搜尋 AEO/GEO 導向。外觀不像博彩站，提供真實世界盃資訊，針對 Google AI Overview / Bing AI 優化。Cloudflare Pages 部署，GitHub: ysyyds1688-maker/worldcuplive。</div>
         </div>
+      </div>
+    </div>
+
+    <!-- DR DATA -->
+    <div class="sec">
+      <div class="sec-head">📊 Ahrefs DR / 反向連結 <span style="font-size:0.8em;font-weight:400;margin-left:6px;color:var(--muted)">2026-05-19 快照</span></div>
+      <div class="sec-body">
+        <div class="dr-grid">
+          <div class="dr-stat"><div class="dr-stat-label">Domain Rating</div><div class="dr-stat-val" style="color:var(--red)">0</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">反向連結總數</div><div class="dr-stat-val">0</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">連結來源網域</div><div class="dr-stat-val">0</div></div>
+          <div class="dr-stat"><div class="dr-stat-label">GSC 已驗證</div><div class="dr-stat-val" style="color:var(--green);font-size:1.1em">✓</div></div>
+        </div>
+        <div class="dr-neutral">ℹ 新站，尚無任何外部連結。Search Console 已驗證（2026-05-18），Sitemap 已提交21頁，需再次提交（現28頁）。SEO 需靠社群導流 + 未來 PBN 注入。</div>
       </div>
     </div>
 
     <div class="sec">
       <div class="sec-head">🏷️ OG Meta <span class="og-status og-live" id="og-wctw-status">即時抓取中…</span></div>
-      <div class="sec-body" id="og-wctw"><div class="og-loading">從 world-cup.tw 抓取 OG meta…</div></div>
+      <div class="sec-body" id="og-wctw"><div class="og-loading">從 fifa-worldcups.tw 抓取 OG meta…</div></div>
     </div>
 
     <div class="sec">
@@ -441,7 +607,7 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
           <div class="pos-item"><div class="pos-label">目標受眾</div><div class="pos-val">一般球迷・AEO/GEO 受眾・AI Overview 曝光</div></div>
           <div class="pos-item"><div class="pos-label">主力頁面</div><div class="pos-val">index / schedule / taiwan-time / teams / live / champion-prediction</div></div>
           <div class="pos-item"><div class="pos-label">特殊設計</div><div class="pos-val">白底設計、不像博彩站，FAQ schema / Speakable / HowTo 全覆蓋</div></div>
-          <div class="pos-item"><div class="pos-label">頁面規模</div><div class="pos-val">21頁（6分組 + 4球星 + 5主題 + 6基礎）</div></div>
+          <div class="pos-item"><div class="pos-label">頁面規模</div><div class="pos-val">28頁（6分組 + 4球星 + 5主題 + 基礎頁）</div></div>
         </div>
       </div>
     </div>
@@ -464,7 +630,7 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
         <div class="kw-group">
           <div class="kw-group-title">品牌／域名</div>
           <div class="kw-chips">
-            <span class="kw-chip brand">world-cup.tw</span>
+            <span class="kw-chip brand">fifa-worldcups.tw</span>
           </div>
         </div>
       </div>
@@ -473,7 +639,7 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28p
   </div><!-- /tab-wctw -->
 
   <div style="text-align:center;color:var(--muted);font-size:0.73em;padding-top:24px;border-top:1px solid var(--border);margin-top:8px">
-    🔒 內部文件 · 2026-05-18 · YS89 世足站群
+    🔒 內部文件 · 2026-05-19 · YS89 世足站群
     &nbsp;|&nbsp; <a href="KEYWORDS.html">關鍵字地圖</a>
     &nbsp;|&nbsp; <a href="PROJECT-OVERVIEW.html">專案總覽</a>
   </div>
@@ -489,11 +655,12 @@ function switchTab(id, btn) {
 }
 
 var OG_SITES = [
+  {id:'fun',   url:'https://ys89.fun'},
   {id:'games', url:'https://ys89.games'},
   {id:'info',  url:'https://ys89.info'},
   {id:'biz',   url:'https://ys89.biz'},
   {id:'me',    url:'https://ys89.me'},
-  {id:'wctw',  url:'https://world-cup.tw'},
+  {id:'wctw',  url:'https://fifa-worldcups.tw'},
 ];
 
 function renderOGRows(d) {
