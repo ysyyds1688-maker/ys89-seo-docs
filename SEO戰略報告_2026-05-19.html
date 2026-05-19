@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>YS89 SEO 戰略報告 2026-05-19</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Noto Sans TC", sans-serif; background: #0f0f0f; color: #e0e0e0; line-height: 1.7; }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+  h1 { font-size: 1.8em; color: #fff; border-bottom: 3px solid #f0a500; padding-bottom: 12px; margin-bottom: 30px; }
+  h2 { font-size: 1.3em; color: #f0a500; margin: 36px 0 14px; }
+  h3 { font-size: 1.05em; color: #aaa; margin: 20px 0 8px; }
+  p { margin-bottom: 12px; color: #ccc; }
+  .verdict { display: flex; gap: 20px; margin: 24px 0; flex-wrap: wrap; }
+  .verdict-box { flex: 1; min-width: 200px; padding: 20px; border-radius: 8px; text-align: center; }
+  .red { background: #2a0a0a; border: 1px solid #c0392b; }
+  .yellow { background: #2a1f00; border: 1px solid #e67e22; }
+  .green { background: #0a2a0a; border: 1px solid #27ae60; }
+  .verdict-box .score { font-size: 2.5em; font-weight: bold; margin-bottom: 6px; }
+  .red .score { color: #e74c3c; }
+  .yellow .score { color: #f39c12; }
+  .green .score { color: #2ecc71; }
+  .verdict-box .label { font-size: 0.85em; color: #aaa; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9em; }
+  th { background: #1a1a1a; color: #f0a500; text-align: left; padding: 10px 12px; border-bottom: 2px solid #333; }
+  td { padding: 9px 12px; border-bottom: 1px solid #222; color: #ccc; }
+  tr:hover td { background: #1a1a1a; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.78em; font-weight: bold; }
+  .tag-red { background: #c0392b; color: #fff; }
+  .tag-yellow { background: #e67e22; color: #fff; }
+  .tag-green { background: #27ae60; color: #fff; }
+  .tag-gray { background: #555; color: #fff; }
+  .alert { padding: 14px 18px; border-radius: 6px; margin: 16px 0; }
+  .alert-red { background: #1f0808; border-left: 4px solid #c0392b; }
+  .alert-yellow { background: #1f1500; border-left: 4px solid #f39c12; }
+  .alert-green { background: #081508; border-left: 4px solid #27ae60; }
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #333; }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-dot { position: absolute; left: -26px; top: 4px; width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #e74c3c; }
+  .dot-yellow { background: #f39c12; }
+  .dot-green { background: #2ecc71; }
+  .tl-date { font-size: 0.8em; color: #888; margin-bottom: 4px; }
+  .tl-title { color: #fff; font-weight: bold; margin-bottom: 6px; }
+  .tl-desc { color: #aaa; font-size: 0.9em; }
+  .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin: 16px 0; }
+  .channel { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 14px; text-align: center; }
+  .channel .icon { font-size: 1.8em; margin-bottom: 6px; }
+  .channel .name { font-size: 0.9em; color: #f0a500; font-weight: bold; }
+  .channel .status { font-size: 0.78em; margin-top: 4px; }
+  .ok { color: #2ecc71; }
+  .warn { color: #f39c12; }
+  .dead { color: #e74c3c; }
+  .action-list { list-style: none; }
+  .action-list li { padding: 8px 0; border-bottom: 1px solid #222; color: #ccc; }
+  .action-list li::before { content: "▸ "; color: #f0a500; }
+  .priority { display: inline-block; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 0.75em; font-weight: bold; margin-right: 6px; }
+  .p1 { background: #c0392b; color: #fff; }
+  .p2 { background: #e67e22; color: #fff; }
+  .p3 { background: #27ae60; color: #fff; }
+  blockquote { border-left: 3px solid #f0a500; padding: 10px 16px; margin: 16px 0; background: #1a1a1a; color: #bbb; font-style: italic; }
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; color: #555; font-size: 0.82em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>YS89 SEO 戰略報告</h1>
+<p style="color:#888;margin-bottom:30px;">生成日期：2026-05-19 ／ 世足開幕倒數：<strong style="color:#e74c3c;">24 天</strong></p>
+
+<!-- ====== 一、誠實評估 ====== -->
+<h2>一、誠實評估：成功率有多高？</h2>
+
+<div class="verdict">
+  <div class="verdict-box yellow">
+    <div class="score">45%</div>
+    <div class="label">ys89.fun 母站<br>SEO 流量目標</div>
+  </div>
+  <div class="verdict-box yellow">
+    <div class="score">55%</div>
+    <div class="label">ys89.games<br>世足關鍵字排名</div>
+  </div>
+  <div class="verdict-box red">
+    <div class="score">20%</div>
+    <div class="label">fifa-worldcups.tw<br>世足前排名</div>
+  </div>
+  <div class="verdict-box green">
+    <div class="score">70%</div>
+    <div class="label">社群媒體<br>直接導流</div>
+  </div>
+</div>
+
+<div class="alert alert-red">
+  <strong>核心問題：時間不夠。</strong><br>
+  新內容進 Google 排名通常需要 4~12 週。今天是 5/19，世足 6/12 開幕，只剩 24 天。這段時間內新發的文章幾乎不可能靠自然搜尋排名爆發。
+</div>
+
+<div class="alert alert-yellow">
+  <strong>但不是沒機會。</strong><br>
+  已有排名的舊文章（753~785）在世足開幕後會自然增量；ys89.games 若已有部分關鍵字爬進第 2~3 頁，世足期間可能升至第 1 頁；社群媒體是 24 天內唯一能立即出量的渠道。
+</div>
+
+<h3>為什麼 ys89.fun 只有 45%？</h3>
+<table>
+  <tr><th>問題點</th><th>影響</th></tr>
+  <tr><td>DR 偏低（估計 &lt;10）</td><td>競爭關鍵字排不上去</td></tr>
+  <tr><td>PBN 還沒部署</td><td>缺少外部權重支撐</td></tr>
+  <tr><td>競品 DR 54~57（wager.tw、168gambling）</td><td>硬打排名困難</td></tr>
+  <tr><td>26 篇新文章剛上線</td><td>世足前來不及排名</td></tr>
+</table>
+
+<h3>為什麼社群媒體有 70%？</h3>
+<p>FB / IG / YT 的觸及率不依賴 Google，只要內容夠好、時機對，世足期間爆量是完全可能的。台灣 2022 年世足期間社群流量暴增 3~5 倍，這是你最快的突破口。</p>
+
+<!-- ====== 二、現況盤點 ====== -->
+<h2>二、現況盤點</h2>
+
+<table>
+  <tr><th>資產</th><th>狀態</th><th>世足前能用嗎</th></tr>
+  <tr>
+    <td>ys89.fun（26篇世足文章）</td>
+    <td><span class="tag tag-yellow">排名爬升中</span></td>
+    <td>部分舊文有機會，新文章來不及</td>
+  </tr>
+  <tr>
+    <td>ys89.games（90+頁）</td>
+    <td><span class="tag tag-yellow">部分有排名</span></td>
+    <td>世足開幕後搜尋量爆增會帶量</td>
+  </tr>
+  <tr>
+    <td>fifa-worldcups.tw（21頁）</td>
+    <td><span class="tag tag-red">新站，無排名</span></td>
+    <td>世足前幾乎無法靠 SEO</td>
+  </tr>
+  <tr>
+    <td>ys89.info / ys89.biz / ys89.me</td>
+    <td><span class="tag tag-gray">衛星站</span></td>
+    <td>輔助導流，不是主攻</td>
+  </tr>
+  <tr>
+    <td>PBN 模板（6個）</td>
+    <td><span class="tag tag-red">缺高DR域名，未部署</span></td>
+    <td>最快 2 週後才能見效</td>
+  </tr>
+  <tr>
+    <td>FB / IG / Threads / YT</td>
+    <td><span class="tag tag-green">可立即用</span></td>
+    <td>✅ 24 天內最有效渠道</td>
+  </tr>
+  <tr>
+    <td>Medium</td>
+    <td><span class="tag tag-red">疑似帳號被刪</span></td>
+    <td>❌ 需確認並重新申請</td>
+  </tr>
+</table>
+
+<!-- ====== 三、24 天衝刺計畫 ====== -->
+<h2>三、世足前 24 天衝刺計畫（5/19 → 6/11）</h2>
+
+<div class="alert alert-yellow">
+  這 24 天的目標不是靠 SEO 排名，而是<strong>為世足流量爆發做好準備</strong>，同時用社群媒體提前預熱。
+</div>
+
+<div class="timeline">
+
+  <div class="tl-item">
+    <div class="tl-dot dot-red"></div>
+    <div class="tl-date">5/19 ~ 5/23（本週）</div>
+    <div class="tl-title">🔴 立即執行：買域名 + 社群啟動</div>
+    <div class="tl-desc">
+      <ul class="action-list">
+        <li><span class="priority p1">1</span>買 2~3 個 DR20+ 過期域名（ExpiredDomains.net / GoDaddy Auctions）</li>
+        <li><span class="priority p1">1</span>部署 PBN4（世足站）→ 指向 ys89.fun + ys89.games</li>
+        <li><span class="priority p1">1</span>確認 Medium 帳號狀態，備用新帳號</li>
+        <li><span class="priority p2">2</span>FB / IG 開始每天發世足預測內容（倒數、分組、賠率）</li>
+        <li><span class="priority p2">2</span>YT 發第一支世足預測影片（就算 5 分鐘手機拍的也行）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-dot dot-yellow"></div>
+    <div class="tl-date">5/24 ~ 5/31</div>
+    <div class="tl-title">🟡 內容預熱 + PBN 上線</div>
+    <div class="tl-desc">
+      <ul class="action-list">
+        <li><span class="priority p1">1</span>PBN 站上線，文章發布 5~10 篇，加內部連結指向主站</li>
+        <li><span class="priority p2">2</span>ys89.games 首頁更新「倒數計時器」+ 社群分享按鈕</li>
+        <li><span class="priority p2">2</span>FB / IG 每日貼文：分組解析、球星介紹、投注教學（帶連結）</li>
+        <li><span class="priority p2">2</span>買 1~2 篇真實外鏈（台灣體育媒體 Guest Post）指向 ys89.fun</li>
+        <li><span class="priority p3">3</span>GSC 把所有新文章提交索引</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-dot dot-yellow"></div>
+    <div class="tl-date">6/1 ~ 6/11（開幕前一週）</div>
+    <div class="tl-title">🟡 全力衝流量</div>
+    <div class="tl-desc">
+      <ul class="action-list">
+        <li><span class="priority p1">1</span>每天發 2~3 篇世足預測 / 賠率更新文章到 ys89.fun</li>
+        <li><span class="priority p1">1</span>社群媒體瘋狂推：開幕倒數、賠率分析、直播哪裡看</li>
+        <li><span class="priority p2">2</span>Threads 每天 3~5 則短內容（賠率快訊、球隊動態）</li>
+        <li><span class="priority p2">2</span>IG Stories 每天更新分組積分預測</li>
+        <li><span class="priority p3">3</span>考慮 FB 投放小額廣告（世足期間流量成本相對低）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-dot dot-green"></div>
+    <div class="tl-date">6/12 起（世足開打）</div>
+    <div class="tl-title">🟢 收割流量期</div>
+    <div class="tl-desc">
+      <ul class="action-list">
+        <li><span class="priority p1">1</span>每場比賽後 30 分鐘內發賽後分析 + 下一場預測</li>
+        <li><span class="priority p1">1</span>ys89.games 賠率頁面每天更新</li>
+        <li><span class="priority p2">2</span>社群引流回 ys89.fun CTA（夜色娛樂城體驗金）</li>
+        <li><span class="priority p2">2</span>走地投注教學內容每天一篇（即時性高，搜尋量大）</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== 四、社群媒體策略 ====== -->
+<h2>四、社群媒體整合策略</h2>
+
+<div class="channel-grid">
+  <div class="channel">
+    <div class="icon">📘</div>
+    <div class="name">Facebook</div>
+    <div class="status ok">活躍中</div>
+    <p style="font-size:0.8em;color:#999;margin-top:8px;">每天 1 篇長貼文<br>帶連結到 ys89.fun<br>賠率分析 + CTA</p>
+  </div>
+  <div class="channel">
+    <div class="icon">📸</div>
+    <div class="name">Instagram</div>
+    <div class="status ok">活躍中</div>
+    <p style="font-size:0.8em;color:#999;margin-top:8px;">Stories 每日賠率<br>Reels 球星短影片<br>Bio 連結 ys89.fun</p>
+  </div>
+  <div class="channel">
+    <div class="icon">🧵</div>
+    <div class="name">Threads</div>
+    <div class="status ok">活躍中</div>
+    <p style="font-size:0.8em;color:#999;margin-top:8px;">每天 3~5 則<br>賠率快訊 / 賽果<br>帶 ys89.games 連結</p>
+  </div>
+  <div class="channel">
+    <div class="icon">▶️</div>
+    <div class="name">YouTube</div>
+    <div class="status ok">活躍中</div>
+    <p style="font-size:0.8em;color:#999;margin-top:8px;">每週 1~2 支<br>分組預測 / 賠率解析<br>Description 放連結</p>
+  </div>
+  <div class="channel">
+    <div class="icon">📝</div>
+    <div class="name">Medium</div>
+    <div class="status dead">帳號疑似被刪</div>
+    <p style="font-size:0.8em;color:#999;margin-top:8px;">需確認狀態<br>重申請備用帳號<br>DR 95，外鏈很值</p>
+  </div>
+</div>
+
+<div class="alert alert-yellow">
+  <strong>Medium 很重要，不要放棄。</strong><br>
+  Medium 的 DR 是 95，在上面發文章並連向 ys89.fun，等於拿到一個超高權重的外鏈。如果帳號被刪，用新信箱重新申請，繼續發。每篇 Medium 文章發完都把連結提交到 Google Search Console 要求索引。
+</div>
+
+<h3>社群內容分工</h3>
+<table>
+  <tr><th>平台</th><th>內容類型</th><th>頻率</th><th>目標</th></tr>
+  <tr><td>FB</td><td>長文賠率分析、投注教學</td><td>每天 1 篇</td><td>中年男性台灣球迷</td></tr>
+  <tr><td>IG</td><td>短影片、圖卡、Stories</td><td>每天 1 Reels + 3 Stories</td><td>18~35 歲</td></tr>
+  <tr><td>Threads</td><td>即時賠率、比賽結果快評</td><td>每天 3~5 則</td><td>即時流量</td></tr>
+  <tr><td>YT</td><td>深度分析影片（5~15分鐘）</td><td>每週 2 支</td><td>搜尋流量 + 訂閱</td></tr>
+  <tr><td>Medium</td><td>SEO 長文（複製自 ys89.fun）</td><td>每週 2~3 篇</td><td>外鏈 + 二次流量</td></tr>
+</table>
+
+<!-- ====== 五、回推：要成功需要什麼 ====== -->
+<h2>五、回推分析：要導流到夜色娛樂城，缺什麼？</h2>
+
+<div class="alert alert-red">
+  <strong>關鍵路徑：</strong>
+  搜尋者輸入關鍵字 → 找到你的網站 → 點進去看文章 → 點 CTA → 到夜色娛樂城 → 註冊 / 儲值
+  <br><br>
+  目前斷點在：<strong>「找到你的網站」這一步</strong>。排名不夠高，即使內容再好也沒人看到。
+</div>
+
+<table>
+  <tr><th>需要的條件</th><th>現況</th><th>缺口</th></tr>
+  <tr>
+    <td>ys89.fun DR 達到 20+</td>
+    <td>估計 &lt;10</td>
+    <td><span class="tag tag-red">缺 PBN + 外鏈</span></td>
+  </tr>
+  <tr>
+    <td>核心關鍵字排進第 1 頁</td>
+    <td>大部分在第 2~3 頁以後</td>
+    <td><span class="tag tag-red">需要 2~4 個月</span></td>
+  </tr>
+  <tr>
+    <td>每月自然流量 &gt;5,000</td>
+    <td>估計目前 &lt;500</td>
+    <td><span class="tag tag-yellow">世足期間可能爆增</span></td>
+  </tr>
+  <tr>
+    <td>CTA 點擊率 &gt;3%</td>
+    <td>現有 CTA 結構完整</td>
+    <td><span class="tag tag-green">已具備</span></td>
+  </tr>
+  <tr>
+    <td>社群媒體每日導流</td>
+    <td>帳號存在，內容不夠規律</td>
+    <td><span class="tag tag-yellow">需要加強頻率</span></td>
+  </tr>
+</table>
+
+<h3>現實情境預測</h3>
+<table>
+  <tr><th>情境</th><th>世足期間月流量</th><th>夜色娛樂城轉換估計</th></tr>
+  <tr>
+    <td>悲觀（無PBN，無社群努力）</td>
+    <td>500~1,000</td>
+    <td>5~15 人轉換</td>
+  </tr>
+  <tr>
+    <td>現況執行（社群努力 + PBN 5月底上線）</td>
+    <td>3,000~8,000</td>
+    <td>30~100 人轉換</td>
+  </tr>
+  <tr>
+    <td>樂觀（PBN全力 + 社群爆款 + 外鏈）</td>
+    <td>10,000~30,000</td>
+    <td>100~400 人轉換</td>
+  </tr>
+</table>
+
+<!-- ====== 六、1~2 個月行動清單 ====== -->
+<h2>六、1~2 個月完整行動清單</h2>
+
+<table>
+  <tr><th>時間</th><th>行動</th><th>負責</th><th>優先級</th></tr>
+
+  <tr><td colspan="4" style="background:#1a1a1a;color:#f0a500;font-weight:bold;">▶ 5月第4週（5/19~5/25）</td></tr>
+  <tr><td>5/19~21</td><td>買 DR20+ 過期域名（至少 2 個）</td><td>你</td><td><span class="tag tag-red">P0 最急</span></td></tr>
+  <tr><td>5/19~21</td><td>確認 Medium 帳號，重申請備用</td><td>你</td><td><span class="tag tag-red">P0</span></td></tr>
+  <tr><td>5/19~22</td><td>部署 PBN4（世足投注站）到新域名</td><td>Claude</td><td><span class="tag tag-red">P0</span></td></tr>
+  <tr><td>5/22~25</td><td>FB / IG 開始每日貼文（世足預熱內容）</td><td>你 + Claude</td><td><span class="tag tag-yellow">P1</span></td></tr>
+  <tr><td>5/25</td><td>YT 發第一支世足預測影片</td><td>你</td><td><span class="tag tag-yellow">P1</span></td></tr>
+
+  <tr><td colspan="4" style="background:#1a1a1a;color:#f0a500;font-weight:bold;">▶ 6月第1週（5/26~6/1）</td></tr>
+  <tr><td>5/26~31</td><td>PBN 戰神賽特站部署到第二個域名</td><td>Claude</td><td><span class="tag tag-yellow">P1</span></td></tr>
+  <tr><td>5/28~6/1</td><td>買 1~2 篇 Guest Post 外鏈（DR30+）指向 ys89.fun</td><td>你</td><td><span class="tag tag-yellow">P1</span></td></tr>
+  <tr><td>5/28~6/1</td><td>Medium 每天發 1 篇（複製 ys89.fun 內容）</td><td>Claude</td><td><span class="tag tag-yellow">P1</span></td></tr>
+  <tr><td>6/1</td><td>GSC 提交所有新文章建立索引</td><td>Claude</td><td><span class="tag tag-green">P2</span></td></tr>
+
+  <tr><td colspan="4" style="background:#1a1a1a;color:#f0a500;font-weight:bold;">▶ 6月第2週（6/2~6/11，開幕前最後衝刺）</td></tr>
+  <tr><td>每天</td><td>ys89.fun 發 2 篇世足文章（賠率更新、預測）</td><td>Claude</td><td><span class="tag tag-red">P0</span></td></tr>
+  <tr><td>每天</td><td>FB + IG + Threads 全力輸出（開幕倒數）</td><td>你 + Claude</td><td><span class="tag tag-red">P0</span></td></tr>
+  <tr><td>6/10~11</td><td>開幕戰頁面更新最新賠率 + 直播連結</td><td>Claude</td><td><span class="tag tag-red">P0</span></td></tr>
+
+  <tr><td colspan="4" style="background:#1a1a1a;color:#f0a500;font-weight:bold;">▶ 6/12 起（世足開打，收割期）</td></tr>
+  <tr><td>每場賽後</td><td>30 分鐘內發賽後分析 + 下場預測到 ys89.fun + 社群</td><td>Claude</td><td><span class="tag tag-red">P0</span></td></tr>
+  <tr><td>每週</td><td>PBN 各站補發文章（保持活躍）</td><td>Claude</td><td><span class="tag tag-yellow">P1</span></td></tr>
+  <tr><td>每週</td><td>YT 發比賽分析影片 2 支</td><td>你</td><td><span class="tag tag-yellow">P1</span></td></tr>
+
+  <tr><td colspan="4" style="background:#1a1a1a;color:#f0a500;font-weight:bold;">▶ 7月（決賽後，長尾收割）</td></tr>
+  <tr><td>7月</td><td>更新「2026世界盃冠軍」「決賽賠率」等高流量頁面</td><td>Claude</td><td><span class="tag tag-yellow">P1</span></td></tr>
+  <tr><td>7月</td><td>評估 PBN 效果，決定是否追加域名</td><td>你 + Claude</td><td><span class="tag tag-green">P2</span></td></tr>
+</table>
+
+<!-- ====== 七、結論 ====== -->
+<h2>七、結論</h2>
+
+<blockquote>
+  世足前靠 SEO 排名爆發不現實，但社群媒體 + PBN 鋪好之後，世足開打的流量浪潮可以帶動一波顯著增長。關鍵是：現在立刻買域名、立刻開始每日社群發文，不能再等了。
+</blockquote>
+
+<table>
+  <tr><th>做 vs 不做</th><th>世足期間估計月流量</th><th>轉換到夜色</th></tr>
+  <tr>
+    <td>❌ 什麼都不做（維持現狀）</td>
+    <td>500~1,000</td>
+    <td>5~15 人</td>
+  </tr>
+  <tr>
+    <td>✅ 只做社群（不買域名）</td>
+    <td>2,000~5,000</td>
+    <td>20~60 人</td>
+  </tr>
+  <tr>
+    <td>✅ 社群 + PBN + 外鏈全做</td>
+    <td>8,000~25,000</td>
+    <td>80~300 人</td>
+  </tr>
+</table>
+
+<div class="alert alert-green">
+  <strong>最重要的下一步（你要做的）：</strong><br>
+  1. 今天或明天：去 ExpiredDomains.net 買 DR20+ 域名<br>
+  2. 今天起：FB / IG 開始每天發世足內容<br>
+  3. 確認 Medium 帳號狀態<br><br>
+  域名買好告訴我，PBN 部署我來做。
+</div>
+
+<div class="footer">
+  YS89 SEO 戰略報告 ／ 生成：Claude Sonnet 4.6 ／ 2026-05-19<br>
+  本報告為內部策略文件，數字為估算值，實際結果依執行力與市場反應而異。
+</div>
+
+</div>
+</body>
+</html>
