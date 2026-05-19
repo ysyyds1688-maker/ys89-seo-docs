@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026 世足完整作戰提案｜YS89 給平台</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --gold:#C9A84C; --gold-light:#E8C96A;
+  --dark:#0D0D0D; --dark-2:#161616; --dark-3:#1F1F1F; --dark-4:#2A2A2A;
+  --text:#E8E8E8; --text-muted:#888;
+  --red:#E05252; --green:#52C07A; --blue:#5B8FD4; --orange:#E08A52; --purple:#A876D4;
+}
+
+body {
+  background:var(--dark); color:var(--text);
+  font-family:'Helvetica Neue','PingFang TC','Microsoft JhengHei',sans-serif;
+  line-height:1.7; font-size:15px;
+}
+
+/* ── Header ── */
+.header {
+  background:linear-gradient(135deg,#0D0D0D 0%,#1a1200 50%,#0D0D0D 100%);
+  border-bottom:1px solid var(--gold);
+  padding:48px 0 40px; text-align:center; position:relative; overflow:hidden;
+}
+.header::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at center top,rgba(201,168,76,0.12) 0%,transparent 70%);
+}
+.header-badge {
+  display:inline-block; background:var(--gold); color:#000;
+  font-size:11px; font-weight:700; letter-spacing:2px;
+  padding:4px 14px; border-radius:2px; margin-bottom:20px;
+}
+.header h1 {
+  font-size:32px; font-weight:800; color:#fff;
+  letter-spacing:1px; margin-bottom:10px; position:relative;
+}
+.header h1 span { color:var(--gold); }
+.header-sub { color:var(--text-muted); font-size:14px; letter-spacing:1px; position:relative; }
+
+.countdown-bar {
+  margin-top:28px; display:inline-flex; align-items:center; gap:10px;
+  background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3);
+  border-radius:4px; padding:10px 24px; position:relative;
+}
+.countdown-bar .days { font-size:36px; font-weight:900; color:var(--gold); line-height:1; }
+.countdown-bar .label { font-size:13px; color:var(--text-muted); }
+
+/* ── Layout ── */
+.container { max-width:980px; margin:0 auto; padding:0 24px; }
+.section { padding:48px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.section:last-child { border-bottom:none; }
+
+.section-label {
+  font-size:11px; letter-spacing:3px; color:var(--gold);
+  text-transform:uppercase; margin-bottom:8px; font-weight:600;
+}
+.section-title { font-size:22px; font-weight:700; color:#fff; margin-bottom:24px; }
+.section-desc { color:var(--text-muted); margin-bottom:20px; font-size:14px; }
+
+/* ── Common ── */
+.box {
+  background:var(--dark-3); border:1px solid var(--dark-4);
+  border-radius:6px; padding:20px 24px; margin-bottom:14px;
+}
+.box.gold { border-color:rgba(201,168,76,0.4); background:rgba(201,168,76,0.04); }
+.box.red { border-color:rgba(224,82,82,0.3); background:rgba(224,82,82,0.04); }
+.box.green { border-color:rgba(82,192,122,0.3); background:rgba(82,192,122,0.04); }
+.box.blue { border-color:rgba(91,143,212,0.3); background:rgba(91,143,212,0.04); }
+
+/* ── KPI Table ── */
+.kpi-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+  margin-top:8px;
+}
+@media(max-width:720px){.kpi-grid{grid-template-columns:1fr;}}
+.kpi-card {
+  background:var(--dark-3); border:1px solid var(--dark-4);
+  border-radius:6px; padding:22px;
+}
+.kpi-card.tier-1 { border-color:rgba(224,82,82,0.35); }
+.kpi-card.tier-2 { border-color:rgba(201,168,76,0.45); background:rgba(201,168,76,0.05); }
+.kpi-card.tier-3 { border-color:rgba(82,192,122,0.35); }
+.kpi-card .tier-badge {
+  display:inline-block; font-size:11px; font-weight:700;
+  letter-spacing:1.5px; padding:3px 10px; border-radius:3px; margin-bottom:14px;
+}
+.tier-1 .tier-badge { background:rgba(224,82,82,0.15); color:var(--red); }
+.tier-2 .tier-badge { background:rgba(201,168,76,0.18); color:var(--gold); }
+.tier-3 .tier-badge { background:rgba(82,192,122,0.15); color:var(--green); }
+.kpi-card .budget {
+  font-size:28px; font-weight:900; color:#fff; margin-bottom:4px;
+}
+.tier-2 .budget { color:var(--gold); }
+.kpi-card .budget small { font-size:13px; font-weight:400; color:var(--text-muted); margin-left:6px; }
+.kpi-card .stats { margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); }
+.kpi-card .stats-row {
+  display:flex; justify-content:space-between; padding:5px 0; font-size:13.5px;
+}
+.kpi-card .stats-row .k { color:var(--text-muted); }
+.kpi-card .stats-row .v { color:#fff; font-weight:600; }
+.tier-2 .stats-row .v { color:var(--gold-light); }
+.kpi-card .roi {
+  margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);
+  text-align:center;
+}
+.kpi-card .roi .x { font-size:24px; font-weight:900; color:var(--green); }
+.kpi-card .roi .lbl { font-size:11px; color:var(--text-muted); letter-spacing:1px; }
+
+/* ── Table ── */
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead tr { background:var(--dark-4); border-bottom:1px solid var(--gold); }
+thead th {
+  padding:12px 16px; text-align:left; font-size:11px;
+  letter-spacing:2px; color:var(--gold); font-weight:600;
+}
+tbody tr { border-bottom:1px solid rgba(255,255,255,0.05); }
+tbody tr:hover { background:rgba(255,255,255,0.02); }
+tbody td { padding:13px 16px; color:var(--text); vertical-align:top; }
+tbody td strong { color:#fff; }
+
+/* ── Tags ── */
+.tag {
+  display:inline-block; padding:2px 10px; border-radius:3px;
+  font-size:11px; font-weight:600; letter-spacing:0.5px;
+}
+.tag.p0 { background:rgba(224,82,82,0.15); color:var(--red); border:1px solid rgba(224,82,82,0.3); }
+.tag.p1 { background:rgba(201,168,76,0.12); color:var(--gold); border:1px solid rgba(201,168,76,0.3); }
+.tag.p2 { background:rgba(91,143,212,0.12); color:var(--blue); border:1px solid rgba(91,143,212,0.3); }
+.tag.p3 { background:rgba(136,136,136,0.1); color:var(--text-muted); border:1px solid rgba(136,136,136,0.2); }
+.tag.ok { background:rgba(82,192,122,0.15); color:var(--green); border:1px solid rgba(82,192,122,0.3); }
+.tag.warn { background:rgba(224,138,82,0.15); color:var(--orange); border:1px solid rgba(224,138,82,0.3); }
+.tag.bad { background:rgba(224,82,82,0.15); color:var(--red); border:1px solid rgba(224,82,82,0.3); }
+
+/* ── Affiliate Card ── */
+.aff-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+@media(max-width:720px){.aff-grid{grid-template-columns:1fr;}}
+.aff-card {
+  background:var(--dark-3); border-left:3px solid var(--gold);
+  padding:16px 20px; border-radius:0 4px 4px 0;
+}
+.aff-card .acc-name {
+  font-family:monospace; font-size:14px; color:var(--gold); font-weight:700;
+  margin-bottom:4px;
+}
+.aff-card .acc-use { font-size:13px; color:var(--text-muted); margin-bottom:8px; }
+.aff-card .acc-url {
+  font-family:monospace; font-size:11px; color:#fff; background:var(--dark-4);
+  padding:6px 10px; border-radius:3px; word-break:break-all;
+}
+
+/* ── Premortem ── */
+.pm-row {
+  display:grid; grid-template-columns:60px 1fr 100px 100px;
+  gap:12px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.05);
+  align-items:center;
+}
+@media(max-width:720px){
+  .pm-row { grid-template-columns:50px 1fr; }
+  .pm-row .pm-prob, .pm-row .pm-impact { grid-column:2; }
+}
+.pm-row:last-child { border-bottom:none; }
+.pm-num {
+  width:36px; height:36px; border-radius:50%; background:rgba(224,82,82,0.15);
+  border:1px solid rgba(224,82,82,0.4); color:var(--red);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:14px;
+}
+.pm-row.mid .pm-num { background:rgba(201,168,76,0.12); border-color:rgba(201,168,76,0.4); color:var(--gold); }
+.pm-text strong { color:#fff; display:block; margin-bottom:3px; font-size:14.5px; }
+.pm-text span { font-size:12.5px; color:var(--text-muted); }
+.pm-prob, .pm-impact { font-size:11px; font-weight:700; letter-spacing:0.5px; text-align:center; padding:4px 8px; border-radius:3px; }
+.pm-prob { background:var(--dark-4); color:var(--text); }
+.pm-impact.fatal { background:rgba(224,82,82,0.2); color:var(--red); }
+.pm-impact.heavy { background:rgba(224,138,82,0.18); color:var(--orange); }
+.pm-impact.mid { background:rgba(201,168,76,0.15); color:var(--gold); }
+
+/* ── Action items ── */
+.action-list { list-style:none; padding:0; }
+.action-list li {
+  display:flex; gap:14px; padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  align-items:flex-start;
+}
+.action-list li:last-child { border-bottom:none; }
+.action-num {
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:13px; flex-shrink:0; margin-top:2px;
+  background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.4); color:var(--gold);
+}
+.action-text strong { display:block; color:#fff; font-size:14.5px; margin-bottom:3px; }
+.action-text span { font-size:13px; color:var(--text-muted); }
+
+/* ── Channel allocation ── */
+.alloc-bar {
+  display:flex; height:36px; border-radius:4px; overflow:hidden;
+  margin:14px 0; border:1px solid var(--dark-4);
+}
+.alloc-seg { display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; }
+.alloc-legend { display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; }
+.alloc-legend span { display:inline-flex; align-items:center; gap:6px; color:var(--text); }
+.alloc-legend .dot { width:10px; height:10px; border-radius:2px; display:inline-block; }
+
+/* ── Hat strategy ── */
+.hat-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:720px){.hat-grid{grid-template-columns:1fr;}}
+
+/* ── Footer ── */
+.footer {
+  text-align:center; padding:40px 24px;
+  color:var(--text-muted); font-size:12px; letter-spacing:1px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.footer strong { color:var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">INTERNAL PROPOSAL · TO PLATFORM</div>
+  <h1>2026 世足 <span>導流作戰</span> 完整提案</h1>
+  <div class="header-sub">YS89 行銷團隊 → ys89.bet 平台方｜2026.05.19</div>
+  <div class="countdown-bar">
+    <div>
+      <div class="days">24</div>
+      <div class="label">天後開打</div>
+    </div>
+    <div style="width:1px;height:40px;background:rgba(201,168,76,0.3);"></div>
+    <div>
+      <div style="font-size:18px;font-weight:700;color:#fff;">6 月 12 日</div>
+      <div class="label">開幕戰</div>
+    </div>
+    <div style="width:1px;height:40px;background:rgba(201,168,76,0.3);"></div>
+    <div>
+      <div style="font-size:18px;font-weight:700;color:#fff;">8 週</div>
+      <div class="label">操作週期</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 0: TLDR -->
+  <div class="section">
+    <div class="section-label">Executive Summary</div>
+    <div class="section-title">一頁懂全部</div>
+
+    <div class="box gold">
+      <div style="font-size:15px;color:#fff;line-height:1.8;">
+        <strong style="color:var(--gold);">給平台方的關鍵摘要：</strong><br>
+        我們手上有<strong style="color:var(--gold);">「15 家競品 0 個世足活動」</strong>的市場真空期，配合 8 週執行能帶來
+        <strong style="color:var(--green);">300~1,000 個首儲玩家、NT$150~500 萬 GGR</strong>。
+        需要平台投入 <strong style="color:var(--gold);">NT$15~50 萬行銷預算</strong>，預期 ROI <strong style="color:var(--green);">10 倍</strong>。
+        最關鍵的不是預算大小，是平台方<strong style="color:#fff;">願不願意批准 4 件事</strong>（見章節 7）。
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: 三個代理帳號 -->
+  <div class="section">
+    <div class="section-label">Tracking Infrastructure</div>
+    <div class="section-title">代理帳號分流策略</div>
+    <div class="section-desc">三個代理帳號各自負責不同流量入口，方便 A/B 測試出最高轉換的渠道</div>
+
+    <div class="aff-grid">
+      <div class="aff-card">
+        <div class="acc-name">fu001 · 母站論壇</div>
+        <div class="acc-use">承接 ys89.fun 所有導流（SEO + 直接訪問）</div>
+        <div class="acc-url">https://ys89.bet?proxy=cysc9m</div>
+      </div>
+      <div class="aff-card">
+        <div class="acc-name">fu002 · 世足衛星站</div>
+        <div class="acc-use">5 個世足站（games/info/biz/me/fifa-worldcups）統一導流，配合 Lihi 短連結</div>
+        <div class="acc-url">https://ys89.bet?proxy=pm3u87</div>
+      </div>
+      <div class="aff-card">
+        <div class="acc-name">fu003 · 待分配</div>
+        <div class="acc-use">建議分配：社群（IG/Threads/FB） / KOL 業配 / 廣告流量</div>
+        <div class="acc-url">https://ys89.bet?proxy=dvjhkv</div>
+      </div>
+    </div>
+
+    <div class="box blue" style="margin-top:18px;">
+      <strong style="color:var(--blue);">⚡ 建議：</strong>把 fu003 拆成「社群有機」vs「付費廣告」兩條 Lihi 短連結（共用 fu003 代理但用不同 lihi.id），這樣才能比較 4 種流量來源的轉換差異。
+    </div>
+  </div>
+
+  <!-- SECTION 2: KPI -->
+  <div class="section">
+    <div class="section-label">KPI Proposal</div>
+    <div class="section-title">建議三層 KPI 目標</div>
+    <div class="section-desc">8 週週期（5/19~7/19），由平台方選擇預算等級，KPI 同步浮動</div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card tier-1">
+        <div class="tier-badge">保守 · TIER 1</div>
+        <div class="budget">NT$ 15萬<small>/ 8週</small></div>
+        <div style="font-size:12px;color:var(--text-muted);">最低試水門檻</div>
+        <div class="stats">
+          <div class="stats-row"><span class="k">註冊數</span><span class="v">1,500</span></div>
+          <div class="stats-row"><span class="k">首儲玩家(FTD)</span><span class="v">300</span></div>
+          <div class="stats-row"><span class="k">平台 GGR</span><span class="v">NT$150萬</span></div>
+          <div class="stats-row"><span class="k">CPA per FTD</span><span class="v">NT$500</span></div>
+        </div>
+        <div class="roi"><div class="x">10x</div><div class="lbl">ROI (60天)</div></div>
+      </div>
+      <div class="kpi-card tier-2">
+        <div class="tier-badge">⭐ 推薦 · TIER 2</div>
+        <div class="budget">NT$ 30萬<small>/ 8週</small></div>
+        <div style="font-size:12px;color:var(--gold);">平衡風險與收益</div>
+        <div class="stats">
+          <div class="stats-row"><span class="k">註冊數</span><span class="v">3,000</span></div>
+          <div class="stats-row"><span class="k">首儲玩家(FTD)</span><span class="v">600</span></div>
+          <div class="stats-row"><span class="k">平台 GGR</span><span class="v">NT$300萬</span></div>
+          <div class="stats-row"><span class="k">CPA per FTD</span><span class="v">NT$500</span></div>
+        </div>
+        <div class="roi"><div class="x">10x</div><div class="lbl">ROI (60天)</div></div>
+      </div>
+      <div class="kpi-card tier-3">
+        <div class="tier-badge">衝刺 · TIER 3</div>
+        <div class="budget">NT$ 50萬<small>/ 8週</small></div>
+        <div style="font-size:12px;color:var(--text-muted);">最大化世足窗口</div>
+        <div class="stats">
+          <div class="stats-row"><span class="k">註冊數</span><span class="v">5,000</span></div>
+          <div class="stats-row"><span class="k">首儲玩家(FTD)</span><span class="v">1,000</span></div>
+          <div class="stats-row"><span class="k">平台 GGR</span><span class="v">NT$500萬</span></div>
+          <div class="stats-row"><span class="k">CPA per FTD</span><span class="v">NT$500</span></div>
+        </div>
+        <div class="roi"><div class="x">10x</div><div class="lbl">ROI (60天)</div></div>
+      </div>
+    </div>
+
+    <div class="box" style="margin-top:18px;">
+      <strong style="color:#fff;">數字怎麼算的：</strong><br>
+      <span style="font-size:13px;color:var(--text-muted);">
+        • 業界基準：點擊→註冊 = 5-10%，註冊→FTD = 15-25%，每 FTD 60 天淨收益 NT$3,000-8,000<br>
+        • 保守估算：點擊→註冊 5%，註冊→FTD 20%，每 FTD GGR NT$5,000<br>
+        • 換算：要 300 FTD = 1,500 註冊 = 30,000 點擊 = 中等付費投入即可達成<br>
+        • ROI 計算：GGR ÷ 行銷預算（不含活動獎金成本）
+      </span>
+    </div>
+  </div>
+
+  <!-- SECTION 3: 預算分配 -->
+  <div class="section">
+    <div class="section-label">Budget Allocation</div>
+    <div class="section-title">推薦版本：NT$30 萬 8 週分配</div>
+
+    <div class="alloc-bar">
+      <div class="alloc-seg" style="flex:80;background:var(--gold);">活動 27%</div>
+      <div class="alloc-seg" style="flex:100;background:var(--purple);">KOL 33%</div>
+      <div class="alloc-seg" style="flex:60;background:var(--blue);">廣告 20%</div>
+      <div class="alloc-seg" style="flex:25;background:var(--green);">Google 8%</div>
+      <div class="alloc-seg" style="flex:20;background:var(--orange);">LINE 7%</div>
+      <div class="alloc-seg" style="flex:15;background:var(--dark-4);">其他 5%</div>
+    </div>
+
+    <div class="alloc-legend" style="margin-bottom:18px;">
+      <span><span class="dot" style="background:var(--gold);"></span>活動獎金池 NT$8 萬</span>
+      <span><span class="dot" style="background:var(--purple);"></span>KOL 業配 NT$10 萬</span>
+      <span><span class="dot" style="background:var(--blue);"></span>FB/IG 廣告 NT$6 萬</span>
+      <span><span class="dot" style="background:var(--green);"></span>Google Ads NT$2.5 萬</span>
+      <span><span class="dot" style="background:var(--orange);"></span>LINE 群 NT$2 萬</span>
+      <span><span class="dot" style="background:var(--dark-4);border:1px solid var(--text-muted);"></span>外包/預備 NT$1.5 萬</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:160px;">項目</th>
+            <th style="width:90px;">預算</th>
+            <th>動作 / 預期產出</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>活動獎金池</strong></td>
+            <td><strong style="color:var(--gold);">NT$80,000</strong></td>
+            <td>世足限定加碼：首儲 2000 送 2000、開幕戰免費注、進球大禮抽獎。<span class="tag warn" style="margin-left:6px;">需平台批准</span></td>
+          </tr>
+          <tr>
+            <td><strong>KOL 業配</strong></td>
+            <td><strong style="color:var(--purple);">NT$100,000</strong></td>
+            <td>6-8 位運彩 KOL（含 1 位中型 10萬粉+）IG/Threads/YT 業配，預估觸及 50-150 萬</td>
+          </tr>
+          <tr>
+            <td><strong>FB/IG 廣告</strong></td>
+            <td><strong style="color:var(--blue);">NT$60,000</strong></td>
+            <td>5 週投放 + 再行銷，CPM NT$80-150，預估帶 30,000-50,000 點擊</td>
+          </tr>
+          <tr>
+            <td><strong>Google Ads</strong></td>
+            <td><strong style="color:var(--green);">NT$25,000</strong></td>
+            <td>品牌詞競標（夜色娛樂城、ys89）+ 世足長尾，攔截搜尋意圖</td>
+          </tr>
+          <tr>
+            <td><strong>LINE 群推廣</strong></td>
+            <td><strong style="color:var(--orange);">NT$20,000</strong></td>
+            <td>5-8 個運彩 LINE 群主合作，台灣賭客主場渠道</td>
+          </tr>
+          <tr>
+            <td>內容/設計外包</td>
+            <td>NT$10,000</td>
+            <td>圖卡、Banner、短影音剪輯，補 2 人團隊不足</td>
+          </tr>
+          <tr>
+            <td>預備金</td>
+            <td>NT$5,000</td>
+            <td>緊急加碼、突發機會</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 4: 8週執行時程 -->
+  <div class="section">
+    <div class="section-label">Execution Timeline</div>
+    <div class="section-title">8 週執行時程</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:130px;">時段</th>
+            <th>關鍵動作</th>
+            <th style="width:90px;">預算佔比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Week 1<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">5/19-5/25</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 修 GA4 + 對齊 Lihi 追蹤<br>
+              <span class="tag p0">P0</span> 確認平台 affiliate 報表 SLA<br>
+              <span class="tag p0">P0</span> 行動版 landing 修好<br>
+              <span class="tag p0">P0</span> 20 個社群帳號開始發文（養號期）<br>
+              <span class="tag p0">P0</span> 發出 10 個 KOL 詢價<br>
+              <span class="tag p1">P1</span> 104 場直播入口頁上線
+            </td>
+            <td>5%</td>
+          </tr>
+          <tr>
+            <td><strong>Week 2<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">5/26-6/1</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 敲定 4-6 位 KOL（內容定稿）<br>
+              <span class="tag p0">P0</span> FB/IG 廣告測試 5-10 組創意<br>
+              <span class="tag p0">P0</span> Google Ads 品牌詞上線<br>
+              <span class="tag p1">P1</span> LINE 群主合作敲定<br>
+              <span class="tag p1">P1</span> PTT/Dcard 開始鋪文
+            </td>
+            <td>15%</td>
+          </tr>
+          <tr>
+            <td><strong>Week 3<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">6/2-6/8</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> KOL 業配陸續釋出<br>
+              <span class="tag p0">P0</span> 廣告 A/B 測試結果出爐，集中投放 top 3 組<br>
+              <span class="tag p0">P0</span> 60 場比賽內容模板做完<br>
+              <span class="tag p1">P1</span> 抽獎活動上線（製造社群擴散）
+            </td>
+            <td>25%</td>
+          </tr>
+          <tr>
+            <td><strong>Week 4<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">6/9-6/15</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 開幕戰 6/12 全力衝刺<br>
+              <span class="tag p0">P0</span> 廣告預算翻倍<br>
+              <span class="tag p0">P0</span> 即時賽事內容啟動<br>
+              <span class="tag p1">P1</span> KOL 開幕戰直播合作
+            </td>
+            <td>25%</td>
+          </tr>
+          <tr>
+            <td><strong>Week 5-6<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">6/16-6/29</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 每場比賽 30 分鐘內賽後分析<br>
+              <span class="tag p0">P0</span> 走地投注內容（中場休息推）<br>
+              <span class="tag p1">P1</span> 淘汰賽前夕加碼活動
+            </td>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <td><strong>Week 7-8<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">6/30-7/19</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 8 強/4 強/決賽預測內容<br>
+              <span class="tag p1">P1</span> 冠軍預測抽獎活動<br>
+              <span class="tag p1">P1</span> 決賽倒數 + 賽後分析<br>
+              <span class="tag p2">P2</span> 世足結束 retention 內容
+            </td>
+            <td>10%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Premortem -->
+  <div class="section">
+    <div class="section-label">Premortem · Risk Analysis</div>
+    <div class="section-title">假設專案失敗了，會是哪些原因？</div>
+    <div class="section-desc">先列出所有可能失敗劇本，現在就防，比事後後悔強</div>
+
+    <h3 style="color:#fff;font-size:15px;margin:18px 0 10px;">🔴 致命級失敗劇本（必須立刻防）</h3>
+
+    <div class="pm-row">
+      <div class="pm-num">1</div>
+      <div class="pm-text">
+        <strong>GA4 + Lihi 追蹤從沒對齊過</strong>
+        <span>跑了 3 個月才發現數字一直不準，無法回報 ROI 給平台 → 預算被砍</span>
+      </div>
+      <div class="pm-prob">機率 70%</div>
+      <div class="pm-impact fatal">致命</div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-num">2</div>
+      <div class="pm-text">
+        <strong>平台後台轉換報表始終拿不到</strong>
+        <span>只能猜效果，沒辦法證明你的價值，續約議價權失守</span>
+      </div>
+      <div class="pm-prob">機率 60%</div>
+      <div class="pm-impact fatal">致命</div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-num">3</div>
+      <div class="pm-text">
+        <strong>黑帽 SEO 讓 ys89.fun 被 Google de-index</strong>
+        <span>主站死亡 = 所有衛星站連帶玩完，3-6 個月才能恢復</span>
+      </div>
+      <div class="pm-prob">機率 30%</div>
+      <div class="pm-impact fatal">核爆級</div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-num">4</div>
+      <div class="pm-text">
+        <strong>FB/IG 廣告帳號因博弈內容被封</strong>
+        <span>連帶 pixel 失效，廣告策略整個 reset</span>
+      </div>
+      <div class="pm-prob">機率 50%</div>
+      <div class="pm-impact heavy">重</div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-num">5</div>
+      <div class="pm-text">
+        <strong>2 人團隊到第 4 週耗盡</strong>
+        <span>後 4 週品質崩盤，每場比賽即時內容做不出來</span>
+      </div>
+      <div class="pm-prob">機率 80%</div>
+      <div class="pm-impact heavy">重</div>
+    </div>
+
+    <h3 style="color:#fff;font-size:15px;margin:28px 0 10px;">🟡 中度風險（需要監控）</h3>
+
+    <div class="pm-row mid">
+      <div class="pm-num">6</div>
+      <div class="pm-text">
+        <strong>KOL 在 5/26 前訂不到（全被搶光）</strong>
+        <span>KOL 是預算最大塊，沒人接 = 戰略殘廢</span>
+      </div>
+      <div class="pm-prob">機率 50%</div>
+      <div class="pm-impact heavy">重</div>
+    </div>
+    <div class="pm-row mid">
+      <div class="pm-num">7</div>
+      <div class="pm-text">
+        <strong>平台不批准加碼活動</strong>
+        <span>跟競品一樣的 NT$368 體驗金，無差異化</span>
+      </div>
+      <div class="pm-prob">機率 40%</div>
+      <div class="pm-impact heavy">重</div>
+    </div>
+    <div class="pm-row mid">
+      <div class="pm-num">8</div>
+      <div class="pm-text">
+        <strong>競品 1 週內 copy 你的 104 場活動</strong>
+        <span>先發優勢消失，回到紅海競爭</span>
+      </div>
+      <div class="pm-prob">機率 60%</div>
+      <div class="pm-impact mid">中</div>
+    </div>
+    <div class="pm-row mid">
+      <div class="pm-num">9</div>
+      <div class="pm-text">
+        <strong>行動版轉換 0.3% vs 桌機 3%</strong>
+        <span>60% 流量浪費，廣告錢沒回收</span>
+      </div>
+      <div class="pm-prob">機率 70%</div>
+      <div class="pm-impact heavy">重</div>
+    </div>
+    <div class="pm-row mid">
+      <div class="pm-num">10</div>
+      <div class="pm-text">
+        <strong>內容產出跟不上 60 場比賽節奏</strong>
+        <span>晚發 = 失去即時話題性，社群觸及死</span>
+      </div>
+      <div class="pm-prob">機率 90%</div>
+      <div class="pm-impact mid">中</div>
+    </div>
+    <div class="pm-row mid">
+      <div class="pm-num">11</div>
+      <div class="pm-text">
+        <strong>球迷搜尋意圖高但沒投注意圖</strong>
+        <span>流量大但轉化率低，CPA 飆升</span>
+      </div>
+      <div class="pm-prob">機率 60%</div>
+      <div class="pm-impact mid">中</div>
+    </div>
+    <div class="pm-row mid">
+      <div class="pm-num">12</div>
+      <div class="pm-text">
+        <strong>ys89.bet 平台轉換率比業界低</strong>
+        <span>同樣流量產出更少 FTD，KPI 達不到</span>
+      </div>
+      <div class="pm-prob">機率 40%</div>
+      <div class="pm-impact heavy">重</div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: 灰帽黑帽SEO -->
+  <div class="section">
+    <div class="section-label">Grey Hat / Black Hat SEO</div>
+    <div class="section-title">灰帽 SEO 戰術選擇</div>
+    <div class="section-desc">老實講能做什麼、不能做什麼、為什麼</div>
+
+    <div class="hat-grid">
+      <div>
+        <h3 style="color:var(--green);font-size:14px;margin-bottom:12px;">✅ 可以做（灰帽範圍）</h3>
+        <div class="box green" style="padding:14px 18px;">
+          <div style="font-size:13px;line-height:2;color:var(--text);">
+            <strong style="color:#fff;">PBN（私人部落格網路）</strong> — 4-6 站分散 IP/CMS<br>
+            <strong style="color:#fff;">過期高 DR 域名 301 跳轉</strong> — 5-10 個 DR15-30<br>
+            <strong style="color:#fff;">寄生發文</strong> — Medium/痞客邦/Blogspot 大量發文<br>
+            <strong style="color:#fff;">PTT/Dcard 代發</strong> — 養號做 signature link<br>
+            <strong style="color:#fff;">付費 Guest Post</strong> — 真實媒體外鏈 NT$5-15K/篇<br>
+            <strong style="color:#fff;">目錄站批量提交</strong> — 補充手段
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="color:var(--red);font-size:14px;margin-bottom:12px;">❌ 不該做（真黑帽）</h3>
+        <div class="box red" style="padding:14px 18px;">
+          <div style="font-size:13px;line-height:2;color:var(--text);">
+            <strong style="color:#fff;">入侵寄生駭客網站</strong> — 違法，主站全死<br>
+            <strong style="color:#fff;">Negative SEO 攻擊競品</strong> — 反向偵測反噬<br>
+            <strong style="color:#fff;">隱藏文字 / Cloaking</strong> — 1-2 週 de-index<br>
+            <strong style="color:#fff;">內容農場 + Spinner</strong> — HCU 演算法掃<br>
+            <strong style="color:#fff;">機器人刷流量</strong> — 行為訊號異常反而降排名<br>
+            <strong style="color:#fff;">買大量低品質連結</strong> — 你現有 270 條就是這種，DR 還 0
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box gold" style="margin-top:18px;">
+      <strong style="color:var(--gold);">關鍵原則：ys89.fun 不能死。</strong><br>
+      <span style="font-size:13.5px;line-height:1.8;">
+        台灣博弈業界做法：黑帽資源都集中在<strong style="color:#fff;">「拋棄式衛星站」</strong>，做 301 跳轉到主站。
+        主站接到的是<strong style="color:#fff;">「301 過來的權重」</strong>，看起來很乾淨。
+        建議灰帽組合預算 NT$8-15 萬，但<strong style="color:var(--red);">24 天內 SEO 不會是主力</strong>，效果發威在世足中後段 + 世足後。
+      </span>
+    </div>
+  </div>
+
+  <!-- SECTION 7: 需要平台批准 -->
+  <div class="section">
+    <div class="section-label">Platform Approval Required</div>
+    <div class="section-title">平台必須答應的 4 件事</div>
+    <div class="section-desc">缺一個成功率打 7 折，缺兩個打 5 折</div>
+
+    <ul class="action-list">
+      <li>
+        <div class="action-num">1</div>
+        <div class="action-text">
+          <strong>提供現有世足活動的官方素材 + 規則細節</strong>
+          <span>平台已有「世足激戰加碼 充值送 3,000、每週可領 3 次」活動，需要提供：<br>① 高解析度 banner 圖（社群素材用）<br>② 活動完整規則（流水要求、申請方式、結算時間）<br>③ 開幕戰、淘汰賽期間可否加碼或新活動的可能性</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">2</div>
+        <div class="action-text">
+          <strong>給 weekly 註冊/儲值報表</strong>
+          <span>每週給我們 fu001/002/003 三個代理帳號的：點擊數、註冊數、首儲數、儲值金額。<br>沒這個就無法回報 ROI、無法優化渠道分配</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">3</div>
+        <div class="action-text">
+          <strong>確認 affiliate 連結技術細節</strong>
+          <span>是否支持 sub-id（讓我們在 lihi 之後再加 utm，追蹤到具體 KOL/廣告組）？<br>不能就要做更多 lihi 短連結來區分</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">4</div>
+        <div class="action-text">
+          <strong>Performance bonus 機制</strong>
+          <span>達到 KPI 後超出部分 5-10% 給我方作為超額獎勵。<br>這影響我方衝刺動力，建議納入合約</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 8: 我方本週必做 -->
+  <div class="section">
+    <div class="section-label">Internal · This Week</div>
+    <div class="section-title">我方團隊本週必做（不論預算）</div>
+
+    <ul class="action-list">
+      <li>
+        <div class="action-num">1</div>
+        <div class="action-text">
+          <strong>修好 GA4 + 對齊 Lihi 數據 + 啟用 UTM Builder</strong>
+          <span>Lihi 已內建 UTM Builder 但從未啟用。今天就敲定 UTM 命名規則：<br>
+          <code style="background:var(--dark-4);padding:1px 5px;border-radius:3px;font-size:12px;">utm_source</code>（ig/threads/kol_x/fb/google）×
+          <code style="background:var(--dark-4);padding:1px 5px;border-radius:3px;font-size:12px;">utm_medium</code>（post/story/reel/cpc）×
+          <code style="background:var(--dark-4);padding:1px 5px;border-radius:3px;font-size:12px;">utm_campaign</code>（wc2026_opening/group/ko/final/bonus_3000）<br>
+          沒這個分不出哪個渠道有效，ROI 無法歸因</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">2</div>
+        <div class="action-text">
+          <strong>ys89.fun 行動版 landing 修好</strong>
+          <span>todo 寫了還沒做，60% 流量是手機，這個沒做廣告全浪費</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">3</div>
+        <div class="action-text">
+          <strong>20 個 IG + Threads 帳號開始發文</strong>
+          <span>養號期 14 天，再不開始 6/2 才能正常觸及</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">4</div>
+        <div class="action-text">
+          <strong>104 場直播入口頁上線</strong>
+          <span>競品會 copy，我方要 5/22 前先卡位</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">5</div>
+        <div class="action-text">
+          <strong>發出 10 個 KOL 詢價</strong>
+          <span>世足前 KOL 檔期是稀缺資源，這 3 天不發出去就被搶光</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 9: 最終建議 -->
+  <div class="section">
+    <div class="section-label">Final Recommendation</div>
+    <div class="section-title">我的軍師建議</div>
+
+    <div class="box gold">
+      <div style="font-size:14.5px;line-height:1.9;color:var(--text);">
+        <strong style="color:var(--gold);">如果我是老闆，我會這樣決策：</strong><br><br>
+
+        <strong style="color:#fff;">1. 預算選 TIER 2（NT$30 萬）。</strong><br>
+        TIER 1 太小、執行不出規模效應；TIER 3 邊際效益遞減（執行端瓶頸是 2 人團隊不是錢）。
+        TIER 2 是最划算的甜蜜點。<br><br>
+
+        <strong style="color:#fff;">2. 廣告佔比 28%，不是 0%。</strong><br>
+        老闆偏好「活動+社群+SEO」我懂，但 24 天時間軸沒有付費放大器，活動再好也沒人看到。
+        把廣告包裝成「活動的曝光器」而非「冷廣告」。<br><br>
+
+        <strong style="color:#fff;">3. 灰帽 SEO 用 NT$8-15 萬，但別期待 24 天見效。</strong><br>
+        灰帽是世足中後段（6/25+）+ 世足後的牌，現在不是主力。<br><br>
+
+        <strong style="color:#fff;">4. 平台 4 件事 + 我方 5 件事，這週都要動。</strong><br>
+        策略再好，這 9 件小事沒做都白搭。<br><br>
+
+        <strong style="color:var(--green);">預期成果：8 週後 600 FTD 玩家、NT$300 萬 GGR、10x ROI、為下一個運動賽事週期累積品牌資產。</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>YS89</strong> · 2026 世足完整作戰提案 · 內部文件 · 2026.05.19<br>
+  <span style="font-size:11px;">本提案結合：競品空窗洞察 + KPI 業界基準 + Premortem 風險分析 + 灰帽 SEO 策略</span>
+</div>
+
+</body>
+</html>

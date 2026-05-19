@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5 個高權重域名採購提案｜YS89 給老闆</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --gold:#C9A84C; --gold-light:#E8C96A;
+  --dark:#0D0D0D; --dark-2:#161616; --dark-3:#1F1F1F; --dark-4:#2A2A2A;
+  --text:#E8E8E8; --text-muted:#888;
+  --red:#E05252; --green:#52C07A; --blue:#5B8FD4; --orange:#E08A52; --purple:#A876D4; --cyan:#6CD3D3;
+}
+
+body {
+  background:var(--dark); color:var(--text);
+  font-family:'Helvetica Neue','PingFang TC','Microsoft JhengHei',sans-serif;
+  line-height:1.7; font-size:15px;
+}
+
+/* Header */
+.header {
+  background:linear-gradient(135deg,#0D0D0D 0%,#1a1200 50%,#0D0D0D 100%);
+  border-bottom:1px solid var(--gold);
+  padding:48px 0 40px; text-align:center; position:relative;
+}
+.header::before { content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at center top,rgba(201,168,76,0.12) 0%,transparent 70%); }
+.header-badge { display:inline-block; background:var(--gold); color:#000;
+  font-size:11px; font-weight:700; letter-spacing:2px;
+  padding:4px 14px; border-radius:2px; margin-bottom:20px; }
+.header h1 { font-size:32px; font-weight:800; color:#fff;
+  letter-spacing:1px; margin-bottom:10px; position:relative; }
+.header h1 span { color:var(--gold); }
+.header-sub { color:var(--text-muted); font-size:14px; letter-spacing:1px; position:relative; }
+
+.budget-bar {
+  margin-top:28px; display:inline-flex; align-items:center; gap:10px;
+  background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3);
+  border-radius:4px; padding:12px 28px; position:relative;
+}
+.budget-bar .amt { font-size:32px; font-weight:900; color:var(--gold); line-height:1; }
+.budget-bar .lbl { font-size:13px; color:var(--text-muted); }
+
+/* Container */
+.container { max-width:980px; margin:0 auto; padding:0 24px; }
+.section { padding:48px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.section:last-child { border-bottom:none; }
+.section-label { font-size:11px; letter-spacing:3px; color:var(--gold);
+  text-transform:uppercase; margin-bottom:8px; font-weight:600; }
+.section-title { font-size:22px; font-weight:700; color:#fff; margin-bottom:6px; }
+.section-desc { color:var(--text-muted); margin-bottom:22px; font-size:14px; }
+
+/* Box */
+.box {
+  background:var(--dark-3); border:1px solid var(--dark-4);
+  border-radius:6px; padding:20px 24px; margin-bottom:14px;
+}
+.box.gold { border-color:rgba(201,168,76,0.4); background:rgba(201,168,76,0.04); }
+.box.red { border-color:rgba(224,82,82,0.3); background:rgba(224,82,82,0.04); }
+.box.green { border-color:rgba(82,192,122,0.3); background:rgba(82,192,122,0.04); }
+.box.blue { border-color:rgba(91,143,212,0.3); background:rgba(91,143,212,0.04); }
+.box.purple { border-color:rgba(168,118,212,0.3); background:rgba(168,118,212,0.04); }
+
+/* Tier cards */
+.tier-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+@media(max-width:720px){.tier-grid{grid-template-columns:1fr;}}
+.tier-card { background:var(--dark-3); border:1px solid var(--dark-4);
+  border-radius:6px; padding:22px; }
+.tier-card.t1 { border-color:rgba(91,143,212,0.35); }
+.tier-card.t2 { border-color:rgba(201,168,76,0.5); background:rgba(201,168,76,0.05); transform:scale(1.02); }
+.tier-card.t3 { border-color:rgba(168,118,212,0.35); }
+.tier-card .badge { display:inline-block; font-size:11px; font-weight:700;
+  letter-spacing:1.5px; padding:3px 10px; border-radius:3px; margin-bottom:12px; }
+.t1 .badge { background:rgba(91,143,212,0.15); color:var(--blue); }
+.t2 .badge { background:rgba(201,168,76,0.2); color:var(--gold); }
+.t3 .badge { background:rgba(168,118,212,0.15); color:var(--purple); }
+.tier-card .budget { font-size:30px; font-weight:900; color:#fff; margin-bottom:2px; }
+.t2 .budget { color:var(--gold); }
+.tier-card .budget small { font-size:12px; font-weight:400; color:var(--text-muted); margin-left:6px; }
+.tier-card .per-dom { font-size:12px; color:var(--text-muted); margin-bottom:14px; }
+.tier-card ul { list-style:none; padding:0; font-size:13px; }
+.tier-card ul li { padding:5px 0 5px 18px; position:relative; color:var(--text); }
+.tier-card ul li::before { content:'›'; position:absolute; left:0; color:var(--gold); font-weight:700; }
+.tier-card .est {
+  margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);
+  font-size:13px; color:var(--text-muted);
+}
+.tier-card .est strong { color:#fff; }
+
+/* Site authority table */
+.auth-table { width:100%; border-collapse:collapse; font-size:13.5px; }
+.auth-table th { text-align:left; padding:11px 14px; font-size:11px;
+  letter-spacing:1.5px; color:var(--gold); font-weight:600;
+  background:var(--dark-4); border-bottom:1px solid var(--gold); }
+.auth-table td { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,0.05); vertical-align:middle; }
+.auth-table tr.priority { background:rgba(201,168,76,0.04); }
+.auth-table tr.priority td:first-child::before {
+  content:'★'; color:var(--gold); margin-right:6px; }
+.dr-pill { display:inline-block; padding:3px 10px; border-radius:12px;
+  font-size:11px; font-weight:700; }
+.dr-0 { background:rgba(224,82,82,0.15); color:var(--red); }
+.dr-low { background:rgba(224,138,82,0.15); color:var(--orange); }
+.dr-mid { background:rgba(201,168,76,0.15); color:var(--gold); }
+.dr-high { background:rgba(82,192,122,0.15); color:var(--green); }
+
+/* Distribution */
+.dist-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+@media(max-width:720px){.dist-grid{grid-template-columns:1fr;}}
+.dist-card { background:var(--dark-3); border-left:4px solid var(--gold);
+  padding:18px 22px; border-radius:0 6px 6px 0; }
+.dist-card .target { font-family:monospace; font-size:14px; color:var(--gold);
+  font-weight:700; margin-bottom:4px; }
+.dist-card .role { font-size:12px; color:var(--text-muted); margin-bottom:10px; }
+.dist-card .count { font-size:32px; font-weight:900; color:#fff; line-height:1; margin-bottom:4px; }
+.dist-card .count-lbl { font-size:11px; color:var(--text-muted); letter-spacing:1px; }
+.dist-card .strat {
+  margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.08);
+  font-size:12.5px; color:var(--text); line-height:1.6;
+}
+
+/* Tag */
+.tag { display:inline-block; padding:2px 9px; border-radius:3px;
+  font-size:11px; font-weight:600; letter-spacing:0.3px; }
+.tag.p0 { background:rgba(224,82,82,0.15); color:var(--red); border:1px solid rgba(224,82,82,0.3); }
+.tag.p1 { background:rgba(201,168,76,0.12); color:var(--gold); border:1px solid rgba(201,168,76,0.3); }
+.tag.p2 { background:rgba(91,143,212,0.12); color:var(--blue); border:1px solid rgba(91,143,212,0.3); }
+.tag.ok { background:rgba(82,192,122,0.15); color:var(--green); border:1px solid rgba(82,192,122,0.3); }
+.tag.warn { background:rgba(224,138,82,0.15); color:var(--orange); border:1px solid rgba(224,138,82,0.3); }
+.tag.bad { background:rgba(224,82,82,0.15); color:var(--red); border:1px solid rgba(224,82,82,0.3); }
+
+/* Generic table */
+.table-wrap { overflow-x:auto; }
+table.gen { width:100%; border-collapse:collapse; font-size:14px; }
+table.gen thead tr { background:var(--dark-4); border-bottom:1px solid var(--gold); }
+table.gen thead th { padding:12px 14px; text-align:left; font-size:11px;
+  letter-spacing:1.5px; color:var(--gold); font-weight:600; }
+table.gen tbody tr { border-bottom:1px solid rgba(255,255,255,0.05); }
+table.gen tbody tr:hover { background:rgba(255,255,255,0.02); }
+table.gen tbody td { padding:13px 14px; color:var(--text); vertical-align:top; }
+table.gen strong { color:#fff; }
+
+/* Process flow */
+.flow-h { display:flex; align-items:stretch; gap:8px; flex-wrap:wrap; margin-top:18px; }
+.flow-h-step { flex:1; min-width:140px; background:var(--dark-3);
+  border-top:3px solid var(--gold); padding:14px 16px; border-radius:0 0 6px 6px; }
+.flow-h-step .num { font-size:11px; color:var(--gold); letter-spacing:1px; margin-bottom:6px; font-weight:700; }
+.flow-h-step .ttl { font-size:13.5px; color:#fff; font-weight:700; margin-bottom:4px; }
+.flow-h-step .desc { font-size:12px; color:var(--text-muted); line-height:1.55; }
+
+/* Footer */
+.footer { text-align:center; padding:40px 24px; color:var(--text-muted);
+  font-size:12px; letter-spacing:1px; border-top:1px solid rgba(255,255,255,0.06); }
+.footer strong { color:var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">PROPOSAL · TO BOSS · 2026.05.19</div>
+  <h1>5 個 <span>高權重域名</span> 採購提案</h1>
+  <div class="header-sub">YS89 SEO 戰略｜世足前 24 天衝刺 + 灰帽 ROI 最大化</div>
+  <div class="budget-bar">
+    <div><div class="amt">NT$10萬</div><div class="lbl">推薦預算（含部署）</div></div>
+    <div style="width:1px;height:46px;background:rgba(201,168,76,0.3);"></div>
+    <div><div class="amt">5</div><div class="lbl">域名數量</div></div>
+    <div style="width:1px;height:46px;background:rgba(201,168,76,0.3);"></div>
+    <div><div class="amt">3</div><div class="lbl">主攻提權站</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TLDR -->
+  <div class="section">
+    <div class="section-label">Executive Summary</div>
+    <div class="section-title">一頁懂全部</div>
+
+    <div class="box gold">
+      <div style="font-size:15px;color:#fff;line-height:1.85;">
+        <strong style="color:var(--gold);">給老闆的關鍵摘要：</strong><br>
+        我方主站 ys89.fun 目前 DR 0、現有 270 條反向連結全是垃圾，Google/Ahrefs 不計入。
+        競品 wager.tw / 168gambling 已是 DR 54+。
+        <strong style="color:var(--gold);">最有效率的補救方式 = 購買高 DR 過期域名 301 跳轉</strong>，
+        2-4 週見效（PBN 要 8-12 週）。<br><br>
+        <strong style="color:#fff;">建議花 NT$10 萬，買 5 個 DR 20-35 的過期域名，主攻提權 3 個站：</strong><br>
+        ① ys89.fun（母站）／② ys89.games（已有 DR 3.2）／③ fifa-worldcups.tw（Google 收錄好）<br>
+        其他 3 個衛星站（info/biz/me）改做「Tier-2 PBN 內鏈放大器」，不另花錢。<br><br>
+        <strong style="color:var(--green);">預期 60 天內：3 站 DR 從 0 →
+        ys89.fun DR 15-20、ys89.games DR 10-15、fifa-worldcups.tw DR 10-12，
+        關鍵字進入第 1 頁機會大幅增加。</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURRENT AUTHORITY -->
+  <div class="section">
+    <div class="section-label">Current State</div>
+    <div class="section-title">現況：站群權重快照</div>
+    <div class="section-desc">2026-05-19 Ahrefs 快照，標★為本次主攻提權目標</div>
+
+    <div class="table-wrap">
+      <table class="auth-table">
+        <thead>
+          <tr>
+            <th style="width:200px;">站點</th>
+            <th style="width:90px;">DR</th>
+            <th style="width:110px;">反向連結</th>
+            <th style="width:110px;">來源網域</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="priority">
+            <td><strong>ys89.fun</strong><br><span style="color:var(--text-muted);font-size:12px;">母站論壇</span></td>
+            <td><span class="dr-pill dr-0">DR 0</span></td>
+            <td>104</td>
+            <td>88</td>
+            <td><span class="tag bad">垃圾連結</span> 主站，必須優先提權</td>
+          </tr>
+          <tr class="priority">
+            <td><strong>ys89.games</strong><br><span style="color:var(--text-muted);font-size:12px;">世足主戰場</span></td>
+            <td><span class="dr-pill dr-low">DR 3.2</span></td>
+            <td>102</td>
+            <td>12</td>
+            <td><span class="tag ok">GSC 表現佳</span> 已有基礎，加碼最有效</td>
+          </tr>
+          <tr class="priority">
+            <td><strong>fifa-worldcups.tw</strong><br><span style="color:var(--text-muted);font-size:12px;">純資訊 AEO</span></td>
+            <td><span class="dr-pill dr-0">DR 0</span></td>
+            <td>0</td>
+            <td>0</td>
+            <td><span class="tag ok">Google 收錄好</span> 純白底，可承接乾淨權重</td>
+          </tr>
+          <tr>
+            <td>ys89.info</td>
+            <td><span class="dr-pill dr-0">DR 0</span></td>
+            <td>28</td>
+            <td>23</td>
+            <td><span class="tag p2">改 Tier-2</span> 內鏈支援，不另花錢</td>
+          </tr>
+          <tr>
+            <td>ys89.biz</td>
+            <td><span class="dr-pill dr-0">DR 0</span></td>
+            <td>32</td>
+            <td>26</td>
+            <td><span class="tag p2">改 Tier-2</span> 內鏈支援，不另花錢</td>
+          </tr>
+          <tr>
+            <td>ys89.me</td>
+            <td><span class="dr-pill dr-0">DR 0</span></td>
+            <td>4</td>
+            <td>4</td>
+            <td><span class="tag p2">改 Tier-2</span> 內鏈支援，不另花錢</td>
+          </tr>
+          <tr style="background:rgba(224,82,82,0.05);">
+            <td colspan="5" style="padding:11px 14px;font-size:13px;color:var(--text-muted);">
+              <strong style="color:var(--red);">⚠ 競品基準：</strong>
+              wager.tw <span class="dr-pill dr-high">DR 54</span>　·
+              168gambling.com <span class="dr-pill dr-high">DR 57</span>　·
+              要追上需要至少 NT$30-50 萬 + 6-12 個月。本次目標是「進入競爭」而非超越。
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- THREE BUDGET TIERS -->
+  <div class="section">
+    <div class="section-label">Budget Options</div>
+    <div class="section-title">三個預算版本（給老闆選）</div>
+
+    <div class="tier-grid">
+      <div class="tier-card t1">
+        <div class="badge">入門 · TIER A</div>
+        <div class="budget">NT$ 5萬<small>/ 5 域名</small></div>
+        <div class="per-dom">平均 NT$10,000 / 域名</div>
+        <ul>
+          <li>DR 15-25 平均</li>
+          <li>5+ 年舊域名</li>
+          <li>50+ 來源網域</li>
+          <li>主要從 ExpiredDomains.net + Namecheap 競標</li>
+          <li>含 .com / .net / .org 混合</li>
+        </ul>
+        <div class="est">
+          <strong>預期效果：</strong><br>
+          ys89.fun DR 5-10<br>
+          ys89.games DR 6-10<br>
+          fifa-worldcups.tw DR 4-7<br>
+          <span style="color:var(--text-muted);">效果偏弱但成本最低</span>
+        </div>
+      </div>
+      <div class="tier-card t2">
+        <div class="badge">⭐ 推薦 · TIER B</div>
+        <div class="budget">NT$ 10萬<small>/ 5 域名</small></div>
+        <div class="per-dom">平均 NT$20,000 / 域名</div>
+        <ul>
+          <li>DR 20-35 平均</li>
+          <li>含 1-2 個 DR 30+ 主力域名</li>
+          <li>5-10 年舊域名</li>
+          <li>100+ 來源網域</li>
+          <li>GoDaddy Auctions + Sedo 為主</li>
+          <li>主題相關（運動/新聞/生活，非博弈）</li>
+        </ul>
+        <div class="est" style="border-color:rgba(201,168,76,0.3);">
+          <strong style="color:var(--gold);">預期效果：</strong><br>
+          ys89.fun DR 15-20<br>
+          ys89.games DR 10-15<br>
+          fifa-worldcups.tw DR 10-12<br>
+          <span style="color:var(--gold-light);">最佳 CP 值，預算/效果甜蜜點</span>
+        </div>
+      </div>
+      <div class="tier-card t3">
+        <div class="badge">衝刺 · TIER C</div>
+        <div class="budget">NT$ 20萬<small>/ 5 域名</small></div>
+        <div class="per-dom">平均 NT$40,000 / 域名</div>
+        <ul>
+          <li>DR 30-50 平均</li>
+          <li>含 1-2 個 DR 45+ 旗艦域名</li>
+          <li>10+ 年老域名</li>
+          <li>200+ 來源網域</li>
+          <li>Premium drop catchers + Sedo</li>
+          <li>含含金量高的主題（如教育/政府/媒體）</li>
+        </ul>
+        <div class="est">
+          <strong>預期效果：</strong><br>
+          ys89.fun DR 25-35<br>
+          ys89.games DR 18-25<br>
+          fifa-worldcups.tw DR 15-20<br>
+          <span style="color:var(--text-muted);">最強但邊際效益遞減</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="box blue" style="margin-top:18px;">
+      <strong style="color:var(--blue);">💡 我的建議：選 TIER B（NT$10 萬）。</strong>
+      TIER A 域名品質太雜，DR 提升不夠拉開競品差距；
+      TIER C 邊際效益遞減（同樣 NT$10 萬可以買 1 個 DR 45+ 或 5 個 DR 25+，後者風險分散更好）。
+      TIER B 是「預算對效果」的最佳甜蜜點。
+    </div>
+  </div>
+
+  <!-- DOMAIN DISTRIBUTION -->
+  <div class="section">
+    <div class="section-label">Distribution Strategy</div>
+    <div class="section-title">5 個域名怎麼分配？</div>
+    <div class="section-desc">混合策略：3 個 301 直跳 + 2 個 PBN 內容站，分散風險、最大化效果</div>
+
+    <div class="dist-grid">
+      <div class="dist-card" style="border-left-color:var(--purple);">
+        <div class="target" style="color:var(--purple);">ys89.fun</div>
+        <div class="role">母站論壇 · 最高價值</div>
+        <div class="count" style="color:var(--purple);">2</div>
+        <div class="count-lbl">個域名 (1×301 + 1×PBN)</div>
+        <div class="strat">
+          <strong style="color:#fff;">301 域名：</strong>選最高 DR 的（DR 30+），直接 301 跳轉<br>
+          <strong style="color:#fff;">PBN 域名：</strong>建博弈無關內容站（運動/科技），含 3-5 條反向連結
+        </div>
+      </div>
+      <div class="dist-card">
+        <div class="target">ys89.games</div>
+        <div class="role">世足主戰場 · 已有基礎</div>
+        <div class="count">1</div>
+        <div class="count-lbl">個域名 (301)</div>
+        <div class="strat">
+          <strong style="color:#fff;">策略：</strong>選運動/體育主題相關的域名 301<br>
+          <strong style="color:#fff;">為什麼：</strong>已有 DR 3.2 + GSC 好表現，補一個就能跳到 DR 10-15
+        </div>
+      </div>
+      <div class="dist-card" style="border-left-color:var(--cyan);">
+        <div class="target" style="color:var(--cyan);">fifa-worldcups.tw</div>
+        <div class="role">純資訊站 · AEO</div>
+        <div class="count" style="color:var(--cyan);">1</div>
+        <div class="count-lbl">個域名 (PBN)</div>
+        <div class="strat">
+          <strong style="color:#fff;">策略：</strong>用 PBN 不 301，保持站本身乾淨形象<br>
+          <strong style="color:#fff;">為什麼：</strong>白底 AEO 站，乾淨形象比權重更重要
+        </div>
+      </div>
+    </div>
+
+    <div class="box gold" style="margin-top:20px;">
+      <strong style="color:var(--gold);">🎯 為什麼這樣分？</strong>
+      <ul style="list-style:none; padding:0; font-size:13.5px; line-height:2; margin-top:8px;">
+        <li>• <strong style="color:#fff;">ys89.fun 拿 2 個</strong> — 母站轉換漏斗終點，權重 ROI 最高</li>
+        <li>• <strong style="color:#fff;">混合 301 + PBN</strong> — 純 301 footprint 太明顯，混合降風險</li>
+        <li>• <strong style="color:#fff;">5 個域名不互連</strong> — 不同 IP、不同 CMS、不同註冊商，避免被識別為 PBN 網路</li>
+        <li>• <strong style="color:#fff;">PBN 站做運動/科技/生活主題</strong> — 內容跟博弈無關，但「自然提到」我方品牌</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DOMAIN SELECTION CRITERIA -->
+  <div class="section">
+    <div class="section-label">Selection Criteria</div>
+    <div class="section-title">什麼樣的域名值得買？</div>
+
+    <div class="table-wrap">
+      <table class="gen">
+        <thead>
+          <tr>
+            <th style="width:170px;">指標</th>
+            <th style="width:120px;">標準</th>
+            <th>為什麼</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ahrefs DR</strong></td>
+            <td><span class="tag p0">≥ 20</span></td>
+            <td>低於 20 的權重轉移效果不明顯，買了浪費</td>
+          </tr>
+          <tr>
+            <td><strong>域名年齡</strong></td>
+            <td><span class="tag p0">≥ 5 年</span></td>
+            <td>老域名 Google 信任度高，新域名買來等於從零</td>
+          </tr>
+          <tr>
+            <td><strong>來源網域 (RD)</strong></td>
+            <td><span class="tag p0">≥ 50</span></td>
+            <td>單一來源 100 條連結 ≠ 50 個不同網站，後者價值高</td>
+          </tr>
+          <tr>
+            <td><strong>反向連結品質</strong></td>
+            <td><span class="tag p1">乾淨</span></td>
+            <td>Wayback Machine 檢查歷史，不能有色情/盜版/賭博內容</td>
+          </tr>
+          <tr>
+            <td><strong>主題相關性</strong></td>
+            <td><span class="tag p1">運動/新聞/科技</span></td>
+            <td>跟博弈直接相關的太敏感，跟主站關聯主題效果最好</td>
+          </tr>
+          <tr>
+            <td><strong>TLD</strong></td>
+            <td><span class="tag p2">.com / .net / .org / .tw</span></td>
+            <td>避開 .xyz / .tk / .top 等垃圾 TLD</td>
+          </tr>
+          <tr>
+            <td><strong>歷史 Google 索引</strong></td>
+            <td><span class="tag p2">曾被收錄</span></td>
+            <td>Wayback Machine + Google site: 檢查，沒被收錄過效果差</td>
+          </tr>
+          <tr>
+            <td><strong>無 Penalty 紀錄</strong></td>
+            <td><span class="tag p0">必須</span></td>
+            <td>有 manual penalty 的域名買來等於買炸彈</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box red" style="margin-top:18px;">
+      <strong style="color:var(--red);">⚠ 絕對不買的紅旗訊號：</strong>
+      <ul style="list-style:none; padding:0; font-size:13.5px; line-height:1.9; margin-top:6px;">
+        <li>❌ Wayback Machine 顯示過去是色情/盜版/中藥/減肥/賭場直接內容</li>
+        <li>❌ 反向連結都來自 .ru / .cn 大量低品質網站</li>
+        <li>❌ 錨點文字（anchor text）100% 都是商業關鍵字（過度優化跡象）</li>
+        <li>❌ Majestic Trust Flow &lt; 10（信任度太低）</li>
+        <li>❌ 域名年齡 &lt; 3 年（太新沒有歷史權重）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WHERE TO BUY -->
+  <div class="section">
+    <div class="section-label">Marketplaces</div>
+    <div class="section-title">去哪買？</div>
+
+    <div class="table-wrap">
+      <table class="gen">
+        <thead>
+          <tr>
+            <th style="width:200px;">平台</th>
+            <th style="width:120px;">類型</th>
+            <th style="width:130px;">建議預算範圍</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ExpiredDomains.net</strong></td>
+            <td>免費資料庫</td>
+            <td>—</td>
+            <td>查詢/篩選工具，找候選後再去其他平台競標</td>
+          </tr>
+          <tr>
+            <td><strong>GoDaddy Auctions</strong></td>
+            <td>拍賣</td>
+            <td>NT$3,000-50,000</td>
+            <td>數量最多，DR 20-40 區間最豐富</td>
+          </tr>
+          <tr>
+            <td><strong>Namecheap Marketplace</strong></td>
+            <td>拍賣 + 固定價</td>
+            <td>NT$2,000-30,000</td>
+            <td>價格通常較 GoDaddy 便宜，需勤刷</td>
+          </tr>
+          <tr>
+            <td><strong>Sedo</strong></td>
+            <td>高端拍賣</td>
+            <td>NT$10,000-200,000</td>
+            <td>適合找 DR 30+ 的高品質域名</td>
+          </tr>
+          <tr>
+            <td><strong>DropCatch.com</strong></td>
+            <td>掉落抓取</td>
+            <td>NT$2,500-15,000</td>
+            <td>剛掉落的域名，速度最快</td>
+          </tr>
+          <tr>
+            <td><strong>SnapNames</strong></td>
+            <td>掉落抓取</td>
+            <td>NT$2,500-15,000</td>
+            <td>跟 DropCatch 互補</td>
+          </tr>
+          <tr>
+            <td><strong>Park.io</strong></td>
+            <td>新 TLD</td>
+            <td>NT$1,500-8,000</td>
+            <td>.io / .ai / .sh 為主，運動類找不到</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box blue" style="margin-top:18px;">
+      <strong style="color:var(--blue);">建議流程：</strong>
+      ExpiredDomains.net 篩選 30-50 個候選 → Ahrefs 驗證 DR/RD → Wayback Machine 看歷史內容 →
+      到 GoDaddy / Sedo / DropCatch 競標。<br>
+      <strong style="color:#fff;">時間預估：</strong>找+驗證+競標 5 個域名約 1-2 週。
+    </div>
+  </div>
+
+  <!-- IMPLEMENTATION -->
+  <div class="section">
+    <div class="section-label">Implementation</div>
+    <div class="section-title">買到後怎麼部署？</div>
+
+    <div style="margin-bottom:24px;">
+      <h3 style="color:#fff;font-size:15px;margin-bottom:10px;">A) 301 跳轉部署（3 個域名用此法）</h3>
+      <div class="flow-h">
+        <div class="flow-h-step">
+          <div class="num">STEP 1</div>
+          <div class="ttl">入手後靜置 14 天</div>
+          <div class="desc">買到不要馬上跳，靜置觀察避免被識別</div>
+        </div>
+        <div class="flow-h-step">
+          <div class="num">STEP 2</div>
+          <div class="ttl">先架原樣頁面</div>
+          <div class="desc">Wayback 抓原本內容，靜態頁部署 7 天</div>
+        </div>
+        <div class="flow-h-step">
+          <div class="num">STEP 3</div>
+          <div class="ttl">逐頁 301 跳轉</div>
+          <div class="desc">不要全站 301，分批 7-14 天完成</div>
+        </div>
+        <div class="flow-h-step">
+          <div class="num">STEP 4</div>
+          <div class="ttl">GSC 申請更名</div>
+          <div class="desc">Google Search Console 提交 Change of Address</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="color:#fff;font-size:15px;margin-bottom:10px;">B) PBN 站部署（2 個域名用此法）</h3>
+      <div class="flow-h">
+        <div class="flow-h-step">
+          <div class="num">STEP 1</div>
+          <div class="ttl">不同 IP / CMS</div>
+          <div class="desc">分別用 Cloudflare Pages / WordPress / Hugo，避免 footprint</div>
+        </div>
+        <div class="flow-h-step">
+          <div class="num">STEP 2</div>
+          <div class="ttl">建主題相關內容</div>
+          <div class="desc">運動/科技/生活，10-20 篇高質量文章</div>
+        </div>
+        <div class="flow-h-step">
+          <div class="num">STEP 3</div>
+          <div class="ttl">自然提及品牌</div>
+          <div class="desc">每篇文章 1-2 個自然連結回主站，錨點文字多樣化</div>
+        </div>
+        <div class="flow-h-step">
+          <div class="num">STEP 4</div>
+          <div class="ttl">持續更新</div>
+          <div class="desc">每月 2-3 篇新文章，維持「活站」訊號</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SATELLITE STRATEGY -->
+  <div class="section">
+    <div class="section-label">Satellite Sites Strategy</div>
+    <div class="section-title">其他 3 個衛星站怎麼辦？</div>
+    <div class="section-desc">ys89.info / ys89.biz / ys89.me — 不另花錢，改成「Tier-2 PBN 內鏈放大器」</div>
+
+    <div class="table-wrap">
+      <table class="gen">
+        <thead>
+          <tr>
+            <th style="width:140px;">站點</th>
+            <th style="width:160px;">新定位</th>
+            <th>主要動作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ys89.info</strong></td>
+            <td><span class="tag p1">直播管道內容</span></td>
+            <td>
+              主題鎖定「世足直播哪裡看」「愛爾達/MOD/華視」<br>
+              每篇文章 2-3 個自然連結指向 ys89.fun / fifa-worldcups.tw
+            </td>
+          </tr>
+          <tr>
+            <td><strong>ys89.biz</strong></td>
+            <td><span class="tag p1">投注教學內容</span></td>
+            <td>
+              主題鎖定「讓球盤/波膽/串關投注教學」<br>
+              連結指向 ys89.fun 投注文章（高轉換意圖）
+            </td>
+          </tr>
+          <tr>
+            <td><strong>ys89.me</strong></td>
+            <td><span class="tag p1">分組球星分析</span></td>
+            <td>
+              主題鎖定「48隊分組/梅西姆巴佩/球星預測」<br>
+              連結指向 ys89.games / fifa-worldcups.tw
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box purple" style="margin-top:18px;">
+      <strong style="color:var(--purple);">⚡ 這 3 站不用額外預算，但要：</strong>
+      <ul style="list-style:none; padding:0; font-size:13.5px; line-height:1.9; margin-top:6px;">
+        <li>• 每站每週至少 1 篇新文章（用 Claude Code 自動產出）</li>
+        <li>• 每篇文章內含 2-3 個指向主攻 3 站的內鏈</li>
+        <li>• 錨點文字多樣化（避免 100% exact match）</li>
+        <li>• 維持「活站」訊號，避免被 Google 判定為廢站</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section">
+    <div class="section-label">Timeline</div>
+    <div class="section-title">8 週執行時程</div>
+
+    <div class="table-wrap">
+      <table class="gen">
+        <thead>
+          <tr>
+            <th style="width:130px;">時段</th>
+            <th>動作</th>
+            <th style="width:130px;">預期里程碑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Week 1<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">5/19-5/25</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 老闆批准預算後，立即啟動<br>
+              <span class="tag p0">P0</span> ExpiredDomains.net 篩選 30-50 個候選<br>
+              <span class="tag p0">P0</span> Ahrefs 驗證 DR / RD / 反向連結品質<br>
+              <span class="tag p1">P1</span> 在 GoDaddy / Sedo 設定競標
+            </td>
+            <td>候選名單<br>30-50 個</td>
+          </tr>
+          <tr>
+            <td><strong>Week 2<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">5/26-6/1</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 競標 / 購入 5 個域名<br>
+              <span class="tag p0">P0</span> Wayback Machine 最終驗證<br>
+              <span class="tag p1">P1</span> 申請 Cloudflare / 主機資源
+            </td>
+            <td>5 個域名<br>已入手</td>
+          </tr>
+          <tr>
+            <td><strong>Week 3<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">6/2-6/8</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 5 個域名靜置 + 架原樣頁面<br>
+              <span class="tag p0">P0</span> PBN 2 站開始建內容（10 篇起）<br>
+              <span class="tag p1">P1</span> 開始 3 個衛星站內鏈優化
+            </td>
+            <td>域名已上線<br>但未跳轉</td>
+          </tr>
+          <tr>
+            <td><strong>Week 4<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">6/9-6/15</span></strong></td>
+            <td>
+              <span class="tag p0">P0</span> 開始 301 跳轉（3 個域名）<br>
+              <span class="tag p0">P0</span> GSC Change of Address 提交<br>
+              <span class="tag p1">P1</span> PBN 站持續產出內容
+            </td>
+            <td>301 開始<br>權重傳遞</td>
+          </tr>
+          <tr>
+            <td><strong>Week 5-6<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">6/16-6/29</span></strong></td>
+            <td>
+              <span class="tag p1">P1</span> Ahrefs 每週監測 DR 變化<br>
+              <span class="tag p1">P1</span> 視 DR 變化調整 PBN 連結策略<br>
+              <span class="tag p1">P1</span> GSC 排名追蹤
+            </td>
+            <td>DR 開始<br>明顯提升</td>
+          </tr>
+          <tr>
+            <td><strong>Week 7-8<br><span style="color:var(--text-muted);font-weight:400;font-size:12px;">6/30-7/19</span></strong></td>
+            <td>
+              <span class="tag p2">P2</span> 評估效果，補充 PBN 文章<br>
+              <span class="tag p2">P2</span> 視情況加碼買第 6-10 個域名<br>
+              <span class="tag p2">P2</span> 8 強/4 強/決賽期間衝排名
+            </td>
+            <td>DR 進入<br>第二波成長</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ROI -->
+  <div class="section">
+    <div class="section-label">ROI Projection</div>
+    <div class="section-title">投入產出預估</div>
+
+    <div class="box gold">
+      <div style="font-size:14px;line-height:1.9;color:var(--text);">
+        <strong style="color:var(--gold);">投入：NT$10 萬（一次性域名採購 + 部署）</strong><br><br>
+
+        <strong style="color:#fff;">預期 60 天後：</strong>
+        <ul style="list-style:none; padding:0; margin-top:6px; line-height:2;">
+          <li>• ys89.fun DR <strong style="color:var(--green);">0 → 15-20</strong>（補 +15-20）</li>
+          <li>• ys89.games DR <strong style="color:var(--green);">3.2 → 10-15</strong>（補 +7-12）</li>
+          <li>• fifa-worldcups.tw DR <strong style="color:var(--green);">0 → 10-12</strong>（補 +10-12）</li>
+          <li>• Google 排名：中等競爭關鍵字進入第 1 頁機會 +40-60%</li>
+          <li>• 自然流量：預估 60 天內從 ~0 提升至 1,000-3,000 月訪客</li>
+        </ul>
+        <br>
+        <strong style="color:var(--gold);">換算 World Cup 期間：</strong>
+        多帶 200-500 個 organic 流量到平台 = 多 40-100 個 FTD 玩家 = 多 NT$20-50 萬 GGR<br>
+        <strong style="color:var(--green);">純 SEO 部分 ROI：2-5 倍</strong>，加上後續長尾流量持續貢獻
+      </div>
+    </div>
+
+    <div class="box red" style="margin-top:14px;">
+      <strong style="color:var(--red);">⚠ 誠實的風險：</strong>
+      <ul style="list-style:none; padding:0; font-size:13.5px; line-height:1.9; margin-top:6px;">
+        <li>• 約 <strong style="color:var(--red);">20% 機率</strong> Google 發現 PBN 模式，部分權重不傳遞</li>
+        <li>• 約 <strong style="color:var(--red);">10% 機率</strong> 買到的域名 Ahrefs DR 是「假高」（過往刷出來），實際傳遞效果差</li>
+        <li>• 24 天內看不到全部效果，<strong style="color:#fff;">建議拉長到 60-90 天評估</strong></li>
+        <li>• 世足結束後仍會持續貢獻流量（這是好處，不是風險）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DECISION POINTS -->
+  <div class="section">
+    <div class="section-label">Decision Points</div>
+    <div class="section-title">需要老闆決定的 4 件事</div>
+
+    <ul style="list-style:none; padding:0;">
+      <li style="display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; margin-top:2px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.4); color:var(--gold);">1</div>
+        <div>
+          <strong style="color:#fff;">預算等級</strong><br>
+          <span style="color:var(--text-muted);font-size:13.5px;">NT$5萬（A） / <strong style="color:var(--gold);">NT$10萬（B 推薦）</strong> / NT$20萬（C）</span>
+        </div>
+      </li>
+      <li style="display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; margin-top:2px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.4); color:var(--gold);">2</div>
+        <div>
+          <strong style="color:#fff;">分配策略</strong><br>
+          <span style="color:var(--text-muted);font-size:13.5px;"><strong style="color:var(--gold);">推薦：</strong>3 個 301 + 2 個 PBN（混合策略，分散風險）</span>
+        </div>
+      </li>
+      <li style="display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; margin-top:2px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.4); color:var(--gold);">3</div>
+        <div>
+          <strong style="color:#fff;">PBN 主機預算</strong><br>
+          <span style="color:var(--text-muted);font-size:13.5px;">每年 NT$3,000-5,000（Cloudflare Pages 免費 + 少量 VPS）</span>
+        </div>
+      </li>
+      <li style="display:flex; gap:14px; padding:14px 0;">
+        <div style="width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; margin-top:2px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.4); color:var(--gold);">4</div>
+        <div>
+          <strong style="color:#fff;">第二波加碼授權</strong><br>
+          <span style="color:var(--text-muted);font-size:13.5px;">第一波 5 個生效後，若效果好，可否自動授權加買 5 個？預算上限多少？</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- FINAL RECOMMENDATION -->
+  <div class="section">
+    <div class="section-label">Final Recommendation</div>
+    <div class="section-title">軍師總結</div>
+
+    <div class="box gold">
+      <div style="font-size:14.5px;line-height:1.9;color:var(--text);">
+        <strong style="color:var(--gold);">如果我是老闆，這樣決策：</strong><br><br>
+
+        <strong style="color:#fff;">1. 批 NT$10 萬（TIER B）</strong>。<br>
+        TIER A 太小看不到效果，TIER C 邊際遞減。NT$10 萬是 SEO 灰帽戰術的最低有效預算。<br><br>
+
+        <strong style="color:#fff;">2. 分配 2:1:1:1（fun:games:wc.tw:PBN）</strong>。<br>
+        母站拿最多權重 ROI 最高，其他 1:1 分。第 5 個域名做 PBN 是「保險」。<br><br>
+
+        <strong style="color:#fff;">3. 其他 3 個衛星站不另花錢，改用內鏈策略</strong>。<br>
+        全部資源集中在 3 個主攻站，分散反而稀釋效果。<br><br>
+
+        <strong style="color:#fff;">4. 60-90 天評估，看數據決定要不要追加 5 個</strong>。<br>
+        第一波效果 OK 再加碼，避免一次性 ALL IN 的風險。<br><br>
+
+        <strong style="color:var(--green);">預期成果：</strong>3 個主攻站 DR 從 0 → 10-20，世足期間加上社群+活動，
+        可以多帶 200-500 個自然流量到平台，世足結束後權重會持續貢獻長尾流量。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>YS89</strong> · 5 個高權重域名採購提案 · 內部文件 · 2026.05.19<br>
+  <span style="font-size:11px;">本提案搭配「2026世足_完整作戰提案_給平台.html」一起閱讀</span>
+</div>
+
+</body>
+</html>
