@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 UTM 命名規則 SOP</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2128;--border:#30363d;
+  --green:#3fb950;--blue:#58a6ff;--yellow:#d29922;--red:#f85149;
+  --purple:#bc8cff;--orange:#f0883e;--cyan:#39d3f5;--pink:#ff7eb6;
+  --text:#e6edf3;--muted:#8b949e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:14px}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+code{background:#0d1117;border:1px solid var(--border);padding:1px 6px;border-radius:3px;font-family:'SF Mono',Menlo,monospace;font-size:0.88em;color:var(--yellow)}
+
+header{background:#010409;border-bottom:1px solid var(--border);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.logo{font-size:1.1em;font-weight:800;font-family:monospace;color:var(--green)}
+.header-meta{color:var(--muted);font-size:0.78em;font-family:monospace}
+
+.page{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+
+.intro{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:18px 22px;margin-bottom:24px}
+.intro h1{font-size:1.3em;color:#fff;margin-bottom:6px}
+.intro p{color:var(--muted);font-size:0.92em}
+
+.sec{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:18px;overflow:hidden}
+.sec-head{padding:13px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:#161b22}
+.sec-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);color:var(--yellow);font-weight:800;font-size:0.85em;flex-shrink:0}
+.sec-title{font-size:1.05em;font-weight:800;color:#fff}
+.sec-sub{font-size:0.78em;color:var(--muted);font-weight:400;margin-left:4px}
+.sec-body{padding:18px 22px}
+
+table{width:100%;border-collapse:collapse;font-size:0.88em}
+th{text-align:left;padding:9px 12px;color:var(--muted);font-weight:700;font-size:0.82em;border-bottom:1px solid var(--border);background:#0d1117}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td strong{color:#fff}
+.tcat{color:var(--yellow);font-weight:700;font-size:0.85em;text-transform:uppercase;letter-spacing:0.05em;padding:14px 12px 6px;background:rgba(201,168,76,0.04)}
+
+.example{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:10px 0;font-family:'SF Mono',Menlo,monospace;font-size:0.82em;color:var(--text);overflow-x:auto;line-height:1.85}
+.example .url-base{color:var(--green)}
+.example .url-proxy{color:var(--cyan)}
+.example .url-param{color:var(--yellow)}
+.example .url-value{color:var(--pink)}
+.example .url-amp{color:var(--muted)}
+.example-note{font-size:0.82em;color:var(--muted);padding:6px 8px;margin-top:6px}
+
+.box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:10px 0}
+.box.warn{border-color:rgba(248,81,73,0.3);background:rgba(248,81,73,0.04)}
+.box.tip{border-color:rgba(63,185,80,0.3);background:rgba(63,185,80,0.04)}
+.box.info{border-color:rgba(88,166,255,0.3);background:rgba(88,166,255,0.04)}
+
+.pill{display:inline-block;font-size:0.7em;padding:2px 9px;border-radius:14px;font-weight:700;letter-spacing:.05em;margin-right:5px}
+.pill.req{background:rgba(248,81,73,0.15);color:var(--red);border:1px solid rgba(248,81,73,0.3)}
+.pill.opt{background:rgba(136,136,136,0.1);color:var(--muted);border:1px solid rgba(136,136,136,0.2)}
+.pill.rec{background:rgba(201,168,76,0.15);color:var(--yellow);border:1px solid rgba(201,168,76,0.3)}
+
+.checklist{list-style:none;padding:0;margin:0}
+.checklist li{padding:8px 0;padding-left:26px;position:relative;font-size:0.92em;border-bottom:1px solid rgba(255,255,255,0.04)}
+.checklist li:last-child{border-bottom:none}
+.checklist li::before{content:'☐';position:absolute;left:0;color:var(--yellow);font-weight:700;font-size:1.05em;top:8px}
+
+footer{text-align:center;padding:28px 24px;color:var(--muted);font-size:0.75em;border-top:1px solid var(--border);margin-top:30px}
+footer a{color:var(--yellow)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">YS89 <span>UTM 命名規則 SOP</span></div>
+  <div class="header-meta">2026-05-19 · 內部 SOP &nbsp;|&nbsp; <a href="SITE-TABS.html">站點總覽</a> &nbsp;|&nbsp; <a href="KEYWORDS.html">關鍵字地圖</a></div>
+</header>
+
+<div class="page">
+
+  <div class="intro">
+    <h1>📐 UTM 命名規則 — 全團隊統一用</h1>
+    <p>所有 Lihi 短連結、社群貼文連結、廣告連結、KOL 業配連結，都必須照這份規則加 UTM。<br>
+    沒加 UTM 的流量在 GA4 全部進「(direct)/(none)」，無法歸因 → 無法知道哪個渠道有效 → 無法優化 ROI。</p>
+  </div>
+
+  <!-- 1. 五個 UTM 參數 -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">1</div>
+      <div class="sec-title">五個 UTM 參數總覽 <span class="sec-sub">每條連結最多 5 個參數</span></div>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead>
+          <tr><th style="width:130px">參數</th><th style="width:120px">用途</th><th style="width:90px">必填?</th><th>範例值</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>utm_source</code></td>
+            <td>流量哪來的</td>
+            <td><span class="pill req">必填</span></td>
+            <td><code>ig</code> <code>threads</code> <code>kol_001</code> <code>google</code></td>
+          </tr>
+          <tr>
+            <td><code>utm_medium</code></td>
+            <td>怎麼來的（格式）</td>
+            <td><span class="pill req">必填</span></td>
+            <td><code>post</code> <code>story</code> <code>reel</code> <code>cpc</code></td>
+          </tr>
+          <tr>
+            <td><code>utm_campaign</code></td>
+            <td>哪個活動</td>
+            <td><span class="pill req">必填</span></td>
+            <td><code>wc2026_opening</code> <code>bonus_3000</code></td>
+          </tr>
+          <tr>
+            <td><code>utm_content</code></td>
+            <td>A/B 變數或創意</td>
+            <td><span class="pill rec">建議</span></td>
+            <td><code>var_a</code> <code>kol_post_1</code> <code>banner_red</code></td>
+          </tr>
+          <tr>
+            <td><code>utm_term</code></td>
+            <td>關鍵字（主要給 SEM）</td>
+            <td><span class="pill opt">選填</span></td>
+            <td><code>2026worldcup</code> <code>ys89_brand</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2. utm_source -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">2</div>
+      <div class="sec-title">utm_source 對照表 <span class="sec-sub">流量來源</span></div>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th style="width:200px">值</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td colspan="2" class="tcat">📱 社群平台</td></tr>
+          <tr><td><code>ig</code></td><td>Instagram（20 帳號統一用 ig）</td></tr>
+          <tr><td><code>threads</code></td><td>Threads（20 帳號統一用 threads）</td></tr>
+          <tr><td><code>fb</code></td><td>Facebook</td></tr>
+          <tr><td><code>yt</code></td><td>YouTube</td></tr>
+          <tr><td><code>tiktok</code></td><td>TikTok</td></tr>
+
+          <tr><td colspan="2" class="tcat">💬 通訊軟體</td></tr>
+          <tr><td><code>line</code></td><td>LINE 個人 / 群組 / OA</td></tr>
+          <tr><td><code>telegram</code></td><td>Telegram</td></tr>
+
+          <tr><td colspan="2" class="tcat">🔍 搜尋引擎 / 付費廣告</td></tr>
+          <tr><td><code>google</code></td><td>Google 自然搜尋（含 Google 廣告也用這個 + medium=cpc）</td></tr>
+          <tr><td><code>bing</code></td><td>Bing 搜尋</td></tr>
+          <tr><td><code>fb_ads</code></td><td>Facebook 廣告（與 fb 自然分開）</td></tr>
+          <tr><td><code>ig_ads</code></td><td>Instagram 廣告</td></tr>
+
+          <tr><td colspan="2" class="tcat">📝 內容平台</td></tr>
+          <tr><td><code>medium</code></td><td>Medium 文章</td></tr>
+          <tr><td><code>pixnet</code></td><td>痞客邦</td></tr>
+          <tr><td><code>blogspot</code></td><td>Blogspot</td></tr>
+          <tr><td><code>wpcom</code></td><td>WordPress.com</td></tr>
+
+          <tr><td colspan="2" class="tcat">💬 論壇 / 社群討論</td></tr>
+          <tr><td><code>ptt</code></td><td>PTT</td></tr>
+          <tr><td><code>dcard</code></td><td>Dcard</td></tr>
+          <tr><td><code>mobile01</code></td><td>Mobile01</td></tr>
+
+          <tr><td colspan="2" class="tcat">🌐 自有站點互導</td></tr>
+          <tr><td><code>ys89fun</code></td><td>從 ys89.fun（母站論壇）來</td></tr>
+          <tr><td><code>ys89games</code></td><td>從 ys89.games 來</td></tr>
+          <tr><td><code>ys89info</code></td><td>從 ys89.info 來</td></tr>
+          <tr><td><code>ys89biz</code></td><td>從 ys89.biz 來</td></tr>
+          <tr><td><code>ys89me</code></td><td>從 ys89.me 來</td></tr>
+          <tr><td><code>fifawctw</code></td><td>從 fifa-worldcups.tw 來</td></tr>
+
+          <tr><td colspan="2" class="tcat">👤 KOL（用編號制，另存對照表）</td></tr>
+          <tr><td><code>kol_001</code></td><td>KOL 編號 001（例：運彩老大）</td></tr>
+          <tr><td><code>kol_002</code></td><td>KOL 編號 002</td></tr>
+          <tr><td><code>kol_xxx</code></td><td>更多 KOL，依編號遞增</td></tr>
+
+          <tr><td colspan="2" class="tcat">📧 其他</td></tr>
+          <tr><td><code>edm</code></td><td>電子報</td></tr>
+          <tr><td><code>sms</code></td><td>簡訊推廣</td></tr>
+        </tbody>
+      </table>
+
+      <div class="box warn">
+        <strong style="color:var(--red);">⚠ 規則：</strong>
+        全部小寫，不用空格、不用中文、不用大寫。<br>
+        KOL 用編號（kol_001 / kol_002...），另外維護一份 KOL 對照表（誰是 001 / 002）。
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. utm_medium -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">3</div>
+      <div class="sec-title">utm_medium 對照表 <span class="sec-sub">流量格式</span></div>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th style="width:160px">值</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td colspan="2" class="tcat">🆓 自然流量（Organic）</td></tr>
+          <tr><td><code>post</code></td><td>一般貼文（FB/IG/Threads 動態貼文）</td></tr>
+          <tr><td><code>story</code></td><td>Stories（24小時限時動態）</td></tr>
+          <tr><td><code>reel</code></td><td>Reels（短影音）</td></tr>
+          <tr><td><code>video</code></td><td>長影音（YT 一般影片）</td></tr>
+          <tr><td><code>shorts</code></td><td>YouTube Shorts</td></tr>
+          <tr><td><code>live</code></td><td>直播</td></tr>
+          <tr><td><code>bio</code></td><td>連結在 bio（IG/Threads 個人頁）</td></tr>
+          <tr><td><code>comment</code></td><td>留言內含的連結</td></tr>
+          <tr><td><code>signature</code></td><td>論壇簽名檔連結</td></tr>
+          <tr><td><code>article</code></td><td>長文章內連結（Medium/痞客邦/blog）</td></tr>
+
+          <tr><td colspan="2" class="tcat">💰 付費（Paid）</td></tr>
+          <tr><td><code>cpc</code></td><td>Cost per click（FB/IG/Google 點擊廣告）</td></tr>
+          <tr><td><code>cpm</code></td><td>Cost per mille（曝光廣告）</td></tr>
+          <tr><td><code>display</code></td><td>Banner 顯示廣告</td></tr>
+          <tr><td><code>native</code></td><td>原生廣告（業配文）</td></tr>
+          <tr><td><code>sponsored</code></td><td>KOL 業配（付費 KOL 用這個）</td></tr>
+
+          <tr><td colspan="2" class="tcat">🔁 其他</td></tr>
+          <tr><td><code>referral</code></td><td>其他網站轉介</td></tr>
+          <tr><td><code>email</code></td><td>電子郵件內連結</td></tr>
+          <tr><td><code>broadcast</code></td><td>LINE/Telegram 廣播推播</td></tr>
+        </tbody>
+      </table>
+
+      <div class="box info">
+        <strong style="color:var(--blue);">💡 KOL 業配怎麼填？</strong><br>
+        <code>utm_source=kol_001</code> + <code>utm_medium=sponsored</code> + <code>utm_content=reel</code><br>
+        （source 標 KOL 編號，medium 統一 sponsored，content 標格式）
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. utm_campaign -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">4</div>
+      <div class="sec-title">utm_campaign 對照表 <span class="sec-sub">活動 / 階段</span></div>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th style="width:220px">值</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td colspan="2" class="tcat">🏆 2026 世足賽事階段</td></tr>
+          <tr><td><code>wc2026_warmup</code></td><td>開幕前暖場期（5/19-6/1）</td></tr>
+          <tr><td><code>wc2026_opening</code></td><td>開幕戰前後（6/2-6/15）</td></tr>
+          <tr><td><code>wc2026_group</code></td><td>小組賽期間（6/12-6/27）</td></tr>
+          <tr><td><code>wc2026_ko16</code></td><td>16 強淘汰賽（6/27-7/3）</td></tr>
+          <tr><td><code>wc2026_qf</code></td><td>8 強（7/4-7/7）</td></tr>
+          <tr><td><code>wc2026_sf</code></td><td>4 強（7/8-7/12）</td></tr>
+          <tr><td><code>wc2026_final</code></td><td>決賽期（7/13-7/19）</td></tr>
+          <tr><td><code>wc2026_post</code></td><td>世足後 retention（7/20+）</td></tr>
+
+          <tr><td colspan="2" class="tcat">🎁 平台活動</td></tr>
+          <tr><td><code>bonus_3000</code></td><td>世足激戰加碼 充值送 3,000</td></tr>
+          <tr><td><code>welcome_368</code></td><td>註冊體驗金 NT$368</td></tr>
+          <tr><td><code>firstdeposit_100p</code></td><td>首儲送 100%</td></tr>
+          <tr><td><code>vip_program</code></td><td>VIP 福利</td></tr>
+          <tr><td><code>usdt_2p</code></td><td>USDT 儲值 2% 回饋</td></tr>
+
+          <tr><td colspan="2" class="tcat">📰 內容主題</td></tr>
+          <tr><td><code>topic_messi</code></td><td>梅西專題</td></tr>
+          <tr><td><code>topic_mbappe</code></td><td>姆巴佩專題</td></tr>
+          <tr><td><code>topic_yamal</code></td><td>亞馬爾專題</td></tr>
+          <tr><td><code>topic_oddspred</code></td><td>賠率預測類</td></tr>
+          <tr><td><code>topic_livestream</code></td><td>直播攻略類</td></tr>
+          <tr><td><code>topic_handicap</code></td><td>讓球盤教學</td></tr>
+          <tr><td><code>topic_darkhorse</code></td><td>黑馬分析</td></tr>
+
+          <tr><td colspan="2" class="tcat">🛡️ 詐騙 / 黑名單系列</td></tr>
+          <tr><td><code>blacklist</code></td><td>娛樂城詐騙 / 黑名單文章導流</td></tr>
+        </tbody>
+      </table>
+
+      <div class="box tip">
+        <strong style="color:var(--green);">✅ 命名邏輯：</strong>
+        <code>wc2026_*</code> 用於賽事階段，<code>bonus_*</code> / <code>welcome_*</code> 用於平台活動，
+        <code>topic_*</code> 用於內容主題。三者可獨立分析。
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. utm_content / utm_term -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">5</div>
+      <div class="sec-title">utm_content / utm_term <span class="sec-sub">變數 + 關鍵字</span></div>
+    </div>
+    <div class="sec-body">
+
+      <h3 style="color:#fff;font-size:1em;margin-bottom:10px;">utm_content（A/B 測試 + 創意變數）</h3>
+      <table>
+        <thead><tr><th style="width:200px">值</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td><code>var_a</code> / <code>var_b</code> / <code>var_c</code></td><td>同一活動的多版本創意 A/B 測試</td></tr>
+          <tr><td><code>image_red</code> / <code>image_gold</code></td><td>不同主色的圖卡</td></tr>
+          <tr><td><code>headline_1</code> / <code>headline_2</code></td><td>不同標題版本</td></tr>
+          <tr><td><code>cta_1</code> / <code>cta_2</code></td><td>不同 CTA 文案</td></tr>
+          <tr><td><code>kol_post_1</code> / <code>kol_post_2</code></td><td>同 KOL 多則貼文編號</td></tr>
+          <tr><td><code>creative_001</code></td><td>內部創意編號制（搭配創意庫）</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="color:#fff;font-size:1em;margin:20px 0 10px;">utm_term（關鍵字，主要用於 Google Ads / SEO）</h3>
+      <table>
+        <thead><tr><th style="width:200px">值</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td><code>2026worldcup</code></td><td>2026 世界盃</td></tr>
+          <tr><td><code>worldcup_odds</code></td><td>世足賠率</td></tr>
+          <tr><td><code>worldcup_live</code></td><td>世足直播</td></tr>
+          <tr><td><code>ys89_brand</code></td><td>夜色娛樂城 / ys89 品牌詞</td></tr>
+          <tr><td><code>handicap</code></td><td>讓球盤</td></tr>
+          <tr><td><code>messi_2026</code></td><td>梅西關鍵字</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6. 完整 URL 範例 -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">6</div>
+      <div class="sec-title">完整 URL 範例 <span class="sec-sub">複製貼上改參數就能用</span></div>
+    </div>
+    <div class="sec-body">
+
+      <h3 style="color:#fff;font-size:0.95em;margin-bottom:8px;">📱 範例 1：IG 帳號 A 發開幕戰預測貼文</h3>
+      <div class="example">
+        <span class="url-base">https://ys89.bet</span><span class="url-amp">?</span><span class="url-param">proxy</span>=<span class="url-proxy">dvjhkv</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_source</span>=<span class="url-value">ig</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_medium</span>=<span class="url-value">post</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_campaign</span>=<span class="url-value">wc2026_opening</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_content</span>=<span class="url-value">var_a</span>
+      </div>
+      <div class="example-note">→ 用 fu003 代理（社群類）+ ig 來源 + 一般貼文 + 開幕戰活動 + A 版創意</div>
+
+      <h3 style="color:#fff;font-size:0.95em;margin:20px 0 8px;">👤 範例 2：KOL 業配 Reels 影片</h3>
+      <div class="example">
+        <span class="url-base">https://ys89.bet</span><span class="url-amp">?</span><span class="url-param">proxy</span>=<span class="url-proxy">dvjhkv</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_source</span>=<span class="url-value">kol_001</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_medium</span>=<span class="url-value">sponsored</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_campaign</span>=<span class="url-value">bonus_3000</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_content</span>=<span class="url-value">reel</span>
+      </div>
+      <div class="example-note">→ KOL 001 用 Reels 推「充值送 3000」活動，sponsored 表示付費業配</div>
+
+      <h3 style="color:#fff;font-size:0.95em;margin:20px 0 8px;">💸 範例 3：FB 廣告</h3>
+      <div class="example">
+        <span class="url-base">https://ys89.bet</span><span class="url-amp">?</span><span class="url-param">proxy</span>=<span class="url-proxy">dvjhkv</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_source</span>=<span class="url-value">fb_ads</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_medium</span>=<span class="url-value">cpc</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_campaign</span>=<span class="url-value">wc2026_group</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_content</span>=<span class="url-value">creative_001</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_term</span>=<span class="url-value">worldcup_odds</span>
+      </div>
+      <div class="example-note">→ FB 廣告 + 點擊計費 + 小組賽期間 + 創意 001 + 關鍵字「世足賠率」</div>
+
+      <h3 style="color:#fff;font-size:0.95em;margin:20px 0 8px;">🌐 範例 4：ys89.fun 文章內 CTA 連結</h3>
+      <div class="example">
+        <span class="url-base">https://ys89.bet</span><span class="url-amp">?</span><span class="url-param">proxy</span>=<span class="url-proxy">cysc9m</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_source</span>=<span class="url-value">ys89fun</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_medium</span>=<span class="url-value">article</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_campaign</span>=<span class="url-value">topic_handicap</span>
+      </div>
+      <div class="example-note">→ fu001 代理（母站）+ ys89.fun 來源 + 文章內連結 + 讓球盤教學主題</div>
+
+      <h3 style="color:#fff;font-size:0.95em;margin:20px 0 8px;">📡 範例 5：fifa-worldcups.tw 衛星站 CTA</h3>
+      <div class="example">
+        <span class="url-base">https://ys89.bet</span><span class="url-amp">?</span><span class="url-param">proxy</span>=<span class="url-proxy">pm3u87</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_source</span>=<span class="url-value">fifawctw</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_medium</span>=<span class="url-value">referral</span><br>
+        <span class="url-amp">&</span><span class="url-param">utm_campaign</span>=<span class="url-value">wc2026_opening</span>
+      </div>
+      <div class="example-note">→ fu002 代理（衛星站）+ fifa-worldcups.tw 來源 + 站對站轉介 + 開幕戰活動</div>
+
+    </div>
+  </div>
+
+  <!-- 7. 代理帳號對照 -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">7</div>
+      <div class="sec-title">代理帳號（proxy）使用對照 <span class="sec-sub">三個代理帳號分工</span></div>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th style="width:130px">proxy</th><th style="width:140px">代理帳號</th><th>使用場景</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>cysc9m</code></td>
+            <td><strong>fu001 · 母站</strong></td>
+            <td>ys89.fun 內所有 CTA（文章、Banner、論壇貼文）</td>
+          </tr>
+          <tr>
+            <td><code>pm3u87</code></td>
+            <td><strong>fu002 · 衛星站</strong></td>
+            <td>5 個衛星站（games / info / biz / me / fifa-worldcups.tw）</td>
+          </tr>
+          <tr>
+            <td><code>dvjhkv</code></td>
+            <td><strong>fu003 · 社群/廣告</strong></td>
+            <td>社群（IG/Threads/FB）、KOL 業配、付費廣告、論壇貼文</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box tip">
+        <strong style="color:var(--green);">✅ 為什麼分三個 proxy？</strong><br>
+        即使沒做 UTM，光看 proxy 就能知道流量來自「母站 / 衛星站 / 社群廣告」三大類。
+        UTM 是補上更細的渠道區分。
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Lihi 工作流程 -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">8</div>
+      <div class="sec-title">Lihi 短連結建立 SOP <span class="sec-sub">每次建新連結照這個跑</span></div>
+    </div>
+    <div class="sec-body">
+
+      <ol style="list-style:decimal;padding-left:24px;font-size:0.92em;line-height:2;color:var(--text)">
+        <li>登入 Lihi 後台 → <strong>新增短連結</strong></li>
+        <li>原始網址貼上：<code>https://ys89.bet?proxy=XXX</code>（看用途選 cysc9m/pm3u87/dvjhkv）</li>
+        <li>點 <strong>UTM Builder</strong> 圖示打開設定面板</li>
+        <li>依本 SOP 對照表填入 4-5 個 UTM 參數</li>
+        <li>建立短連結後，<strong>命名規則：</strong><code>[平台]_[活動]_[變數]</code><br>
+            例：<code>ig_wc2026_opening_va</code> / <code>kol001_bonus3000_reel</code></li>
+        <li>把短連結記錄到 <a href="SITE-TABS.html">SITE-TABS.html</a> 的對應站點區塊</li>
+        <li>分享給社群同事使用</li>
+      </ol>
+
+      <div class="box warn" style="margin-top:14px;">
+        <strong style="color:var(--red);">⚠ 絕對不要做的事：</strong>
+        <ul style="list-style:none;padding:0;font-size:0.88em;line-height:1.85;margin-top:4px">
+          <li>❌ 不要用中文當 utm 值</li>
+          <li>❌ 不要用空格</li>
+          <li>❌ 不要大小寫混用</li>
+          <li>❌ 不要每次都改命名規則</li>
+          <li>❌ 不要不加 UTM 就發出去（除非真的是 organic 內部站連結）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. 本週要做的事 -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num">9</div>
+      <div class="sec-title">本週執行清單 <span class="sec-sub">UTM 設定要 5 天內完成</span></div>
+    </div>
+    <div class="sec-body">
+
+      <ul class="checklist">
+        <li>Day 1（今天）：把本 SOP 分享給社群同事 + 老闆，達成共識</li>
+        <li>Day 1-2：建立 <strong>KOL 編號對照表</strong>（kol_001 / 002 ... 對應誰）</li>
+        <li>Day 1-2：建立 <strong>創意編號庫</strong>（creative_001 / 002 對應哪張圖卡/影片）</li>
+        <li>Day 2-3：整理現有 12 條 Lihi 短連結，<strong>全部加 UTM 重發</strong></li>
+        <li>Day 3-5：20 個 IG/Threads 帳號開始發文時，<strong>每篇都帶 UTM 連結</strong></li>
+        <li>Day 5：GA4 後台確認 utm_source / medium / campaign 維度的數字有正常進來</li>
+        <li>Week 2：FB/IG 廣告上線前，<strong>每組創意配獨立 utm_content</strong> 才能 A/B 比較</li>
+        <li>Week 2：KOL 業配連結都用 utm_source=kol_XXX + medium=sponsored 命名</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  🔒 內部 SOP · 2026-05-19 · YS89 行銷團隊
+  &nbsp;|&nbsp; <a href="SITE-TABS.html">站點總覽</a>
+  &nbsp;|&nbsp; <a href="KEYWORDS.html">關鍵字地圖</a>
+  &nbsp;|&nbsp; <a href="PROJECT-OVERVIEW.html">專案總覽</a>
+</footer>
+
+</body>
+</html>
