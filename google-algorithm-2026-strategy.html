@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google 演算法底層 + YS89 灰黑帽戰略總覽 2026</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2128;--border:#30363d;
+  --green:#3fb950;--blue:#58a6ff;--yellow:#d29922;--red:#f85149;
+  --purple:#bc8cff;--orange:#f0883e;--cyan:#39d3f5;--pink:#ff7eb6;
+  --text:#e6edf3;--muted:#8b949e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14.5px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+code{background:#0d1117;border:1px solid var(--border);padding:1px 6px;border-radius:3px;font-family:'SF Mono',Menlo,monospace;font-size:0.88em;color:var(--yellow)}
+
+header{background:linear-gradient(135deg,#010409 0%,#0a1428 50%,#010409 100%);border-bottom:1px solid var(--border);padding:32px 28px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(63,185,80,0.08) 0%,transparent 70%)}
+.logo-mega{font-size:1.5em;font-weight:900;font-family:monospace;color:var(--green);position:relative}
+.logo-mega span{color:var(--yellow)}
+.hdr-sub{color:var(--muted);font-size:0.85em;margin-top:6px;letter-spacing:1.5px;position:relative}
+
+.toc{max-width:1100px;margin:24px auto;padding:18px 24px;background:rgba(63,185,80,0.05);border:1px solid rgba(63,185,80,0.25);border-radius:10px}
+.toc-title{font-size:0.78em;font-weight:800;color:var(--green);letter-spacing:1.5px;margin-bottom:10px;text-transform:uppercase}
+.toc ol{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px;counter-reset:item}
+.toc li{counter-increment:item;font-size:0.88em;padding-left:24px;position:relative}
+.toc li::before{content:counter(item,decimal-leading-zero);position:absolute;left:0;color:var(--muted);font-family:monospace;font-weight:700;font-size:0.88em}
+
+.page{max-width:1100px;margin:0 auto;padding:8px 20px 60px}
+
+section.major{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:24px;overflow:hidden}
+.sec-head{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;background:#161b22}
+.sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.95em;font-family:monospace;color:#000;flex-shrink:0}
+.sn-1{background:var(--green)}.sn-2{background:var(--blue)}.sn-3{background:var(--yellow)}.sn-4{background:var(--purple)}.sn-5{background:var(--orange)}.sn-6{background:var(--cyan)}.sn-7{background:var(--pink)}.sn-8{background:var(--red);color:#fff}.sn-9{background:#fff}.sn-10{background:var(--green)}
+.sec-title{font-size:1.15em;font-weight:800;color:#fff}
+.sec-tag{font-size:0.72em;color:var(--muted);font-weight:400;margin-left:6px}
+.sec-body{padding:22px 24px}
+
+h3{color:#fff;font-size:1em;margin:18px 0 10px;padding-left:12px;border-left:3px solid var(--yellow)}
+h4{color:#fff;font-size:0.95em;margin:14px 0 8px;color:var(--green)}
+
+p,li{font-size:0.92em}
+.body-text p{margin-bottom:10px}
+.body-text ul,.body-text ol{margin:8px 0 14px 22px}
+.body-text li{margin-bottom:5px}
+
+table{width:100%;border-collapse:collapse;font-size:0.86em;margin:10px 0 18px}
+th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:700;font-size:0.84em;border-bottom:1px solid var(--border);background:#0d1117;letter-spacing:0.3px}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td strong{color:#fff}
+
+.box{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:10px 0}
+.box.warn{border-color:rgba(248,81,73,0.3);background:rgba(248,81,73,0.05)}
+.box.tip{border-color:rgba(63,185,80,0.3);background:rgba(63,185,80,0.05)}
+.box.info{border-color:rgba(88,166,255,0.3);background:rgba(88,166,255,0.05)}
+.box.gold{border-color:rgba(210,153,34,0.35);background:rgba(210,153,34,0.05)}
+.box-title{font-size:0.75em;font-weight:800;letter-spacing:1.2px;margin-bottom:6px;text-transform:uppercase}
+.warn .box-title{color:var(--red)}.tip .box-title{color:var(--green)}.info .box-title{color:var(--blue)}.gold .box-title{color:var(--yellow)}
+
+.layer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:10px 0}
+@media(max-width:680px){.layer-grid{grid-template-columns:1fr}}
+.layer-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.layer-card h4{margin:0 0 6px;color:var(--green)}
+.layer-card .layer-num{font-size:0.7em;color:var(--muted);letter-spacing:1.2px;font-family:monospace;font-weight:700}
+.layer-card p{font-size:0.85em;color:var(--text);margin:6px 0}
+.layer-card .signal{font-size:0.78em;color:var(--muted);margin-top:6px}
+
+.timeline{border-left:2px solid var(--yellow);padding-left:18px;margin:10px 0;position:relative}
+.tl-item{margin-bottom:14px;position:relative}
+.tl-item::before{content:'';position:absolute;left:-23px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--yellow)}
+.tl-date{font-size:0.78em;color:var(--yellow);font-weight:700;font-family:monospace;letter-spacing:0.5px}
+.tl-event{font-size:0.94em;color:#fff;font-weight:700;margin:2px 0}
+.tl-impact{font-size:0.85em;color:var(--text-muted);color:var(--muted)}
+
+.tactic-table th:nth-child(2),.tactic-table th:nth-child(3),.tactic-table th:nth-child(4){text-align:center;width:90px}
+.tactic-table td:nth-child(2),.tactic-table td:nth-child(3),.tactic-table td:nth-child(4){text-align:center;font-size:1.1em}
+.t-keep{color:var(--green)}.t-watch{color:var(--yellow)}.t-die{color:var(--red)}
+
+.pill{display:inline-block;font-size:0.7em;padding:2px 9px;border-radius:14px;font-weight:700;letter-spacing:0.3px;margin-right:4px}
+.pill.must{background:rgba(248,81,73,0.15);color:var(--red);border:1px solid rgba(248,81,73,0.3)}
+.pill.do{background:rgba(63,185,80,0.15);color:var(--green);border:1px solid rgba(63,185,80,0.3)}
+.pill.wait{background:rgba(210,153,34,0.15);color:var(--yellow);border:1px solid rgba(210,153,34,0.3)}
+.pill.dont{background:rgba(248,81,73,0.15);color:var(--red);border:1px solid rgba(248,81,73,0.3)}
+
+.cite{font-size:0.78em;color:var(--muted);font-style:italic;margin-top:6px;padding-left:10px;border-left:2px solid var(--border)}
+
+footer{text-align:center;padding:32px 24px;color:var(--muted);font-size:0.78em;border-top:1px solid var(--border);margin-top:32px}
+footer strong{color:var(--green)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mega">Google 演算法 <span>2024-2026</span> 底層邏輯</div>
+  <div class="hdr-sub">YS89 戰略總覽 · 灰黑帽現狀分析 · 6 個月仍有效的打法</div>
+</header>
+
+<div class="toc">
+  <div class="toc-title">📋 文件章節（10 大主題）</div>
+  <ol>
+    <li>Google 搜尋引擎運作 4 層框架（diagnostics 用）</li>
+    <li>2024-2026 演算法重大變化時間軸</li>
+    <li>E-E-A-T Trust Evidence Matrix（信任證據矩陣）</li>
+    <li>AI Overview / Query Fan-Out / GEO 優化</li>
+    <li>Core Web Vitals + INP 新指標</li>
+    <li>主題權威（Topical Authority）vs 關鍵字堆砌</li>
+    <li>搜尋意圖 4 分類 + AI 影響</li>
+    <li>灰黑帽戰術現狀 vs 6 個月後存活率</li>
+    <li>YS89 站群快狠準執行清單</li>
+    <li>域名遷移 + Footprint 防追蹤 SOP</li>
+  </ol>
+</div>
+
+<div class="page">
+
+  <!-- SECTION 1 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-1">1</div>
+      <div class="sec-title">Google 搜尋引擎運作 4 層框架 <span class="sec-tag">取代傳統 3 步驟</span></div>
+    </div>
+    <div class="sec-body body-text">
+      <p>傳統 SEO 教學說「爬取 → 索引 → 排名」，但這個 3 步驟模型只描述 Google 做什麼，<strong>不能幫你診斷問題卡在哪</strong>。新世代的 4 層框架（akseolabs 主張，與 Google 文件對齊）才是實用 diagnostics 工具。</p>
+
+      <div class="layer-grid">
+        <div class="layer-card">
+          <div class="layer-num">LAYER 01 · DISCOVERY</div>
+          <h4>發現層</h4>
+          <p>Google 透過 sitemap / 反向連結 / 內部連結找到你的 URL。</p>
+          <div class="signal">⚠️ 卡在此層：你的網站根本沒被 crawler 看到 → 改 sitemap、加外鏈</div>
+        </div>
+        <div class="layer-card">
+          <div class="layer-num">LAYER 02 · UNDERSTANDING</div>
+          <h4>理解層</h4>
+          <p>解析 HTML 結構、內容語意、Schema 標記、實體（Entity）關係。</p>
+          <div class="signal">⚠️ 卡在此層：被爬到但 Google 不理解你寫什麼 → 改結構化資料、語意豐富度</div>
+        </div>
+        <div class="layer-card">
+          <div class="layer-num">LAYER 03 · INDEXING</div>
+          <h4>索引層</h4>
+          <p>判斷 canonical、重複內容、品質門檻是否納入索引資料庫。</p>
+          <div class="signal">⚠️ 卡在此層：被理解但沒被索引 → 處理 thin content、duplicate、HCU 風險</div>
+        </div>
+        <div class="layer-card">
+          <div class="layer-num">LAYER 04 · SERVING（呈現）</div>
+          <h4>呈現層</h4>
+          <p>依查詢意圖排序，以藍色連結 / FAQ / 圖片 / AI Overview 呈現。</p>
+          <div class="signal">⚠️ 卡在此層：被索引但沒排名 / 排名差 → 主題權威、E-E-A-T、CTR 優化</div>
+        </div>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">✅ 對 YS89 的啟示</div>
+        <p>「被爬過 ≠ 被索引 ≠ 有排名 ≠ 有點擊」。母站 ys89.fun 你之前的 35 個空白頁就是卡在 <strong>Layer 3 索引層</strong>（thin content 過不了品質門檻）→ 我們昨天 TRASH 23 頁 + 補 11 頁就是修這層。剩下的 5 個 fail 主要卡在 Layer 2-4，下一步主要修這幾層。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-2">2</div>
+      <div class="sec-title">2024-2026 Google 演算法重大變化時間軸</div>
+    </div>
+    <div class="sec-body body-text">
+      <p>這些變化決定了我們<strong>哪些打法已失效、哪些還能用</strong>。每個變化都有具體日期與影響範圍。</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">2022.08</div>
+          <div class="tl-event">HCU (Helpful Content Update) 啟動</div>
+          <div class="tl-impact">第一次把「人造內容」「無經驗作者」列為降權因素。為後續所有 affiliate site 命運奠定基調。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2023.09</div>
+          <div class="tl-event">HCU 大規模更新</div>
+          <div class="tl-impact">大量 affiliate / aggregator / thin content 站流量暴跌 50-90%。「沒有作者署名 + AI 大量產出」直接被砍。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2023.12</div>
+          <div class="tl-event">⚡ Expired Domain Abuse 偵測上線</div>
+          <div class="tl-impact"><strong style="color:var(--red)">跨主題 301 完全失效。</strong>博弈舊域名 301 給博弈站、健康舊域名 301 給健康站，這些「主題相關」還有點效果；但「3C 舊域名 301 給博弈站」這種跨主題操作 = 直接降權。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2024.03</div>
+          <div class="tl-event">Spam Update + Core Update 同步推送</div>
+          <div class="tl-impact">PBN 網路偵測強化，同 GA / 同 hosting / 同 WHOIS 的網路被批量處理。同時 Core Update 增強對「品牌信號弱」的網站打擊。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2024.05</div>
+          <div class="tl-event">AI Overview（SGE）全面推送（美國）</div>
+          <div class="tl-impact">資訊型查詢（「如何 / 為什麼 / 是什麼」）點擊率下降 20-40%。商業型 / 交易型查詢影響較小。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2024.06</div>
+          <div class="tl-event">INP 取代 FID 成為 Core Web Vitals 指標</div>
+          <div class="tl-impact">互動性評估從單一反應升級為「整個 session 的回應速度」。對 JS-heavy 網站打擊較大。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2024-2025</div>
+          <div class="tl-event">Site Reputation Abuse 多次執行</div>
+          <div class="tl-impact">「寄生在大站發 affiliate 文」（Forbes / CNN 等讓 SEO 公司寄生發文）被批量降權。對純白帽影響小，對「買大站發 guest post」打擊大。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2025.Q1-Q3</div>
+          <div class="tl-event">MUM 系統成熟 + 多模態理解</div>
+          <div class="tl-impact">Google 開始跨語言、跨格式（文字 / 圖 / 影片）理解內容，加強主題權威評估。單篇深度 vs 多篇散亂，前者勝。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026.Q1（現在）</div>
+          <div class="tl-event">E-E-A-T 計算更嚴 + AI Overview 台灣全面推送</div>
+          <div class="tl-impact">台灣約 15-20% 查詢出現 AI Overview。無作者署名 / 無更新日期 / 無資料來源 = 直接 deprioritize。</div>
+        </div>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">🚨 對 YS89 的啟示</div>
+        <p>你之前打算「買博弈舊域名 301 給母站」這套，在 <strong>2023.12 之後 ROI 直接砍半</strong>。我們昨天討論的「分配 5 個老域名」必須改成「<strong>非博弈背景 + 主題相關</strong>」才安全。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-3">3</div>
+      <div class="sec-title">E-E-A-T Trust Evidence Matrix（信任證據矩陣）</div>
+    </div>
+    <div class="sec-body body-text">
+      <p>akseolabs 強調：<strong>「E-E-A-T 不是單一排名分數，而是信任證據框架」</strong>。最常見誤區是把它理解成「做了就排名第一」公式 — 實際上應視為「品質訊號的對齊方式」。</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:120px">維度</th>
+            <th>什麼意思</th>
+            <th>YS89 該做的具體動作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Experience<br>（經驗）</strong></td>
+            <td>實測流程、操作截圖、第一手觀察。證明作者真實做過。</td>
+            <td>每篇出金 / 註冊 / 領體驗金教學都要有截圖、實際時間紀錄、編輯實測案例</td>
+          </tr>
+          <tr>
+            <td><strong>Expertise<br>（專業性）</strong></td>
+            <td>清楚定義、判斷條件、風險邊界 + 作者履歷。</td>
+            <td>5 個編輯筆名（阿凱/小娟/Mark/Jay/阿翔）+ 每個有專業領域 bio</td>
+          </tr>
+          <tr>
+            <td><strong>Authoritativeness<br>（權威性）</strong></td>
+            <td>被官方來源 / 產業共識 / 內部主題網絡引用。</td>
+            <td>內部 Hub & Spoke 內容架構、外鏈到 PTT/Dcard 真實討論</td>
+          </tr>
+          <tr>
+            <td><strong>Trustworthiness<br>（可信度）</strong></td>
+            <td>來源標註、更新日期、商業揭露、安全資訊。</td>
+            <td>編輯方針頁、利益揭露、最後更新日期、HTTPS、隱私政策（都已有）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>akseolabs 提的「AK Trust Evidence Matrix」</h3>
+      <p>每個主張都要對應到 <strong>頁面證據</strong>（讀者看得到）+ <strong>實體證據</strong>（作者背景 / 網站信譽）。不能只說「我們很專業」，要說明「<em>判斷條件是什麼、適用情境是什麼</em>」。</p>
+
+      <div class="box gold">
+        <div class="box-title">💡 AI 搜尋時代的關鍵變化</div>
+        <p>信任證據要 <strong>「可抽取、可歸因、可追溯」</strong> 才能被 AI Overview 正確引用。代表 E-E-A-T 訊號不能只藏在「關於」頁，<strong>應分散在每個重要段落</strong>。我們的 5 編輯人設 + 文末署名標準格式就是在做這件事。</p>
+      </div>
+
+      <h3>YMYL 風險差異化</h3>
+      <p>娛樂城屬於 <strong>YMYL (Your Money Your Life)</strong> 高風險類別 — Google 對這類內容信任要求更嚴。需要：</p>
+      <ul>
+        <li>明確的風險邊界聲明（每篇都要有「投注風險自負」）</li>
+        <li>引用官方來源（平台公告 / 公開玩家投訴）</li>
+        <li>更新日期不能超過 6 個月</li>
+        <li>不能有任何「保證獲利 / 穩賺 / 必勝」字眼</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-4">4</div>
+      <div class="sec-title">AI Overview / Query Fan-Out / GEO 優化</div>
+    </div>
+    <div class="sec-body body-text">
+      <p>2025-2026 Google 流量結構已被 AI Overview 重塑。akseolabs 點出最關鍵的概念：<strong>Query Fan-Out</strong>。</p>
+
+      <h3>什麼是 Query Fan-Out</h3>
+      <p>Google 收到用戶 query 後，會「<strong>把它分解成多個子查詢</strong>」，分別在內部搜尋，最後組合答案。<strong>在最多子查詢中反覆出現的頁面，被引用機率最高</strong>。</p>
+      <p>例如用戶搜「2026 世足如何投注」，Google 內部會 fan out 成：</p>
+      <ul>
+        <li>「世足讓球盤是什麼」</li>
+        <li>「2026 世足賠率」</li>
+        <li>「世足投注新手」</li>
+        <li>「合法世足投注平台」</li>
+        <li>「世足走地投注」</li>
+      </ul>
+      <p>你的內容必須<strong>同時在這 5 個子查詢都有出現</strong>，才會被 AI Overview 選為引用來源。</p>
+
+      <h3>5 大 AI Overview 優化策略（akseolabs）</h3>
+
+      <table>
+        <thead><tr><th style="width:200px">策略</th><th>具體做法</th><th style="width:120px">效果</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>自給自足答案段落</strong></td>
+            <td>每章節首段「脫離上下文獨立回答問題」，<strong>134-167 字</strong>之間（利用 Passage Ranking）</td>
+            <td>提升被 AI Overview 選中機率</td>
+          </tr>
+          <tr>
+            <td><strong>實體密度布局</strong></td>
+            <td>頁面包含 <strong>15+ 個語意相關實體</strong>（球隊、球員、賽事、賠率類型等）</td>
+            <td>引用機率 <strong style="color:var(--green)">+4.8x</strong></td>
+          </tr>
+          <tr>
+            <td><strong>多模態內容</strong></td>
+            <td>文字 + 圖片 + 結構化資料</td>
+            <td>引用率 <strong style="color:var(--green)">+156%</strong>；加影片 +317%</td>
+          </tr>
+          <tr>
+            <td><strong>跨主題覆蓋</strong></td>
+            <td>互連的語意 cluster，讓 Query Fan-Out「多次挑中你」</td>
+            <td>比超長文有效</td>
+          </tr>
+          <tr>
+            <td><strong>E-E-A-T 真實信號</strong></td>
+            <td>具名作者、外部媒體提及、引用學術資料</td>
+            <td>真實信號 > 格式技巧</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>跟傳統 SEO 的最大差異</h3>
+      <p>傳統 SEO 追求<strong>整篇文章排名</strong>；AI Overview 評估的是<strong>段落層級語意完整度</strong>。<strong>兩者不衝突但粒度不同。</strong></p>
+
+      <div class="box info">
+        <div class="box-title">📌 對 YS89 具體執行</div>
+        <p>1. 每篇文章每個 H2 標題之下，<strong>第一段都要 134-167 字的「獨立答案」</strong>（不依賴前後文就能讀懂）<br>
+        2. 每個世足文章要包含 15+ 個實體（球隊名、球員名、賽事名、賠率類型、平台名）<br>
+        3. 用 FAQ Schema + Article Schema 包裝<br>
+        4. ys89.fun 的 5 編輯人設 + 文末署名就是 E-E-A-T 信號落地</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-5">5</div>
+      <div class="sec-title">Core Web Vitals + INP 新指標</div>
+    </div>
+    <div class="sec-body body-text">
+      <p>2024.06 起 Google 用 <strong>INP (Interaction to Next Paint)</strong> 取代 FID 作為互動性指標。這是 Core Web Vitals 重大更新。</p>
+
+      <table>
+        <thead><tr><th style="width:110px">指標</th><th>意思</th><th style="width:90px">良好</th><th style="width:90px">需改善</th><th style="width:90px">不佳</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>LCP</strong></td>
+            <td>最大內容繪製（首頁主圖載入完成）</td>
+            <td style="color:var(--green)">≤ 2.5s</td>
+            <td style="color:var(--yellow)">2.5-4s</td>
+            <td style="color:var(--red)">&gt; 4s</td>
+          </tr>
+          <tr>
+            <td><strong>INP</strong> <span class="pill must">新</span></td>
+            <td>互動到下次繪製（點擊/捲動反應）</td>
+            <td style="color:var(--green)">≤ 200ms</td>
+            <td style="color:var(--yellow)">200-500ms</td>
+            <td style="color:var(--red)">&gt; 500ms</td>
+          </tr>
+          <tr>
+            <td><strong>CLS</strong></td>
+            <td>累積版面位移（畫面跳動程度）</td>
+            <td style="color:var(--green)">≤ 0.1</td>
+            <td style="color:var(--yellow)">0.1-0.25</td>
+            <td style="color:var(--red)">&gt; 0.25</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box tip">
+        <div class="box-title">✅ 對 YS89 的啟示</div>
+        <p>我們昨天壓縮 5 張首頁圖（11.4MB → 3.6MB）+ 換 WebP（→ 0.98MB）就是修 LCP。INP 是 JS-heavy 才有問題，ys89.fun WordPress 大部分頁面 INP 應該 OK。CLS 我們的 Hero 圖有設 alt 但要確認有設 width/height 屬性避免版面跳動。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-6">6</div>
+      <div class="sec-title">主題權威（Topical Authority）vs 關鍵字堆砌</div>
+    </div>
+    <div class="sec-body body-text">
+      <p>akseolabs 的核心主張：<strong>「SEO 關鍵字研究的核心，不是堆砌搜尋量，而是建立 Topical Authority」</strong>。</p>
+
+      <h3>Hub & Spoke 內容架構</h3>
+      <p>用「支柱頁面（Pillar Page，主題 hub）+ 叢集文章（Cluster Articles，輻射 spokes）」建構主題網絡：</p>
+
+      <div class="box info">
+        <p style="font-family:monospace;font-size:0.85em;line-height:2;">
+          【支柱頁】<strong>娛樂城出金完整指南</strong>（hub）<br>
+          ├─ 【叢集】USDT 出金教學<br>
+          ├─ 【叢集】銀行轉帳出金<br>
+          ├─ 【叢集】出金被拒怎麼辦<br>
+          ├─ 【叢集】出金速度比較 2026<br>
+          ├─ 【叢集】各家平台出金實測<br>
+          └─ 【叢集】超商代碼出金教學<br>
+          各 spoke 互連 + 全部連回 hub
+        </p>
+      </div>
+
+      <h3>為什麼這比單關鍵字優化強</h3>
+      <ul>
+        <li><strong>Query Fan-Out 機率提升</strong>：每個 spoke 都可能被 AI Overview 引用</li>
+        <li><strong>主題權威累積</strong>：Google 看到「同一站對該主題有完整覆蓋」</li>
+        <li><strong>內部 PageRank 流動</strong>：spoke 互連把權重集中到 hub</li>
+        <li><strong>讀者體驗</strong>：找到一篇就能跳到全套相關資料</li>
+      </ul>
+
+      <h3>對 YS89 站群的應用</h3>
+      <table>
+        <thead><tr><th>Hub（支柱頁）</th><th>對應 Cluster Spokes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>娛樂城出金完整指南</strong> (page 661)</td>
+            <td>USDT、銀行、超商、出金被拒、速度比較、實測案例</td>
+          </tr>
+          <tr>
+            <td><strong>娛樂城新手教學</strong> (page 682)</td>
+            <td>註冊教學、體驗金、首儲、選遊戲、資金管理、避雷</td>
+          </tr>
+          <tr>
+            <td><strong>詐騙避免指南</strong> (page 684)</td>
+            <td>HOYA / LEO / TU / BCR / KG 各家詐騙評測 + 黑名單總覽</td>
+          </tr>
+          <tr>
+            <td><strong>2026 世足專區</strong> (page 752)</td>
+            <td>讓球盤、波膽、走地、冠軍賠率、各隊分析、球星專題</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 7 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-7">7</div>
+      <div class="sec-title">搜尋意圖 4 分類 + AI 影響</div>
+    </div>
+    <div class="sec-body body-text">
+      <p>akseolabs 提的 4 種搜尋意圖，在 AI 時代影響度大不同：</p>
+
+      <table>
+        <thead><tr><th style="width:140px">意圖類型</th><th>關鍵詞特徵</th><th>YS89 範例</th><th style="width:140px">AI 影響</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>資訊型</strong><br><span style="color:var(--muted);font-size:0.8em">Informational</span></td>
+            <td>「如何」「為什麼」「是什麼」</td>
+            <td>什麼是讓球盤、如何計算流水</td>
+            <td style="color:var(--red)"><strong>CTR -20-40%</strong><br>AI Overview 吃掉</td>
+          </tr>
+          <tr>
+            <td><strong>商業研究型</strong><br><span style="color:var(--muted);font-size:0.8em">Commercial</span></td>
+            <td>「比較」「評價」「推薦」「排行」</td>
+            <td>娛樂城推薦、出金速度比較</td>
+            <td style="color:var(--yellow)"><strong>CTR -10-20%</strong><br>仍有點擊</td>
+          </tr>
+          <tr>
+            <td><strong>交易型</strong><br><span style="color:var(--muted);font-size:0.8em">Transactional</span></td>
+            <td>「註冊」「下載」「領取」</td>
+            <td>夜色娛樂城註冊、領體驗金</td>
+            <td style="color:var(--green)"><strong>保留度高</strong><br>AI 影響小</td>
+          </tr>
+          <tr>
+            <td><strong>導覽型</strong><br><span style="color:var(--muted);font-size:0.8em">Navigational</span></td>
+            <td>品牌詞</td>
+            <td>夜色娛樂城、YS89</td>
+            <td style="color:var(--green)"><strong>不受影響</strong><br>品牌詞穩定</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box gold">
+        <div class="box-title">🎯 戰略含義</div>
+        <p>在 AI 時代，<strong>「商業研究型 + 交易型 + 導覽型」</strong>是最該投資的關鍵字類別，因為這些 CTR 仍保留。<strong>純資訊型只用來支撐主題權威，不要當主要流量來源</strong>。我們昨天找的「線上娛樂城合法嗎」「贏錢領得到嗎」屬於商業研究型，是高 ROI 缺口。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-8">8</div>
+      <div class="sec-title">灰黑帽戰術現狀 vs 6 個月後存活率</div>
+    </div>
+    <div class="sec-body body-text">
+
+      <table class="tactic-table">
+        <thead><tr><th>戰術</th><th>現在</th><th>1-2 個月</th><th>6 個月</th><th>備註</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>白帽：內容站 + E-E-A-T</strong></td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅</td>
+            <td>我們昨天做的方向</td>
+          </tr>
+          <tr>
+            <td><strong>白帽：品牌信號累積</strong>（社群/KOL/影片）</td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅↑</td>
+            <td>越來越值錢</td>
+          </tr>
+          <tr>
+            <td><strong>灰帽：非博弈舊域名 301</strong>（主題相關）</td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅</td>
+            <td class="t-watch">🟡</td>
+            <td>2023.12 後變嚴但仍可用</td>
+          </tr>
+          <tr>
+            <td><strong>灰帽：博弈舊域名 301</strong></td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td>Expired Domain Abuse 直接打</td>
+          </tr>
+          <tr>
+            <td><strong>灰帽：PBN（分散 GSC/IP/註冊）</strong></td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅</td>
+            <td class="t-watch">🟡</td>
+            <td>分散度決定壽命</td>
+          </tr>
+          <tr>
+            <td><strong>灰帽：PBN（同 GSC/同 CF）</strong></td>
+            <td class="t-watch">🟡</td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td>YS89 現在 5 站同 GSC = 必拆</td>
+          </tr>
+          <tr>
+            <td><strong>灰帽：寄生 Medium / 痞客邦</strong></td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅</td>
+            <td class="t-watch">🟡</td>
+            <td>nofollow 但有 brand mention 價值</td>
+          </tr>
+          <tr>
+            <td><strong>灰帽：付費 guest post</strong>（真實媒體）</td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅</td>
+            <td class="t-keep">✅</td>
+            <td>最安全的反向連結方式</td>
+          </tr>
+          <tr>
+            <td><strong>黑帽：cloaking / hidden text</strong></td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td>已失效多年</td>
+          </tr>
+          <tr>
+            <td><strong>黑帽：機器人刷流量</strong></td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td>反扣分，行為訊號偵測</td>
+          </tr>
+          <tr>
+            <td><strong>黑帽：寄生駭客網站</strong></td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td>違法 + 主站連坐</td>
+          </tr>
+          <tr>
+            <td><strong>黑帽：Negative SEO 攻擊競品</strong></td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td class="t-die">🔴</td>
+            <td>反偵測反噬</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box warn">
+        <div class="box-title">🚨 戰略結論</div>
+        <p><strong>6 個月內仍會工作的灰帽 = 「非博弈主題的舊域名 301」+「分散 PBN」+「真實 guest post」</strong>。其他黑帽全部 ROI 為負，不該碰。<strong>白帽（內容深度 + E-E-A-T + 品牌信號）是唯一 6 個月後仍可靠的路徑。</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-9">9</div>
+      <div class="sec-title" style="color:#000;background:none">YS89 站群快狠準執行清單</div>
+    </div>
+    <div class="sec-body body-text">
+
+      <h3>本週（5/20-5/26）必做</h3>
+      <table>
+        <thead><tr><th style="width:50px">P</th><th>動作</th><th style="width:140px">執行</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill must">P0</span></td><td><strong>fifa-worldcups.tw 分割到新 GSC + 新 CF + 新 Google email</strong></td><td>你（30 分鐘）</td></tr>
+          <tr><td><span class="pill must">P0</span></td><td><strong>修母站剩下 5 個 Rank Math fail</strong>（Keywords in Title/Desc、forum_topic、Broken Links、Mobile Speed）</td><td>我（30 分鐘）</td></tr>
+          <tr><td><span class="pill must">P0</span></td><td><strong>進階 user intent gap analysis</strong>（WebSearch SERP / PAA）</td><td>我（1-2 小時）</td></tr>
+          <tr><td><span class="pill do">P1</span></td><td>5 衛星站重新定位 + CTA 降溫（ys89.me 從 10 → 3 次 CTA）</td><td>我（2-3 小時）</td></tr>
+          <tr><td><span class="pill do">P1</span></td><td>篩選非博弈背景域名（5 個 DR 20-35）</td><td>你（買域名）</td></tr>
+          <tr><td><span class="pill wait">P2</span></td><td>寫 4 篇缺口關鍵字文章（線上娛樂城合法嗎等）</td><td>我（4 小時）</td></tr>
+          <tr><td><span class="pill wait">P2</span></td><td>寫 5 篇競品評測（HOYA/LEO/BCR/KG/Game One）</td><td>我（要先 WebSearch 查真實資料）</td></tr>
+        </tbody>
+      </table>
+
+      <h3>下週（5/27-6/2）</h3>
+      <ul>
+        <li>5 個老域名實際入手 + 部署（3 直接 301 / 1 PBN / 1 內容站）</li>
+        <li>20 社群帳號開始發文（UTM 全部加好）</li>
+        <li>KOL 業配敲定（依預算選 4-8 位）</li>
+        <li>FB/IG/Google Ads 開帳 + 創意 A/B 測試</li>
+      </ul>
+
+      <h3>世足前 2 週（6/3-6/11）</h3>
+      <ul>
+        <li>KOL 業配發布</li>
+        <li>廣告全力衝</li>
+        <li>每天 ys89.fun 發 2 篇即時新聞</li>
+        <li>5 衛星站每週 3 篇文章補強</li>
+      </ul>
+
+      <h3>世足期間（6/12-7/19）</h3>
+      <ul>
+        <li>每場比賽 30 分鐘內賽後分析</li>
+        <li>走地投注內容（中場休息時段推）</li>
+        <li>賠率即時更新（已有 GitHub Actions 排程）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 10 -->
+  <section class="major">
+    <div class="sec-head">
+      <div class="sec-num sn-10">10</div>
+      <div class="sec-title">域名遷移 + Footprint 防追蹤 SOP</div>
+    </div>
+    <div class="sec-body body-text">
+
+      <h3>fifa-worldcups.tw 遷移完整步驟</h3>
+
+      <table>
+        <thead><tr><th style="width:40px">Step</th><th>動作</th><th style="width:160px">注意事項</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>在現有註冊商（godaddy）登入確認域名擁有</td>
+            <td>WHOIS 開啟 privacy</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>建立全新 Google 帳號</strong>（用全新 email）</td>
+            <td>無痕模式 + 不同瀏覽器</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>建立全新 Cloudflare 帳號</strong>（不同 email）</td>
+            <td>建議搭配 VPN 不同 IP</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>新 CF account 加 fifa-worldcups.tw site → 取得新 nameservers</td>
+            <td>記下 2 組 nameservers</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>在 godaddy 改 nameservers 到新 CF</td>
+            <td>等 24-48h DNS propagation</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>新 Google 帳號 → Search Console 新增資源</td>
+            <td>用 CF DNS 記錄驗證</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>確認舊網站沒有 GA/GTM 跟其他 ys89.* 共用</td>
+            <td>有的話拿掉</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>🛡️ 防 Google Footprint 8 大檢核點</h3>
+
+      <table>
+        <thead><tr><th style="width:40px">#</th><th>風險</th><th>檢核標準</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>同 Google 帳號</td><td>✅ 全新 email（不能是 ys89.fun 或同網域）</td></tr>
+          <tr><td>2</td><td>同 GA / GTM ID</td><td>✅ 全新 GA4 property（建議乾脆不裝，用 CF Web Analytics）</td></tr>
+          <tr><td>3</td><td>同瀏覽器 cookies</td><td>✅ 無痕 + 不同瀏覽器（Chrome vs Edge）</td></tr>
+          <tr><td>4</td><td>同 IP fingerprint</td><td>✅ VPN 換 IP（建議）</td></tr>
+          <tr><td>5</td><td>同 CF 帳號</td><td>✅ 全新 CF email</td></tr>
+          <tr><td>6</td><td>同 hosting IP</td><td>✅ CF Pages 隨機分配，OK</td></tr>
+          <tr><td>7</td><td>同 WHOIS</td><td>✅ 開 privacy</td></tr>
+          <tr><td>8</td><td>互相站內連結</td><td>✅ 至少 60 天不互連</td></tr>
+        </tbody>
+      </table>
+
+      <h3>5 衛星站重新定位（user intent 研究後再執行細節）</h3>
+      <table>
+        <thead><tr><th style="width:140px">站</th><th>新定位</th><th style="width:100px">CTA 強度</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ys89.games</strong></td><td>世足賠率核心轉換站</td><td>明顯（5-6 次）</td></tr>
+          <tr><td><strong>ys89.info</strong></td><td>直播觀賽攻略 + 邊看邊投注</td><td>軟性 CTA</td></tr>
+          <tr><td><strong>ys89.biz</strong></td><td>投注教學專業站</td><td>明顯（OK）</td></tr>
+          <tr><td><strong>ys89.me</strong></td><td>球迷深度（球星分組）</td><td><strong>隱晦（3 次以下）</strong></td></tr>
+          <tr><td><strong>fifa-worldcups.tw</strong></td><td>純白底 AEO 資訊站</td><td>底部小字 referer</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>YS89 戰略總覽</strong> · Google 演算法 2024-2026 底層邏輯 · 內部文件 · 2026-05-20<br>
+  <span style="font-size:0.78em">資料來源：akseolabs.com/blog · Google 官方文件 · Search Engine Land · YS89 編輯團隊整理</span>
+</footer>
+
+</body>
+</html>
