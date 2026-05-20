@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>衛星站重新定位行動計畫｜YS89 站群 2026-05-20</title>
+<style>
+  :root {
+    --bg: #0f172a; --surface: #1e293b; --border: #334155;
+    --text: #e2e8f0; --text2: #94a3b8; --text3: #64748b;
+    --blue: #3b82f6; --green: #10b981; --yellow: #f59e0b;
+    --red: #ef4444; --purple: #8b5cf6; --pink: #ec4899;
+    --cyan: #06b6d4;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size: 15px; line-height: 1.7; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  /* Header */
+  .report-header { background: linear-gradient(135deg, #1e1b4b, #0f2027); border: 1px solid #4f46e5; border-radius: var(--radius); padding: 40px 32px; margin-bottom: 40px; text-align: center; }
+  .report-header h1 { font-size: 1.9rem; color: #fff; margin-bottom: 8px; }
+  .report-header .meta { color: var(--text2); font-size: 0.88rem; margin-top: 12px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+  .badge-blue { background: rgba(59,130,246,.15); color: var(--blue); border: 1px solid rgba(59,130,246,.3); }
+  .badge-yellow { background: rgba(245,158,11,.15); color: var(--yellow); border: 1px solid rgba(245,158,11,.3); }
+  .badge-red { background: rgba(239,68,68,.15); color: var(--red); border: 1px solid rgba(239,68,68,.3); }
+  .badge-green { background: rgba(16,185,129,.15); color: var(--green); border: 1px solid rgba(16,185,129,.3); }
+  .badge-purple { background: rgba(139,92,246,.15); color: var(--purple); border: 1px solid rgba(139,92,246,.3); }
+
+  /* Sections */
+  h2 { font-size: 1.3rem; color: var(--cyan); border-bottom: 2px solid var(--border); padding-bottom: 10px; margin: 40px 0 20px; display: flex; align-items: center; gap: 8px; }
+  h2 svg { flex-shrink: 0; }
+  h3 { font-size: 1.05rem; color: var(--text); margin: 24px 0 10px; font-weight: 700; }
+  p { color: var(--text2); margin-bottom: 12px; }
+  ul, ol { color: var(--text2); padding-left: 20px; margin-bottom: 12px; }
+  li { margin-bottom: 4px; }
+  strong { color: var(--text); }
+  em { color: var(--yellow); font-style: normal; }
+  code { background: rgba(255,255,255,.08); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.88em; color: var(--cyan); }
+
+  /* Site Cards */
+  .site-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 16px; margin-bottom: 32px; }
+  .site-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+  .site-card .domain { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+  .site-card .dr { font-size: 0.78rem; color: var(--text3); margin-bottom: 12px; }
+  .site-card .label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text3); margin: 10px 0 4px; }
+  .site-card .value { color: var(--text2); font-size: 0.88rem; }
+
+  /* Overlap Matrix */
+  .matrix-wrap { overflow-x: auto; margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th { background: rgba(255,255,255,.05); color: var(--text2); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); white-space: nowrap; }
+  td { padding: 9px 14px; border-bottom: 1px solid rgba(255,255,255,.05); vertical-align: top; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  .cell-check { color: var(--red); font-size: 1.1rem; text-align: center; }
+  .cell-ok { color: var(--green); font-size: 1.1rem; text-align: center; }
+  .cell-partial { color: var(--yellow); font-size: 1.1rem; text-align: center; }
+
+  /* Score bar */
+  .score-bar-wrap { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+  .score-bar { height: 8px; border-radius: 4px; flex: 1; background: var(--border); overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 4px; }
+  .score-label { font-size: 0.78rem; color: var(--text3); width: 32px; text-align: right; }
+
+  /* Action cards */
+  .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 16px; margin-bottom: 32px; }
+  .action-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+  .action-card .ac-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .action-card .ac-domain { font-size: 1rem; font-weight: 800; }
+  .priority-high { color: var(--red); }
+  .priority-mid { color: var(--yellow); }
+  .priority-low { color: var(--green); }
+  .reposition-arrow { display: flex; gap: 8px; align-items: center; margin: 10px 0; font-size: 0.9rem; }
+  .reposition-arrow .from { color: var(--text3); text-decoration: line-through; }
+  .reposition-arrow .to { color: var(--green); font-weight: 700; }
+
+  /* Fan score */
+  .fan-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 32px; }
+  .fan-score-big { font-size: 3rem; font-weight: 900; color: var(--red); line-height: 1; }
+  .fan-score-label { font-size: 0.85rem; color: var(--text3); margin-top: 4px; }
+
+  /* Checklist */
+  .checklist { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; }
+  .checklist h3 { margin-top: 0; margin-bottom: 12px; }
+  .check-item { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 4px; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+  .urgent { background: rgba(239,68,68,.2); color: var(--red); }
+  .normal { background: rgba(245,158,11,.2); color: var(--yellow); }
+  .nice { background: rgba(16,185,129,.2); color: var(--green); }
+  .check-text { font-size: 0.88rem; color: var(--text2); flex: 1; }
+  .check-text strong { color: var(--text); }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 24px; }
+  .tl-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--blue); background: var(--bg); }
+  .tl-week { font-size: 0.78rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+  .tl-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .tl-desc { font-size: 0.85rem; color: var(--text2); }
+
+  /* Summary box */
+  .summary-box { background: linear-gradient(135deg, rgba(16,185,129,.08), rgba(59,130,246,.08)); border: 1px solid rgba(16,185,129,.3); border-radius: var(--radius); padding: 24px; margin-bottom: 32px; }
+  .summary-box h3 { color: var(--green); margin-top: 0; margin-bottom: 12px; }
+
+  @media(max-width:640px) {
+    .report-header h1 { font-size: 1.4rem; }
+    h2 { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="report-header">
+  <h1>🛰️ YS89 衛星站重新定位行動計畫</h1>
+  <p style="color:#94a3b8;margin-top:8px">4 個衛星站市場區隔審查 · 定位重塑優先級</p>
+  <div class="meta">
+    <span>📅 2026-05-20</span>
+    <span>🔍 審查站數：4</span>
+    <span>⚠️ 高重疊維度：6</span>
+    <span>🎯 需立即行動：2 站</span>
+  </div>
+</div>
+
+<!-- Section 1: 現況掃描 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  一、現況掃描：各站核心定位
+</h2>
+
+<div class="site-grid">
+  <!-- games -->
+  <div class="site-card" style="border-color:#3b82f6">
+    <div class="domain" style="color:#3b82f6">ys89.games</div>
+    <div class="dr">DR 3.2 · 主力戰場</div>
+    <div class="label">目前標榜定位</div>
+    <div class="value">台灣最完整世界盃資訊站</div>
+    <div class="label">H1 核心訊息</div>
+    <div class="value">賽程・分組・賠率・冠軍預測</div>
+    <div class="label">Nav 連結</div>
+    <div class="value">首頁 / 賽程表 / 賽程資訊 / 賠率 / 冠軍預測 / 即時比分 / 立即投注</div>
+    <div class="label">目標受眾</div>
+    <div class="value">所有想了解世界盃的台灣用戶</div>
+    <div class="label">CTA 密度</div>
+    <div class="value">中高（導流 + 投注）</div>
+    <span class="badge badge-blue" style="margin-top:12px">全方位資訊入口</span>
+  </div>
+
+  <!-- info -->
+  <div class="site-card" style="border-color:#06b6d4">
+    <div class="domain" style="color:#06b6d4">ys89.info</div>
+    <div class="dr">DR 0 · 21 頁</div>
+    <div class="label">目前標榜定位</div>
+    <div class="value">台灣觀賽指南 / 直播攻略</div>
+    <div class="label">H1 核心訊息</div>
+    <div class="value">直播哪裡看？愛爾達・MOD・華視完整攻略</div>
+    <div class="label">Nav 連結</div>
+    <div class="value">首頁 / 賽程 / <strong style="color:#ef4444">賠率</strong> / <strong style="color:#ef4444">預測</strong> / 即時比分 / 分析文章 / 最新消息 / 立即投注</div>
+    <div class="label">特色頁面</div>
+    <div class="value">live-broadcast-complete-guide / streaming-guide / where-watch / live-104</div>
+    <div class="label">目標受眾</div>
+    <div class="value">想知道哪裡看球的台灣觀眾</div>
+    <span class="badge badge-purple" style="margin-top:12px">直播觀賽導向</span>
+  </div>
+
+  <!-- biz -->
+  <div class="site-card" style="border-color:#10b981">
+    <div class="domain" style="color:#10b981">ys89.biz</div>
+    <div class="dr">DR 0 · 21 頁</div>
+    <div class="label">目前標榜定位</div>
+    <div class="value">世足投注攻略 / 讓分盤・串關教學</div>
+    <div class="label">H1 核心訊息</div>
+    <div class="value">投注攻略：讓分盤・波膽・串關・賠率完整教學</div>
+    <div class="label">Nav 連結</div>
+    <div class="value">首頁 / 賽程 / 賠率 / 預測 / 即時比分 / 分析文章 / 最新消息 / 立即投注</div>
+    <div class="label">特色頁面（獨有）</div>
+    <div class="value">handicap-guide / parlay-guide / over-under-guide / correct-score / betting-tutorial</div>
+    <div class="label">目標受眾</div>
+    <div class="value">想學投注玩法的台灣用戶</div>
+    <span class="badge badge-green" style="margin-top:12px">投注教育導向（最分化）</span>
+  </div>
+
+  <!-- me -->
+  <div class="site-card" style="border-color:#ec4899">
+    <div class="domain" style="color:#ec4899">ys89.me</div>
+    <div class="dr">DR 0 · 21 頁</div>
+    <div class="label">目前標榜定位</div>
+    <div class="value">世足情報站 / 世足賽博站（球迷向）</div>
+    <div class="label">H1 核心訊息</div>
+    <div class="value">分組分析・48隊球隊完整介紹</div>
+    <div class="label">Nav 連結</div>
+    <div class="value">首頁 / 賽程表 / 分組分析 / 冠軍預測 / 球隊介紹 / 分析文章 / <strong style="color:#ef4444">立即投注</strong></div>
+    <div class="label">特色頁面</div>
+    <div class="value">messi-2026 / mbappe-2026 / dark-horses / top-scorer</div>
+    <div class="label">目標受眾</div>
+    <div class="value">（聲稱）球迷，但 CTA 指向投注平台</div>
+    <span class="badge badge-red" style="margin-top:12px">定位最混亂 ⚠️</span>
+  </div>
+</div>
+
+<!-- Section 2: 重疊矩陣 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+  二、內容重疊矩陣分析
+</h2>
+
+<div class="matrix-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>內容維度</th>
+      <th>ys89.games</th>
+      <th>ys89.info</th>
+      <th>ys89.biz</th>
+      <th>ys89.me</th>
+      <th>重疊風險</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>賽程表</strong></td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-red">全站重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>冠軍賠率比較</strong></td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-red">全站重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>分組分析（A-L）</strong></td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-red">全站重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>冠軍預測文</strong></td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-red">全站重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>即時比分入口</strong></td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-red">全站重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>共用 blog 文章</strong></td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-red">全站重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>直播平台教學</strong></td>
+      <td class="cell-partial">△</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-partial">△</td>
+      <td class="cell-partial">△</td>
+      <td><span class="badge badge-yellow">3 站重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>球隊深度介紹</strong></td>
+      <td class="cell-check">✖</td>
+      <td class="cell-partial">△</td>
+      <td class="cell-partial">△</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-yellow">3 站重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>投注玩法教學（深度）</strong></td>
+      <td class="cell-ok">○</td>
+      <td class="cell-ok">○</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-ok">○</td>
+      <td><span class="badge badge-green">biz 獨有</span></td>
+    </tr>
+    <tr>
+      <td><strong>直播管道深度評測</strong></td>
+      <td class="cell-ok">○</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-ok">○</td>
+      <td class="cell-ok">○</td>
+      <td><span class="badge badge-green">info 獨有</span></td>
+    </tr>
+    <tr>
+      <td><strong>球星故事（梅西/姆巴佩）</strong></td>
+      <td class="cell-ok">○</td>
+      <td class="cell-ok">○</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-yellow">biz+me 重疊</span></td>
+    </tr>
+    <tr>
+      <td><strong>射手王 / 最佳球員預測</strong></td>
+      <td class="cell-ok">○</td>
+      <td class="cell-ok">○</td>
+      <td class="cell-ok">○</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-green">me 獨有</span></td>
+    </tr>
+    <tr>
+      <td><strong>投注 CTA（立即投注）</strong></td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td class="cell-check">✖</td>
+      <td><span class="badge badge-red">全站重疊</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p style="font-size:0.82rem">✖ 有此內容 &nbsp;○ 無此內容 &nbsp;△ 輕度涉及</p>
+
+<div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:16px;margin:16px 0">
+  <strong style="color:var(--red)">重疊核心問題：</strong>
+  <p style="margin:8px 0 0;color:var(--text2);font-size:0.9rem">6 個核心維度（賽程/賠率/分組/預測/即時比分/共用文章/CTA）在 4 站完全重複，代表站群對 Google 等於在用 4 個相似頁面競爭相同關鍵字。ys89.info 與 ys89.biz 的 Nav 結構完全一致，只有 H1 不同，這是目前最嚴重的重疊問題。</p>
+</div>
+
+<!-- Section 3: ys89.me 球迷感專項檢查 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  三、ys89.me 球迷感專項檢查
+</h2>
+
+<div class="fan-section">
+  <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;margin-bottom:24px">
+    <div>
+      <div class="fan-score-big">30</div>
+      <div class="fan-score-label">/ 100 球迷感分數</div>
+    </div>
+    <div style="flex:1;min-width:220px">
+      <div style="margin-bottom:10px">
+        <div style="font-size:0.78rem;color:var(--text3);margin-bottom:4px">視覺設計（賽博龐克/霓虹）</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width:75%;background:var(--green)"></div></div>
+          <div class="score-label" style="color:var(--green)">75</div>
+        </div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:0.78rem;color:var(--text3);margin-bottom:4px">導覽結構（球隊介紹/分組）</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width:60%;background:var(--yellow)"></div></div>
+          <div class="score-label" style="color:var(--yellow)">60</div>
+        </div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:0.78rem;color:var(--text3);margin-bottom:4px">CTA 語調（球迷 vs 投注）</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width:10%;background:var(--red)"></div></div>
+          <div class="score-label" style="color:var(--red)">10</div>
+        </div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:0.78rem;color:var(--text3);margin-bottom:4px">內容獨特性（球星/球迷內容）</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width:25%;background:var(--red)"></div></div>
+          <div class="score-label" style="color:var(--red)">25</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.78rem;color:var(--text3);margin-bottom:4px">整體品牌一致性</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width:20%;background:var(--red)"></div></div>
+          <div class="score-label" style="color:var(--red)">20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>問題清單</h3>
+  <table style="font-size:0.85rem">
+    <tr><th>發現位置</th><th>現況文字</th><th>問題</th></tr>
+    <tr>
+      <td>index.html H2 區塊</td>
+      <td><code>台灣如何合法投注世界盃？完整攻略</code></td>
+      <td style="color:var(--red)">球迷頁面放投注教學 section，與定位矛盾</td>
+    </tr>
+    <tr>
+      <td>index.html CTA Banner</td>
+      <td><code>加入台灣最多球迷使用的投注平台</code></td>
+      <td style="color:var(--red)">雖用「球迷」措辭，CTA 仍為重度投注導流</td>
+    </tr>
+    <tr>
+      <td>blog.html 底部</td>
+      <td><code>看完分析就去下注！</code></td>
+      <td style="color:var(--red)">直接呼籲下注，球迷定位破功</td>
+    </tr>
+    <tr>
+      <td>messi-2026.html CTA</td>
+      <td><code>梅西最後世足，不錯過任何一場 → 立即前往直播入口</code></td>
+      <td style="color:var(--yellow)">稍可接受，但連結仍為投注平台非直播平台</td>
+    </tr>
+    <tr>
+      <td>Nav（全站）</td>
+      <td><code>立即投注（最後一個連結）</code></td>
+      <td style="color:var(--yellow)">與 .info/.biz Nav 完全相同，無差異化</td>
+    </tr>
+    <tr>
+      <td>og:site_name</td>
+      <td><code>2026世界盃投注資訊站</code>（messi page）</td>
+      <td style="color:var(--red)">球星頁的站名仍是「投注資訊站」，與球迷定位不符</td>
+    </tr>
+  </table>
+
+  <div style="margin-top:16px;padding:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:6px;font-size:0.88rem;color:var(--text2)">
+    <strong style="color:var(--yellow)">結論：</strong>目前 ys89.me 是「外觀像球迷站、內容像投注站」的混種。視覺主題已有差異（霓虹/賽博龐克），但所有 CTA、部分 H2 標題、og:site_name 都洩漏了投注定位，球迷用戶一旦看到立即流失信任感。
+  </div>
+</div>
+
+<!-- Section 4: 重新定位建議 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+  四、重新定位建議
+</h2>
+
+<div class="action-grid">
+
+  <!-- games -->
+  <div class="action-card" style="border-color:#3b82f6">
+    <div class="ac-header">
+      <div class="ac-domain" style="color:#3b82f6">ys89.games</div>
+      <span class="badge badge-blue">優先級：P1 維護</span>
+    </div>
+    <div class="reposition-arrow">
+      <span class="from">全方位入口（模糊）</span>
+      <span>→</span>
+      <span class="to">🏆 世足賽事情報中心</span>
+    </div>
+    <p style="font-size:0.88rem">DR 最高、流量最強，應鞏固為站群旗艦。不需大幅改動，但應強化「賽事情報」而非「投注轉換」為主軸，讓其他站導流回此站而非互相競爭。</p>
+    <h3 style="margin-top:14px;font-size:0.88rem">具體行動</h3>
+    <ul style="font-size:0.85rem">
+      <li>保持現有全方位架構，是其他站流量的接受器</li>
+      <li>加強 group-stage-rules / dark-horses 等深度頁</li>
+      <li>成為站群 canonical hub（其他站有此頁時，此站版本為最完整版）</li>
+      <li>不需更動，專注 GSC 表現優化即可</li>
+    </ul>
+  </div>
+
+  <!-- info -->
+  <div class="action-card" style="border-color:#06b6d4">
+    <div class="ac-header">
+      <div class="ac-domain" style="color:#06b6d4">ys89.info</div>
+      <span class="badge badge-purple">優先級：P2 強化</span>
+    </div>
+    <div class="reposition-arrow">
+      <span class="from">觀賽指南（+投注混雜）</span>
+      <span>→</span>
+      <span class="to">📺 台灣觀賽情報站（純化）</span>
+    </div>
+    <p style="font-size:0.88rem">定位方向正確，但 Nav 中的「賠率」「預測」稀釋了觀賽主題。應純化為直播/觀賽專站，投注 CTA 降頻或移到頁面底部。</p>
+    <h3 style="margin-top:14px;font-size:0.88rem">具體行動</h3>
+    <ul style="font-size:0.85rem">
+      <li><strong>Nav 調整</strong>：移除「賠率」「預測」連結，改為「直播管道」「觀賽攻略」</li>
+      <li><strong>新增頁面</strong>：公開轉播點地圖、酒吧看球攻略、熬夜看球技巧（已有 streaming-guide 內容可拆）</li>
+      <li><strong>CTA 調整</strong>：「查看即時賠率」改為「查看直播管道」</li>
+      <li><strong>og:description</strong>：突出「愛爾達/MOD/華視」三個平台名，鎖定「直播哪裡看」搜尋意圖</li>
+    </ul>
+  </div>
+
+  <!-- biz -->
+  <div class="action-card" style="border-color:#10b981">
+    <div class="ac-header">
+      <div class="ac-domain" style="color:#10b981">ys89.biz</div>
+      <span class="badge badge-green">優先級：P2 深化</span>
+    </div>
+    <div class="reposition-arrow">
+      <span class="from">投注攻略（已有基礎）</span>
+      <span>→</span>
+      <span class="to">🎯 世足投注教育專站（加深）</span>
+    </div>
+    <p style="font-size:0.88rem">4 站中內容差異化最好，handicap-guide / parlay-guide 是獨有的深度教學內容，應繼續深化而非稀釋。</p>
+    <h3 style="margin-top:14px;font-size:0.88rem">具體行動</h3>
+    <ul style="font-size:0.85rem">
+      <li><strong>新增</strong>：live-betting-guide（已有）深度完善、賠率解讀教學、value betting 概念</li>
+      <li><strong>移除</strong>：Nav 中的「即時比分」（非投注教育，可改「投注教學」）</li>
+      <li><strong>強化</strong>：各球隊頁面下的「盤口投注建議」段落（portugal/germany 已做，繼續擴展）</li>
+      <li><strong>新文章</strong>：「2026世界盃投注10大陷阱」「小組賽讓球最佳時機」</li>
+    </ul>
+  </div>
+
+  <!-- me -->
+  <div class="action-card" style="border-color:#ec4899">
+    <div class="ac-header">
+      <div class="ac-domain" style="color:#ec4899">ys89.me</div>
+      <span class="badge badge-red">優先級：P1 緊急重塑</span>
+    </div>
+    <div class="reposition-arrow">
+      <span class="from">投注站偽裝成球迷站</span>
+      <span>→</span>
+      <span class="to">⚽ 台灣球迷情報站（真實球迷感）</span>
+    </div>
+    <p style="font-size:0.88rem">需要最大幅度改動。目前是 4 站中定位最混亂的，視覺像球迷站但所有 CTA 都指向投注平台。需在語調、內容結構、CTA 密度上全面調整。</p>
+    <h3 style="margin-top:14px;font-size:0.88rem">具體行動（詳見第五節）</h3>
+    <ul style="font-size:0.85rem">
+      <li>移除 index.html 的「台灣如何合法投注」H2 區塊</li>
+      <li>blog.html 刪除「看完分析就去下注！」</li>
+      <li>所有 og:site_name 統一改為「世足球迷情報站」</li>
+      <li>CTA 文字改為「查看賽程・不錯過任何一場」取代「立即投注」</li>
+      <li>新增球迷專屬內容：球迷投票、球隊支持度分析、球星比較對決</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Section 5: ys89.me 行動計畫 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+  五、ys89.me 球迷站重塑詳細清單
+</h2>
+
+<div class="checklist">
+  <h3>🔴 立即修正（影響品牌一致性）</h3>
+  <div class="check-item">
+    <div class="check-icon urgent">!</div>
+    <div class="check-text"><strong>index.html：刪除「台灣如何合法投注世界盃？完整攻略」H2 區塊</strong><br>此段落與球迷定位完全矛盾，應移至 ys89.biz</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon urgent">!</div>
+    <div class="check-text"><strong>blog.html：刪除「看完分析就去下注！」H2 + CTA</strong><br>改為「看完分析，更了解你支持的隊伍」→ 連結到球隊介紹頁</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon urgent">!</div>
+    <div class="check-text"><strong>全站 og:site_name 從「2026世界盃投注資訊站」改為「世足球迷情報站」</strong><br>至少 messi-2026 / mbappe-2026 已確認有此問題</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon urgent">!</div>
+    <div class="check-text"><strong>index.html CTA Banner 文字調整</strong><br>「加入台灣最多球迷使用的投注平台」→「台灣最完整世足球迷情報，追蹤每場賽事」</div>
+  </div>
+</div>
+
+<div class="checklist">
+  <h3>🟡 次要調整（強化球迷感）</h3>
+  <div class="check-item">
+    <div class="check-icon normal">~</div>
+    <div class="check-text"><strong>Nav 最後一項「立即投注」</strong><br>改為「賽程直播」，連結到直播資訊頁，投注 lihi 連結移到頁腳文字連結</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon normal">~</div>
+    <div class="check-text"><strong>messi-2026 / mbappe-2026 CTA</strong><br>「立即前往直播入口」連結確認應指向直播頁而非投注平台</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon normal">~</div>
+    <div class="check-text"><strong>index.html H1 微調</strong><br>「2026世界盃分組分析・48隊球隊完整介紹」→ 加入球迷視角：「2026世界盃分組分析・球迷必知48隊完整資訊」</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon normal">~</div>
+    <div class="check-text"><strong>brand slogan 調整</strong><br>目前 nav-logo 文字「世足賽博站」→ 改為「世足球迷站」或「世足情報站」（移除「賽博」抽象詞）</div>
+  </div>
+</div>
+
+<div class="checklist">
+  <h3>🟢 新內容建議（差異化）</h3>
+  <div class="check-item">
+    <div class="check-icon nice">+</div>
+    <div class="check-text"><strong>新增「球迷冠軍投票」互動元素</strong><br>簡單 JS 投票（不需後端）：「你支持哪隊奪冠？」計票顯示在頁面，提升留存</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon nice">+</div>
+    <div class="check-text"><strong>新增「射手王候選人預測」頁</strong><br>top-scorer.html 已存在，補充球迷角度的故事（哈蘭德 vs 姆巴佩 vs 萊奧）</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon nice">+</div>
+    <div class="check-text"><strong>球隊頁面加入「台灣球迷聲量」段落</strong><br>例如巴西頁加入「台灣有多少人支持巴西？」等球迷視角描述</div>
+  </div>
+  <div class="check-item">
+    <div class="check-icon nice">+</div>
+    <div class="check-text"><strong>新文章：「台灣球迷最愛支持的5支隊伍」</strong><br>以球迷情感為主軸，CTA 只放「查看球隊深度分析」內鏈，不放投注 lihi</div>
+  </div>
+</div>
+
+<!-- Section 6: 市場定位地圖 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+  六、目標市場定位地圖
+</h2>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px">
+<p style="font-size:0.85rem;color:var(--text3);margin-bottom:16px">橫軸：受眾目的（純看球 ↔ 純投注）　縱軸：知識深度（入門 ↔ 進階）</p>
+<div style="position:relative;height:260px;border:1px solid var(--border);border-radius:8px;background:linear-gradient(135deg,rgba(59,130,246,.04),rgba(16,185,129,.04))">
+  <!-- 軸線 -->
+  <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border)"></div>
+  <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border)"></div>
+  <!-- 軸標籤 -->
+  <div style="position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:0.72rem;color:var(--text3)">進階</div>
+  <div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:0.72rem;color:var(--text3)">入門</div>
+  <div style="position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:0.72rem;color:var(--text3)">純看球</div>
+  <div style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:0.72rem;color:var(--text3)">純投注</div>
+  <!-- 站點 -->
+  <div style="position:absolute;left:20%;top:25%;transform:translate(-50%,-50%)">
+    <div style="background:#06b6d4;color:#fff;padding:5px 10px;border-radius:6px;font-size:0.78rem;font-weight:700;white-space:nowrap">.info 直播站</div>
+    <div style="font-size:0.7rem;color:var(--text3);text-align:center;margin-top:2px">觀賽・中進階</div>
+  </div>
+  <div style="position:absolute;left:25%;top:65%;transform:translate(-50%,-50%)">
+    <div style="background:#ec4899;color:#fff;padding:5px 10px;border-radius:6px;font-size:0.78rem;font-weight:700;white-space:nowrap">.me 球迷站 →</div>
+    <div style="font-size:0.7rem;color:var(--text3);text-align:center;margin-top:2px">目標位置</div>
+  </div>
+  <div style="position:absolute;left:50%;top:30%;transform:translate(-50%,-50%)">
+    <div style="background:#3b82f6;color:#fff;padding:5px 10px;border-radius:6px;font-size:0.78rem;font-weight:700;white-space:nowrap">.games 旗艦站</div>
+    <div style="font-size:0.7rem;color:var(--text3);text-align:center;margin-top:2px">全方位・進階</div>
+  </div>
+  <div style="position:absolute;left:78%;top:22%;transform:translate(-50%,-50%)">
+    <div style="background:#10b981;color:#fff;padding:5px 10px;border-radius:6px;font-size:0.78rem;font-weight:700;white-space:nowrap">.biz 投注站</div>
+    <div style="font-size:0.7rem;color:var(--text3);text-align:center;margin-top:2px">投注教育・進階</div>
+  </div>
+</div>
+<p style="font-size:0.8rem;color:var(--text3);margin-top:10px">⚠️ 重塑後 .me 應往「純看球 + 入門」象限移動，與 .biz（投注進階）形成最大區隔</p>
+</div>
+
+<!-- Section 7: 執行時間軸 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+  七、執行時間軸
+</h2>
+
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-week">本週（05-20 ~ 05-23）</div>
+    <div class="tl-title">P1：ys89.me 立即修正（3 個 urgent 項目）</div>
+    <div class="tl-desc">刪除投注 H2 區塊、修正 blog.html CTA、更新全站 og:site_name、調整 CTA Banner 文字。預計 2 小時內可完成。</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-week">本週（05-20 ~ 05-23）</div>
+    <div class="tl-title">P1：ys89.info Nav 純化</div>
+    <div class="tl-desc">移除 Nav 中「賠率」「預測」連結，加入「直播管道」「觀賽攻略」，調整首頁 CTA 文字。</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-week">下週（05-26 ~ 05-30）</div>
+    <div class="tl-title">P2：ys89.biz 深化投注教育內容</div>
+    <div class="tl-desc">新增 2-3 篇高深度投注文章，擴展球隊頁的盤口建議段落。</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-week">開賽前（06-01 ~ 06-10）</div>
+    <div class="tl-title">P2：ys89.me 球迷感新內容</div>
+    <div class="tl-desc">新增球迷投票、射手王深度文、台灣球迷聲量段落，完成球迷站品牌塑造。</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-week">開賽後（06-11 起）</div>
+    <div class="tl-title">持續監控各站定位不漂移</div>
+    <div class="tl-desc">世足日報各站發文依照定位分工：.games 賽事報導、.info 直播資訊、.biz 賠率分析、.me 球星/球隊故事。</div>
+  </div>
+</div>
+
+<!-- Section 8: 新聞角度分工 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+  八、開賽後新聞角度分工（防止發文重疊）
+</h2>
+
+<div class="matrix-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>事件類型</th>
+      <th>ys89.games</th>
+      <th>ys89.info</th>
+      <th>ys89.biz</th>
+      <th>ys89.me</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>賽事結果</td>
+      <td style="color:var(--green)">✓ 主力</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--yellow)">副 (球迷反應)</td>
+    </tr>
+    <tr>
+      <td>直播/收看資訊</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--green)">✓ 主力</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--text3)">—</td>
+    </tr>
+    <tr>
+      <td>賠率變動</td>
+      <td style="color:var(--yellow)">副</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--green)">✓ 主力</td>
+      <td style="color:var(--text3)">—</td>
+    </tr>
+    <tr>
+      <td>盤口分析</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--green)">✓ 主力</td>
+      <td style="color:var(--text3)">—</td>
+    </tr>
+    <tr>
+      <td>球星狀態/故事</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--green)">✓ 主力</td>
+    </tr>
+    <tr>
+      <td>球隊傷病/陣容</td>
+      <td style="color:var(--yellow)">副 (晉級分析)</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--yellow)">副 (投注影響)</td>
+      <td style="color:var(--green)">✓ 主力</td>
+    </tr>
+    <tr>
+      <td>台灣收視率/話題</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--green)">✓ 主力</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--yellow)">副</td>
+    </tr>
+    <tr>
+      <td>冠軍/晉級預測</td>
+      <td style="color:var(--green)">✓ 主力</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--yellow)">副 (賠率)</td>
+      <td style="color:var(--yellow)">副 (球迷看法)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Summary -->
+<div class="summary-box">
+  <h3>📋 行動計畫摘要</h3>
+  <table style="font-size:0.88rem">
+    <thead>
+      <tr><th>站域</th><th>定位重塑幅度</th><th>最高優先行動</th><th>預計工時</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong style="color:#3b82f6">ys89.games</strong></td>
+        <td><span class="badge badge-green">維持不動</span></td>
+        <td>持續 GSC 監控，深化 group 頁品質</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong style="color:#06b6d4">ys89.info</strong></td>
+        <td><span class="badge badge-yellow">小幅純化</span></td>
+        <td>移除 Nav 賠率/預測連結，調整 CTA</td>
+        <td>1 小時</td>
+      </tr>
+      <tr>
+        <td><strong style="color:#10b981">ys89.biz</strong></td>
+        <td><span class="badge badge-yellow">深化既有方向</span></td>
+        <td>新增深度投注教學文章 2-3 篇</td>
+        <td>3-5 小時</td>
+      </tr>
+      <tr>
+        <td><strong style="color:#ec4899">ys89.me</strong></td>
+        <td><span class="badge badge-red">緊急重塑</span></td>
+        <td>刪除投注區塊、修正 og:site_name、調整 CTA</td>
+        <td>2 小時 (立即)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p style="font-size:0.78rem;color:var(--text3);text-align:center;margin-top:40px">YS89 站群 SEO 工作區 · 生成於 2026-05-20 · 審查者：Claude Sonnet 4.6</p>
+
+</div>
+</body>
+</html>
