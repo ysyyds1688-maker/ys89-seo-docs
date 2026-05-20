@@ -672,10 +672,25 @@
     <div class="tl-title">P2：ys89.me 球迷站完整轉型</div>
     <div class="tl-desc">全站 slogan/nav-cta/lihi 清除（100+ 檔）、H1 球迷化、投票 JS 升級含票數圖、top-scorer.html 球迷視角新章節、新文章 taiwan-fan-favorites.html。<br><code>commit abf214b · 105 files changed, 674 insertions</code></div>
   </div>
-  <div class="tl-item">
-    <div class="tl-week">待辦：本週內</div>
-    <div class="tl-title">賠率數字更新（4站）</div>
-    <div class="tl-desc">西班牙 4.50→5.50 / 法國 5.00→6.00 / 巴西 5.50→9.00（+尼馬回歸）/ 阿根廷 6.00→9.00，同步更新冠軍盤口參考表。</div>
+  <div class="tl-item" style="--dot-color:#10b981">
+    <div class="tl-week" style="color:#10b981">✅ 2026-05-20（漏洞補強）</div>
+    <div class="tl-title">即時比分分工：Nav 清除（.info / .biz / .me）</div>
+    <div class="tl-desc">即時比分唯一保留在 ys89.games。ys89.info（114檔）、ys89.biz（120檔）、ys89.me（91檔）全部移除 Nav 中的「即時比分」連結，強化三站定位純化。<br><code>commit 7f7857b (info) · commit 13db73d (biz) · commit 6d22f37 (me)</code></div>
+  </div>
+  <div class="tl-item" style="--dot-color:#10b981">
+    <div class="tl-week" style="color:#10b981">✅ 2026-05-20（漏洞補強）</div>
+    <div class="tl-title">ys89.info 新增賽前賠率快報頁</div>
+    <div class="tl-desc">新建 <code>pre-match-odds.html</code>（355行）：資訊向，解讀賠率機制、各隊晉級/冠軍賠率一覽表、賠率波動觸發點，<strong>無任何 lihi 投注 CTA</strong>。作者：小娟。與 ys89.biz 形成「資訊解讀 vs 投注策略」的互補定位。<br><code>commit c17b5e0 (info)</code></div>
+  </div>
+  <div class="tl-item" style="--dot-color:#10b981">
+    <div class="tl-week" style="color:#10b981">✅ 2026-05-20（漏洞補強）</div>
+    <div class="tl-title">Footer 軟性 CTA 新增（ys89.info + ys89.me）</div>
+    <div class="tl-desc">ys89.info 全站 118 檔 footer 加入「更多世足賽事資訊 → ys89.games」；ys89.me 全站 108 檔加入「想看球又想玩投注？→ ys89.games」。均標記 rel="nofollow sponsored"，形成站群互聯。<br><code>commit eb6aeda (info) · commit 8fcd75f (me)</code></div>
+  </div>
+  <div class="tl-item" style="--dot-color:#10b981">
+    <div class="tl-week" style="color:#10b981">✅ 2026-05-20（4站同步）</div>
+    <div class="tl-title">賠率數字全站更新（4站）</div>
+    <div class="tl-desc">西班牙 4.5→<strong>5.5倍</strong> / 法國 5→<strong>6倍</strong> / 巴西 8–10→<strong>9倍</strong> / 阿根廷 7–9→<strong>9倍</strong>。ys89.games（11檔）、ys89.info（pre-match-odds）、ys89.biz（odds-interpretation-guide，隱含機率同步）、ys89.me（無賠率頁，略過）。<br><code>commit 7660afb (games) · commit eb6aeda (info) · commit fdd57da (biz)</code></div>
   </div>
   <div class="tl-item">
     <div class="tl-week">用戶自行操作：GSC 驗證</div>
@@ -767,38 +782,118 @@
 </table>
 </div>
 
-<!-- Summary -->
-<div class="summary-box">
-  <h3>📋 行動計畫摘要</h3>
-  <table style="font-size:0.88rem">
+<!-- Section 9: 漏洞補強分析 -->
+<h2>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+  九、漏洞補強分析（2026-05-20 下午）
+</h2>
+
+<h3>9-1 即時比分分工：唯一授權給 ys89.games</h3>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px">
+  <p>修改前：4 站均有 Nav「即時比分」連結 → 搜尋引擎無法分辨哪一站是即時比分的唯一主力。</p>
+  <p>修改後：<strong>ys89.games 的 <code>/live</code> 是站群唯一的即時比分入口</strong>，其他三站 Nav 全部移除。</p>
+  <div class="matrix-wrap" style="margin-top:16px">
+  <table style="font-size:0.85rem">
+    <thead><tr><th>站域</th><th>修改前</th><th>修改後</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td>ys89.games</td><td style="color:var(--green)">有（保留）</td><td style="color:var(--green)">✓ 唯一授權</td><td>live.html、live-104.html 等多個即時頁面</td></tr>
+      <tr><td>ys89.info</td><td style="color:var(--red)">有</td><td style="color:var(--text3)">移除</td><td>定位改直播資訊，非即時比分</td></tr>
+      <tr><td>ys89.biz</td><td style="color:var(--red)">有</td><td style="color:var(--text3)">移除</td><td>定位投注攻略，不需要比分頁</td></tr>
+      <tr><td>ys89.me</td><td style="color:var(--red)">有</td><td style="color:var(--text3)">移除</td><td>定位球迷文化，比分非核心</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<h3>9-2 fifa-worldcups.tw vs ys89.games 差異化分析</h3>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px">
+  <p><strong>現況：</strong>fifa-worldcups.tw（PBN4）目前尚未部署內容，本地資料夾為空。ys89.games 定位為「台灣最完整 2026 世界盃資訊站」，含賽程、賠率、分組、即時比分。</p>
+  <p><strong>風險評估：</strong>因 fifa-worldcups.tw 尚未建站，<em>目前無實質內容重疊</em>。但建站時需明確差異化，避免與 ys89.games 競食。</p>
+  <div style="margin-top:16px">
+    <table style="font-size:0.85rem">
+      <thead><tr><th>維度</th><th>ys89.games（旗艦站）</th><th>fifa-worldcups.tw（建議定位）</th></tr></thead>
+      <tbody>
+        <tr><td>角色</td><td>主流量站，轉換導向</td><td>PBN，外鏈建設為主</td></tr>
+        <tr><td>時間軸</td><td>2026 年賽季即時資訊</td><td>歷屆世界盃歷史資料（1930–2022）</td></tr>
+        <tr><td>關鍵字重心</td><td>2026世界盃 / 賠率 / 即時比分</td><td>世界盃歷史 / 歷屆冠軍 / FIFA 統計</td></tr>
+        <tr><td>內鏈策略</td><td>接收來自 fifa-worldcups.tw 的連結</td><td>錨文本指向 ys89.games 賠率/賽程頁</td></tr>
+        <tr><td>CTA 型態</td><td>直接投注導流（lihi1.me）</td><td>極軟性「2026最新資訊→ys89.games」</td></tr>
+        <tr><td>文章數建議</td><td>持續更新（已 100+ 頁）</td><td>10–15 頁歷史內容即可</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:14px;font-size:0.88rem;color:var(--yellow)">⚡ 建站建議：fifa-worldcups.tw 以「歷屆世界盃大全」為主軸，每篇文章底部放一個指向 ys89.games 的自然內鏈，錨文本用「2026世界盃賽程賠率即時資訊」等目標關鍵字。</p>
+</div>
+
+<h3>9-3 ys89.me vs ys89.games 差異化：球迷文化 vs 賽事即時</h3>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px">
+  <p>P2 完成後，兩站定位已有明確差距，但需透過 Nav 結構、H1 語氣、文章主題三個層次鞏固：</p>
+  <div class="matrix-wrap" style="margin-top:16px">
+  <table style="font-size:0.85rem">
+    <thead><tr><th>維度</th><th>ys89.games（賽事即時）</th><th>ys89.me（球迷文化）</th></tr></thead>
+    <tbody>
+      <tr><td>og:site_name</td><td>2026世界盃投注資訊站</td><td>世足球迷站</td></tr>
+      <tr><td>Nav 核心連結</td><td>賠率・冠軍預測・即時比分</td><td>球隊介紹・球迷故事・賽程直播</td></tr>
+      <tr><td>Nav CTA</td><td>立即投注（lihi1.me）</td><td>查看直播賽程（內部連結）</td></tr>
+      <tr><td>H1 語氣</td><td>數據型（賽程・分組・賠率）</td><td>情感型（48隊・球迷必知）</td></tr>
+      <tr><td>核心文章類型</td><td>live-betting / odds / prediction</td><td>taiwan-fan-favorites / top-scorer 球迷視角</td></tr>
+      <tr><td>投票/互動</td><td>無</td><td>✓ 球迷票選（vote JS + localStorage）</td></tr>
+      <tr><td>lihi 連結</td><td>✓ 保留（主要轉換站）</td><td>✗ 全部清除（球迷文化站）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="margin-top:14px;font-size:0.88rem;color:var(--green)">✅ 差異化程度：高。兩站在關鍵字重心、CTA 語調、目標受眾均已充分區隔。</p>
+</div>
+
+<h3>9-4 Footer 軟性 CTA 策略：建議保留（不要全砍 lihi）</h3>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px">
+  <p>全站砍除 lihi 連結（如 ys89.info P1 所做）確實有助於 Google 品質信號，但代價是完全喪失導流收益。建議各站維持 <strong>1 個極軟性 footer CTA</strong>，而非 0 個：</p>
+  <div class="action-grid" style="margin-top:16px">
+    <div class="action-card">
+      <div class="ac-header"><span class="ac-domain" style="color:#06b6d4">ys89.info</span><span class="badge badge-green">已清除</span></div>
+      <p style="font-size:0.88rem">現況：lihi 全清除，nav CTA 改為「直播攻略」。</p>
+      <p style="font-size:0.88rem;color:var(--yellow)">建議：footer 加回 1 個軟性文字連結「更多世足資訊 → ys89.games」，形成站群互聯而非直接博彩連結。</p>
+    </div>
+    <div class="action-card">
+      <div class="ac-header"><span class="ac-domain" style="color:#10b981">ys89.biz</span><span class="badge badge-green">保留中</span></div>
+      <p style="font-size:0.88rem">現況：body lihi 連結保留，符合投注教學站定位。</p>
+      <p style="font-size:0.88rem;color:var(--green)">建議：維持現狀，但每頁 lihi 不超過 2 個，避免連結密度過高。</p>
+    </div>
+    <div class="action-card">
+      <div class="ac-header"><span class="ac-domain" style="color:#ec4899">ys89.me</span><span class="badge badge-green">已清除</span></div>
+      <p style="font-size:0.88rem">現況：全站 lihi 清除，球迷文化定位純化。</p>
+      <p style="font-size:0.88rem;color:var(--yellow)">建議：footer 可加 1 行軟性導流「想看球又想玩投注？→ ys89.games」，rel="nofollow sponsored"。</p>
+    </div>
+    <div class="action-card">
+      <div class="ac-header"><span class="ac-domain" style="color:#3b82f6">ys89.games</span><span class="badge badge-blue">旗艦站</span></div>
+      <p style="font-size:0.88rem">現況：nav CTA「立即投注」+lihi1.me，多處 lihi 連結。</p>
+      <p style="font-size:0.88rem;color:var(--green)">建議：維持，此為主轉換站，lihi 是核心功能。</p>
+    </div>
+  </div>
+  <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:14px 18px;margin-top:16px;font-size:0.88rem;color:var(--yellow)">
+    💡 原則：每站 footer 最多 1 個 lihi，標記 <code>rel="nofollow sponsored"</code>，文字用軟性引導語調（不用「立即投注」「點此下注」等硬性 CTA）。內鏈互導比直接博彩連結對 SEO 友好，且符合 Google Helpful Content 精神。
+  </div>
+</div>
+
+<!-- Updated Summary Table -->
+<div class="summary-box" style="margin-top:40px">
+  <h3>📋 2026-05-20 完整執行摘要</h3>
+  <table style="font-size:0.85rem">
     <thead>
-      <tr><th>站域</th><th>定位重塑幅度</th><th>最高優先行動</th><th>預計工時</th></tr>
+      <tr><th>行動</th><th>站域</th><th>狀態</th><th>Commit</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td><strong style="color:#3b82f6">ys89.games</strong></td>
-        <td><span class="badge badge-green">維持不動</span></td>
-        <td>持續 GSC 監控，深化 group 頁品質</td>
-        <td><span style="color:#10b981">— 無需異動</span></td>
-      </tr>
-      <tr>
-        <td><strong style="color:#06b6d4">ys89.info</strong></td>
-        <td><span class="badge badge-green">✅ 品牌清掃完成</span></td>
-        <td>Nav 純化（bca1587）+ 全站品牌清掃：og:site_name/title/JSON-LD統一、Nav CTA改直播攻略、全站 lihi 114 個清除</td>
-        <td><span style="color:#10b981">bca1587 + ca3a371</span></td>
-      </tr>
-      <tr>
-        <td><strong style="color:#10b981">ys89.biz</strong></td>
-        <td><span class="badge badge-green">✅ 品牌清掃完成</span></td>
-        <td>新增3篇深度文章（d546348）+ 全站品牌清掃：og:site_name/title/JSON-LD/footer統一，body lihi 保留</td>
-        <td><span style="color:#10b981">d546348 + 77a4379</span></td>
-      </tr>
-      <tr>
-        <td><strong style="color:#ec4899">ys89.me</strong></td>
-        <td><span class="badge badge-green">P1+P2 全部完成</span></td>
-        <td>全站 lihi 清除、slogan/nav-cta 改球迷定位、H1 更新、投票 JS 升級、top-scorer 球迷視角、新文章 taiwan-fan-favorites</td>
-        <td><span style="color:#10b981">commit bf4239d + abf214b</span></td>
-      </tr>
+      <tr><td>P1 球迷站重塑</td><td>ys89.me</td><td><span class="badge badge-green">✅完成</span></td><td><code>bf4239d</code></td></tr>
+      <tr><td>P1 直播站 Nav 純化</td><td>ys89.info</td><td><span class="badge badge-green">✅完成</span></td><td><code>bca1587</code></td></tr>
+      <tr><td>P2 新增投注教育文章</td><td>ys89.biz</td><td><span class="badge badge-green">✅完成</span></td><td><code>d546348</code></td></tr>
+      <tr><td>品牌全站一致化</td><td>ys89.biz</td><td><span class="badge badge-green">✅完成</span></td><td><code>77a4379</code></td></tr>
+      <tr><td>品牌全站一致化 + lihi 清除</td><td>ys89.info</td><td><span class="badge badge-green">✅完成</span></td><td><code>ca3a371</code></td></tr>
+      <tr><td>P2 球迷站完整轉型</td><td>ys89.me</td><td><span class="badge badge-green">✅完成</span></td><td><code>abf214b</code></td></tr>
+      <tr><td>Nav 即時比分清除</td><td>.info / .biz / .me</td><td><span class="badge badge-green">✅完成</span></td><td><code>7f7857b / 13db73d / 6d22f37</code></td></tr>
+      <tr><td>新增賽前賠率快報頁</td><td>ys89.info</td><td><span class="badge badge-green">✅完成</span></td><td><code>c17b5e0</code></td></tr>
+      <tr><td>差異化分析寫入報告</td><td>fifa-worldcups.tw + ys89.me vs .games</td><td><span class="badge badge-green">✅完成</span></td><td>本報告 §9</td></tr>
+      <tr><td>Footer 軟性 CTA（→ ys89.games）</td><td>ys89.info + ys89.me</td><td><span class="badge badge-green">✅完成</span></td><td><code>eb6aeda / 8fcd75f</code></td></tr>
+      <tr><td>賠率數字全站更新</td><td>ys89.games / .info / .biz</td><td><span class="badge badge-green">✅完成</span></td><td><code>7660afb / eb6aeda / fdd57da</code></td></tr>
     </tbody>
   </table>
 </div>
