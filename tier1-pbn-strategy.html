@@ -271,34 +271,129 @@ ul li { margin: 5px 0 5px 20px; }
   </table>
 </div>
 
-<!-- 6. 14 天時程 -->
+<!-- 6. 工作職責分工（NEW） -->
 <div class="section">
-  <div class="section-label">// 14 天時程</div>
-  <div class="section-title">B 站先衝（搶世足窗口）/ A 站後上（隱匿後盾）</div>
+  <div class="section-label">// 職責分工（重要）</div>
+  <div class="section-title">另一台 Claude Code（設計）vs 主端（部署）</div>
+
+  <div class="box gold">
+    <strong style="color:var(--gold)">⚠️ 關鍵分工：另一台 Claude Code 只做「設計階段」，不做「部署」</strong>
+    <p style="margin-top:8px">另一台 Claude Code 把所有檔案準備好後壓 zip，傳回主端（這邊）做 DNS / GSC / 上線。理由：</p>
+    <ul>
+      <li>部署涉及實際 DNS 切換 / Cloudflare 帳號操作 → 主端統一管控</li>
+      <li>避免另一電腦留下 hosting 帳號密碼 footprint</li>
+      <li>主端可以最終 audit 後再決定何時上線（時間自主）</li>
+    </ul>
+  </div>
+
+  <div class="dual-grid">
+    <div class="site-card a" style="border-color:rgba(82,192,122,0.5)">
+      <span class="tag" style="background:rgba(82,192,122,0.2); color:var(--green)">另一台 Claude Code 範圍</span>
+      <h3>🛠️ 設計階段（站建前）</h3>
+      <ul style="margin-top:8px">
+        <li>兩域名 Wayback 完整查</li>
+        <li>A 站：純 HTML + CSS + 10 篇文章（檔案）</li>
+        <li>B 站：WordPress codebase + theme rename + 11 篇文章（檔案/SQL）</li>
+        <li>6 條防護準備（theme namespace 改、Yoast 設定檔等）</li>
+        <li>檔案結構：A 站給 zip 包 + B 站給 zip 包</li>
+        <li>內鏈關係圖 + anchor text 清單</li>
+        <li>產出 design-tier1-v3.md 報告（不含實際 URL）</li>
+      </ul>
+      <p style="margin-top:10px; color:var(--text-muted); font-size:13px">
+        ❌ 不做：實際買 hosting / 設 DNS / 上線 / 提交 GSC
+      </p>
+    </div>
+
+    <div class="site-card b" style="border-color:rgba(168,118,212,0.5)">
+      <span class="tag" style="background:rgba(168,118,212,0.2); color:var(--purple)">主端範圍（這邊）</span>
+      <h3>🚀 部署階段（收到 zip 後）</h3>
+      <ul style="margin-top:8px">
+        <li>解壓另一台的 zip 檔</li>
+        <li>申請新 Cloudways 帳號（B 站）+ CF Pages 帳號（A 站）</li>
+        <li>DNS 切換到對應 host</li>
+        <li>B 站 WordPress 安裝 + 匯入 SQL + 6 條防護驗證</li>
+        <li>A 站 CF Pages 上傳檔案</li>
+        <li>分散時間部署（B 先 Day 5，A 後 Day 11）</li>
+        <li>GSC 雙站獨立帳號驗證 + sitemap 提交</li>
+        <li>最終 footprint audit</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 7. 另一台 Claude Code 的 14 天設計時程 -->
+<div class="section">
+  <div class="section-label">// 另一台 Claude Code 時程</div>
+  <div class="section-title">設計階段 14 天（不含部署）</div>
 
   <table>
-    <tr><th>Day</th><th>動作</th><th>站</th></tr>
-    <tr><td>Day 0</td><td>兩個域名買到，WHOIS Privacy 啟用</td><td>A + B</td></tr>
-    <tr><td>Day 1</td><td>兩域名 Wayback 完整查歷史</td><td>A + B</td></tr>
-    <tr><td>Day 2</td><td>B 站開新 Cloudways 帳號 + WordPress 安裝 + theme rename</td><td>B</td></tr>
-    <tr><td>Day 3</td><td>B 站 6 篇文章上線（Pillar #1 + 戰神 5 篇）</td><td>B</td></tr>
-    <tr><td>Day 4</td><td>B 站 5 篇文章上線（百家樂 4 篇 + Hub Page）</td><td>B</td></tr>
-    <tr><td>Day 5</td><td><strong>B 站正式上線 + GSC 提交</strong></td><td>B 🚀</td></tr>
-    <tr><td>Day 6-7</td><td>B 站監控 + 修補 + 補圖</td><td>B</td></tr>
-    <tr><td>Day 8</td><td>A 站建立 純 HTML + universal.css 米色變體</td><td>A</td></tr>
-    <tr><td>Day 9-10</td><td>A 站 5 篇主題文章上線</td><td>A</td></tr>
-    <tr><td>Day 11</td><td><strong>A 站正式上線（B 後 6 天）</strong></td><td>A 🚀</td></tr>
-    <tr><td>Day 12-13</td><td>A 站補完剩 5 篇 + contextual link</td><td>A</td></tr>
-    <tr><td>Day 14</td><td>雙站整體 footprint audit + GSC 雙重提交</td><td>A + B</td></tr>
+    <tr><th>Day</th><th>動作</th><th>產出檔案</th></tr>
+    <tr><td>Day 1</td><td>兩域名 Wayback 完整查 + 確認 A 站主題</td><td>wayback-analysis.md</td></tr>
+    <tr><td>Day 2-3</td><td>B 站 WordPress codebase 準備（rename theme 等）</td><td>b-site-codebase.zip</td></tr>
+    <tr><td>Day 4-5</td><td>B 站 6 篇文章寫作（Pillar + 戰神 5 篇）</td><td>b-site-posts-1.sql</td></tr>
+    <tr><td>Day 6-7</td><td>B 站 5 篇文章寫作（百家樂 4 篇 + Hub）</td><td>b-site-posts-2.sql</td></tr>
+    <tr><td>Day 8</td><td>B 站整體封裝 + 6 條防護 checklist</td><td>b-site-final.zip</td></tr>
+    <tr><td>Day 9</td><td>A 站建立 純 HTML 結構 + universal.css 米色變體</td><td>a-site-structure.zip</td></tr>
+    <tr><td>Day 10-11</td><td>A 站 5 篇主題文章寫作</td><td>a-site-posts-1.zip</td></tr>
+    <tr><td>Day 12-13</td><td>A 站 5 篇文章 + contextual link 自然安置</td><td>a-site-posts-2.zip</td></tr>
+    <tr><td>Day 14</td><td>產出 design-tier1-v3.md 報告 + 雙站 zip 傳回主端</td><td>📦 final-deliverable.zip</td></tr>
+  </table>
+
+  <div class="box blue">
+    <strong style="color:var(--blue)">📦 final-deliverable.zip 應包含：</strong>
+    <ul>
+      <li><code>design-tier1-v3.md</code>（設計階段完整報告）</li>
+      <li><code>wayback-analysis.md</code>（兩域名 Wayback 主題判讀）</li>
+      <li><code>a-site/</code>（A 站完整檔案，可直接 deploy 到 CF Pages）</li>
+      <li><code>b-site/</code>（B 站完整 WordPress codebase + SQL 檔）</li>
+      <li><code>b-site-protection-checklist.md</code>（6 條防護逐項對照）</li>
+      <li><code>internal-link-map.md</code>（雙站內鏈關係圖）</li>
+      <li><code>anchor-text-distribution.md</code>（60/20/10/10 分配清單）</li>
+      <li><code>FOR-MAIN-DEPLOYMENT.md</code>（給主端部署時的 11 步驟 SOP）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 8. 主端部署 SOP -->
+<div class="section">
+  <div class="section-label">// 主端部署 SOP</div>
+  <div class="section-title">收到 zip 後這邊執行（B 站先 Day 5 / A 站後 Day 11）</div>
+
+  <h3 style="color:#fff; margin: 14px 0 10px">🚀 B 站部署（Day 5）</h3>
+  <table>
+    <tr><th>Step</th><th>動作</th></tr>
+    <tr><td>1</td><td>用新 Gmail（zeus-bac-admin@gmail）註冊新 Cloudways 帳號</td></tr>
+    <tr><td>2</td><td>選不同 region server（避免跟 ys89.fun 同 IP）</td></tr>
+    <tr><td>3</td><td>新 WordPress 安裝（不要 import ys89.fun 的 DB）</td></tr>
+    <tr><td>4</td><td>解壓 b-site-codebase.zip 上傳到 wp-content/themes/</td></tr>
+    <tr><td>5</td><td>確認 theme 名稱已 rename（zeus-baccarat-theme）</td></tr>
+    <tr><td>6</td><td>匯入 b-site-posts SQL（11 篇文章）</td></tr>
+    <tr><td>7</td><td>安裝 Yoast SEO（不要裝 Rank Math）</td></tr>
+    <tr><td>8</td><td>DNS 切到 Cloudflare（新 CF 帳號 2）</td></tr>
+    <tr><td>9</td><td>啟用 SSL + WHOIS Privacy</td></tr>
+    <tr><td>10</td><td>用新 Gmail 註冊新 GSC + 驗證 + 提交 sitemap</td></tr>
+    <tr><td>11</td><td>對照 b-site-protection-checklist.md 6 條逐項打勾</td></tr>
+  </table>
+
+  <h3 style="color:#fff; margin: 18px 0 10px">🚀 A 站部署（Day 11，B 後 6 天）</h3>
+  <table>
+    <tr><th>Step</th><th>動作</th></tr>
+    <tr><td>1</td><td>用另一個新 Gmail 註冊新 CF Pages 帳號（不同於 ys89-seo-docs）</td></tr>
+    <tr><td>2</td><td>解壓 a-site/ 內所有檔案</td></tr>
+    <tr><td>3</td><td>wrangler pages deploy 上線</td></tr>
+    <tr><td>4</td><td>DNS 切換 + SSL + WHOIS Privacy</td></tr>
+    <tr><td>5</td><td>用獨立 Gmail 註冊 GSC + 驗證 + 提交 sitemap</td></tr>
+    <tr><td>6</td><td>對照 12 條 footprint avoidance 逐項驗證</td></tr>
   </table>
 
   <div class="box red">
-    <strong style="color:var(--red)">⚠️ 絕對不要：</strong>
+    <strong style="color:var(--red)">⚠️ 主端部署絕對禁止：</strong>
     <ul>
-      <li>兩站同一天上線（時間 footprint）</li>
-      <li>B 站 11 篇文章同一天 publish（內容 burst）→ 分 2-3 天</li>
-      <li>同一個 Cloudways 帳號管 B 站和 ys89.fun</li>
-      <li>B 站 admin 用 ys89.fun 的 Gmail 登入</li>
+      <li>兩站同一天部署上線（必須 Day 5 vs Day 11 分開）</li>
+      <li>B 站用 ys89.fun 的 Cloudways 帳號</li>
+      <li>A 站用 ys89-seo-docs 的 CF Pages 帳號</li>
+      <li>用 ys89 主 Google 帳號註冊 B 站 GSC</li>
+      <li>B 站匯入 ys89.fun 原 post（必須是新寫的 11 篇）</li>
     </ul>
   </div>
 </div>
@@ -335,7 +430,11 @@ ul li { margin: 5px 0 5px 20px; }
   <div class="section-label">// 給另一台 Claude Code</div>
   <div class="section-title">執行指令包 v3 最終版</div>
 
-  <div class="code-box">YS89 PBN Tier-1 雙站建置任務（v3 最終版）
+  <div class="code-box">YS89 PBN Tier-1 雙站「設計階段」任務（v3 最終版）
+
+⚠️ 你的範圍：只做設計（不部署）
+你只負責準備檔案，最後壓 zip 交回。
+DNS / 上線 / GSC 提交 / Cloudways 帳號管理 都是主端的事。
 
 ⚠️ 開工前必讀
 1. WebFetch 完整讀過 https://ys89-seo-docs.pages.dev/tier1-pbn-strategy.html (v3)
@@ -343,57 +442,46 @@ ul li { margin: 5px 0 5px 20px; }
 3. 讀 03-footprint-avoidance.md
 4. 跟用戶確認實際買到的兩個域名（domain A / domain B）
 
-兩站策略（v3 最終確認）
+設計階段任務（依 §7 14 天時程）
 
-【A 站】隱匿後盾
-- 域名 A：[用戶填入實際 DR 50+ 域名]
-- 內容：保留原 Wayback 主題（旅遊/科技/商業/教育/體育/健康等）
-- 技術：純 HTML + universal.css 米色變體
-- 主機：CF Pages 帳號 1
-- 10 篇文章，#4 #7 #10 contextual link 到 ys89.fun
-- 上線時間：Day 11
+Day 1：兩域名 Wayback 完整查 → wayback-analysis.md
+Day 2-3：B 站 WordPress codebase 準備
+   - 拷貝 ys89.fun 的 ys-entertainment-theme 結構
+   - 重命名 theme: ys-entertainment-theme → zeus-baccarat-theme
+   - 改 function namespace (避免 PHP conflict)
+   - 微調 image/CSS folder name
+   - 準備 6 條防護的所有配置檔
+Day 4-5：B 站 6 篇文章（Pillar + 戰神 5 篇）
+   - 寫成 WordPress SQL dump 格式（可 import）
+   - 或寫成 markdown 給主端轉 SQL
+Day 6-7：B 站 5 篇文章（百家樂 4 篇 + Hub Page）
+Day 8：B 站打包：b-site-codebase.zip + b-site-posts.sql
+Day 9：A 站 純 HTML 結構建立
+   - universal.css 米色變體（不要跟前 3 站重複）
+   - 不同字體 (Noto Sans TC + Roboto)
+   - HTML 結構用 main > article
+Day 10-11：A 站 5 篇文章（依 Wayback 主題決定）
+Day 12-13：A 站 5 篇文章 + #4 #7 #10 contextual link
+Day 14：最終封裝 → final-deliverable.zip
 
-【B 站】進攻雙 cluster（戰神 + 百家樂）
-- 域名 B：[用戶填入實際 DR 50+ 域名]
-- 內容：11 篇雙 cluster（1 Pillar + 5 戰神 + 5 百家樂）
-- 技術：WordPress + 鏡像 ys89.fun 程式碼但 6 條防護
-   1. Theme rename: ys-entertainment-theme → zeus-baccarat-theme
-   2. 獨立 Gmail（zeus-bac-admin@gmail）
-   3. SEO plugin: Rank Math → Yoast
-   4. 新 Cloudways 帳號 + 不同 IP
-   5. 不裝 GA，獨立 GSC
-   6. wp-content 結構微調
-- 上線時間：Day 5（先衝世足窗口）
-
-執行順序
-
-Day 0：兩域名買到 + WHOIS Privacy
-Day 1：雙站 Wayback 完整查
-Day 2：B 站 WordPress 安裝 + theme rename + 6 條防護
-Day 3：B 站 6 篇文章（Pillar + 戰神 5）
-Day 4：B 站 5 篇文章（百家樂 4 + Hub）
-Day 5：B 站正式上線 + GSC 提交 🚀
-Day 6-7：B 站監控
-Day 8：A 站建 純 HTML
-Day 9-10：A 站 5 篇文章
-Day 11：A 站上線 + GSC 提交 🚀
-Day 12-13：A 站補完 + contextual link
-Day 14：雙站 footprint audit + 交回報告
-
-完成後產出
-deployment-tier1-v3.md 報告，包含：
-- 兩站 URL + 上線時間
-- 11 + 10 篇文章清單（標題 / 字數 / 連結 / 作者）
-- 內鏈關係圖
-- 12 條 Footprint Avoidance 逐條打勾
-- 60 天 KPI 監控建議
+📦 final-deliverable.zip 必含
+- design-tier1-v3.md（設計階段完整報告）
+- wayback-analysis.md（雙站 Wayback 主題判讀）
+- a-site/（純 HTML 檔，可直接 deploy）
+- b-site/（WordPress codebase + posts SQL）
+- b-site-protection-checklist.md（6 條防護逐項）
+- internal-link-map.md（雙站內鏈關係圖）
+- anchor-text-distribution.md（60/20/10/10 清單）
+- FOR-MAIN-DEPLOYMENT.md（給主端的 11 步驟部署 SOP）
 
 絕對禁止
-- 兩站同一天上線
-- 兩站同個 Cloudways 帳號
-- B 站 admin 用 ys89.fun 的 Gmail
-- 內容直接 copy-paste ys89.fun 原文
-- 11 篇文章同一天 publish</div>
+- 自己跑去買 hosting / 設 DNS / 上線
+- 自己註冊 Cloudways 或 CF Pages 帳號
+- 自己提交 GSC
+- 用 ys89.fun 的 Gmail 註冊任何新服務
+- 內容直接 copy-paste ys89.fun 原文（必須是新寫的 11 篇 B 站 + 10 篇 A 站）
+
+完成後通知主端，主端會依 §8 SOP 部署。</div>
 </div>
 
 </div>
