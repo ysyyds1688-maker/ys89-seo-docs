@@ -125,9 +125,10 @@
     <span>⚠️ 高重疊維度：6</span>
     <span>✅ P1 全部完成</span>
     <span>✅ P2 ys89.biz 完成</span>
+    <span>✅ P2 ys89.me 完成</span>
   </div>
   <div style="margin-top:16px;padding:12px 20px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:8px;font-size:0.85rem;color:#6ee7b7;display:inline-block">
-    🚀 本日執行完成：ys89.me 重塑（commit bf4239d）・ys89.info 純化（bca1587）・ys89.biz 新增3篇深度文章（d546348）
+    🚀 本日執行完成：ys89.me 重塑（bf4239d）・ys89.info 純化（bca1587）・ys89.biz 新增3篇文章（d546348）・ys89.me P2 球迷站完整轉型（abf214b）
   </div>
 </div>
 
@@ -559,43 +560,39 @@
   <p style="font-size:0.8rem;color:var(--text3);margin-top:8px">commit <code>bf4239d</code> · 94 files changed · 2026-05-20</p>
 </div>
 
-<div class="checklist">
-  <h3>🟡 次要調整（待辦）</h3>
+<div class="checklist" style="border-color:#10b981">
+  <h3>✅ 次要調整（已完成，commit abf214b）</h3>
   <div class="check-item">
-    <div class="check-icon normal">~</div>
-    <div class="check-text"><strong>Nav 最後一項「立即投注」</strong><br>改為「賽程直播」，投注 lihi 連結移到頁腳文字連結</div>
+    <div class="check-icon done">✓</div>
+    <div class="check-text"><strong>Nav 全站「立即投注」→「賽程直播」</strong><br>95 個 HTML 檔批量替換，nav-cta href 改為 live-schedule.html</div>
   </div>
   <div class="check-item">
-    <div class="check-icon normal">~</div>
-    <div class="check-text"><strong>messi-2026 / mbappe-2026 CTA 連結確認</strong><br>應指向直播頁而非投注平台</div>
+    <div class="check-icon done">✓</div>
+    <div class="check-text"><strong>messi-2026 / mbappe-2026 body CTA 修正</strong><br>所有 lihi2.me 連結已清除（100+ 檔），改為 live-schedule.html</div>
   </div>
   <div class="check-item">
-    <div class="check-icon normal">~</div>
-    <div class="check-text"><strong>index.html H1 微調</strong><br>加入球迷視角：「球迷必知48隊完整資訊」</div>
+    <div class="check-icon done">✓</div>
+    <div class="check-text"><strong>index.html H1 更新</strong><br>「2026世界盃分組分析・48隊球隊完整介紹」→「2026世界盃・球迷必知48隊完整資訊」</div>
   </div>
   <div class="check-item">
-    <div class="check-icon normal">~</div>
-    <div class="check-text"><strong>brand slogan 調整</strong><br>nav-logo「世足賽博站」→「世足球迷站」</div>
+    <div class="check-icon done">✓</div>
+    <div class="check-text"><strong>brand slogan 全站替換</strong><br>「世足賽博站」→「世足球迷站」（93 檔），footer 版權 → 「世足球迷情報站」（92 檔）</div>
   </div>
 </div>
 
-<div class="checklist">
-  <h3>🟢 新內容（06-01 前執行）</h3>
+<div class="checklist" style="border-color:#10b981">
+  <h3>✅ 新內容（已完成，commit abf214b）</h3>
   <div class="check-item">
-    <div class="check-icon nice">+</div>
-    <div class="check-text"><strong>新增「球迷冠軍投票」互動元素</strong><br>簡單 JS 投票，不需後端：「你支持哪隊奪冠？」</div>
+    <div class="check-icon done">✓</div>
+    <div class="check-text"><strong>投票區塊升級</strong><br>加入票數長條圖 JS，投票後顯示社群票數分布（localStorage，無需後端）</div>
   </div>
   <div class="check-item">
-    <div class="check-icon nice">+</div>
-    <div class="check-text"><strong>top-scorer.html 補充球迷視角故事</strong><br>哈蘭德 vs 姆巴佩 vs 萊奧，球迷角度解讀</div>
+    <div class="check-icon done">✓</div>
+    <div class="check-text"><strong>top-scorer.html 新增球迷視角章節</strong><br>「姆巴佩 vs 哈蘭德 vs 萊奧」球迷角度對比，含比較表格與情感解讀</div>
   </div>
   <div class="check-item">
-    <div class="check-icon nice">+</div>
-    <div class="check-text"><strong>球隊頁面加入「台灣球迷聲量」段落</strong></div>
-  </div>
-  <div class="check-item">
-    <div class="check-icon nice">+</div>
-    <div class="check-text"><strong>新文章：「台灣球迷最愛支持的5支隊伍」</strong><br>純球迷情感主軸，不放投注 lihi</div>
+    <div class="check-icon done">✓</div>
+    <div class="check-text"><strong>新文章：taiwan-fan-favorites.html</strong><br>「台灣球迷最愛支持的5支隊伍」，巴西/阿根廷/日本/法國/葡萄牙深度球迷角度，純球迷情感主軸，已加入 blog.html</div>
   </div>
 </div>
 
@@ -659,10 +656,10 @@
     <div class="tl-title">P2：ys89.biz 深化投注教育</div>
     <div class="tl-desc">新增 3 篇深度文章：投注10大陷阱 / 小組賽vs淘汰賽策略 / 賠率隱含機率與Value Bet。文章數 15 → 18。<br><code>commit d546348 · 4 files, 2004 insertions</code></div>
   </div>
-  <div class="tl-item">
-    <div class="tl-week">待辦：開賽前（06-01 ~ 06-10）</div>
-    <div class="tl-title">P2：ys89.me 球迷感新內容</div>
-    <div class="tl-desc">新增球迷投票 JS 互動、top-scorer.html 球迷視角補充、「台灣球迷最愛支持的5支隊伍」新文章。</div>
+  <div class="tl-item" style="--dot-color:#10b981">
+    <div class="tl-week" style="color:#10b981">✅ 2026-05-20（已完成，提前於計畫）</div>
+    <div class="tl-title">P2：ys89.me 球迷站完整轉型</div>
+    <div class="tl-desc">全站 slogan/nav-cta/lihi 清除（100+ 檔）、H1 球迷化、投票 JS 升級含票數圖、top-scorer.html 球迷視角新章節、新文章 taiwan-fan-favorites.html。<br><code>commit abf214b · 105 files changed, 674 insertions</code></div>
   </div>
   <div class="tl-item">
     <div class="tl-week">待辦：本週內</div>
@@ -787,9 +784,9 @@
       </tr>
       <tr>
         <td><strong style="color:#ec4899">ys89.me</strong></td>
-        <td><span class="badge badge-yellow">P1 完成，待辦次要</span></td>
-        <td>P1 完成（投注區塊刪除、og:site_name 全站替換）；次要調整 + 新球迷內容待辦</td>
-        <td><span style="color:#10b981">commit bf4239d</span> + <span style="color:#f59e0b">待辦</span></td>
+        <td><span class="badge badge-green">P1+P2 全部完成</span></td>
+        <td>全站 lihi 清除、slogan/nav-cta 改球迷定位、H1 更新、投票 JS 升級、top-scorer 球迷視角、新文章 taiwan-fan-favorites</td>
+        <td><span style="color:#10b981">commit bf4239d + abf214b</span></td>
       </tr>
     </tbody>
   </table>
