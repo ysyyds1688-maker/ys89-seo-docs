@@ -7,126 +7,89 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --gold: #A07820;
-  --gold-bg: #FEF9EE;
-  --gold-border: #E8C96A;
-  --body-bg: #F4F5F7;
-  --white: #FFFFFF;
-  --text: #1A1A2E;
-  --text-muted: #6B7280;
-  --border: #E5E7EB;
+  --gold: #A07820; --gold-bg: #FEF9EE; --gold-border: #E8C96A;
+  --body-bg: #F4F5F7; --white: #FFFFFF;
+  --text: #1A1A2E; --text-muted: #6B7280; --border: #E5E7EB;
   --red: #DC2626;   --red-bg: #FEF2F2;   --red-border: #FECACA;
   --green: #16A34A; --green-bg: #F0FDF4; --green-border: #BBF7D0;
   --blue: #2563EB;  --blue-bg: #EFF6FF;  --blue-border: #BFDBFE;
   --purple: #7C3AED;--purple-bg: #F5F3FF;--purple-border: #DDD6FE;
+  --pink: #DB2777;  --pink-bg: #FDF2F8;  --pink-border: #FBCFE8;
   --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05);
 }
-body {
-  background: var(--body-bg); color: var(--text);
-  font-family: 'Helvetica Neue', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-  line-height: 1.75; font-size: 15px;
-}
+body { background: var(--body-bg); color: var(--text); font-family: 'Helvetica Neue','PingFang TC','Microsoft JhengHei',sans-serif; line-height: 1.75; font-size: 15px; }
 
-/* ── Header ── */
-.header {
-  background: linear-gradient(135deg, #1A1A2E 0%, #2C1E08 50%, #1A1A2E 100%);
-  padding: 52px 24px 44px; text-align: center;
-}
-.header h1 { font-size: clamp(22px, 5vw, 32px); font-weight: 800; color: #fff; letter-spacing: 1px; margin-bottom: 10px; line-height: 1.3; }
+/* Header */
+.header { background: linear-gradient(135deg,#1A1A2E 0%,#2C1E08 50%,#1A1A2E 100%); padding: 48px 24px 36px; text-align: center; }
+.header h1 { font-size: clamp(20px,5vw,30px); font-weight: 800; color: #fff; letter-spacing: 1px; margin-bottom: 8px; line-height: 1.3; }
 .header h1 span { color: #E8C96A; }
 .header-sub { color: rgba(255,255,255,0.5); font-size: 13px; }
-.header-v2badge {
-  display: inline-block; margin-top: 12px;
-  background: rgba(232,201,106,0.15); border: 1px solid rgba(232,201,106,0.5);
-  color: #E8C96A; font-size: 11px; font-weight: 700; letter-spacing: 2px;
-  padding: 4px 16px; border-radius: 20px;
-}
+.header-v2badge { display: inline-block; margin-top: 10px; background: rgba(232,201,106,0.15); border: 1px solid rgba(232,201,106,0.5); color: #E8C96A; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 16px; border-radius: 20px; }
 
-/* ── Layout ── */
+/* Tabs */
+.tab-nav { background: var(--white); border-bottom: 2px solid var(--border); display: flex; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 6px rgba(0,0,0,0.06); overflow-x: auto; }
+.tab-btn { flex-shrink: 0; padding: 14px 24px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; background: none; color: var(--text-muted); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s; font-family: inherit; white-space: nowrap; }
+.tab-btn:hover { color: var(--text); background: #F9FAFB; }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Layout */
 .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
-.section {
-  background: var(--white); border-radius: 12px;
-  box-shadow: var(--shadow); margin: 20px 0; padding: 32px 28px;
-}
-.section-label {
-  display: inline-block; font-size: 10px; letter-spacing: 3px; font-weight: 700;
-  color: var(--gold); text-transform: uppercase; margin-bottom: 6px;
-  background: var(--gold-bg); border: 1px solid var(--gold-border);
-  padding: 3px 10px; border-radius: 4px;
-}
-.section-title { font-size: clamp(18px, 3vw, 22px); font-weight: 700; color: var(--text); margin-bottom: 18px; }
+.section { background: var(--white); border-radius: 12px; box-shadow: var(--shadow); margin: 20px 0; padding: 32px 28px; }
+.section-label { display: inline-block; font-size: 10px; letter-spacing: 3px; font-weight: 700; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; background: var(--gold-bg); border: 1px solid var(--gold-border); padding: 3px 10px; border-radius: 4px; }
+.section-title { font-size: clamp(17px,3vw,22px); font-weight: 700; color: var(--text); margin-bottom: 18px; }
 
-/* ── Box ── */
-.box {
-  background: #FAFAFA; border: 1px solid var(--border);
-  border-radius: 8px; padding: 18px 22px; margin: 12px 0;
-}
+/* Box */
+.box { background: #FAFAFA; border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin: 12px 0; }
 .box.gold { border-color: var(--gold-border); background: var(--gold-bg); }
 .box.red   { border-color: var(--red-border);  background: var(--red-bg); }
 .box.blue  { border-color: var(--blue-border);  background: var(--blue-bg); }
-.box.social {
-  border: 2px dashed var(--blue-border);
-  background: var(--blue-bg);
-}
-.box.social .placeholder {
-  color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: 1px;
-  margin-bottom: 10px; text-transform: uppercase;
-}
+.box.green { border-color: var(--green-border); background: var(--green-bg); }
+.box.pink  { border-color: var(--pink-border);  background: var(--pink-bg); }
 
-/* ── Metric Grid ── */
-.metric-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0;
-}
-.metric {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 10px; padding: 20px 12px; text-align: center;
-  box-shadow: var(--shadow);
-}
+/* Metric */
+.metric-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 18px 0; }
+.metric { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 12px; text-align: center; box-shadow: var(--shadow); }
 .metric .v { font-size: 28px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 6px; }
 .metric .l { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
-/* ── Tables ── */
+/* Social metrics */
+.s-metric-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 18px 0; }
+.s-metric { background: var(--white); border: 1px solid var(--pink-border); border-radius: 10px; padding: 20px 12px; text-align: center; box-shadow: var(--shadow); }
+.s-metric .v { font-size: 28px; font-weight: 900; color: var(--pink); line-height: 1; margin-bottom: 6px; }
+.s-metric .l { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+/* Tables */
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 12px 0; border-radius: 8px; border: 1px solid var(--border); }
 table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 480px; }
-th {
-  text-align: left; padding: 11px 14px; font-size: 11px; letter-spacing: 1px;
-  color: var(--text-muted); font-weight: 700; background: #F9FAFB;
-  border-bottom: 1px solid var(--border);
-}
+th { text-align: left; padding: 11px 14px; font-size: 11px; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; background: #F9FAFB; border-bottom: 1px solid var(--border); }
 td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text); }
 tr:last-child td { border-bottom: none; }
 tr:hover td { background: #F9FAFB; }
 
-/* ── Site Rows ── */
+/* Site rows */
 .site-list { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-.site-row {
-  display: grid; grid-template-columns: 150px 1fr auto; gap: 14px; align-items: start;
-  padding: 14px 16px; border-bottom: 1px solid var(--border); transition: background .15s;
-}
+.site-row { display: grid; grid-template-columns: 150px 1fr auto; gap: 14px; align-items: start; padding: 14px 16px; border-bottom: 1px solid var(--border); transition: background .15s; }
 .site-row:last-child { border-bottom: none; }
 .site-row:hover { background: #F9FAFB; }
 .site-row .name { font-weight: 700; color: var(--text); font-size: 14px; padding-top: 1px; }
 .site-row .desc { color: var(--text-muted); font-size: 13px; line-height: 1.6; }
 .site-row .dr { text-align: right; white-space: nowrap; }
 
-/* ── DR Badges ── */
-.dr-badge {
-  display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;
-}
-.dr-0   { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
-.dr-low { background: var(--gold-bg);   color: var(--gold);   border: 1px solid var(--gold-border); }
-.dr-mid { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
-.dr-high{ background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
-
-/* ── Status Flags ── */
+/* Badges & flags */
+.dr-badge { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.dr-0   { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-border); }
+.dr-low { background: var(--gold-bg);  color: var(--gold);  border: 1px solid var(--gold-border); }
+.dr-mid { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.dr-high{ background: var(--blue-bg);  color: var(--blue);  border: 1px solid var(--blue-border); }
 .flag { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; white-space: nowrap; }
 .flag-done    { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
 .flag-ongoing { background: #FFFBEB;           color: #92400E;       border: 1px solid #FDE68A; }
 .flag-pending { background: #F9FAFB;           color: var(--text-muted); border: 1px solid var(--border); }
 .flag-new     { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
 
-/* ── A/B Grid ── */
+/* A/B cards */
 .ab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
 .ab-card { border-radius: 8px; padding: 20px; }
 .ab-card.a { border: 1px solid var(--purple-border); background: var(--purple-bg); }
@@ -136,44 +99,43 @@ tr:hover td { background: #F9FAFB; }
 .ab-card.b h4 { color: var(--green); }
 .ab-card li { font-size: 13px; color: var(--text-muted); margin: 5px 0 5px 18px; line-height: 1.6; }
 
-/* ── Input Fields ── */
-.input-field {
-  background: rgba(37,99,235,0.05); border: 1px dashed var(--blue-border);
-  padding: 8px 12px; border-radius: 5px; margin: 5px 0; color: var(--text-muted);
-  font-style: italic; font-size: 13px;
-}
+/* Account cards */
+.acct-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 12px; margin: 14px 0; }
+.acct-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
+.acct-card .acct-name { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.acct-card .acct-role { font-size: 12px; color: var(--pink); font-weight: 600; margin-bottom: 6px; }
+.acct-card .acct-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-/* ── Misc ── */
+/* Timeline */
+.timeline { margin: 14px 0; }
+.tl-row { display: grid; grid-template-columns: 140px 1fr; gap: 14px; padding: 12px 16px; border-left: 3px solid var(--pink-border); margin-left: 8px; margin-bottom: 6px; background: var(--white); border-radius: 0 8px 8px 0; box-shadow: var(--shadow); }
+.tl-period { font-size: 12px; font-weight: 700; color: var(--pink); }
+.tl-content { font-size: 13.5px; color: var(--text-muted); }
+
+/* Misc */
 ul li { margin: 6px 0 6px 20px; font-size: 14px; }
 h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 10px; }
-.signature {
-  text-align: center; color: var(--text-muted); font-size: 13px;
-  padding: 28px 20px 40px; line-height: 2;
-}
+.signature { text-align: center; color: var(--text-muted); font-size: 13px; padding: 28px 20px 40px; line-height: 2; }
 .divider { height: 1px; background: var(--border); margin: 18px 0; }
 
-/* ── RWD ── */
+/* RWD */
 @media (max-width: 768px) {
   .section { padding: 24px 18px; margin: 14px 0; }
-  .metric-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .metric .v { font-size: 24px; }
+  .metric-grid, .s-metric-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
   .ab-grid { grid-template-columns: 1fr; }
   .site-row { grid-template-columns: 1fr auto; }
-  .site-row .name { grid-column: 1; }
-  .site-row .dr   { grid-column: 2; grid-row: 1; }
   .site-row .desc { grid-column: 1 / -1; }
+  .tl-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
-  .header { padding: 36px 18px 30px; }
-  .header h1 { font-size: 20px; }
-  .section { padding: 20px 14px; border-radius: 8px; }
-  .metric-grid { gap: 8px; }
-  .metric { padding: 16px 8px; }
-  .metric .v { font-size: 22px; }
-  .metric .l { font-size: 11px; }
+  .header { padding: 32px 16px 28px; }
+  .section { padding: 18px 14px; border-radius: 8px; }
+  .metric .v, .s-metric .v { font-size: 22px; }
   .box { padding: 14px 16px; }
   table { font-size: 13px; }
   td, th { padding: 9px 10px; }
+  .tab-btn { padding: 12px 16px; font-size: 13px; }
+  .acct-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -181,27 +143,33 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
 
 <div class="header">
   <h1>YS89 站群現況與<span>下一階段預算需求</span></h1>
-  <p class="header-sub">2026-05-20｜製作：YS89 SEO 戰術組</p>
-  <div class="header-v2badge">v2 更新版</div>
+  <p class="header-sub">2026-05-20｜YS89 戰術組 × 社群行銷部</p>
+  <div class="header-v2badge">v2 整合版</div>
 </div>
 
+<!-- Tab Nav -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('seo')">📊 SEO 戰術組報告</button>
+  <button class="tab-btn" onclick="switchTab('social')">📱 社群行銷規劃提案</button>
+</div>
+
+<!-- ═══════════ TAB 1：SEO ═══════════ -->
+<div id="tab-seo" class="tab-panel active">
 <div class="container">
 
 <!-- 1. Executive Summary -->
 <div class="section">
   <div class="section-label">// 一頁版總覽</div>
   <div class="section-title">我們在做什麼 ｜ 現在到哪 ｜ 還缺什麼</div>
-
   <div class="box gold">
     <p><strong style="color:var(--gold)">做什麼：</strong>經營 YS89 娛樂城評測站群，目標是世足賽季成為台灣評測類流量第一。</p>
     <div class="divider"></div>
     <p><strong style="color:var(--gold)">現在到哪：</strong>已建立 6 個站、母站累積 160+ 頁、5 個編輯人設完整建立並重新分配文章、衛星站定位全部分離（§9 100% 完成）、PBN v3.2 雙策略已確認、3 個 PBN 域名已採購。母站 SEO 健康度 86/100。</p>
     <div class="divider"></div>
-    <p><strong style="color:var(--gold)">還缺什麼：</strong>2 個 DR 50+ 高權重域名（已批 NT$10 萬）+ 社群行銷投放預算（社群負責人提報）。</p>
+    <p><strong style="color:var(--gold)">還缺什麼：</strong>2 個 DR 50+ 高權重域名（已批 NT$10 萬）+ 社群行銷投放預算（詳見社群分頁）。</p>
     <div class="divider"></div>
     <p><strong style="color:var(--gold)">關鍵時機：</strong>世足賽 2026-06-11 開幕，倒數 <strong>22 天</strong>，現在不投資後續追趕成本高 3-5 倍。</p>
   </div>
-
   <div class="metric-grid">
     <div class="metric"><div class="v">6</div><div class="l">站群數量</div></div>
     <div class="metric"><div class="v">160+</div><div class="l">母站頁面數</div></div>
@@ -217,8 +185,7 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
 
   <h3 class="sub">A. 6 個站群（定位全分離）</h3>
   <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:12px">
-    <strong style="color:var(--text)">策略目的：</strong>同時佔領多個搜尋意圖，讓主站不跟自己的衛星站搶排名。
-    競品最多只有 1 個世足站，我們用 5 個定位完全不重疊的站包圍整個世足搜尋版圖——看直播的人、想學投注的人、找球星資訊的人、要看賠率的人，全部都能被我們其中一個站接住，最終導回主站或 ys89.games 轉換。
+    <strong style="color:var(--text)">策略目的：</strong>同時佔領多個搜尋意圖，讓主站不跟自己的衛星站搶排名。競品最多只有 1 個世足站，我們用 5 個定位完全不重疊的站包圍整個世足搜尋版圖——看直播的人、想學投注的人、找球星資訊的人、要看賠率的人，全部都能被我們其中一個站接住，最終導回主站或 ys89.games 轉換。
   </p>
   <div class="site-list">
     <div class="site-row">
@@ -255,9 +222,7 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
 
   <h3 class="sub">B. 已採購 PBN 高權重域名（試水溫，僅 NT$1,197）</h3>
   <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:12px">
-    <strong style="color:var(--text)">策略目的：</strong>DR 是 Google 排名的第一道門檻，新站沒有 DR 就算寫再好的內容也很難出現在第一頁。
-    PBN（私人部落格網路）的做法是：買入已有真實歷史與 DR 的老域名，在上面發布相關主題文章並連結到 ys89.fun，把老域名累積的「信任分數」傳遞給主站。
-    這批是小額試水溫，驗證採購流程與市場行情，下一批才是真正投入的 Tier-1 主力域名。
+    <strong style="color:var(--text)">策略目的：</strong>DR 是 Google 排名的第一道門檻。PBN 的做法是買入有真實歷史的老域名，在上面發布相關文章並連結到 ys89.fun，把老域名累積的「信任分數」傳遞給主站。這批是小額試水溫，驗證採購流程與市場行情，下一批才是真正投入的 Tier-1 主力域名。
   </p>
   <div class="table-wrap">
     <table>
@@ -267,12 +232,11 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
       <tr><td>DeckMatt.com</td><td>多主題</td><td><span class="dr-badge dr-mid">24</span></td><td>Tier-3 配套</td></tr>
     </table>
   </div>
-  <p style="color:var(--text-muted); font-size:13px; margin-top: 8px">合計 DR 權重 65 分，總購入成本僅 NT$1,197，驗證了「市場有可用的真實老域名」與「我們的採購流程跑得通」。</p>
+  <p style="color:var(--text-muted); font-size:13px; margin-top:8px">合計 DR 權重 65 分，總購入成本僅 NT$1,197，驗證了「市場有可用的真實老域名」與「採購流程跑得通」。</p>
 
   <h3 class="sub">C. 編輯團隊（5 個獨立人設）</h3>
   <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:12px">
-    <strong style="color:var(--text)">策略目的：</strong>Google 2024–2025 演算法連續更新後，「匿名文章」排名大幅下滑，有具體作者署名 + 專業背景的內容才被判定為可信。
-    5 個人設各有專業領域，讓每篇文章看起來都是由真實的領域專家撰寫，而非一個匿名帳號大量產出，直接提升 E-E-A-T（經驗・專業・權威・可信）評分，進而影響排名。
+    <strong style="color:var(--text)">策略目的：</strong>Google 2024–2025 演算法連續更新後，「匿名文章」排名大幅下滑，有具體作者署名 + 專業背景的內容才被判定為可信。5 個人設各有專業領域，讓每篇文章看起來都是由真實的領域專家撰寫，直接提升 E-E-A-T 評分進而影響排名。
   </p>
   <div class="table-wrap">
     <table>
@@ -284,14 +248,10 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
       <tr><td>阿翔（Sean）</td><td>詐騙 / 黑名單 / 法律</td><td>調查專欄</td></tr>
     </table>
   </div>
-  <p style="color:var(--text-muted); font-size:13px; margin-top: 8px">每個人設都有獨立 WordPress 帳號 + Schema.org Author markup，符合 Google E-E-A-T 要求。全站文章已完成 author 重新分配。</p>
 
   <h3 class="sub">D. 娛樂城遊戲關鍵字地圖</h3>
   <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:12px">
-    <strong style="color:var(--text)">策略目的：</strong>我們主打<strong style="color:var(--text)">長尾關鍵字策略</strong>。
-    「娛樂城推薦」這種大詞競爭者有 DR 50+，我們現在搶不過。
-    但「捕魚機Boss出現時機」、「21點何時加牌」、「539中獎機率計算」這類長尾詞——競爭少、精準度高、搜尋這些詞的人有明確需求，轉換率反而更高。
-    策略是：先靠 250+ 個長尾詞各帶穩定小流量累積排名信任，等 DR 上去之後再反攻大詞。
+    <strong style="color:var(--text)">策略目的：</strong>我們主打<strong style="color:var(--text)">長尾關鍵字策略</strong>。「娛樂城推薦」這種大詞競爭者有 DR 50+，我們現在搶不過。但「捕魚機Boss出現時機」、「21點何時加牌」、「539中獎機率計算」這類長尾詞——競爭少、精準度高、轉換率反而更高。策略是：先靠 250+ 個長尾詞各帶穩定小流量累積排名信任，等 DR 上去後再反攻大詞。
   </p>
   <div class="table-wrap">
     <table>
@@ -308,29 +268,25 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
 <div class="section">
   <div class="section-label">// 我們在哪裡</div>
   <div class="section-title">vs 競品 ｜ 真實對比</div>
-
   <div class="table-wrap">
     <table>
       <tr><th>項目</th><th>YS89.fun</th><th>wager.tw（競品 #1）</th><th>168gambling（競品 #2）</th></tr>
-      <tr><td>DR（網域權威分數）</td><td><span class="dr-badge dr-0">0</span></td><td><span class="dr-badge dr-high">54</span></td><td><span class="dr-badge dr-high">57</span></td></tr>
+      <tr><td>DR</td><td><span class="dr-badge dr-0">0</span></td><td><span class="dr-badge dr-high">54</span></td><td><span class="dr-badge dr-high">57</span></td></tr>
       <tr><td>頁面深度</td><td>160+ 頁</td><td>200+ 篇</td><td>180+ 篇</td></tr>
       <tr><td>編輯團隊</td><td>5 人設（已署名）</td><td>無明確署名</td><td>無明確署名</td></tr>
-      <tr><td>世足專屬站</td><td><strong>5 個</strong>（定位完全分離）</td><td>有（嵌入主站頁面）</td><td>有（1 個獨立站）</td></tr>
+      <tr><td>世足專屬站</td><td><strong>5 個</strong>（定位完全分離）</td><td>有（嵌入主站）</td><td>有（1 個獨立站）</td></tr>
       <tr><td>關鍵字策略</td><td>長尾優先（250+ 詞）</td><td>大詞為主</td><td>大詞為主</td></tr>
       <tr><td>SEO 健康度</td><td>86/100</td><td>未公開</td><td>未公開</td></tr>
     </table>
   </div>
-
   <div class="box" style="margin-top:14px; background:#FFFBEB; border-color:#FDE68A">
     <strong style="color:#92400E">⚠️ 競品世足站威脅：</strong>
-    <p style="margin-top:8px; font-size:14px; color:#78350F">競品也在搶世足流量。wager.tw 把世足內容整合在主站（DR 54 加持，排名更容易），168gambling 有獨立世足站。
-    我們的優勢是<strong>「定位分工最細」</strong>——5 站各攻不同搜尋意圖，讓競品無法全面複製；劣勢是 DR 還是 0，需要 PBN 注入權重才能讓這些內容被 Google 看見。</p>
+    <p style="margin-top:8px; font-size:14px; color:#78350F">競品也在搶世足流量。wager.tw 把世足內容整合在主站（DR 54 加持），168gambling 有獨立世足站。我們的優勢是「定位分工最細」——5 站各攻不同搜尋意圖，競品無法全面複製；劣勢是 DR 還是 0，需要 PBN 注入權重才能讓內容被 Google 看見。</p>
   </div>
-
-  <div class="box red" style="margin-top: 12px">
+  <div class="box red" style="margin-top:12px">
     <strong style="color:var(--red)">核心問題：</strong>
-    <p style="margin-top:8px; font-size:14px">我們在「內容品質」、「結構深度」、「定位分工」已超越競品，但<strong>「網域權威分數 DR」差距太大</strong>（我們 0 vs 對手 54+），Google 排名演算法把 DR 當第一關，所以我們寫再多內容也排不上前 10。</p>
-    <p style="margin-top:8px; font-size:14px"><strong>解法：購入 DR 50+ 高權重老域名做 PBN 連結權重傳遞 → 60 天內 ys89.fun DR 從 0 → 15-20。</strong></p>
+    <p style="margin-top:8px; font-size:14px">我們在「內容品質」、「結構深度」、「定位分工」已超越競品，但<strong>「DR 差距太大」</strong>（0 vs 54+），Google 把 DR 當第一關，寫再多也排不上前 10。</p>
+    <p style="margin-top:8px; font-size:14px"><strong>解法：購入 DR 50+ 老域名做 PBN → 60 天內 DR 從 0 → 15-20。</strong></p>
   </div>
 </div>
 
@@ -338,7 +294,6 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
 <div class="section">
   <div class="section-label">// 過程 · 正在進行</div>
   <div class="section-title">這個月做了什麼（含最新進度）</div>
-
   <div class="table-wrap">
     <table>
       <tr><th style="width:220px">工作項目</th><th style="width:100px">狀態</th><th>結果</th></tr>
@@ -349,11 +304,10 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
       <tr><td>4 衛星站定位分離（§9 全完成）</td><td><span class="flag flag-done">✓ 完成</span></td><td>nav 功能分工、賽前賠率頁、footer 軟連結、全站賠率同步更新</td></tr>
       <tr><td>5 衛星站 footprint 隔離</td><td><span class="flag flag-done">✓ 完成</span></td><td>fifa-worldcups.tw 切割到不同 CF 帳號</td></tr>
       <tr><td>Rank Math SEO 衝分</td><td><span class="flag flag-done">✓ 完成</span></td><td>SEO 分數從 77 → 86</td></tr>
-      <tr><td>娛樂城遊戲關鍵字補強</td><td><span class="flag flag-done">✓ 完成</span></td><td>4 大遊戲類別 keywords 完整建立，捕魚機社群素材包已備</td></tr>
-      <tr><td>PBN 策略升版至 v3.2</td><td><span class="flag flag-new">新確認</span></td><td>A站隱匿後盾 + B站進攻雙 cluster 雙策略確認（詳見第 5 節）</td></tr>
+      <tr><td>娛樂城遊戲關鍵字補強</td><td><span class="flag flag-done">✓ 完成</span></td><td>4 大遊戲類別 250+ 長尾關鍵字建立，捕魚機社群素材包已備</td></tr>
+      <tr><td>PBN 策略升版至 v3.2</td><td><span class="flag flag-new">新確認</span></td><td>A站隱匿後盾 + B站進攻雙 cluster 雙策略確認</td></tr>
       <tr><td>2 個 Tier-1 域名採購</td><td><span class="flag flag-ongoing">進行中</span></td><td>DR 50+ 候選篩選中</td></tr>
       <tr><td>PBN 第一階段內容補強</td><td><span class="flag flag-ongoing">進行中</span></td><td>3 個 PBN 站文章寫作中（另一電腦負責）</td></tr>
-      <tr><td>編輯人設 IG/Threads 籌備</td><td><span class="flag flag-ongoing">進行中</span></td><td>社群負責人接手中</td></tr>
     </table>
   </div>
 </div>
@@ -362,23 +316,20 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
 <div class="section">
   <div class="section-label">// 下一階段 · SEO 戰術</div>
   <div class="section-title">SEO 端要做的事 + 需要的預算</div>
-
   <div class="box gold">
     <h3 style="color:var(--gold); font-size:15px; margin-bottom:12px">A. 2 個高權重老域名採購（已批 NT$10 萬）</h3>
     <p style="font-size:14px; margin-bottom:8px">剩餘預算 NT$98,803 用於：</p>
     <ul>
-      <li><strong>Tier-1 域名 A（隱匿後盾站主題）</strong>：DR 50+，NT$30-50K</li>
-      <li><strong>Tier-1 域名 B（進攻雙 cluster 站主題）</strong>：DR 50+，NT$30-50K</li>
+      <li><strong>Tier-1 域名 A（隱匿後盾站）</strong>：DR 50+，NT$30-50K</li>
+      <li><strong>Tier-1 域名 B（進攻雙 cluster 站）</strong>：DR 50+，NT$30-50K</li>
       <li>VPS 主機分散託管：NT$15-25K</li>
       <li>Spamzilla 域名搜尋工具 1 個月：NT$3K</li>
       <li>備用金：NT$5-10K</li>
     </ul>
-    <p style="margin-top:12px; font-size:14px; font-weight:700; color:var(--gold)">預期效果：60 天內 ys89.fun DR 從 0 → 15-20，搜尋排名顯著上升，世足期間吃到 5-10 倍流量。</p>
+    <p style="margin-top:12px; font-size:14px; font-weight:700; color:var(--gold)">預期效果：60 天內 DR 從 0 → 15-20，世足期間吃到 5-10 倍流量。</p>
   </div>
-
-  <h3 class="sub">B. PBN v3.2 雙策略建置（已批預算內）</h3>
-  <p style="color:var(--text-muted); font-size:13px; margin-bottom:14px">v3.2 放棄單一路線，改為 A/B 雙站策略同時進行，規避 footprint 風險的同時最大化連結效益。</p>
-
+  <h3 class="sub">B. PBN v3.2 雙策略建置</h3>
+  <p style="color:var(--text-muted); font-size:13px; margin-bottom:14px">v3.2 改為 A/B 雙站策略同時進行，規避 footprint 風險的同時最大化連結效益。</p>
   <div class="ab-grid">
     <div class="ab-card a">
       <h4>🔒 A 站 — 隱匿後盾</h4>
@@ -387,7 +338,7 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
         <li>不出現在任何 SEO 工具雷達</li>
         <li>不直接連結 ys89.fun，透過中間站中轉</li>
         <li>主題：世足歷史 / 娛樂城老牌回顧</li>
-        <li>目的：建立隱形牆，長期穩定輸送權重</li>
+        <li>目的：長期穩定輸送權重</li>
       </ul>
     </div>
     <div class="ab-card b">
@@ -395,92 +346,30 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
       <ul>
         <li>WordPress 鏡像站，兩個主題 cluster</li>
         <li>戰神賽特 cluster + 捕魚機 cluster</li>
-        <li>各 10 篇深度文章，直連 ys89.fun 目標頁</li>
-        <li>A/B 站上線時間錯開 5-7 天（防時間 footprint）</li>
+        <li>各 10 篇深度文章，直連 ys89.fun</li>
+        <li>A/B 站上線時間錯開 5-7 天</li>
         <li>目的：短期快速提升母站排名</li>
       </ul>
     </div>
   </div>
-
-  <div class="box" style="margin-top:8px; background:#F9FAFB">
-    <p style="font-size:13.5px; color:var(--text-muted)"><strong style="color:var(--text)">6 大 Footprint 防護措施：</strong>不同主機 IP 段 / 不同域名後綴 / 不同 CF 帳號 / 不同 Whois 資訊 / 不同寫作 voice / 上線時間錯開 5-7 天。</p>
+  <div class="box" style="background:#F9FAFB">
+    <p style="font-size:13.5px; color:var(--text-muted)"><strong style="color:var(--text)">6 大 Footprint 防護：</strong>不同主機 IP 段 / 不同域名後綴 / 不同 CF 帳號 / 不同 Whois / 不同寫作 voice / 上線時間錯開 5-7 天</p>
   </div>
 </div>
 
-<!-- 6. 社群 -->
-<div class="section">
-  <div class="section-label">// 下一階段 · 社群行銷</div>
-  <div class="section-title">社群行銷端 — 由社群負責人填寫</div>
-
-  <div class="box social">
-    <div class="placeholder">⚠️ 此區塊由社群負責人填寫</div>
-    <p style="color:var(--text-muted); margin-bottom: 16px; font-size: 13.5px">以下是建議填入的內容架構，社群負責人可依實際狀況補完。</p>
-
-    <h3 class="sub" style="color:var(--blue)">A. 目前社群現況</h3>
-    <div class="table-wrap">
-      <table>
-        <tr><th>項目</th><th>內容</th></tr>
-        <tr><td>管理的帳號數</td><td><div class="input-field">請填入：IG ___ 個 / Threads ___ 個 / FB ___ 個</div></td></tr>
-        <tr><td>5 個人設經營進度</td><td><div class="input-field">請填入：阿凱 / 小娟 / Mark / Jay / 阿翔 各自狀態</div></td></tr>
-        <tr><td>每月觸及人次</td><td><div class="input-field">請填入：合計 ___ 人次</div></td></tr>
-        <tr><td>平均互動率</td><td><div class="input-field">請填入：___ %</div></td></tr>
-        <tr><td>追蹤者總數</td><td><div class="input-field">請填入：___ 人</div></td></tr>
-      </table>
-    </div>
-
-    <h3 class="sub" style="color:var(--blue)">B. 內容生產節奏</h3>
-    <div class="table-wrap">
-      <table>
-        <tr><th>人設</th><th>每週貼文數</th><th>內容主題</th></tr>
-        <tr><td>阿凱（Casey）</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
-        <tr><td>小娟（Joy）</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
-        <tr><td>Mark</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
-        <tr><td>Jay</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
-        <tr><td>阿翔（Sean）</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
-      </table>
-    </div>
-
-    <h3 class="sub" style="color:var(--blue)">C. 下一階段社群計畫</h3>
-    <ul>
-      <li><strong>3 個月目標：</strong><div class="input-field">請填入：總追蹤者目標、月觸及目標、互動率目標</div></li>
-      <li><strong>主要戰術：</strong><div class="input-field">請填入：IG Reels / Threads 串文 / 投票互動 / KOL 合作等</div></li>
-      <li><strong>世足期間特別計畫：</strong><div class="input-field">請填入：Mark 人設加強發文 / 即時賽事 Story / 球迷互動</div></li>
-    </ul>
-
-    <h3 class="sub" style="color:var(--blue)">D. 需要爭取的社群預算</h3>
-    <div class="table-wrap">
-      <table>
-        <tr><th>項目</th><th>預估金額</th><th>用途</th></tr>
-        <tr><td>FB / IG / Google 廣告投放</td><td><div class="input-field">NT$ ___</div></td><td><div class="input-field">月投放策略</div></td></tr>
-        <tr><td>KOL 業配合作</td><td><div class="input-field">NT$ ___（___ 位）</div></td><td><div class="input-field">合作方式</div></td></tr>
-        <tr><td>內容設計工具</td><td><div class="input-field">NT$ ___</div></td><td><div class="input-field">Canva Pro / 設計外包</div></td></tr>
-        <tr><td>影片製作</td><td><div class="input-field">NT$ ___</div></td><td><div class="input-field">Reels / Shorts / TikTok</div></td></tr>
-        <tr><td><strong>社群預算合計</strong></td><td><div class="input-field"><strong>NT$ ___</strong></div></td><td>—</td></tr>
-      </table>
-    </div>
-
-    <h3 class="sub" style="color:var(--blue)">E. 社群面臨的挑戰與需要的支援</h3>
-    <div class="input-field" style="padding: 14px; min-height: 60px">請填入：目前社群經營遇到的問題、人力是否充足、需要 SEO 端配合的事項等</div>
-  </div>
-</div>
-
-<!-- 7. 預算 -->
+<!-- 6. 預算 -->
 <div class="section">
   <div class="section-label">// 預算總表</div>
   <div class="section-title">總共需要多少 ｜ 已批多少 ｜ 還缺多少</div>
-
   <div class="table-wrap">
     <table>
       <tr><th>項目</th><th>金額</th><th>狀態</th></tr>
       <tr><td>SEO — 2 個 Tier-1 域名 + 主機 + 工具</td><td>NT$ 100,000</td><td><span class="flag flag-done">已批</span></td></tr>
-      <tr><td>SEO — 已花（3 個 Tier-2 / 3 域名）</td><td>NT$ 1,197</td><td><span class="flag flag-done">已花</span></td></tr>
-      <tr><td>社群 — 廣告投放（月度）</td><td><div class="input-field">由社群負責人填</div></td><td><span class="flag flag-pending">待爭取</span></td></tr>
-      <tr><td>社群 — KOL 業配</td><td><div class="input-field">由社群負責人填</div></td><td><span class="flag flag-pending">待爭取</span></td></tr>
-      <tr><td>社群 — 內容工具 + 影片製作</td><td><div class="input-field">由社群負責人填</div></td><td><span class="flag flag-pending">待爭取</span></td></tr>
-      <tr><td><strong>總計</strong></td><td><strong>NT$ ___ （待社群填寫後合算）</strong></td><td>—</td></tr>
+      <tr><td>SEO — 已花（3 個 Tier-2/3 域名）</td><td>NT$ 1,197</td><td><span class="flag flag-done">已花</span></td></tr>
+      <tr><td>社群 — 廣告投放 / KOL / 工具 / 影片</td><td colspan="2" style="color:var(--blue); font-size:13px">→ 詳見「社群行銷規劃提案」分頁</td></tr>
+      <tr><td><strong>SEO 小計</strong></td><td><strong>NT$ 100,000</strong></td><td>—</td></tr>
     </table>
   </div>
-
   <div class="box gold" style="margin-top:16px">
     <strong style="color:var(--gold)">業主視角的關鍵問題：</strong>
     <ul style="margin-top:10px">
@@ -492,23 +381,21 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
   </div>
 </div>
 
-<!-- 8. 驗收 -->
+<!-- 7. 驗收 -->
 <div class="section">
   <div class="section-label">// 60 天驗收</div>
   <div class="section-title">怎麼知道有沒有成效</div>
-
   <div class="table-wrap">
     <table>
       <tr><th>項目</th><th>現在</th><th>60 天目標</th><th>達標 / 警戒</th></tr>
       <tr><td>ys89.fun DR</td><td>0</td><td>15-20</td><td>✅ ≥ 10 / ❌ &lt; 5</td></tr>
-      <tr><td>有機搜尋月流量</td><td>~500</td><td>~3,000</td><td>✅ +200% 以上 / ❌ +50% 以下</td></tr>
+      <tr><td>有機搜尋月流量</td><td>~500</td><td>~3,000</td><td>✅ +200% / ❌ +50% 以下</td></tr>
       <tr><td>排名前 10 關鍵字</td><td>5-10 個</td><td>30-50 個</td><td>✅ ≥ 25 個 / ❌ &lt; 15 個</td></tr>
-      <tr><td>PBN v3.2 A 站上線</td><td>籌備中</td><td>14 天內上線</td><td>✅ 上線 + 10 篇 / ❌ 未上線</td></tr>
-      <tr><td>PBN v3.2 B 站上線</td><td>籌備中</td><td>A 站後 5-7 天</td><td>✅ 上線 + 雙 cluster / ❌ 未上線</td></tr>
-      <tr><td>社群總追蹤者</td><td><div class="input-field">由社群填</div></td><td><div class="input-field">由社群填</div></td><td><div class="input-field">由社群填</div></td></tr>
+      <tr><td>PBN v3.2 A 站上線</td><td>籌備中</td><td>14 天內</td><td>✅ 上線 + 10 篇 / ❌ 未上線</td></tr>
+      <tr><td>PBN v3.2 B 站上線</td><td>籌備中</td><td>A 站後 5-7 天</td><td>✅ 雙 cluster / ❌ 未上線</td></tr>
+      <tr><td>社群成效</td><td colspan="3" style="color:var(--blue); font-size:13px">→ 詳見「社群行銷規劃提案」分頁</td></tr>
     </table>
   </div>
-
   <div class="box gold" style="margin-top:16px">
     <strong style="color:var(--gold)">關鍵驗收節點：2026-07-15（世足收割期中段）</strong>
     <ul style="margin-top:10px">
@@ -519,11 +406,198 @@ h3.sub { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 1
   </div>
 </div>
 
-<div class="signature">
-  製作：YS89 SEO 戰術組｜2026-05-20 v2｜內部報告<br>
-  社群行銷部分由社群負責人填寫｜兩部分合併後送業主審閱
+<div class="signature">製作：YS89 SEO 戰術組｜2026-05-20 v2｜內部報告</div>
+
+</div><!-- /container -->
+</div><!-- /tab-seo -->
+
+
+<!-- ═══════════ TAB 2：社群 ═══════════ -->
+<div id="tab-social" class="tab-panel">
+<div class="container">
+
+<!-- 社群 Executive Summary -->
+<div class="section">
+  <div class="section-label" style="color:var(--pink); background:var(--pink-bg); border-color:var(--pink-border)">// 社群行銷規劃提案</div>
+  <div class="section-title">YS89 社群 SEO 引流矩陣</div>
+  <div class="box pink">
+    <p><strong style="color:var(--pink)">核心目標：</strong>以社群矩陣放大論壇內容，搶佔 2026 世足賽前搜尋與討論流量。</p>
+    <div class="divider"></div>
+    <p><strong style="color:var(--pink)">五項核心目標：</strong>① 提升 Google 搜尋可見度 ② 增加論壇活動文曝光 ③ 建立多個社群流量入口 ④ 放大 IG / Threads 討論聲量 ⑤ 提前搶佔世足關鍵字流量</p>
+  </div>
+  <div class="s-metric-grid">
+    <div class="s-metric"><div class="v">4</div><div class="l">主平台</div></div>
+    <div class="s-metric"><div class="v">19</div><div class="l">主題型內容帳號</div></div>
+    <div class="s-metric"><div class="v">15</div><div class="l">真人造勢回覆號</div></div>
+    <div class="s-metric"><div class="v">3–4</div><div class="l">每週固定發文篇數</div></div>
+  </div>
 </div>
 
+<!-- 主帳號 -->
+<div class="section">
+  <div class="section-label" style="color:var(--pink); background:var(--pink-bg); border-color:var(--pink-border)">// 一、主帳號資產</div>
+  <div class="section-title">4 大主平台帳號</div>
+  <div class="table-wrap">
+    <table>
+      <tr><th>平台</th><th>數量</th><th>主要任務</th></tr>
+      <tr><td>Instagram 主帳號</td><td>1</td><td>品牌形象、活動公告、攻略圖文、論壇文章導流</td></tr>
+      <tr><td>Threads 主帳號</td><td>1</td><td>即時話題、問答互動、討論擴散、文章入口引導</td></tr>
+      <tr><td>Facebook 粉專</td><td>1</td><td>活動公告、長文內容、搜尋補強、社群信任建立</td></tr>
+      <tr><td>YouTube</td><td>1</td><td>承接 Shorts、教學影片、世足資訊影音化內容</td></tr>
+    </table>
+  </div>
 </div>
+
+<!-- 內容矩陣 -->
+<div class="section">
+  <div class="section-label" style="color:var(--pink); background:var(--pink-bg); border-color:var(--pink-border)">// 二、內容矩陣帳號分工</div>
+  <div class="section-title">19 個主題帳號 + 15 個真人造勢號</div>
+
+  <h3 class="sub">① 專職編輯人設帳號（5 個）</h3>
+  <div class="acct-grid">
+    <div class="acct-card"><div class="acct-name">阿奇</div><div class="acct-role">攻略整理・活動導讀</div><div class="acct-desc">將論壇文章轉成社群可讀版本，協助導流至完整內容</div></div>
+    <div class="acct-card"><div class="acct-name">扁扁</div><div class="acct-role">口語懶人包</div><div class="acct-desc">用簡單白話整理活動、攻略與玩家常見問題</div></div>
+    <div class="acct-card"><div class="acct-name">Mark</div><div class="acct-role">理性分析・數據說明</div><div class="acct-desc">負責遊戲機制、賽事資訊與策略型內容拆解</div></div>
+    <div class="acct-card"><div class="acct-name">面具男</div><div class="acct-role">排雷・內行角度</div><div class="acct-desc">負責提醒型內容、避坑觀點與高討論度話題</div></div>
+    <div class="acct-card"><div class="acct-name">凱凱</div><div class="acct-role">玩家視角・活動互動</div><div class="acct-desc">負責活動介紹、留言互動與社群討論承接</div></div>
+  </div>
+
+  <h3 class="sub">② 老虎機遊戲評測帳號（4 個）</h3>
+  <div class="acct-grid">
+    <div class="acct-card"><div class="acct-name">多多</div><div class="acct-role">遊戲體驗・玩法介紹</div><div class="acct-desc">針對熱門老虎機製作玩法說明、免費遊戲介紹與試玩心得</div></div>
+    <div class="acct-card"><div class="acct-name">口瓜</div><div class="acct-role">口語化評測</div><div class="acct-desc">用玩家口吻包裝遊戲特色，提高社群閱讀與互動意願</div></div>
+    <div class="acct-card"><div class="acct-name">路比</div><div class="acct-role">新手攻略</div><div class="acct-desc">整理新手常見問題、入門玩法與遊戲避坑內容</div></div>
+    <div class="acct-card"><div class="acct-name">阿聽</div><div class="acct-role">機制拆解</div><div class="acct-desc">針對倍率、買免遊、免費遊戲機制進行分析型內容輸出</div></div>
+  </div>
+
+  <h3 class="sub">③ 體育賽事新聞分析帳號（4 個）</h3>
+  <div class="acct-grid">
+    <div class="acct-card"><div class="acct-name">KK</div><div class="acct-role">體育新聞・賽事觀察</div><div class="acct-desc">負責日常體育資訊、賽事話題與討論導入</div></div>
+    <div class="acct-card"><div class="acct-name">蟹蟹世足觀測站</div><div class="acct-role">世足資訊懶人包</div><div class="acct-desc">負責世界盃賽程、台灣時間、直播資訊與觀賽指南</div></div>
+    <div class="acct-card"><div class="acct-name">世足大財神</div><div class="acct-role">熱度・賠率話題</div><div class="acct-desc">負責冠軍賠率、熱門球隊、投注前觀察類內容</div></div>
+    <div class="acct-card"><div class="acct-name">強棒大叔｜世足排雷週記</div><div class="acct-role">賽前排雷・球迷視角</div><div class="acct-desc">負責爆冷提醒、賽前觀察、熱門對戰分析</div></div>
+  </div>
+
+  <h3 class="sub">④ 百家樂帳號（2 個）</h3>
+  <div class="acct-grid">
+    <div class="acct-card"><div class="acct-name">別落賽了百家打起來</div><div class="acct-role">口語玩家感</div><div class="acct-desc">負責百家樂新手問題、玩家討論與口語化教學</div></div>
+    <div class="acct-card"><div class="acct-name">菲菲百家試玩報告</div><div class="acct-role">試玩心得・新手視角</div><div class="acct-desc">負責百家樂試玩、玩法說明與輕攻略內容</div></div>
+  </div>
+
+  <h3 class="sub">⑤ 彩票棋牌帳號（2 個）</h3>
+  <div class="acct-grid">
+    <div class="acct-card"><div class="acct-name">強哥不盲打｜牌局通緝犯</div><div class="acct-role">棋牌策略・牌局判斷</div><div class="acct-desc">負責牌局觀念、玩家常見錯誤與實戰情境內容</div></div>
+    <div class="acct-card"><div class="acct-name">三四人雀戰特訓班</div><div class="acct-role">麻將・多人棋牌教學</div><div class="acct-desc">負責麻將觀念、新手訓練與棋牌互動型內容</div></div>
+  </div>
+
+  <h3 class="sub">⑥ 捕魚帳號（2 個）</h3>
+  <div class="acct-grid">
+    <div class="acct-card"><div class="acct-name">魚池阿智</div><div class="acct-role">冷靜策略分析</div><div class="acct-desc">負責魚種、倍率、炮台火力與新手避坑內容</div></div>
+    <div class="acct-card"><div class="acct-name">捕魚老司機阿網</div><div class="acct-role">老玩家經驗分享</div><div class="acct-desc">負責捕魚機實戰心得、Boss 魚判斷與火力節奏</div></div>
+  </div>
+
+  <h3 class="sub">⑦ 真人 IG / Threads 造勢回覆號（15 個）</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>類型</th><th>分工用途</th></tr>
+      <tr><td>新手提問型</td><td>提出活動、玩法、賽程、領取方式等問題，讓主帳號或人設帳號回覆承接</td></tr>
+      <tr><td>老玩家補充型</td><td>在留言區補充經驗與觀察，讓貼文討論更自然</td></tr>
+      <tr><td>看熱鬧討論型</td><td>提高 Threads 與 IG 留言互動，製造社群話題感</td></tr>
+      <tr><td>體育球迷型</td><td>配合世界盃內容討論賽程、球隊、直播與熱門對戰</td></tr>
+      <tr><td>遊戲體驗型</td><td>回應遊戲攻略、評測與活動內容，增加玩家視角</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 時程 -->
+<div class="section">
+  <div class="section-label" style="color:var(--pink); background:var(--pink-bg); border-color:var(--pink-border)">// 三、世足賽前內容佈局時程</div>
+  <div class="section-title">倒數 30 天衝刺計畫</div>
+  <div class="timeline">
+    <div class="tl-row"><div class="tl-period">倒數 30–20 天</div><div class="tl-content">賽程、台灣時間、直播資訊、世界盃懶人包</div></div>
+    <div class="tl-row"><div class="tl-period">倒數 20–10 天</div><div class="tl-content">分組解析、熱門球隊、冠軍賠率、賽制說明</div></div>
+    <div class="tl-row"><div class="tl-period">倒數 10–3 天</div><div class="tl-content">開幕戰分析、熱門賽事提醒、投注前觀察</div></div>
+    <div class="tl-row"><div class="tl-period">開賽後</div><div class="tl-content">每日賽事重點、賽後回顧、爆冷排雷與隔日預測</div></div>
+  </div>
+</div>
+
+<!-- 投資後可放大的執行項目 -->
+<div class="section">
+  <div class="section-label" style="color:var(--pink); background:var(--pink-bg); border-color:var(--pink-border)">// 四、投資後可放大的執行項目</div>
+  <div class="section-title">預算到位後立即啟動的 7 項</div>
+  <div class="table-wrap">
+    <table>
+      <tr><th>#</th><th>項目</th><th>說明</th></tr>
+      <tr><td>1</td><td>內容排程系統</td><td>建立每週固定發文表，確保帳號穩定產出</td></tr>
+      <tr><td>2</td><td>人設帳號語氣設定</td><td>為每個帳號建立固定口吻與內容任務手冊</td></tr>
+      <tr><td>3</td><td>數據追蹤週報</td><td>追蹤曝光、互動、留言、收藏、點擊與論壇導流成效</td></tr>
+      <tr><td>4</td><td>世足即時內容模板</td><td>預先建立賽前、賽中、賽後內容模板，開賽即可快速發布</td></tr>
+      <tr><td>5</td><td>視覺模板系統</td><td>建立各類內容模板，提高大量產出效率</td></tr>
+      <tr><td>6</td><td>真人號互動腳本庫</td><td>讓 15 個真人號具備不同語氣與互動模式</td></tr>
+      <tr><td>7</td><td>AB 測試制度</td><td>針對不同主題測試文案角度，找出最高互動率的策略</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 已做 / 待完成 -->
+<div class="section">
+  <div class="section-label" style="color:var(--pink); background:var(--pink-bg); border-color:var(--pink-border)">// 五、現況總結</div>
+  <div class="section-title">已做 vs 待完成</div>
+  <div class="ab-grid">
+    <div class="ab-card b">
+      <h4>✅ 已完成</h4>
+      <ul>
+        <li>4 個主平台帳號設置（IG / Threads / FB / YT）</li>
+        <li>5 個編輯人設帳號規劃完成</li>
+        <li>4 個老虎機評測帳號規劃完成</li>
+        <li>4 個體育賽事帳號規劃完成</li>
+        <li>2 個百家樂帳號規劃完成</li>
+        <li>2 個棋牌彩票帳號規劃完成</li>
+        <li>2 個捕魚帳號規劃完成</li>
+        <li>15 個真人造勢回覆號配置完成</li>
+      </ul>
+    </div>
+    <div class="ab-card a">
+      <h4>⏳ 待完成（需預算支持）</h4>
+      <ul>
+        <li>內容排程系統化</li>
+        <li>人設帳號語氣設定手冊</li>
+        <li>世足即時內容模板建立</li>
+        <li>視覺模板系統建立</li>
+        <li>真人號互動腳本庫建置</li>
+        <li>數據追蹤週報機制上線</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box pink" style="margin-top:16px">
+    <strong style="color:var(--pink)">不投資的主要風險：</strong>
+    <ul style="margin-top:10px">
+      <li>競品可能已先完成搜尋收錄與社群卡位</li>
+      <li>帳號養成、內容收錄、互動累積與使用者信任都需要時間</li>
+      <li>越晚投入，流量承接效率越低</li>
+      <li><strong>後續追趕成本預估將提高 3–5 倍</strong></li>
+    </ul>
+  </div>
+
+  <div class="box gold" style="margin-top:14px">
+    <strong style="color:var(--gold)">關鍵時機：2026-06-11 世足開幕，倒數 22 天</strong>
+    <p style="margin-top:8px; font-size:14px">現在是世足行銷投資的最後關鍵窗口。社群帳號需要時間養成信任度，開賽後才投入等於錯過整個預熱期。</p>
+  </div>
+</div>
+
+<div class="signature">製作：YS89 社群行銷部｜2026-05-20｜內部提案報告</div>
+
+</div><!-- /container -->
+</div><!-- /tab-social -->
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+</script>
 </body>
 </html>
