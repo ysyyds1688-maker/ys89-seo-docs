@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>老域名查驗指南 — Wayback + Ahrefs 完整對照</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang TC", sans-serif;
+  max-width: 1100px; margin: 0 auto; padding: 30px 20px;
+  background: #fafafa; color: #222; line-height: 1.7;
+}
+h1 { border-bottom: 3px solid #2563eb; padding-bottom: 10px; color: #1e3a8a; }
+h2 { background: #2563eb; color: #fff; padding: 10px 16px; border-radius: 6px; margin-top: 40px; }
+h3 { color: #1e3a8a; border-left: 4px solid #2563eb; padding-left: 12px; margin-top: 28px; }
+.callout {
+  background: #fef3c7; border-left: 5px solid #f59e0b;
+  padding: 14px 18px; margin: 16px 0; border-radius: 4px;
+}
+.callout-good { background: #d1fae5; border-left-color: #10b981; }
+.callout-bad { background: #fee2e2; border-left-color: #ef4444; }
+table { border-collapse: collapse; width: 100%; margin: 16px 0; background: #fff; }
+th, td { border: 1px solid #d1d5db; padding: 8px 12px; text-align: left; }
+th { background: #1e3a8a; color: #fff; font-weight: 600; }
+tr:nth-child(even) td { background: #f9fafb; }
+code {
+  background: #eef2ff; padding: 2px 8px; border-radius: 4px;
+  font-family: "SF Mono", Menlo, Consolas, monospace; color: #4338ca;
+}
+.step {
+  background: #fff; border: 1px solid #d1d5db; border-radius: 8px;
+  padding: 16px 20px; margin: 12px 0;
+}
+.step-num {
+  display: inline-block; background: #2563eb; color: #fff;
+  width: 28px; height: 28px; border-radius: 50%; text-align: center;
+  line-height: 28px; font-weight: 700; margin-right: 10px;
+}
+.flag-ok { color: #059669; font-weight: 700; }
+.flag-warn { color: #d97706; font-weight: 700; }
+.flag-bad { color: #dc2626; font-weight: 700; }
+.url-box {
+  background: #1e293b; color: #fbbf24; padding: 10px 14px;
+  border-radius: 6px; font-family: monospace; margin: 10px 0;
+  word-break: break-all;
+}
+.checklist li { margin: 8px 0; }
+.compare-card {
+  display: inline-block; vertical-align: top; width: 48%;
+  margin: 1%; padding: 16px; border-radius: 8px; background: #fff;
+  border: 2px solid #d1d5db;
+}
+.compare-card.good { border-color: #10b981; }
+.compare-card.bad { border-color: #ef4444; }
+@media (max-width: 700px) {
+  .compare-card { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<h1>🔍 老域名查驗完整指南</h1>
+<p><strong>對象：</strong>YS89 老闆 / 用戶<br>
+<strong>用途：</strong>篩選 ExpiredDomains.net 候選域名前的盡職調查 SOP<br>
+<strong>更新：</strong>2026-05-20｜阿翔（Sean）製作</p>
+
+<div class="callout">
+<strong>📌 一個域名要過 3 關才能買：</strong>
+<ol>
+<li>Wayback Machine（看歷史用途，3 分鐘）</li>
+<li>Ahrefs Backlink Checker（看連結品質，2 分鐘）</li>
+<li>Google 搜尋（看現存殘留，1 分鐘）</li>
+</ol>
+合計 6 分鐘/域名。30 個域名約 3 小時可篩完。
+</div>
+
+<div class="callout-good callout">
+<strong>⚡ 但你可以更快 — 用「極速 SOP」45 分鐘篩完 30 個</strong><br>
+詳見下方「⚡ 極速 SOP」段落。核心邏輯：<strong>Ahrefs 先當篩子淘汰 70%，活下來的才回 Wayback 看歷史</strong>。
+</div>
+
+<h2>⚡ 極速 SOP（推薦流程）</h2>
+
+<h3>🎯 核心觀念：DR 是 Ahrefs 已經幫你做的「總體判斷」</h3>
+<p>Ahrefs 的 DR (Domain Rating) 是綜合了「連結數量、來源網域品質、流量、權威性」算出來的<strong>單一分數</strong>。換句話說，<strong>Ahrefs 演算法已經看完所有訊號才給你 DR 數字</strong>。</p>
+<p>所以你要做的，不是手動分析 BL / LW / dofollow → 而是<strong>用 DR 當第一道篩</strong>，DR &lt; 10 直接 pass，根本不用花時間看其他數字。</p>
+
+<h3>📋 兩階段流程</h3>
+
+<div class="step">
+<span class="step-num">1</span><strong>第一階段：純看 Ahrefs（每個 30 秒，30 個共 15 分鐘）</strong>
+<ul>
+<li>把 30 個域名分批貼進 Ahrefs Backlink Checker</li>
+<li>每個只記 3 個數字：<strong>DR / RD（Linking websites）/ LW dofollow%</strong></li>
+<li>按照下方「秒判表」標記 ✅ / ⚠️ / ❌</li>
+<li>結束後通常會剩 5-10 個 ✅ 候選</li>
+</ul>
+</div>
+
+<div class="step">
+<span class="step-num">2</span><strong>第二階段：只對 ✅ 候選做 Wayback + Google（每個 5 分鐘，10 個共 50 分鐘）</strong>
+<ul>
+<li>用後面教的「3 點抽樣法」+「Summary 速判法」看歷史</li>
+<li>確認後決定最終購買清單</li>
+</ul>
+</div>
+
+<h3>🚦 Ahrefs 秒判表（最重要）</h3>
+<table>
+<thead><tr><th>情境</th><th>動作</th><th>原因</th></tr></thead>
+<tbody>
+<tr><td><span class="flag-bad">DR &lt; 10</span></td><td>❌ 直接淘汰，不用看其他數字</td><td>Ahrefs 已經判定連結品質低</td></tr>
+<tr><td>DR 10-14 + LW dofollow 30-60%</td><td>⚠️ 候補，回 Wayback</td><td>邊緣可救</td></tr>
+<tr><td><span class="flag-ok">DR ≥ 15 + LW dofollow 30-60%</span></td><td>✅ 進第二輪</td><td>連結結構健康</td></tr>
+<tr><td>DR ≥ 15 但 LW dofollow &gt; 80%</td><td>❌ 淘汰（PBN 痕跡）</td><td>過度集中 dofollow = 鏈接農場</td></tr>
+<tr><td>DR ≥ 15 但 LW dofollow &lt; 20%</td><td>❌ 淘汰（假連結）</td><td>幾乎全 nofollow = 沒實質權重</td></tr>
+</tbody>
+</table>
+
+<h3>🤔 為什麼有兩個 dofollow%？怎麼讀？</h3>
+<p>Ahrefs 結果頁會顯示兩個百分比，意思不同：</p>
+<table>
+<thead><tr><th>數字</th><th>意思</th></tr></thead>
+<tbody>
+<tr><td><strong>BL XXk (98% dofollow)</strong></td><td>所有反向連結裡，98% 是 dofollow 類型</td></tr>
+<tr><td><strong>LW 115 (23% dofollow)</strong></td><td>115 個來源網域裡，只有 23% 的網域有 dofollow 連結過來（約 26 個網域）</td></tr>
+</tbody>
+</table>
+
+<div class="callout-bad callout">
+<strong>典型 spam 訊號：BL dofollow 高 + LW dofollow 低（例如 98% / 23%）</strong><br>
+解讀：<strong>少數網站灌水大量 dofollow 連結</strong>（如 footer/sidebar/comment spam）。<br>
+算給你看：26 個 dofollow 來源網域 × 平均 140 條連結 ≈ 3,600 條 dofollow BL = 鏈接農場特徵。
+</div>
+
+<div class="callout-good callout">
+<strong>健康訊號：BL 跟 LW 的 dofollow% 接近（例如 BL 60% / LW 55%）</strong><br>
+解讀：連結分布平均，每個來源網域只丟少量連結 = 自然引用模式。
+</div>
+
+<h3>📊 真實對照（你之前看到的兩個 case）</h3>
+<div class="compare-card bad">
+<strong>❌ NewBoostOutlet.com</strong>
+<table style="margin:8px 0">
+<tr><td>DR</td><td>3.2</td></tr>
+<tr><td>BL</td><td>79K</td></tr>
+<tr><td>LW (RD)</td><td>229</td></tr>
+<tr><td>BL dofollow</td><td>98%</td></tr>
+<tr><td>LW dofollow</td><td>52%</td></tr>
+</table>
+DR 太低 + BL dofollow 異常高 → ❌ 直接淘汰
+</div>
+<div class="compare-card bad">
+<strong>❌ 假設域名 X</strong>
+<table style="margin:8px 0">
+<tr><td>DR</td><td>2.2</td></tr>
+<tr><td>BL</td><td>3.7K</td></tr>
+<tr><td>LW (RD)</td><td>115</td></tr>
+<tr><td>BL dofollow</td><td>98%</td></tr>
+<tr><td>LW dofollow</td><td>23%</td></tr>
+</table>
+DR 2.2 一票否決 → ❌ 不用再分析其他數字
+</div>
+
+<h3>⚠️ 唯一例外：超老域名（ABY &lt; 2008）</h3>
+<p>如果 ExpiredDomains 表上 ABY &lt; 2008（17 年以上老域名），就算 DR 只有 8-12 也值得回 Wayback 看一眼，因為<strong>老域名歷史品牌價值 &gt; Ahrefs 數字</strong>。但這種域名通常是「整批 spam 倒貼」狀態，買回來要花時間 disavow 清連結。</p>
+<p>ABY 2010-2015 的「中老域名」完全照 DR 標準篩，不破例。</p>
+
+<hr style="margin: 40px 0;">
+
+<h2>🟢 第一關：Wayback Machine 歷史回溯（僅對 Ahrefs ✅ 候選做）</h2>
+
+<h3>🌐 工具網址</h3>
+<div class="url-box">https://web.archive.org/web/*/[你的域名]</div>
+<p>例：<code>https://web.archive.org/web/*/gamezforums.com</code></p>
+
+<div class="callout-good callout">
+<strong>🚀 30 秒速判法：直接點頁面頂端的「Summary」按鈕</strong><br>
+Wayback 頁面頂端有 6 個分頁：Calendar / Collections / Changes / <strong>Summary</strong> / Site Map / URLs<br>
+點「Summary」會看到該域名歷年的 <strong>Content type / MIME types / Top hostnames</strong> 統計摘要 → 一眼看出是不是賭博站（casino / porn / pharma 等字眼會出現在 hostname 列表）<br>
+<strong>Summary 乾淨 → 才進入下方 3 點抽樣；Summary 髒 → 直接淘汰，省 5 分鐘</strong>
+</div>
+
+<h3>🎯 3 點抽樣法則（只看 3 個快照，不要每個都看）</h3>
+<p>過期域名最常見的污染模式：</p>
+<pre style="background:#f3f4f6;padding:12px;border-radius:6px;font-family:monospace;">
+2002-2010：正常英文部落格 ✓
+2011-2018：被駭客接管 → 改成賭博站 ❌（最高條通常在這裡）
+2019-2024：站主放棄，停止更新
+2025：域名到期釋出 → 你買到的是這個版本
+</pre>
+<p>如果只看「早期 + 晚期」會誤判為「以前正常、後來放著」→ <strong>中期被駭的黑歷史會漏掉</strong>。所以必須早/中/晚各看 1 個。</p>
+
+<table>
+<thead><tr><th>抽樣點</th><th>為什麼選</th><th>怎麼選年份</th></tr></thead>
+<tbody>
+<tr><td><strong>早期</strong></td><td>看原始用途</td><td>頁面頂端時間軸<strong>最左邊</strong>有黑條的年份</td></tr>
+<tr><td><strong>中期</strong></td><td>看有沒有被駭/被改用途（最關鍵）</td><td>時間軸<strong>最高的 1-2 條</strong>所在的年份</td></tr>
+<tr><td><strong>晚期</strong></td><td>看到期前最後狀態</td><td>時間軸<strong>最右邊</strong>有黑條的年份（通常 2023-2024）</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<strong>💡 為什麼「最高條」一定要看？</strong><br>
+最高條 = 那年快照最多 = 那年被爬最頻繁 = 通常是「站爆紅」<strong>或</strong>「站被駭」的年份。<br>
+被駭/改用途的站通常會被 spam bot 大量爬取，所以最高條年份是<strong>污染最可能發生的時間點</strong>，必看。
+</div>
+
+<h3>📋 完整操作步驟（5 步）</h3>
+
+<h3>📋 操作步驟（5 步）</h3>
+
+<div class="step">
+<span class="step-num">1</span><strong>進入 Wayback 頁面後，先看「最上方說明」</strong>
+<ul>
+<li><code>Saved X times between [首次年] and [最後年]</code></li>
+<li>記下 3 個數字：<strong>首次年</strong>、<strong>最後年</strong>、<strong>X (快照數)</strong></li>
+</ul>
+<div class="callout-good callout">
+<strong>✅ 好訊號：</strong>首次年 &lt; 2015，快照數 &gt; 30，最後年 ≥ 2024（代表一直被使用）
+</div>
+<div class="callout-bad callout">
+<strong>❌ 壞訊號：</strong>首次年 ≥ 2020（不是真老域名）或 快照數 &lt; 10（沒被認真經營過）
+</div>
+</div>
+
+<div class="step">
+<span class="step-num">2</span><strong>看「年份長條圖」（黑色直條）找活躍期</strong>
+<ul>
+<li>長條越高 = 那年快照越多</li>
+<li>挑 <strong>3 個年份代表期</strong>抽查：早期（2010 前）/ 中期（2015-2018）/ 晚期（2022-2024）</li>
+<li>為什麼分 3 期？因為**過期域名最常見的污染是「中期被駭」**——本來是正常公司站，2017 年被改成賭博/藥品站。</li>
+</ul>
+</div>
+
+<div class="step">
+<span class="step-num">3</span><strong>點選某個年份 → 進入該年的月曆視圖</strong>
+<ul>
+<li>把上方的時間滑桿往右拉，或直接點時間軸上的年份</li>
+<li>看到該年的 12 個月份月曆</li>
+</ul>
+</div>
+
+<div class="step">
+<span class="step-num">4</span><strong>點月曆上的「藍/綠圓點」進入真實快照</strong>
+<ul>
+<li>🔵 藍點 = 普通快照</li>
+<li>🟢 綠點 = HTTP 200 成功快照</li>
+<li>隨便點 1 個（建議點該月最大的點）</li>
+<li>網頁會載入「該天該網站的長相」</li>
+</ul>
+</div>
+
+<div class="step">
+<span class="step-num">5</span><strong>判讀網站內容 → 填表</strong>
+<table>
+<thead><tr><th>填入欄位</th><th>要看什麼</th><th>範例</th></tr></thead>
+<tbody>
+<tr><td>Wayback_主題</td><td>網站在賣什麼/做什麼</td><td>「遊戲論壇」「法國輪胎店」「個人部落格」</td></tr>
+<tr><td>Wayback_語言</td><td>主要語言</td><td>「英文」「法文」「簡中」「繁中」「土耳其文」「越南文」</td></tr>
+<tr><td>Wayback_有無賭博成人藥品</td><td>有任一就填 Y</td><td>Y / N</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>🚦 紅燈黑名單（任一出現就 ❌ 直接淘汰）</h3>
+<div class="callout-bad callout">
+<ul class="checklist">
+<li>🎰 賭場 / 老虎機 / 百家樂 / casino / poker / bet / slot 字樣</li>
+<li>🔞 成人/色情圖片 / 裸露 / xxx 字樣</li>
+<li>👜 仿冒精品（fake Nike / Gucci outlet / cheap jerseys）</li>
+<li>💊 藥品（cialis / viagra / pharmacy / 壯陽）</li>
+<li>📱 中國簡體中文非正規站（高機率被牆，Google 已標記）</li>
+<li>🏦 加密貨幣詐騙 / ICO / forex 套利</li>
+<li>📚 文憑造假（diploma / certificate / fake degree）</li>
+</ul>
+</div>
+
+<h3>🟢 綠燈白名單（看到任一就加分）</h3>
+<div class="callout-good callout">
+<ul class="checklist">
+<li>🏢 小公司形象站（建築 / 顧問 / 法律事務所）</li>
+<li>📝 個人部落格 / 旅遊網誌 / 食譜站</li>
+<li>🎮 遊戲論壇 / 玩家社群（對體育站超適合）</li>
+<li>🏃 運動俱樂部 / 健身房 / 訓練營</li>
+<li>📰 地方新聞站 / 地區資訊網</li>
+<li>🛒 已停業的電商（家具 / 服飾 / 工具）</li>
+<li>🅿️ Domain Parking 頁（從未被使用，最乾淨）</li>
+</ul>
+</div>
+
+<hr style="margin: 40px 0;">
+
+<h2>🟡 第二關：Ahrefs 反向連結檢查</h2>
+
+<h3>🌐 工具網址</h3>
+<div class="url-box">https://ahrefs.com/backlink-checker</div>
+<p><strong>注意：</strong>免費版每日有額度上限（約 5-10 次/天/IP），用完就要等隔天。建議優先查 Wayback 過關的候選。</p>
+
+<h3>📋 操作步驟</h3>
+
+<div class="step">
+<span class="step-num">1</span>進入 Ahrefs backlink checker 網頁
+</div>
+<div class="step">
+<span class="step-num">2</span>輸入域名（不用加 https://），按 <strong>Check backlinks</strong>
+</div>
+<div class="step">
+<span class="step-num">3</span>等 5-10 秒，會跳出彈窗顯示 4 個數字
+</div>
+
+<h3>📊 你會看到的 4 個數字 → 對應填入哪欄</h3>
+<table>
+<thead><tr><th>Ahrefs 顯示</th><th>填入欄位</th><th>合格標準</th></tr></thead>
+<tbody>
+<tr><td><strong>Domain Rating (DR)</strong></td><td>Ahrefs_DR</td><td><span class="flag-ok">≥15 ✓</span> / <span class="flag-warn">10-14 ⚠️</span> / <span class="flag-bad">&lt;10 ❌</span></td></tr>
+<tr><td><strong>Backlinks</strong></td><td>Ahrefs_BL總數</td><td>參考用（多不一定好）</td></tr>
+<tr><td><strong>Linking websites</strong></td><td>Ahrefs_RD連結網域數</td><td><span class="flag-ok">≥30 ✓</span> / <span class="flag-warn">10-29 ⚠️</span> / <span class="flag-bad">&lt;10 ❌</span></td></tr>
+<tr><td><strong>% dofollow</strong></td><td>Ahrefs_dofollow百分比</td><td><span class="flag-ok">30-80% ✓</span> / <span class="flag-bad">&gt;90% ❌</span>（PBN 訊號）</td></tr>
+</tbody>
+</table>
+
+<div class="callout-bad callout">
+<strong>⚠️ 關鍵警訊：dofollow 比例 &gt; 90%</strong><br>
+自然網站 dofollow 通常 30-60%（混合社群、Wikipedia 等多種 nofollow）。<br>
+<strong>98% dofollow ≈ 被 PBN/鏈接農場做過 SEO</strong>，Google 早已內部標記 → ❌ 直接淘汰
+</div>
+
+<h3>🎯 兩種典型案例對照</h3>
+
+<div class="compare-card good">
+<strong>✅ 好域名範例</strong>
+<table style="margin:8px 0">
+<tr><td>DR</td><td>18</td></tr>
+<tr><td>BL</td><td>2,400</td></tr>
+<tr><td>RD</td><td>85</td></tr>
+<tr><td>dofollow</td><td>54%</td></tr>
+</table>
+DR 健康、來源網域多樣、dofollow 自然比例 → 真實老站
+</div>
+
+<div class="compare-card bad">
+<strong>❌ 垃圾域名範例（NewBoostOutlet.com）</strong>
+<table style="margin:8px 0">
+<tr><td>DR</td><td>3.2</td></tr>
+<tr><td>BL</td><td>79K</td></tr>
+<tr><td>RD</td><td>229</td></tr>
+<tr><td>dofollow</td><td>98%</td></tr>
+</table>
+BL 巨多但 DR 低 + dofollow 異常 → 鏈接農場操作過
+</div>
+
+<hr style="margin: 40px 0;">
+
+<h2>🔵 第三關：Google 搜尋殘留</h2>
+
+<h3>📋 兩個查詢</h3>
+
+<div class="step">
+<span class="step-num">1</span><strong>查殘留索引</strong>
+<div class="url-box">site:[域名]</div>
+<p>例：<code>site:gamezforums.com</code></p>
+<ul>
+<li>Google 結果頁會寫「約 X 項結果」</li>
+<li>填入 <strong>Google_site殘留頁數</strong></li>
+<li>&gt;100 頁 = 很好（Google 還記得）</li>
+<li>&lt;10 頁 = 已被淡忘（也 OK，反正要重建內容）</li>
+</ul>
+</div>
+
+<div class="step">
+<span class="step-num">2</span><strong>查黑歷史</strong>
+<div class="url-box">"[域名]"（含引號）</div>
+<p>例：<code>"gamezforums.com"</code></p>
+<ul>
+<li>看有沒有負面新聞：詐騙報導 / 被列黑名單 / spam 抱怨</li>
+<li>填入 <strong>Google_黑歷史新聞</strong>：Y（有）/ N（無）</li>
+</ul>
+</div>
+
+<hr style="margin: 40px 0;">
+
+<h2>🏆 最終判定邏輯</h2>
+
+<table>
+<thead><tr><th>等級</th><th>條件</th><th>動作</th></tr></thead>
+<tbody>
+<tr>
+<td><span class="flag-ok">✅ 必買</span></td>
+<td>Wayback 綠燈 + DR ≥ 20 + RD ≥ 50 + dofollow 30-70% + 無黑歷史</td>
+<td>立即出價（NT$ 5,000-15,000）</td>
+</tr>
+<tr>
+<td><span class="flag-ok">✅ 可買</span></td>
+<td>Wayback 綠燈 + DR ≥ 15 + RD ≥ 30 + dofollow ≤ 80%</td>
+<td>可出價（NT$ 2,000-8,000）</td>
+</tr>
+<tr>
+<td><span class="flag-warn">⚠️ 觀望</span></td>
+<td>條件部分達標，例如 DR 12 但其他都好</td>
+<td>低價搶（NT$ &lt; 2,000）</td>
+</tr>
+<tr>
+<td><span class="flag-bad">❌ 放棄</span></td>
+<td>任一紅燈（賭博/成人歷史/dofollow&gt;90%/DR&lt;10）</td>
+<td>不買</td>
+</tr>
+</tbody>
+</table>
+
+<hr style="margin: 40px 0;">
+
+<h2>📤 填完表回報流程</h2>
+
+<ol style="font-size: 16px;">
+<li>打開 <code>老域名查驗表_2026-05-20.csv</code></li>
+<li>對每個域名跑完上面 3 關，填入對應欄位</li>
+<li>Ahrefs 那欄如果免費額度用完，先空著 — Wayback + Google 就足夠淘汰 70%</li>
+<li>填完存檔</li>
+<li>回我「填完了」或截圖整張表</li>
+<li>我會逐行幫你判定 ✅ / ⚠️ / ❌</li>
+<li>最終出 5 個推薦購買清單 + 預估價</li>
+</ol>
+
+<div class="callout">
+<strong>⏰ 預估時間：</strong>30 個域名 × 6 分鐘 ≈ 3 小時。<br>
+可以邊看影片邊做，這是「重複勞動」不是「腦力勞動」。
+</div>
+
+<hr style="margin: 40px 0;">
+
+<p style="text-align: center; color: #6b7280; font-size: 14px;">
+製作：阿翔（Sean）｜YS89 域名採購 SOP v1.0｜2026-05-20<br>
+更新版本請見：<code>/Users/user/Desktop/YS89-專案整理/老域名查驗指南.html</code>
+</p>
+
+</body>
+</html>
