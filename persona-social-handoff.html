@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 編輯人設 IG / Threads 經營交接手冊</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  max-width: 1080px; margin: 0 auto; padding: 30px 20px;
+  background: #fafafa; color: #1a1a1a; line-height: 1.7; font-size: 15px;
+}
+h1 { border-bottom: 3px solid #ec4899; padding-bottom: 10px; color: #831843; }
+h2 { background: #ec4899; color: #fff; padding: 12px 18px; border-radius: 6px; margin-top: 38px; font-size: 20px; }
+h3 { color: #831843; border-left: 4px solid #ec4899; padding-left: 14px; margin-top: 24px; font-size: 17px; }
+h4 { color: #831843; margin-top: 16px; }
+.callout {
+  background: #fef3c7; border-left: 5px solid #f59e0b;
+  padding: 14px 18px; margin: 16px 0; border-radius: 4px;
+}
+.callout-danger { background: #fee2e2; border-left-color: #ef4444; }
+.callout-success { background: #d1fae5; border-left-color: #10b981; }
+.persona-card {
+  background: #fff; border: 2px solid #e5e7eb; border-radius: 10px;
+  padding: 22px; margin: 18px 0;
+}
+.persona-card.casey { border-color: #f97316; }
+.persona-card.joy { border-color: #ec4899; }
+.persona-card.mark { border-color: #3b82f6; }
+.persona-card.jay { border-color: #10b981; }
+.persona-card.sean { border-color: #8b5cf6; }
+.persona-header {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+  border-bottom: 1px solid #e5e7eb; padding-bottom: 12px;
+}
+.persona-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-weight: 800; color: #fff;
+}
+.casey .persona-avatar { background: #f97316; }
+.joy .persona-avatar { background: #ec4899; }
+.mark .persona-avatar { background: #3b82f6; }
+.jay .persona-avatar { background: #10b981; }
+.sean .persona-avatar { background: #8b5cf6; }
+.persona-name { font-size: 20px; font-weight: 800; }
+.persona-sub { color: #6b7280; font-size: 13px; }
+.field-grid {
+  display: grid; grid-template-columns: 130px 1fr; gap: 6px 14px;
+  margin: 10px 0; font-size: 14px;
+}
+.field-label {
+  color: #6b7280; font-size: 12px; padding-top: 4px;
+  font-weight: 600; letter-spacing: 0.5px;
+}
+.field-value { background: #f9fafb; padding: 6px 10px; border-radius: 4px; }
+.code-box {
+  background: #1e293b; color: #fbbf24; padding: 12px 16px;
+  border-radius: 6px; font-family: "SF Mono", Menlo, monospace;
+  white-space: pre-wrap; word-break: break-word; font-size: 13px;
+  margin: 8px 0; line-height: 1.5;
+}
+table { border-collapse: collapse; width: 100%; margin: 16px 0; background: #fff; }
+th, td { border: 1px solid #d1d5db; padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: #831843; color: #fff; font-size: 13px; letter-spacing: 0.5px; }
+tr:nth-child(even) td { background: #fdf2f8; }
+.pillar-tag {
+  display: inline-block; background: #fce7f3; color: #831843;
+  padding: 3px 10px; border-radius: 12px; font-size: 12px;
+  font-weight: 600; margin: 2px 4px 2px 0;
+}
+.do-list, .dont-list {
+  background: #fff; padding: 12px 18px; border-radius: 6px;
+  margin: 10px 0;
+}
+.do-list { border-left: 4px solid #10b981; }
+.dont-list { border-left: 4px solid #ef4444; }
+.do-list li { color: #059669; }
+.dont-list li { color: #dc2626; }
+ul li { margin: 5px 0 5px 20px; }
+.note { color: #6b7280; font-style: italic; font-size: 13.5px; }
+</style>
+</head>
+<body>
+
+<h1>📱 YS89 編輯人設 IG / Threads 經營交接手冊</h1>
+<p><strong>給：</strong>社群負責人<br>
+<strong>建立：</strong>2026-05-20｜製作：阿翔（Sean）<br>
+<strong>目的：</strong>讓 5 個編輯人設在 IG / Threads 有真實社群活動，建立 E-E-A-T 信號讓 Google 認可他們是真實人物</p>
+
+<h2>🎯 為什麼要做這件事</h2>
+
+<div class="callout-success callout">
+<strong>核心邏輯：</strong>Google 2024 後的 E-E-A-T 演算法會驗證「文章作者是不是真實存在的人」。<br>
+驗證訊號包括：<br>
+① Schema.org Person markup 是否有完整 sameAs 連到社群帳號<br>
+② 社群帳號是否「持續活躍」（不是 1 個月發 1 篇）<br>
+③ 社群帳號是否有「真人互動」（讚 / 留言 / 追蹤者）<br>
+④ 跨平台一致性（IG / Threads / 文章作者頁照片名字一致）<br>
+<br>
+<strong>5 個人設沒有社群存在 → Google 視為虛擬人物 → E-E-A-T 分數扣分。</strong>
+</div>
+
+<div class="callout-danger callout">
+<strong>⚠️ 重要：完全不能在社群帳號提「娛樂城/賭博/老虎機/百家樂」等敏感詞</strong><br>
+原因：IG / Threads ToS 禁止賭博相關內容，違規會被封號。<br>
+我們的策略是<strong>用「替代主題」包裝</strong>，讓 Google 看到「真實人物」即可，不用看到他們在寫娛樂城。連結回母站 ys89.fun 也只透過個人連結頁（linktree / about me 頁）做。
+</div>
+
+<h2>👥 5 個人設個資 + IG / Threads 經營指南</h2>
+
+<!-- Casey -->
+<div class="persona-card casey">
+<div class="persona-header">
+<div class="persona-avatar">凱</div>
+<div>
+<div class="persona-name">阿凱（Casey）</div>
+<div class="persona-sub">老虎機 / 戰神賽特 / 電子遊戲（WP ID 3）</div>
+</div>
+</div>
+
+<div class="field-grid">
+<div class="field-label">IG 帳號</div><div class="field-value">@casey.gamer.tw</div>
+<div class="field-label">Threads 帳號</div><div class="field-value">@casey.gamer.tw（沿用 IG）</div>
+<div class="field-label">替代主題定位</div><div class="field-value">電玩 / 桌遊 / Pop culture 玩家</div>
+<div class="field-label">目標受眾</div><div class="field-value">25-40 歲男性玩家</div>
+</div>
+
+<h4>IG Bio（複製貼上用）</h4>
+<div class="code-box">電玩老靈魂 🎮 / 阿凱
+Slot 機制 × RNG 數學 × Pop culture
+台北｜遊戲 25 年
+👇 部落格：ys89.fun/about</div>
+
+<h4>5 個內容支柱（Content Pillars）</h4>
+<div>
+<span class="pillar-tag">遊戲機制拆解</span>
+<span class="pillar-tag">經典電玩懷舊</span>
+<span class="pillar-tag">遊戲攻略截圖</span>
+<span class="pillar-tag">電玩展紀錄</span>
+<span class="pillar-tag">日常玩家生活</span>
+</div>
+
+<h4>每週貼文模板（IG）</h4>
+<ul>
+<li><strong>週一：</strong>「本週玩了什麼」（截圖 + 100 字心得）</li>
+<li><strong>週四：</strong>「遊戲機制小知識」（Carousel 圖文）</li>
+<li><strong>週日：</strong>「玩家日常」（Story 為主，可生活向）</li>
+</ul>
+
+<div class="dont-list">
+<strong>絕對不能發：</strong>
+<ul>
+<li>老虎機、賭場、博弈、bet、casino 任何字眼</li>
+<li>真錢遊戲畫面（沒收錢的免費 app 截圖可以）</li>
+<li>連結到 ys89.fun 任何娛樂城類頁面（連結都導去 /about）</li>
+</ul>
+</div>
+</div>
+
+<!-- Joy -->
+<div class="persona-card joy">
+<div class="persona-header">
+<div class="persona-avatar">娟</div>
+<div>
+<div class="persona-name">小娟（Joy）</div>
+<div class="persona-sub">百家樂 / 真人遊戲（WP ID 4）</div>
+</div>
+</div>
+
+<div class="field-grid">
+<div class="field-label">IG 帳號</div><div class="field-value">@joy.probability</div>
+<div class="field-label">Threads 帳號</div><div class="field-value">@joy.probability</div>
+<div class="field-label">替代主題定位</div><div class="field-value">機率 / 數學 / 邏輯遊戲科普</div>
+<div class="field-label">目標受眾</div><div class="field-value">25-40 歲對數學/策略有興趣的人</div>
+</div>
+
+<h4>IG Bio</h4>
+<div class="code-box">數學系畢業，現在寫機率科普 📊
+「為什麼直覺是錯的」愛好者
+台中｜貓奴
+👇 文章：ys89.fun/about</div>
+
+<h4>5 個內容支柱</h4>
+<div>
+<span class="pillar-tag">機率錯覺反例</span>
+<span class="pillar-tag">蒙提霍爾問題等經典</span>
+<span class="pillar-tag">撲克牌邏輯</span>
+<span class="pillar-tag">日常數學發現</span>
+<span class="pillar-tag">貓咪生活</span>
+</div>
+
+<h4>每週貼文模板</h4>
+<ul>
+<li><strong>週二：</strong>「機率小謎題」（Carousel 圖文，第 1 頁問題第 5 頁答案）</li>
+<li><strong>週五：</strong>「數學在生活」（短影音 30 秒，舉日常例子）</li>
+<li><strong>週六：</strong>「貓咪 + 數學週末」（生活向）</li>
+</ul>
+
+<div class="dont-list">
+<strong>絕對不能發：</strong>
+<ul>
+<li>百家樂、真人賭場、撲克下注、casino 任何字眼</li>
+<li>提到「莊家優勢」「賭場數學」可以講撲克但不能講賭場機制</li>
+<li>連結到任何博弈頁面</li>
+</ul>
+</div>
+</div>
+
+<!-- Mark -->
+<div class="persona-card mark">
+<div class="persona-header">
+<div class="persona-avatar">M</div>
+<div>
+<div class="persona-name">Mark</div>
+<div class="persona-sub">世足 / 運彩 / 體育投注（WP ID 5）</div>
+</div>
+</div>
+
+<div class="field-grid">
+<div class="field-label">IG 帳號</div><div class="field-value">@mark.footballfan.tw</div>
+<div class="field-label">Threads 帳號</div><div class="field-value">@mark.footballfan.tw</div>
+<div class="field-label">替代主題定位</div><div class="field-value">純體育評論員（這個最安全，IG 不限）</div>
+<div class="field-label">目標受眾</div><div class="field-value">20-50 歲足球迷</div>
+<div class="field-label">特別說明</div><div class="field-value" style="background:#dbeafe;">⭐ Mark 是 5 個人設中可以「最公開」的，因為純體育評論本身完全合法且 IG 鼓勵</div>
+</div>
+
+<h4>IG Bio</h4>
+<div class="code-box">⚽ 看球 20 年 / Mark
+英超死忠 → 看遍 5 大聯賽
+2026 世足倒數中 🏆
+桃園｜DJ Mag 撰稿
+👇 ys89.fun/about</div>
+
+<h4>5 個內容支柱</h4>
+<div>
+<span class="pillar-tag">賽事預測</span>
+<span class="pillar-tag">球員人物深度</span>
+<span class="pillar-tag">戰術分析</span>
+<span class="pillar-tag">轉播金句</span>
+<span class="pillar-tag">看球日常</span>
+</div>
+
+<h4>每週貼文模板（世足期間加倍）</h4>
+<ul>
+<li><strong>週一：</strong>上週末賽事戰術分析（Carousel）</li>
+<li><strong>週三：</strong>球員專題人物（Reels 60 秒）</li>
+<li><strong>週五：</strong>本週末賽事預測（Story 投票）</li>
+<li><strong>週日：</strong>看球直播即時 Story（5-10 則/場）</li>
+</ul>
+
+<h4>世足賽季強化（6/11 開始 → 7/19）</h4>
+<ul>
+<li>每場比賽現場直播 Story</li>
+<li>賽後 30 分鐘內發戰術 Reels</li>
+<li>賽前 1 小時發「我看好誰」貼文</li>
+<li>建立 Threads 即時聊天區，跟其他球迷互動</li>
+</ul>
+
+<div class="dont-list">
+<strong>絕對不能發：</strong>
+<ul>
+<li>運彩賠率（「我押了 OO 萬」「賺了 XX」這種完全不能）</li>
+<li>提到任何博弈/運彩平台名稱</li>
+<li>「跟單」「保證獲利」這類詐騙詞</li>
+</ul>
+</div>
+</div>
+
+<!-- Jay -->
+<div class="persona-card jay">
+<div class="persona-header">
+<div class="persona-avatar">J</div>
+<div>
+<div class="persona-name">Jay</div>
+<div class="persona-sub">出金 / USDT / 流水 / KYC（WP ID 6）</div>
+</div>
+</div>
+
+<div class="field-grid">
+<div class="field-label">IG 帳號</div><div class="field-value">@jay.fintech.note</div>
+<div class="field-label">Threads 帳號</div><div class="field-value">@jay.fintech.note</div>
+<div class="field-label">替代主題定位</div><div class="field-value">個人理財 / 數位支付 / Crypto 觀察</div>
+<div class="field-label">目標受眾</div><div class="field-value">25-45 歲對數位金融有興趣的上班族</div>
+</div>
+
+<h4>IG Bio</h4>
+<div class="code-box">💳 數位金融筆記 / Jay
+USDT × 跨境支付 × 銀行新制
+前 fintech 業務 → 自由撰稿
+高雄｜咖啡因依賴
+👇 ys89.fun/about</div>
+
+<h4>5 個內容支柱</h4>
+<div>
+<span class="pillar-tag">USDT/穩定幣科普</span>
+<span class="pillar-tag">銀行新制解析</span>
+<span class="pillar-tag">警示帳戶法規</span>
+<span class="pillar-tag">第三方支付比較</span>
+<span class="pillar-tag">咖啡與生活</span>
+</div>
+
+<h4>每週貼文模板</h4>
+<ul>
+<li><strong>週一：</strong>「本週金融新聞解讀」（Carousel）</li>
+<li><strong>週四：</strong>「USDT/Crypto 觀察」（Reels）</li>
+<li><strong>週六：</strong>「咖啡 + 工作日常」（生活向）</li>
+</ul>
+
+<div class="dont-list">
+<strong>絕對不能發：</strong>
+<ul>
+<li>提到「投資建議」「保證獲利」（觸發 IG 金融政策）</li>
+<li>娛樂城出金教學</li>
+<li>洗碼量、流水這類賭博術語</li>
+</ul>
+</div>
+
+<div class="do-list">
+<strong>可以發但要小心：</strong>
+<ul>
+<li>USDT 區塊鏈科普（純技術角度）</li>
+<li>警示帳戶法律解析（公益向）</li>
+<li>銀行新制報導（純資訊）</li>
+</ul>
+</div>
+</div>
+
+<!-- Sean -->
+<div class="persona-card sean">
+<div class="persona-header">
+<div class="persona-avatar">翔</div>
+<div>
+<div class="persona-name">阿翔（Sean）</div>
+<div class="persona-sub">詐騙 / 黑名單 / 法律 / 警示帳戶（WP ID 7）</div>
+</div>
+</div>
+
+<div class="field-grid">
+<div class="field-label">IG 帳號</div><div class="field-value">@sean.antiscam</div>
+<div class="field-label">Threads 帳號</div><div class="field-value">@sean.antiscam</div>
+<div class="field-label">替代主題定位</div><div class="field-value">反詐騙公益專欄（公益向最不會被檢舉）</div>
+<div class="field-label">目標受眾</div><div class="field-value">所有可能受害的人（18-65 歲）</div>
+<div class="field-label">特別說明</div><div class="field-value" style="background:#ede9fe;">⭐ 阿翔人設「反詐騙」屬於公益議題，IG 演算法會推薦，最容易自然成長</div>
+</div>
+
+<h4>IG Bio</h4>
+<div class="code-box">🛡️ 反詐騙紀錄者 / 阿翔
+看過 200+ 案例，幫過 50+ 受害者
+警示帳戶 × 網路詐騙 × 165 觀察
+📍 全台
+👇 案例庫：ys89.fun/about</div>
+
+<h4>5 個內容支柱</h4>
+<div>
+<span class="pillar-tag">本週詐騙手法</span>
+<span class="pillar-tag">受害者案例（去識別化）</span>
+<span class="pillar-tag">警示帳戶法律 Q&A</span>
+<span class="pillar-tag">165 反詐專線統計</span>
+<span class="pillar-tag">家人/長輩防詐宣導</span>
+</div>
+
+<h4>每週貼文模板</h4>
+<ul>
+<li><strong>週一：</strong>「本週新詐騙手法」（Reels 60 秒 + Carousel 細節）</li>
+<li><strong>週三：</strong>「案例還原」（去識別化的受害者故事）</li>
+<li><strong>週五：</strong>「法律小知識」（圖文）</li>
+<li><strong>週日：</strong>「給長輩看的防詐」（轉發友善版）</li>
+</ul>
+
+<div class="callout-success callout">
+<strong>💡 Sean 的策略優勢：</strong>反詐騙議題是 IG / Threads 公益議題，平台不會打壓，反而會推薦。<br>
+按這個策略經營 3 個月可望達到 5K-20K 自然追蹤，是 5 個人設中最容易成長的。<br>
+有了 Sean 的真實社群存在，他寫的「警示帳戶解除」「HOYA 詐騙評測」等文章 E-E-A-T 大幅加分。
+</div>
+</div>
+
+<h2>📅 經營頻率總表</h2>
+
+<table>
+<thead>
+<tr><th>人設</th><th>IG 貼文</th><th>IG Reels</th><th>IG Story</th><th>Threads</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Mark</strong>（世足）</td><td>3 篇/週（世足 5 篇/週）</td><td>2 則/週</td><td>每日 1-3 則</td><td>每日 3-5 則</td></tr>
+<tr><td><strong>Sean</strong>（反詐）</td><td>4 篇/週</td><td>2 則/週</td><td>每日 1 則</td><td>每日 2-3 則</td></tr>
+<tr><td><strong>Casey</strong>（電玩）</td><td>2 篇/週</td><td>1 則/週</td><td>每日 1-2 則</td><td>每週 5 則</td></tr>
+<tr><td><strong>Joy</strong>（機率）</td><td>2 篇/週</td><td>1 則/週</td><td>每週 3-5 則</td><td>每週 5 則</td></tr>
+<tr><td><strong>Jay</strong>（金融）</td><td>2 篇/週</td><td>1 則/週</td><td>每週 3-5 則</td><td>每週 5 則</td></tr>
+</tbody>
+</table>
+
+<p class="note">⏰ 預估每週總工時：8-12 小時（5 個人設加總）。如果同事一個人扛太重，建議先主打 Mark（世足）+ Sean（反詐）兩個，其他 3 個 1 個月發 1-2 篇維持「活著」就好。</p>
+
+<h2>🔗 個人連結頁 (linktree 風) 規劃</h2>
+
+<p>每個人設的 IG bio 都連到 <code>ys89.fun/about/[persona-slug]</code>，這個頁面要：</p>
+<ul>
+<li>展示該人設的真實照片（用 AI 生成或買 stock photo，5 個人要看起來不同人）</li>
+<li>列出該人設在 ys89.fun 寫過的文章清單</li>
+<li>包含 sameAs 連結到 IG / Threads（給 Google 認證用）</li>
+<li>不要直接連到任何娛樂城頁面，連去 /blog 列表即可</li>
+</ul>
+
+<div class="callout">
+<strong>🎨 人設照片來源建議：</strong><br>
+- 用 Midjourney / DALL-E 生成「不存在的真人」（同一人設每張表情/角度不同但臉相同）<br>
+- 或買 Unsplash People / Pexels People stock photo（注意要有商業授權）<br>
+- <strong>避免</strong>用 Google 圖片搜尋下載任何真人照片（侵權風險）<br>
+- 每個人設需 5-10 張不同照片用於 IG 貼文/限動/Threads 頭像
+</div>
+
+<h2>🚀 啟動步驟（給社群同事的 SOP）</h2>
+
+<h3>Week 1：帳號創建</h3>
+<ol>
+<li>用 5 個不同手機號註冊 5 個 IG 帳號（**重點：不要同一手機登入，IG 會識別關聯**）</li>
+<li>每個帳號設定獨立 email、不同的個人資訊</li>
+<li>IG 開啟 → 自動建立 Threads 帳號（相同帳號名）</li>
+<li>填上 bio（複製上方各人設的範本）</li>
+<li>上傳第一張頭像照片</li>
+<li>每個帳號先「養」3-5 天（瀏覽動態、點讚、不發文）讓 IG 演算法認為是真人</li>
+</ol>
+
+<h3>Week 2：建立基底</h3>
+<ol>
+<li>每個人設先發 5-10 篇貼文（補上「過去半年的內容」感）</li>
+<li>互相追蹤（5 個人設都加好友）但不要太頻繁互動（IG 會識別 farm）</li>
+<li>追蹤 50-100 個目標領域的真人帳號</li>
+<li>每天瀏覽動態 15-30 分鐘，自然點讚 5-10 則</li>
+</ol>
+
+<h3>Week 3 起：正式經營</h3>
+<ol>
+<li>按上面「每週貼文模板」執行</li>
+<li>追蹤者出現後，每週至少回覆 5-10 則留言（培養互動）</li>
+<li>每月在 ys89.fun 文章末尾加「本文作者社群」連結</li>
+<li>每月給我（阿翔）一份簡單報告：5 個人設追蹤者成長 / 互動率</li>
+</ol>
+
+<h2>📊 KPI / 成功指標（3 個月後）</h2>
+
+<table>
+<thead>
+<tr><th>人設</th><th>3 個月目標追蹤者</th><th>每篇平均互動</th><th>備註</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Mark</strong>（世足）</td><td>3,000+</td><td>50+ likes</td><td>世足 buff 加成</td></tr>
+<tr><td><strong>Sean</strong>（反詐）</td><td>5,000+</td><td>80+ likes</td><td>公益議題加成最強</td></tr>
+<tr><td><strong>Casey</strong>（電玩）</td><td>1,500+</td><td>30+ likes</td><td>競爭激烈但穩定</td></tr>
+<tr><td><strong>Joy</strong>（機率）</td><td>1,000+</td><td>30+ likes</td><td>利基受眾</td></tr>
+<tr><td><strong>Jay</strong>（金融）</td><td>1,500+</td><td>30+ likes</td><td>利基受眾</td></tr>
+</tbody>
+</table>
+
+<h2>🆘 遇到問題找誰</h2>
+
+<ul>
+<li><strong>內容方向問題：</strong>找阿翔（Sean 人設真人）</li>
+<li><strong>IG 帳號被檢舉/限制：</strong>立即停止該人設活動 24-48 小時，找老闆對接申訴</li>
+<li><strong>不確定貼文是否安全：</strong>先發到自己私帳測試 24 小時看會不會被警告</li>
+<li><strong>追蹤者快速成長想加碼：</strong>每週上限提高 20%（不要突然爆衝，IG 會懷疑買粉）</li>
+</ul>
+
+<hr style="margin: 40px 0;">
+
+<p style="text-align: center; color: #6b7280; font-size: 13px;">
+製作：阿翔（Sean）/ YS89 編輯團隊<br>
+更新：2026-05-20｜下次預定更新：2026-08（依社群同事執行成果調整）<br>
+公開網址：https://ys89-seo-docs.pages.dev/persona-social-handoff.html
+</p>
+
+</body>
+</html>
