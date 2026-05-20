@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tier-1 PBN 戰術手冊｜主題傳承 + 自然連結（修正版）</title>
+<title>Tier-1 PBN 戰術手冊 v3｜A 站隱匿 + B 站進攻雙策略</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -48,254 +48,284 @@ table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 14px 0;
 th { text-align: left; padding: 12px 14px; font-size: 11px; letter-spacing: 1.5px; color: var(--gold); font-weight: 600; background: var(--dark-4); border-bottom: 1px solid var(--gold); }
 td { padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
 tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+.dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+@media (max-width: 720px) { .dual-grid { grid-template-columns: 1fr; } }
+.site-card {
+  background: var(--dark-3); border: 2px solid var(--dark-4); border-radius: 8px;
+  padding: 20px;
+}
+.site-card.a { border-color: rgba(91,143,212,0.5); }
+.site-card.b { border-color: rgba(168,118,212,0.5); }
+.site-card h3 { font-size: 18px; color: #fff; margin-bottom: 6px; }
+.site-card.a .tag { background: rgba(91,143,212,0.2); color: var(--blue); }
+.site-card.b .tag { background: rgba(168,118,212,0.2); color: var(--purple); }
+.site-card .tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-right: 6px; margin-bottom: 10px; }
 .code-box {
   background: #0a0a0a; color: var(--gold-light); padding: 12px 16px;
   border-radius: 6px; font-family: 'SF Mono', Menlo, monospace; font-size: 13px;
   white-space: pre-wrap; word-break: break-word; margin: 10px 0; line-height: 1.6;
 }
 ul li { margin: 5px 0 5px 20px; }
-.flag-red { background: var(--red); color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
-.flag-green { background: var(--green); color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+.flag-attack { background: var(--purple); color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+.flag-stealth { background: var(--blue); color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
 .signature { text-align: center; color: var(--text-muted); font-size: 13px; padding: 30px 0; }
-.callout-revision {
-  background: rgba(168,118,212,0.08); border-left: 4px solid var(--purple);
-  padding: 14px 18px; margin: 16px 0; border-radius: 4px;
+.cluster-tree {
+  background: #0a0a0a; padding: 18px; border-radius: 6px; border: 1px solid var(--dark-4);
+  font-family: 'SF Mono', Menlo, monospace; font-size: 13px; line-height: 1.7;
+  color: var(--gold-light); margin: 14px 0;
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="header-badge">TIER-1 PBN · 主題傳承戰術（v2 修正版）</div>
+  <div class="header-badge">TIER-1 PBN · v3 雙策略最終版</div>
   <h1>Tier-1 PBN <span>戰術手冊</span></h1>
-  <p class="header-sub">主題傳承 + Contextual 自然連結 ｜ 2026-05-20</p>
+  <p class="header-sub">A 站隱匿後盾 + B 站進攻雙 cluster ｜ 2026-05-20</p>
 </div>
 
 <div class="container">
 
-<!-- 修正聲明 -->
+<!-- 修正記錄 -->
 <div class="section">
-  <div class="callout-revision">
-    <strong style="color:var(--purple)">📌 v2 修正說明（2026-05-20 下午）</strong>
-    <p style="margin-top:8px">本文件 v1 版策略（Tier-1 直接寫戰神賽特 / 百家樂主題）<strong>違反了 footprint-avoidance.md 紅線 #10</strong>「內容主題與原域名歷史毫無關係 ❌」。經另一 Claude Code 指出後修正為「主題傳承 + contextual link」做法，與 Tier-2/3（HipGreenScene 旅遊 / adviseist 戶外）一致。</p>
+  <div class="box purple">
+    <strong style="color:var(--purple)">📌 版本歷史</strong>
+    <ul style="margin-top:8px">
+      <li><strong>v1（廢棄）</strong>：兩站都直接寫戰神 / 百家樂 → 違反 footprint #10</li>
+      <li><strong>v2（過度修正）</strong>：兩站都保留 Wayback 原主題 → 跟用戶原意「打戰神賽特站」矛盾</li>
+      <li><strong>v3（最終）</strong>：A 站留白 + B 站雙 cluster 進攻 = 分散測試</li>
+    </ul>
   </div>
 </div>
 
-<!-- 1. Core Principle -->
+<!-- 1. 雙站總覽 -->
 <div class="section">
-  <div class="section-label">// CORE PRINCIPLE</div>
-  <div class="section-title">Tier-1 為什麼要「最不像 PBN」</div>
+  <div class="section-label">// 雙站總覽</div>
+  <div class="section-title">A + B 兩站完全不同策略</div>
+
+  <div class="dual-grid">
+    <div class="site-card a">
+      <span class="tag">A 站 · 隱匿後盾</span>
+      <h3>🛡️ 主題傳承 + Contextual Link</h3>
+      <table style="margin-top:8px">
+        <tr><td><strong>內容</strong></td><td>保留原域名 Wayback 主題</td></tr>
+        <tr><td><strong>技術</strong></td><td>純 HTML + universal.css</td></tr>
+        <tr><td><strong>主機</strong></td><td>CF Pages 帳號 1</td></tr>
+        <tr><td><strong>連 ys89.fun</strong></td><td>10 篇只 3 篇有 contextual link</td></tr>
+        <tr><td><strong>角色</strong></td><td>長期培養 / 萬一 B 出事的後盾</td></tr>
+        <tr><td><strong>上線</strong></td><td>Day 11（B 之後）</td></tr>
+      </table>
+    </div>
+
+    <div class="site-card b">
+      <span class="tag">B 站 · 進攻雙 cluster</span>
+      <h3>⚔️ 戰神賽特 + 百家樂 雙主題</h3>
+      <table style="margin-top:8px">
+        <tr><td><strong>內容</strong></td><td>戰神 5 + 百家樂 5 + 1 Pillar 橋接</td></tr>
+        <tr><td><strong>技術</strong></td><td><strong>WordPress + ys89.fun 程式碼鏡像</strong></td></tr>
+        <tr><td><strong>主機</strong></td><td>新 Cloudways 帳號（不同 IP）</td></tr>
+        <tr><td><strong>連 ys89.fun</strong></td><td>5-7 篇 contextual link</td></tr>
+        <tr><td><strong>角色</strong></td><td>搶世足窗口 / 快速衝 DR + 流量</td></tr>
+        <tr><td><strong>上線</strong></td><td>Day 5（先衝）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="box gold">
+    <strong style="color:var(--gold)">為什麼分散測試？</strong>
+    <ul>
+      <li><strong>投資分散</strong>：50% 安全 + 50% 進攻，不梭哈單一策略</li>
+      <li><strong>學習價值</strong>：60 天後對比 DR / 流量 / penalty 風險，知道哪條路有效</li>
+      <li><strong>風險可控</strong>：B 站萬一被 deindex，A 站仍在</li>
+      <li><strong>業主好交代</strong>：兩條路徑都試 = 戰術有完整性</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 2. A 站詳細策略 -->
+<div class="section">
+  <div class="section-label">// A 站詳細</div>
+  <div class="section-title"><span class="flag-stealth">隱匿後盾</span> 主題傳承策略</div>
+
+  <h3 style="color:#fff; margin: 14px 0 10px">A 站建置流程</h3>
+  <table>
+    <tr><th>Step</th><th>動作</th></tr>
+    <tr><td>1</td><td>Wayback 3 點抽樣，識別 A 域名原主題類別</td></tr>
+    <tr><td>2</td><td>確認原主題（旅遊/科技/商業/教育/體育/健康等）</td></tr>
+    <tr><td>3</td><td>純 HTML + universal.css 變體（米色系，跟前 3 站不同）</td></tr>
+    <tr><td>4</td><td>寫 10 篇深度該主題文章</td></tr>
+    <tr><td>5</td><td>其中 #4 #7 #10 三篇透過 contextual link 自然連到 ys89.fun</td></tr>
+    <tr><td>6</td><td>部署 CF Pages 帳號 1（不同於 ys89-seo-docs 帳號）</td></tr>
+  </table>
+
+  <h3 style="color:#fff; margin: 18px 0 10px">A 站「主題 × 娛樂城」交集連結點</h3>
+  <table>
+    <tr><th>原域名主題</th><th>contextual 連結 ys89.fun 的橋接題</th></tr>
+    <tr><td>旅遊</td><td>「拉斯維加斯 / 澳門 / 賭城旅遊指南」</td></tr>
+    <tr><td>科技</td><td>「線上博弈技術解析」「RNG 演算法」</td></tr>
+    <tr><td>商業</td><td>「東南亞博弈產業分析」「線上娛樂業趨勢」</td></tr>
+    <tr><td>教育</td><td>「機率學在生活」「賭博心理偏誤」</td></tr>
+    <tr><td>體育</td><td>「世足賠率分析」「運彩入門」</td></tr>
+    <tr><td>健康</td><td>「賭博成癮預防」「責任博弈」</td></tr>
+  </table>
+</div>
+
+<!-- 3. B 站詳細策略 -->
+<div class="section">
+  <div class="section-label">// B 站詳細</div>
+  <div class="section-title"><span class="flag-attack">進攻雙 cluster</span> 戰神 + 百家樂 鏡像 ys89.fun 程式碼</div>
+
+  <h3 style="color:#fff; margin: 14px 0 10px">B 站架構（雙 cluster + Pillar 橋接）</h3>
+
+  <div class="cluster-tree">B 站首頁：線上博弈深度評測中心
+   │
+   ├── 📜 Pillar #1（橋接文）
+   │      「電子老虎機 vs 真人百家樂 完整對比」（2,500 字）
+   │      ↑ Google 看這篇識別兩 cluster 是同站合理組合
+   │
+   ├── 🎰 戰神賽特 Cluster（5 篇）
+   │      ├─ 戰神賽特 ATG 完整新手指南（2,500 字）→ 連 ys89.fun
+   │      ├─ 戰神賽特 RTP 96.5% 實測數據
+   │      ├─ 戰神賽特 Free Spin 觸發頻率分析
+   │      ├─ 戰神賽特 Bonus Buy 期望值計算
+   │      └─ 戰神賽特 vs 戰神搜尋者 對比
+   │
+   ├── 🃏 百家樂 Cluster（5 篇）
+   │      ├─ 百家樂基礎完整教學（2,500 字）→ 連 ys89.fun
+   │      ├─ 百家樂 7 種看路法解析
+   │      ├─ 百家樂下注策略對比
+   │      ├─ 百家樂進階心法
+   │      └─ 真人百家樂 vs 電腦百家樂
+   │
+   └── 🏆 Hub Page
+          「2026 線上博弈完整指南」→ 集中 contextual link 到 ys89.fun</div>
+
+  <h3 style="color:#fff; margin: 18px 0 10px">B 站「鏡像 ys89.fun 程式碼」做法</h3>
 
   <div class="box red">
-    <strong style="color:var(--red)">最常見的 Tier-1 失敗模式（v1 版錯誤）：</strong>
-    <ul>
-      <li>Tier-1 域名直接改寫成「戰神賽特專精站」「百家樂策略站」</li>
-      <li>違反「保留原域名主題」原則（footprint #10）</li>
-      <li>DR 越高 Google 越仔細看連結意圖，主題突變 = 立刻被識別</li>
-      <li>Tier-1 反而成為 footprint 最危險的點</li>
-    </ul>
-  </div>
-
-  <div class="box green">
-    <strong style="color:var(--green)">Tier-1 正確思路（v2 修正）：</strong>
-    <p style="margin-top:8px"><strong>Tier-1 是「看起來最權威、最不像 PBN」的站</strong>。買 DR 50+ 域名是為了「假裝是獨立第三方 expert 在引用 ys89.fun」，所以：</p>
-    <ul>
-      <li><strong>保留原域名主題</strong>（看 Wayback 歷史決定）</li>
-      <li>寫 10 篇<strong>該主題</strong>高品質內容</li>
-      <li>其中只有 2-3 篇透過 <strong>contextual link 自然連到 ys89.fun</strong>（在主題自然交集的段落）</li>
-      <li>這跟 Tier-2/3 做法完全一致，只是 DR 更高</li>
-    </ul>
-  </div>
-</div>
-
-<!-- 2. 主題傳承策略 -->
-<div class="section">
-  <div class="section-label">// 主題傳承策略</div>
-  <div class="section-title">買到域名後怎麼決定寫什麼</div>
-
-  <div class="box gold">
-    <strong style="color:var(--gold)">Step 0：Wayback 確認原主題</strong>
-    <p style="margin-top:8px">買到 Tier-1 域名後第一件事：</p>
-    <ol style="padding-left:24px; margin-top:8px">
-      <li>用 Wayback Machine 3 點抽樣（早/中/晚期）看原域名主題</li>
-      <li>確認原主題類別（旅遊 / 科技 / 評論 / 商業 / 教育 / 健康 / 體育等）</li>
-      <li>保留該主題，寫 10 篇深度內容</li>
-      <li>內容跟 ys89.fun 的「交集」找出來，透過 contextual link 自然帶過</li>
-    </ol>
-  </div>
-
-  <h3 style="color:#fff; margin: 18px 0 10px">主題 → 自然連結到 ys89.fun 的橋接點</h3>
-
-  <table>
-    <tr><th>原域名主題</th><th>10 篇內容方向</th><th>自然 contextual 連結到 ys89.fun</th></tr>
-    <tr>
-      <td><strong>旅遊</strong></td>
-      <td>城市旅遊指南 / 景點介紹 / 旅遊規劃</td>
-      <td>寫「拉斯維加斯/澳門/賭城旅遊」時自然提到「當地娛樂城」，連到 ys89.fun 評測</td>
-    </tr>
-    <tr>
-      <td><strong>科技 / 評論</strong></td>
-      <td>技術深度文 / 產業評論 / 數位生活</td>
-      <td>寫「線上博弈技術」「RNG 演算法」「區塊鏈與 USDT」時自然連到 ys89.fun</td>
-    </tr>
-    <tr>
-      <td><strong>商業 / 財經</strong></td>
-      <td>產業分析 / 投資知識 / 創業故事</td>
-      <td>寫「東南亞博弈產業」「線上娛樂產業」分析時連到 ys89.fun</td>
-    </tr>
-    <tr>
-      <td><strong>教育 / 學術</strong></td>
-      <td>機率論 / 統計學 / 心理學</td>
-      <td>寫「賭博心理偏誤」「機率學在生活」時連到 ys89.fun</td>
-    </tr>
-    <tr>
-      <td><strong>體育</strong></td>
-      <td>賽事評論 / 球員深度文 / 戰術分析</td>
-      <td>寫「世足賠率分析」「運彩入門」時連到 ys89.fun 體育投注</td>
-    </tr>
-    <tr>
-      <td><strong>健康 / 心理</strong></td>
-      <td>心理健康 / 戒癮研究 / 生活方式</td>
-      <td>寫「賭博成癮預防」「責任博弈」時連到 ys89.fun（公益角度）</td>
-    </tr>
-  </table>
-
-  <div class="box purple">
-    <strong style="color:var(--purple)">Contextual link 範例（旅遊主題站）：</strong>
-    <p style="margin-top:8px"><em>「拉斯維加斯不只是賭城，許多旅客選擇白天看 Hoover Dam、晚上觀賞 Bellagio 音樂噴泉。如果想了解線上版本的賭場體驗，台灣讀者可以參考 [<a href="#" style="color:var(--gold-light)">YS89 評測</a>] 整理的合法娛樂城清單。」</em></p>
-    <p style="margin-top:8px; color:var(--text-muted); font-size:13px">這種寫法的特點：(1) 內容主軸還是旅遊，(2) 連結出現在 contextual 自然段落，(3) anchor text 用品牌詞而非關鍵字堆砌。</p>
-  </div>
-</div>
-
-<!-- 3. 技術棧（修正） -->
-<div class="section">
-  <div class="section-label">// 技術棧（修正）</div>
-  <div class="section-title">繼續用純 HTML，跟前 3 站一致</div>
-
-  <div class="box gold">
-    <strong style="color:var(--gold)">放棄 Hugo / Astro，原因：</strong>
-    <ul>
-      <li>Google 只看最終 HTML，不看 build pipeline → 用 Hugo/Astro 沒有 footprint 優勢</li>
-      <li>前 3 站（HipGreenScene / adviseist / DeckMatt）都用純 HTML，已驗證流程</li>
-      <li>純 HTML 維護成本低，後續更新不用重新 build</li>
-      <li>避免引入新依賴，降低出錯機率</li>
-    </ul>
-    <p style="margin-top:10px"><strong>差異化透過「不同 layout / CSS / 字體」即可。</strong></p>
+    <strong style="color:var(--red)">⚠️ 高風險警告</strong>
+    <p style="margin-top:8px">用同 WordPress + 同 theme = footprint 風險高。必須做以下 6 條防護才能執行：</p>
   </div>
 
   <table>
-    <tr><th>維度</th><th>ys89.fun（母站）</th><th>Tier-1 站 A</th><th>Tier-1 站 B</th></tr>
-    <tr><td>技術</td><td>WordPress + ys-entertainment-theme</td><td>純 HTML + universal.css（變體 A）</td><td>純 HTML + universal.css（變體 B）</td></tr>
-    <tr><td>視覺風格</td><td>深色霓虹</td><td>米色 / 暖色（PaperMod 視覺風）</td><td>學院藍 / 冷色（Astro Paper 視覺風）</td></tr>
-    <tr><td>字體</td><td>PingFang TC + Inter</td><td>Noto Sans TC + Roboto</td><td>Source Han Sans + Georgia</td></tr>
-    <tr><td>HTML 結構</td><td><code>article > section</code></td><td><code>main > article</code></td><td><code>div.container > div.row</code></td></tr>
-    <tr><td>主機</td><td>Cloudways IP A</td><td>CF Pages 帳號 1</td><td>CF Pages 帳號 2</td></tr>
-    <tr><td>WHOIS</td><td>YS 名下</td><td>CF Registrar Privacy</td><td>Namecheap Privacy</td></tr>
+    <tr><th>#</th><th>防護項目</th><th>具體做法</th></tr>
+    <tr><td>1</td><td>Theme 重命名</td><td><code>ys-entertainment-theme</code> → <code>zeus-baccarat-theme</code>（含 function namespace）</td></tr>
+    <tr><td>2</td><td>獨立 admin email</td><td>新 Gmail（zeus-bac-admin@gmail）+ 不同密碼</td></tr>
+    <tr><td>3</td><td>SEO plugin 換</td><td>Rank Math → 改用 Yoast SEO</td></tr>
+    <tr><td>4</td><td>不同 hosting IP</td><td>新 Cloudways 帳號 + 不同 region server</td></tr>
+    <tr><td>5</td><td>不裝 GA / 獨立 GSC</td><td>不要裝 Google Analytics；用獨立 Gmail 註冊 GSC</td></tr>
+    <tr><td>6</td><td>wp-content 結構微調</td><td>image folder rename、CSS path 微改、移除明顯 ys89 特徵</td></tr>
   </table>
 </div>
 
-<!-- 4. 文章內容框架 -->
+<!-- 4. B 站文章內容規劃 -->
 <div class="section">
-  <div class="section-label">// 文章內容框架</div>
-  <div class="section-title">10 篇文章 + 2-3 篇連 ys89.fun 的分配</div>
-
-  <h3 style="color:#fff; margin: 14px 0 10px">站 A / 站 B 共用框架（依買到的域名主題填入具體題目）</h3>
+  <div class="section-label">// B 站內容規劃</div>
+  <div class="section-title">11 篇文章詳細清單</div>
 
   <table>
-    <tr><th>#</th><th>內容類型</th><th>字數</th><th>連 ys89.fun？</th><th>說明</th></tr>
-    <tr><td>1</td><td>主題深度教學文（pillar）</td><td>2,500</td><td><span class="flag-red">否</span></td><td>該站最權威文章，奠定 topical authority</td></tr>
-    <tr><td>2</td><td>主題進階研究</td><td>2,000</td><td><span class="flag-red">否</span></td><td>純該主題</td></tr>
-    <tr><td>3</td><td>主題實作教學</td><td>1,800</td><td><span class="flag-red">否</span></td><td>純該主題</td></tr>
-    <tr><td>4</td><td><strong>主題 × 娛樂城交集</strong></td><td>2,200</td><td><span class="flag-green">✓ contextual</span></td><td>例：旅遊站「賭城旅遊指南」/ 科技站「博弈演算法分析」</td></tr>
-    <tr><td>5</td><td>主題人物故事</td><td>1,500</td><td><span class="flag-red">否</span></td><td>純該主題</td></tr>
-    <tr><td>6</td><td>主題評測 / 比較</td><td>2,000</td><td><span class="flag-red">否</span></td><td>純該主題</td></tr>
-    <tr><td>7</td><td><strong>主題 × 投資知識交集</strong></td><td>1,800</td><td><span class="flag-green">✓ contextual</span></td><td>例：商業站「東南亞娛樂產業」/ 教育站「機率學在生活」</td></tr>
-    <tr><td>8</td><td>主題趨勢 / 未來</td><td>2,200</td><td><span class="flag-red">否</span></td><td>純該主題</td></tr>
-    <tr><td>9</td><td>主題 Q&A</td><td>1,500</td><td><span class="flag-red">否</span></td><td>純該主題</td></tr>
-    <tr><td>10</td><td><strong>主題 × 線上服務交集</strong></td><td>2,500</td><td><span class="flag-green">✓ contextual</span></td><td>例：旅遊站「線上規劃工具評測」可帶到 ys89.fun</td></tr>
+    <tr><th>#</th><th>標題</th><th>字數</th><th>連 ys89.fun？</th><th>Cluster</th></tr>
+    <tr><td>1</td><td>📜 電子老虎機 vs 真人百家樂 完整對比【2026】</td><td>2,500</td><td>✓ 連 /games/</td><td>Pillar</td></tr>
+    <tr><td>2</td><td>戰神賽特 ATG 完整新手指南 2026</td><td>2,500</td><td>✓ 連 /games/electronic/atg/</td><td>戰神</td></tr>
+    <tr><td>3</td><td>戰神賽特 RTP 96.5% 實測數據</td><td>1,800</td><td>—</td><td>戰神</td></tr>
+    <tr><td>4</td><td>戰神賽特 Free Spin 觸發頻率分析</td><td>2,000</td><td>—</td><td>戰神</td></tr>
+    <tr><td>5</td><td>戰神賽特 Bonus Buy 期望值計算</td><td>2,200</td><td>—</td><td>戰神</td></tr>
+    <tr><td>6</td><td>戰神賽特 vs 戰神搜尋者 完整對比</td><td>2,000</td><td>✓ 連 /games/electronic/</td><td>戰神</td></tr>
+    <tr><td>7</td><td>百家樂基礎完整教學：規則、補牌、點數</td><td>2,500</td><td>✓ 連 /games/baccarat/</td><td>百家樂</td></tr>
+    <tr><td>8</td><td>百家樂 7 種看路法完整解析</td><td>3,000</td><td>—</td><td>百家樂</td></tr>
+    <tr><td>9</td><td>百家樂下注策略：平注 vs 馬丁 vs 費波那契</td><td>2,800</td><td>—</td><td>百家樂</td></tr>
+    <tr><td>10</td><td>百家樂進階：止損、加倍、心態管理</td><td>2,200</td><td>—</td><td>百家樂</td></tr>
+    <tr><td>11</td><td>🏆 2026 線上博弈完整指南（Hub Page）</td><td>3,500</td><td>✓✓ 連 /recommendations/ + /</td><td>Hub</td></tr>
   </table>
 
   <div class="box gold">
     <strong style="color:var(--gold)">關鍵比例：</strong>
     <ul>
-      <li>10 篇文章中只 <strong>3 篇（#4 #7 #10）</strong>有 contextual link 到 ys89.fun</li>
-      <li>每篇 <strong>1-2 個</strong>連結到 ys89.fun（總共 4-6 個 link）</li>
-      <li>每篇還有 <strong>2-3 個</strong>外連到 Wikipedia / 官方資料 / 新聞</li>
-      <li>對 ys89.fun 的 outbound link 密度 ≤ 6%</li>
+      <li>11 篇文章中 5 篇有 contextual link 到 ys89.fun（#1, #2, #6, #7, #11）</li>
+      <li>Anchor text 60% 品牌 / 20% 裸 URL / 10% 通用 / 10% 關鍵字</li>
+      <li>每篇還連 2-3 個外連（Wikipedia / 官方資料）稀釋密度</li>
+      <li>所有 5 編輯人設輪流署名（避免單一作者 footprint）</li>
     </ul>
   </div>
 </div>
 
-<!-- 5. Anchor Text 規範 -->
-<div class="section">
-  <div class="section-label">// Anchor Text</div>
-  <div class="section-title">連結文字怎麼寫</div>
-
-  <table>
-    <tr><th>類型</th><th>比例</th><th>範例</th></tr>
-    <tr><td>品牌錨</td><td>60%</td><td>YS89、夜色娛樂城、YS89 評測</td></tr>
-    <tr><td>裸 URL</td><td>20%</td><td>https://ys89.fun</td></tr>
-    <tr><td>通用詞</td><td>10%</td><td>點此查看、完整指南、相關文章</td></tr>
-    <tr><td>關鍵字錨</td><td>10%</td><td>百家樂評測、警示帳戶解除</td></tr>
-  </table>
-
-  <div class="box red">
-    <strong style="color:var(--red)">禁止：</strong>
-    <ul>
-      <li>所有 anchor 都用「夜色娛樂城」（過度集中 = footprint）</li>
-      <li>關鍵字錨佔比 &gt; 20%（被識別為 PBN 操作）</li>
-      <li>放在 footer / sidebar 的「贊助連結」（最容易被識別）</li>
-    </ul>
-  </div>
-</div>
-
-<!-- 6. Footprint Avoidance -->
+<!-- 5. Footprint Avoidance -->
 <div class="section">
   <div class="section-label">// Footprint Avoidance</div>
-  <div class="section-title">Tier-1 專屬 12 條紅線（強化版）</div>
+  <div class="section-title">雙站專屬防護清單</div>
 
   <table>
-    <tr><th>#</th><th>紅線</th><th>怎麼避</th></tr>
-    <tr><td>1</td><td>同 IP / 同 C-class 主機</td><td>站 A 用 CF Pages 帳號 1、站 B 用 CF Pages 帳號 2、ys89.fun 用 Cloudways</td></tr>
-    <tr><td>2</td><td>同 WHOIS 註冊人</td><td>啟用 WHOIS Privacy（CF Registrar / Namecheap）</td></tr>
-    <tr><td>3</td><td>同 GA / GSC 帳號</td><td>Tier-1 不裝 GA，GSC 用 3 個不同 Gmail</td></tr>
-    <tr><td>4</td><td>同 CMS / theme</td><td>母站 WordPress、Tier-1 純 HTML + 不同 layout</td></tr>
-    <tr><td>5</td><td>同 HTML 結構順序</td><td>站 A: <code>article&gt;section</code>、站 B: <code>main&gt;div.row</code></td></tr>
-    <tr><td>6</td><td>同視覺風格</td><td>站 A 米色暖系、站 B 學院藍冷系</td></tr>
-    <tr><td>7</td><td>同字體</td><td>站 A Noto Sans + Roboto、站 B Source Han + Georgia</td></tr>
-    <tr><td>8</td><td>同上線時間</td><td>站 A → 5 天間隔 → 站 B（Day 5 vs Day 11）</td></tr>
-    <tr><td>9</td><td>同主題（內容相食）</td><td>站 A 主題 ≠ 站 B 主題（依域名 Wayback 決定）</td></tr>
-    <tr><td>10</td><td>每篇都連 ys89.fun</td><td>10 篇只 3 篇連，其他純該域名主題</td></tr>
-    <tr><td>11</td><td>內容違反原域名主題</td><td>看 Wayback → 保留原主題（這條最關鍵，v2 修正重點）</td></tr>
-    <tr><td>12</td><td>Anchor text 集中</td><td>60/20/10/10 分配</td></tr>
+    <tr><th>#</th><th>項目</th><th>A 站做法</th><th>B 站做法</th></tr>
+    <tr><td>1</td><td>主機 / IP</td><td>CF Pages 帳號 1</td><td>新 Cloudways 帳號</td></tr>
+    <tr><td>2</td><td>CMS / Theme</td><td>純 HTML + universal.css</td><td>WordPress + zeus-baccarat-theme（rename）</td></tr>
+    <tr><td>3</td><td>WHOIS</td><td>CF Registrar Privacy</td><td>Namecheap Privacy</td></tr>
+    <tr><td>4</td><td>Admin email</td><td>無 admin（純靜態）</td><td>獨立 Gmail（zeus-bac-admin@）</td></tr>
+    <tr><td>5</td><td>GA / GSC</td><td>不裝 GA / 獨立 GSC</td><td>不裝 GA / 獨立 GSC（不同 Gmail）</td></tr>
+    <tr><td>6</td><td>SEO Plugin</td><td>無 plugin（手刻 meta）</td><td>Yoast（換 Rank Math）</td></tr>
+    <tr><td>7</td><td>視覺風格</td><td>米色 + 暖系（Noto Sans）</td><td>學院藍 + 冷系（Source Han Sans）</td></tr>
+    <tr><td>8</td><td>HTML 結構</td><td><code>main &gt; article</code></td><td><code>div.container &gt; article</code></td></tr>
+    <tr><td>9</td><td>上線時間</td><td>Day 11</td><td>Day 5（先衝）</td></tr>
+    <tr><td>10</td><td>主題</td><td>保留 Wayback 原主題</td><td>戰神 + 百家樂雙 cluster</td></tr>
+    <tr><td>11</td><td>連 ys89.fun 密度</td><td>30% 文章（3/10）</td><td>45% 文章（5/11）</td></tr>
+    <tr><td>12</td><td>Author</td><td>單一筆名</td><td>5 編輯人設輪流</td></tr>
   </table>
 </div>
 
-<!-- 7. 14 天時程 -->
+<!-- 6. 14 天時程 -->
 <div class="section">
   <div class="section-label">// 14 天時程</div>
-  <div class="section-title">買到域名後執行</div>
+  <div class="section-title">B 站先衝（搶世足窗口）/ A 站後上（隱匿後盾）</div>
 
   <table>
-    <tr><th>Day</th><th>動作</th></tr>
-    <tr><td>Day 0</td><td>兩個域名買到，WHOIS Privacy 啟用</td></tr>
-    <tr><td>Day 1-2</td><td>兩個域名都做 Wayback 完整查歷史，<strong>決定主題</strong>（旅遊/科技/教育/體育等）</td></tr>
-    <tr><td>Day 3-4</td><td>站 A 建立基底（純 HTML + universal.css 米色變體）+ 首頁 + 5 篇主題文章</td></tr>
-    <tr><td>Day 5</td><td>站 A DNS 切 CF Pages 帳號 1 + 正式上線</td></tr>
-    <tr><td>Day 6-7</td><td>站 A 補完剩 5 篇，**只有 #4 #7 #10 有 contextual link 到 ys89.fun**</td></tr>
-    <tr><td>Day 8</td><td>站 A 整體 audit + 提交 GSC</td></tr>
-    <tr><td>Day 9-10</td><td>站 B 建立基底（學院藍變體）+ 首頁 + 5 篇主題文章</td></tr>
-    <tr><td>Day 11</td><td>站 B DNS 切 CF Pages 帳號 2 + 正式上線（站 A 上線後第 6 天）</td></tr>
-    <tr><td>Day 12-13</td><td>站 B 補完剩 5 篇，同樣只 3 篇連 ys89.fun</td></tr>
-    <tr><td>Day 14</td><td>站 B GSC 提交 + 雙站整體 footprint audit</td></tr>
+    <tr><th>Day</th><th>動作</th><th>站</th></tr>
+    <tr><td>Day 0</td><td>兩個域名買到，WHOIS Privacy 啟用</td><td>A + B</td></tr>
+    <tr><td>Day 1</td><td>兩域名 Wayback 完整查歷史</td><td>A + B</td></tr>
+    <tr><td>Day 2</td><td>B 站開新 Cloudways 帳號 + WordPress 安裝 + theme rename</td><td>B</td></tr>
+    <tr><td>Day 3</td><td>B 站 6 篇文章上線（Pillar #1 + 戰神 5 篇）</td><td>B</td></tr>
+    <tr><td>Day 4</td><td>B 站 5 篇文章上線（百家樂 4 篇 + Hub Page）</td><td>B</td></tr>
+    <tr><td>Day 5</td><td><strong>B 站正式上線 + GSC 提交</strong></td><td>B 🚀</td></tr>
+    <tr><td>Day 6-7</td><td>B 站監控 + 修補 + 補圖</td><td>B</td></tr>
+    <tr><td>Day 8</td><td>A 站建立 純 HTML + universal.css 米色變體</td><td>A</td></tr>
+    <tr><td>Day 9-10</td><td>A 站 5 篇主題文章上線</td><td>A</td></tr>
+    <tr><td>Day 11</td><td><strong>A 站正式上線（B 後 6 天）</strong></td><td>A 🚀</td></tr>
+    <tr><td>Day 12-13</td><td>A 站補完剩 5 篇 + contextual link</td><td>A</td></tr>
+    <tr><td>Day 14</td><td>雙站整體 footprint audit + GSC 雙重提交</td><td>A + B</td></tr>
   </table>
 
   <div class="box red">
     <strong style="color:var(--red)">⚠️ 絕對不要：</strong>
     <ul>
-      <li>兩站同一天上線</li>
-      <li>兩站同時連大量 ys89.fun（連結 burst）</li>
-      <li>違反原域名 Wayback 主題</li>
+      <li>兩站同一天上線（時間 footprint）</li>
+      <li>B 站 11 篇文章同一天 publish（內容 burst）→ 分 2-3 天</li>
+      <li>同一個 Cloudways 帳號管 B 站和 ys89.fun</li>
+      <li>B 站 admin 用 ys89.fun 的 Gmail 登入</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 7. 60 天驗收對比 -->
+<div class="section">
+  <div class="section-label">// 60 天驗收</div>
+  <div class="section-title">A vs B 對比表（業主用）</div>
+
+  <table>
+    <tr><th>指標</th><th>A 站目標</th><th>B 站目標</th><th>對比意義</th></tr>
+    <tr><td>ys89.fun 收到的連結數</td><td>3 條</td><td>5 條</td><td>B 帶來更多 link juice</td></tr>
+    <tr><td>該站 DR 上升</td><td>0 → 5-10</td><td>0 → 10-20</td><td>B 比 A 快 1.5-2 倍 = 進攻策略有效</td></tr>
+    <tr><td>該站索引頁數</td><td>10/10</td><td>11/11</td><td>哪個 deindex = footprint 警訊</td></tr>
+    <tr><td>該站自然流量月增</td><td>500+</td><td>1500+</td><td>B 流量 3 倍 = 進攻吃到流量</td></tr>
+    <tr><td>ys89.fun DR 受益</td><td>+3-5</td><td>+8-12</td><td>B 對母站貢獻更大</td></tr>
+    <tr><td>Google penalty 風險</td><td>低</td><td>中</td><td>B 萬一被罰 = 損失 NT$40K，A 仍在</td></tr>
+  </table>
+
+  <div class="box gold">
+    <strong style="color:var(--gold)">業主看 60 天 KPI 後可決定：</strong>
+    <ul>
+      <li><strong>B 達標 + A 達標</strong> → 兩條路都有效 → 加碼買第 2 批雙站</li>
+      <li><strong>B 達標 + A 普通</strong> → 進攻策略更好 → 下次只買進攻型</li>
+      <li><strong>B 不達 + A 達標</strong> → 隱匿策略更穩 → 下次只買隱匿型</li>
+      <li><strong>B 被罰 + A 達標</strong> → 慶幸有 A 後盾 → footprint 防護加強</li>
+      <li><strong>都不達標</strong> → 暫停 PBN 投資，剩餘預算轉投廣告</li>
     </ul>
   </div>
 </div>
@@ -303,70 +333,78 @@ ul li { margin: 5px 0 5px 20px; }
 <!-- 8. 給另一台 Claude Code -->
 <div class="section">
   <div class="section-label">// 給另一台 Claude Code</div>
-  <div class="section-title">執行指令包（v2 修正版）</div>
+  <div class="section-title">執行指令包 v3 最終版</div>
 
-  <div class="code-box">domain A：[實際買到的 DR 50+ 域名 A]
-domain B：[實際買到的 DR 50+ 域名 B]
+  <div class="code-box">YS89 PBN Tier-1 雙站建置任務（v3 最終版）
 
-依照 https://ys89-seo-docs.pages.dev/tier1-pbn-strategy.html (v2 修正版) 執行：
+⚠️ 開工前必讀
+1. WebFetch 完整讀過 https://ys89-seo-docs.pages.dev/tier1-pbn-strategy.html (v3)
+2. 讀 /Users/user/Desktop/YS/ys89-pbn-deliverable/HANDOFF-TO-NEXT-CLAUDE.md
+3. 讀 03-footprint-avoidance.md
+4. 跟用戶確認實際買到的兩個域名（domain A / domain B）
 
-Step 1：兩個域名都做 Wayback 完整歷史調查
-  - 早期 / 中期 / 晚期各 1 個快照
-  - 識別原主題類別（旅遊 / 科技 / 教育 / 商業 / 健康 / 體育等）
-  - 確認沒有賭博/成人/詐騙歷史
+兩站策略（v3 最終確認）
 
-Step 2：依原主題決定內容方向
-  - 站 A：保留原主題寫 10 篇深度文章
-  - 站 B：保留原主題寫 10 篇深度文章
-  - 兩站主題盡量不同（避免內容相食）
+【A 站】隱匿後盾
+- 域名 A：[用戶填入實際 DR 50+ 域名]
+- 內容：保留原 Wayback 主題（旅遊/科技/商業/教育/體育/健康等）
+- 技術：純 HTML + universal.css 米色變體
+- 主機：CF Pages 帳號 1
+- 10 篇文章，#4 #7 #10 contextual link 到 ys89.fun
+- 上線時間：Day 11
 
-Step 3：技術實作
-  - 純 HTML + 各自獨立的 universal.css 變體
-  - 站 A：米色暖系 + Noto Sans TC + Roboto + article>section 結構
-  - 站 B：學院藍冷系 + Source Han Sans + Georgia + main>div.row 結構
-  - 部署：站 A → CF Pages 帳號 1，站 B → CF Pages 帳號 2
+【B 站】進攻雙 cluster（戰神 + 百家樂）
+- 域名 B：[用戶填入實際 DR 50+ 域名]
+- 內容：11 篇雙 cluster（1 Pillar + 5 戰神 + 5 百家樂）
+- 技術：WordPress + 鏡像 ys89.fun 程式碼但 6 條防護
+   1. Theme rename: ys-entertainment-theme → zeus-baccarat-theme
+   2. 獨立 Gmail（zeus-bac-admin@gmail）
+   3. SEO plugin: Rank Math → Yoast
+   4. 新 Cloudways 帳號 + 不同 IP
+   5. 不裝 GA，獨立 GSC
+   6. wp-content 結構微調
+- 上線時間：Day 5（先衝世足窗口）
 
-Step 4：內鏈規則
-  - 10 篇文章只有 #4 #7 #10 有 contextual link 到 ys89.fun
-  - Anchor text 60/20/10/10 分配
-  - 每篇還連 2-3 個 Wikipedia / 官方資料外連
+執行順序
 
-Step 5：時程嚴格分散
-  - Day 5：站 A 上線
-  - Day 11：站 B 上線（站 A 後 5 天）
-  - 絕對不可同時上線
+Day 0：兩域名買到 + WHOIS Privacy
+Day 1：雙站 Wayback 完整查
+Day 2：B 站 WordPress 安裝 + theme rename + 6 條防護
+Day 3：B 站 6 篇文章（Pillar + 戰神 5）
+Day 4：B 站 5 篇文章（百家樂 4 + Hub）
+Day 5：B 站正式上線 + GSC 提交 🚀
+Day 6-7：B 站監控
+Day 8：A 站建 純 HTML
+Day 9-10：A 站 5 篇文章
+Day 11：A 站上線 + GSC 提交 🚀
+Day 12-13：A 站補完 + contextual link
+Day 14：雙站 footprint audit + 交回報告
 
-Step 6：完成 deployment-tier1.md 報告
-  - 兩站 URL
-  - 上線時間
-  - 文章清單（標題、字數、是否有 contextual link）
-  - 內鏈關係圖
-  - 12 條 footprint avoidance checklist 逐條打勾
+完成後產出
+deployment-tier1-v3.md 報告，包含：
+- 兩站 URL + 上線時間
+- 11 + 10 篇文章清單（標題 / 字數 / 連結 / 作者）
+- 內鏈關係圖
+- 12 條 Footprint Avoidance 逐條打勾
+- 60 天 KPI 監控建議
 
-注意：
-- 內容絕對保留原域名 Wayback 主題（紅線 #11，v2 重點修正）
-- 不直接寫「戰神賽特」「百家樂」當主標題
-- 透過「主題 × 娛樂城交集」的 #4 #7 #10 三篇自然 contextual link
-</div>
-
-  <div class="box gold">
-    <strong style="color:var(--gold)">v2 修正核心：</strong>
-    <ul>
-      <li>v1 錯誤：直接寫「戰神賽特站」「百家樂站」→ 違反 footprint #10</li>
-      <li>v2 正確：<strong>保留原域名 Wayback 主題，透過 #4 #7 #10 三篇 contextual link 自然連到 ys89.fun</strong></li>
-      <li>跟 Tier-2/3（HipGreenScene 旅遊 / adviseist 戶外）做法一致，只是 DR 更高</li>
-    </ul>
-  </div>
+絕對禁止
+- 兩站同一天上線
+- 兩站同個 Cloudways 帳號
+- B 站 admin 用 ys89.fun 的 Gmail
+- 內容直接 copy-paste ys89.fun 原文
+- 11 篇文章同一天 publish</div>
 </div>
 
 </div>
 
 <div class="signature">
-  製作：阿翔（Sean）/ YS89 PBN 戰術組｜v2 修正版 2026-05-20<br>
-  v1 → v2 修正：感謝另一 Claude Code 指出 4 個策略矛盾<br>
+  製作：阿翔（Sean）/ YS89 PBN 戰術組｜v3 最終版 2026-05-20<br>
+  v1 → v2 → v3 演變：感謝另一 Claude Code 抓出策略矛盾，最終定案分散測試<br>
   附件：<a href="domain-purchase-proposal-2026.html" style="color:var(--gold)">採購提案</a> ·
   <a href="domain-shopping-list.html" style="color:var(--gold)">待買清單</a> ·
-  <a href="domain-verification-guide.html" style="color:var(--gold)">查驗 SOP</a>
+  <a href="domain-verification-guide.html" style="color:var(--gold)">查驗 SOP</a> ·
+  <a href="keywords.html" style="color:var(--gold)">關鍵字地圖</a>
 </div>
 
 </body>
