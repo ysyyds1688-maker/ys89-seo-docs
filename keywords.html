@@ -1,1 +1,806 @@
-fatal: path 'KEYWORDS.html' exists on disk, but not in 'HEAD~2'
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 站群關鍵字地圖 2026</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2128;--border:#30363d;
+  --green:#3fb950;--blue:#58a6ff;--yellow:#d29922;--red:#f85149;
+  --purple:#bc8cff;--orange:#f0883e;--cyan:#39d3f5;--pink:#ff7eb6;
+  --text:#e6edf3;--muted:#8b949e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+
+header{background:#010409;border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.logo{font-size:1.15em;font-weight:800;font-family:monospace;color:var(--green)}
+.logo span{color:var(--text)}
+.header-meta{color:var(--muted);font-size:0.8em;font-family:monospace}
+
+.page{max-width:1200px;margin:0 auto;padding:28px 20px 60px}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:32px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center}
+.stat .val{font-size:1.7em;font-weight:900;font-family:monospace}
+.stat .lbl{color:var(--muted);font-size:0.72em;margin-top:4px}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px;align-items:center}
+.legend-title{color:var(--muted);font-size:0.72em;font-weight:700;text-transform:uppercase;margin-right:4px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:0.75em;color:var(--muted)}
+.dot{width:9px;height:9px;border-radius:2px}
+
+/* SITE CARD */
+.site-card{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:24px;overflow:hidden}
+.site-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:10px}
+.site-emoji{font-size:1.6em;width:38px;text-align:center;flex-shrink:0}
+.site-info{flex:1;min-width:160px}
+.site-name{font-weight:800;font-size:1em}
+.site-url{font-size:0.75em;color:var(--muted);margin-top:2px}
+.site-url a{color:var(--blue)}
+.site-tag{font-size:0.68em;padding:3px 10px;border-radius:20px;font-weight:700;white-space:nowrap;border:1px solid;flex-shrink:0}
+.tag-green{color:var(--green);border-color:rgba(63,185,80,.4);background:rgba(63,185,80,.1)}
+.tag-blue{color:var(--blue);border-color:rgba(88,166,255,.4);background:rgba(88,166,255,.1)}
+.tag-yellow{color:var(--yellow);border-color:rgba(210,153,34,.4);background:rgba(210,153,34,.1)}
+.tag-purple{color:var(--purple);border-color:rgba(188,140,255,.4);background:rgba(188,140,255,.1)}
+.tag-orange{color:var(--orange);border-color:rgba(240,136,62,.4);background:rgba(240,136,62,.1)}
+.tag-cyan{color:var(--cyan);border-color:rgba(57,211,245,.4);background:rgba(57,211,245,.1)}
+.tag-pink{color:var(--pink);border-color:rgba(255,126,182,.4);background:rgba(255,126,182,.1)}
+
+/* KW GRID */
+.kw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.kw-block{padding:14px 20px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.kw-block:nth-child(n){border-right:1px solid var(--border)}
+.kw-label{font-size:0.68em;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:6px}
+.kw-wrap{display:flex;flex-wrap:wrap;gap:5px}
+.kw{display:inline-block;padding:3px 9px;border-radius:5px;font-size:0.75em;border:1px solid;cursor:default;transition:opacity .15s}
+.kw:hover{opacity:.75}
+.kw.core{background:rgba(210,153,34,.1);border-color:rgba(210,153,34,.4);color:var(--yellow)}
+.kw.longtail{background:rgba(63,185,80,.08);border-color:rgba(63,185,80,.35);color:var(--green)}
+.kw.longtail::after{content:' ↗';font-size:.65em;opacity:.7}
+.kw.brand{background:rgba(88,166,255,.1);border-color:rgba(88,166,255,.35);color:var(--blue)}
+.kw.normal{background:rgba(255,255,255,.05);border-color:var(--border);color:var(--text)}
+
+/* SECTION TITLE */
+.section-label{font-size:0.75em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding:10px 0 14px;border-bottom:1px solid var(--border);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+
+/* NOTE BOX */
+.note-box{background:rgba(57,211,245,.07);border:1px solid rgba(57,211,245,.25);border-radius:8px;padding:12px 16px;margin-bottom:24px;font-size:0.82em;color:var(--cyan)}
+
+@media(max-width:600px){
+  .kw-grid{grid-template-columns:1fr}
+  .kw-block{border-right:none}
+  header{padding:14px 16px}
+  .page{padding:20px 14px 50px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">YS89<span> · 站群關鍵字地圖</span></div>
+  <div class="header-meta">最後更新：2026-05-18 &nbsp;|&nbsp; 6站 · 176篇文章 · 200+ 關鍵字</div>
+</header>
+
+<div class="page">
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="val" style="color:var(--green)">6</div><div class="lbl">活躍站點</div></div>
+    <div class="stat"><div class="val" style="color:var(--yellow)">126+</div><div class="lbl">目標關鍵字</div></div>
+    <div class="stat"><div class="val" style="color:var(--blue)">45</div><div class="lbl">ys89.games</div></div>
+    <div class="stat"><div class="val" style="color:var(--purple)">17</div><div class="lbl">ys89.info</div></div>
+    <div class="stat"><div class="val" style="color:var(--orange)">15</div><div class="lbl">ys89.biz</div></div>
+    <div class="stat"><div class="val" style="color:var(--cyan)">15</div><div class="lbl">ys89.me</div></div>
+    <div class="stat"><div class="val" style="color:var(--pink)">176</div><div class="lbl">ys89.fun 文章</div></div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <span class="legend-title">圖例</span>
+    <span class="legend-item"><span class="dot" style="background:rgba(210,153,34,.5);border:1px solid rgba(210,153,34,.6)"></span>核心關鍵字（高搜尋量）</span>
+    <span class="legend-item"><span class="dot" style="background:rgba(63,185,80,.4);border:1px solid rgba(63,185,80,.5)"></span>長尾關鍵字（高轉換 ↗）</span>
+    <span class="legend-item"><span class="dot" style="background:rgba(88,166,255,.4);border:1px solid rgba(88,166,255,.5)"></span>品牌關鍵字</span>
+    <span class="legend-item"><span class="dot" style="background:rgba(255,255,255,.05);border:1px solid #30363d"></span>一般關鍵字</span>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ys89.fun（母站 WordPress）
+  ══════════════════════════════════════ -->
+  <div class="section-label">🏠 母站（品牌主力）</div>
+
+  <div class="site-card">
+    <div class="site-head">
+      <div class="site-emoji">🎰</div>
+      <div class="site-info">
+        <div class="site-name">YS89 夜色娛樂城 主站</div>
+        <div class="site-url"><a href="https://ys89.fun" target="_blank">ys89.fun</a> · WordPress + Cloudflare · <strong style="color:var(--green)">176 篇文章</strong>（從 sitemap 實際抓取）</div>
+      </div>
+      <span class="site-tag tag-yellow">品牌主站 · 176 篇</span>
+    </div>
+    <div class="kw-grid">
+
+      <!-- 戰神賽特（4篇） -->
+      <div class="kw-block" style="border-top:2px solid rgba(240,136,62,.4)">
+        <div class="kw-label" style="color:var(--orange)">⚡ 戰神賽特 ATG — 4篇</div>
+        <div class="kw-wrap">
+          <span class="kw core">戰神賽特</span>
+          <span class="kw core">戰神賽特攻略2026</span>
+          <span class="kw longtail">戰神賽特玩法教學</span>
+          <span class="kw longtail">戰神賽特免費旋轉技巧</span>
+          <span class="kw longtail">戰神賽特免遊倍數球</span>
+          <span class="kw longtail">戰神賽特strategy策略</span>
+          <span class="kw longtail">ATG老虎機怎麼玩</span>
+          <span class="kw normal">ATG戰神電子</span>
+        </div>
+      </div>
+
+      <!-- 老虎機（12篇） -->
+      <div class="kw-block">
+        <div class="kw-label">🎰 老虎機 — 12篇</div>
+        <div class="kw-wrap">
+          <span class="kw core">老虎機推薦</span>
+          <span class="kw core">線上老虎機</span>
+          <span class="kw longtail">老虎機RTP排行最高賠率</span>
+          <span class="kw longtail">高RTP老虎機2026推薦</span>
+          <span class="kw longtail">老虎機免費旋轉技巧</span>
+          <span class="kw longtail">老虎機jackpot時機</span>
+          <span class="kw longtail">PG、JDB、CQ9老虎機比較</span>
+          <span class="kw longtail">老虎機RTP攻略</span>
+          <span class="kw longtail">老虎機RTP比較2026</span>
+          <span class="kw longtail">麻將旋轉KT電子老虎機</span>
+          <span class="kw normal">老虎機選台技巧</span>
+          <span class="kw normal">老虎機技巧2026</span>
+        </div>
+      </div>
+
+      <!-- 百家樂（12篇） -->
+      <div class="kw-block">
+        <div class="kw-label">🃏 百家樂 — 12篇</div>
+        <div class="kw-wrap">
+          <span class="kw core">百家樂攻略</span>
+          <span class="kw core">百家樂策略</span>
+          <span class="kw longtail">百家樂路單看法教學</span>
+          <span class="kw longtail">百家樂賠率分析</span>
+          <span class="kw longtail">百家樂投注策略2026</span>
+          <span class="kw longtail">百家樂新手入門</span>
+          <span class="kw longtail">百家樂常見錯誤</span>
+          <span class="kw longtail">百家樂必勝技巧2026</span>
+          <span class="kw longtail">真人百家樂攻略2026</span>
+          <span class="kw longtail">MT真人百家樂</span>
+          <span class="kw normal">百家樂路單2026</span>
+          <span class="kw normal">線上百家樂推薦</span>
+        </div>
+      </div>
+
+      <!-- YS89 品牌（24篇） -->
+      <div class="kw-block">
+        <div class="kw-label">🏷️ YS89 品牌 — 24篇</div>
+        <div class="kw-wrap">
+          <span class="kw brand">夜色娛樂城</span>
+          <span class="kw brand">YS89</span>
+          <span class="kw brand">YS89官方網站</span>
+          <span class="kw brand">夜色娛樂城評測</span>
+          <span class="kw longtail">夜色娛樂城安全嗎</span>
+          <span class="kw longtail">夜色詐騙嗎 PTT Dcard評價</span>
+          <span class="kw longtail">夜色娛樂城體驗金NT$368</span>
+          <span class="kw longtail">夜色首儲優惠攻略</span>
+          <span class="kw longtail">夜色VIP晉升攻略</span>
+          <span class="kw longtail">夜色娛樂城出金條件</span>
+          <span class="kw longtail">夜色USDT入金教學</span>
+          <span class="kw longtail">夜色娛樂城APP下載</span>
+          <span class="kw longtail">夜色娛樂城優惠碼2026</span>
+          <span class="kw longtail">夜色娛樂城怎麼註冊</span>
+          <span class="kw normal">夜色娛樂城客服</span>
+          <span class="kw normal">夜色娛樂城老虎機</span>
+          <span class="kw normal">夜色娛樂城百家樂</span>
+          <span class="kw normal">夜色娛樂城體育投注</span>
+        </div>
+      </div>
+
+      <!-- 娛樂城通用（30篇） -->
+      <div class="kw-block">
+        <div class="kw-label">🎲 娛樂城通用 — 30篇</div>
+        <div class="kw-wrap">
+          <span class="kw core">娛樂城推薦</span>
+          <span class="kw core">台灣娛樂城推薦2026</span>
+          <span class="kw core">娛樂城排行榜</span>
+          <span class="kw longtail">2026娛樂城推薦排行</span>
+          <span class="kw longtail">娛樂城體驗金免流水</span>
+          <span class="kw longtail">娛樂城體驗金怎麼領</span>
+          <span class="kw longtail">娛樂城首儲1倍流水</span>
+          <span class="kw longtail">娛樂城出金速度比較2026</span>
+          <span class="kw longtail">娛樂城出金被拒怎麼辦</span>
+          <span class="kw longtail">娛樂城出金流水計算</span>
+          <span class="kw longtail">娛樂城USDT入金教學</span>
+          <span class="kw longtail">娛樂城APP推薦</span>
+          <span class="kw longtail">娛樂城返水比較2026</span>
+          <span class="kw longtail">娛樂城新手完整攻略</span>
+          <span class="kw longtail">娛樂城帳戶凍結怎麼辦</span>
+          <span class="kw normal">線上娛樂城入金方式</span>
+          <span class="kw normal">捕魚機攻略</span>
+          <span class="kw normal">德州撲克娛樂城</span>
+        </div>
+      </div>
+
+      <!-- 詐騙/黑名單（20篇） -->
+      <div class="kw-block">
+        <div class="kw-label">🚨 詐騙 / 黑名單 — 20篇</div>
+        <div class="kw-wrap">
+          <span class="kw core">娛樂城詐騙</span>
+          <span class="kw core">娛樂城黑名單2026</span>
+          <span class="kw longtail">九州娛樂城倒閉了嗎</span>
+          <span class="kw longtail">九州娛樂城不出金</span>
+          <span class="kw longtail">HOYA娛樂城不出金</span>
+          <span class="kw longtail">LEO娛樂城倒閉</span>
+          <span class="kw longtail">KG娛樂城不出金警告</span>
+          <span class="kw longtail">九富娛樂城詐騙</span>
+          <span class="kw longtail">GameOne娛樂城倒閉</span>
+          <span class="kw longtail">鉅城娛樂城安全嗎</span>
+          <span class="kw longtail">娛樂城出金被拒完整攻略</span>
+          <span class="kw longtail">皇家RY娛樂城詐騙警告</span>
+          <span class="kw normal">BCR娛樂城詐騙</span>
+          <span class="kw normal">飛達娛樂城詐騙</span>
+          <span class="kw normal">豐利娛樂城詐騙</span>
+        </div>
+      </div>
+
+      <!-- 🆕 2026-05-20 使用者意圖深度研究新增 -->
+      <div class="kw-block" style="border:1px dashed #d29922;background:rgba(210,153,34,0.04);border-radius:8px;padding:12px;">
+        <div class="kw-label" style="color:#d29922">🆕 高 ROI 使用者意圖缺口 — 7 篇待寫（2026-05-20 SERP/PAA 研究）</div>
+        <div class="kw-wrap">
+          <span class="kw core">線上娛樂城合法嗎</span>
+          <span class="kw core">娛樂城帳戶凍結</span>
+          <span class="kw core">警示帳戶解除</span>
+          <span class="kw longtail">賭博罪傳票怎麼辦</span>
+          <span class="kw longtail">娛樂城風控解除</span>
+          <span class="kw longtail">殺豬盤詐騙</span>
+          <span class="kw longtail">老師帶單詐騙</span>
+          <span class="kw longtail">洗碼量計算</span>
+          <span class="kw longtail">流水達標技巧</span>
+          <span class="kw longtail">娛樂城贏錢領得到</span>
+          <span class="kw longtail">正常出金娛樂城實測</span>
+          <span class="kw longtail">USDT強迫辦理</span>
+          <span class="kw normal">娛樂城法律</span>
+          <span class="kw normal">娛樂城被風控</span>
+          <span class="kw normal">娛樂城出金實測</span>
+        </div>
+        <div style="font-size:0.78em;color:#8b949e;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
+          📊 來源：fintech-legal.tw（律師站排第 1）/ qywin88 / hoin99 / neww.tw / trendmicro。針對使用者「恐慌型」「自救型」「信任建立型」搜尋意圖。
+        </div>
+      </div>
+
+      <!-- 世足賽（35篇） -->
+      <div class="kw-block">
+        <div class="kw-label">⚽ 世足賽投注 — 35篇</div>
+        <div class="kw-wrap">
+          <span class="kw core">世界盃投注</span>
+          <span class="kw core">世足賽娛樂城</span>
+          <span class="kw longtail">2026世界盃冠軍賠率分析</span>
+          <span class="kw longtail">台灣彩券vs娛樂城世足投注</span>
+          <span class="kw longtail">世界盃新手投注完整攻略</span>
+          <span class="kw longtail">世足讓球盤攻略</span>
+          <span class="kw longtail">世足賽黑馬投注推薦</span>
+          <span class="kw longtail">世足即時投注攻略</span>
+          <span class="kw longtail">梅西阿根廷2026世界盃</span>
+          <span class="kw longtail">姆巴佩法國2026世界盃</span>
+          <span class="kw longtail">巴西vs摩洛哥賠率</span>
+          <span class="kw longtail">西班牙2026世界盃賠率分析</span>
+          <span class="kw longtail">世足射手王金靴賠率</span>
+          <span class="kw longtail">梅西C羅最後世界盃告別</span>
+          <span class="kw normal">世足分組賽投注</span>
+          <span class="kw normal">世足直播哪裡看</span>
+        </div>
+      </div>
+
+      <!-- 投注知識（10篇） -->
+      <div class="kw-block">
+        <div class="kw-label">📖 投注知識 — 10篇</div>
+        <div class="kw-wrap">
+          <span class="kw core">體育投注攻略</span>
+          <span class="kw longtail">運動彩券新手入門</span>
+          <span class="kw longtail">賠率計算方式教學</span>
+          <span class="kw longtail">讓球盤怎麼看</span>
+          <span class="kw longtail">流水要求怎麼計算</span>
+          <span class="kw longtail">娛樂城優惠陷阱</span>
+          <span class="kw longtail">USDT出金教學</span>
+          <span class="kw normal">熊貓體育足球投注</span>
+          <span class="kw normal">Shakira世足主題曲</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="note-box">
+    ⚽ <strong>wc.ys89.fun 已 301 → ys89.games</strong>｜世足站關鍵字全部由 ys89.games 承接，原有排名不受影響。
+  </div>
+
+  <!-- ═══════════════════════════════════
+       1. ys89.games（世足主力站）
+  ══════════════════════════════════════ -->
+  <div class="section-label">⚽ 世足前鋒站群</div>
+
+  <div class="site-card">
+    <div class="site-head">
+      <div class="site-emoji">⚽</div>
+      <div class="site-info">
+        <div class="site-name">世足賽主力站（原 wc.ys89.fun）</div>
+        <div class="site-url"><a href="https://ys89.games" target="_blank">ys89.games</a> · Cloudflare Pages · 90+ 頁</div>
+      </div>
+      <span class="site-tag tag-green">主力資訊站 · 45 關鍵字</span>
+    </div>
+    <div class="kw-grid">
+      <div class="kw-block">
+        <div class="kw-label">🔑 核心關鍵字</div>
+        <div class="kw-wrap">
+          <span class="kw core">2026世界盃</span>
+          <span class="kw core">世足賽</span>
+          <span class="kw core">世界盃賠率</span>
+          <span class="kw core">世界盃投注</span>
+          <span class="kw core">世足賽娛樂城</span>
+          <span class="kw core">世界盃賽程2026</span>
+          <span class="kw core">世界盃分組</span>
+          <span class="kw core">世界盃冠軍預測</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">📅 賽程 / 台灣時間</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">世足賽程台灣時間</span>
+          <span class="kw longtail">2026世界盃台灣幾點看</span>
+          <span class="kw longtail">世界盃台灣時間對照表</span>
+          <span class="kw longtail">2026世足賽何時開始</span>
+          <span class="kw normal">世界盃開幕戰</span>
+          <span class="kw normal">世界盃決賽時間</span>
+          <span class="kw normal">104場賽程</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">📊 賠率 / 預測</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">世界盃冠軍賠率比較</span>
+          <span class="kw longtail">2026世界盃誰最有機會奪冠</span>
+          <span class="kw longtail">世足賽冠軍預測分析</span>
+          <span class="kw normal">西班牙世界盃賠率</span>
+          <span class="kw normal">法國世界盃賠率</span>
+          <span class="kw normal">阿根廷衛冕</span>
+          <span class="kw normal">世界盃黑馬</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">🌍 國家隊 / 球星</div>
+        <div class="kw-wrap">
+          <span class="kw normal">西班牙世界盃</span>
+          <span class="kw normal">法國世界盃</span>
+          <span class="kw normal">巴西世界盃</span>
+          <span class="kw normal">阿根廷世界盃</span>
+          <span class="kw normal">日本世界盃</span>
+          <span class="kw normal">韓國世界盃</span>
+          <span class="kw longtail">孫興慜2026世界盃告別</span>
+          <span class="kw longtail">梅西最後一屆世界盃</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">📺 直播 / 分組</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">世界盃直播台灣哪裡看</span>
+          <span class="kw longtail">2026世界盃分組完整介紹</span>
+          <span class="kw longtail">世界盃死亡之組分析</span>
+          <span class="kw normal">世界盃即時比分</span>
+          <span class="kw normal">12組分組賽制</span>
+          <span class="kw normal">48隊世界盃</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">💰 投注攻略（CTA）</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">世界盃投注攻略台灣</span>
+          <span class="kw longtail">台灣如何合法投注世足</span>
+          <span class="kw longtail">世足讓球盤怎麼看</span>
+          <span class="kw longtail">世足大小球投注教學</span>
+          <span class="kw longtail">世界盃即時投注攻略</span>
+          <span class="kw normal">台灣運彩世足</span>
+          <span class="kw brand">夜色娛樂城世足優惠</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       2. ys89.info（直播觀賽站）
+  ══════════════════════════════════════ -->
+  <div class="site-card">
+    <div class="site-head">
+      <div class="site-emoji">📺</div>
+      <div class="site-info">
+        <div class="site-name">台灣觀賽直播攻略站</div>
+        <div class="site-url"><a href="https://ys89.info" target="_blank">ys89.info</a> · Cloudflare Pages · 115 頁</div>
+      </div>
+      <span class="site-tag tag-purple">直播觀賽 · 17 關鍵字</span>
+    </div>
+    <div class="kw-grid">
+      <div class="kw-block">
+        <div class="kw-label">🔑 核心關鍵字</div>
+        <div class="kw-wrap">
+          <span class="kw core">世足直播哪裡看</span>
+          <span class="kw core">世界盃直播</span>
+          <span class="kw core">愛爾達體育世足</span>
+          <span class="kw core">世足台灣轉播</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">📡 轉播管道</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">愛爾達體育世足賽直播</span>
+          <span class="kw longtail">MOD世界盃怎麼看</span>
+          <span class="kw longtail">華視轉播世界盃場次</span>
+          <span class="kw longtail">台灣看世界盃哪個頻道</span>
+          <span class="kw longtail">2026世足OTT線上看</span>
+          <span class="kw normal">Hami Video世足</span>
+          <span class="kw normal">公視世足直播</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">⏰ 台灣時間 / 賽程</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">2026世足賽台灣時間完整攻略</span>
+          <span class="kw longtail">世足賽幾點台灣時間開踢</span>
+          <span class="kw longtail">世界盃決賽台灣時間</span>
+          <span class="kw normal">美東美西時差世足</span>
+          <span class="kw normal">台灣時間凌晨幾點</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">💰 觀賽 + 投注</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">台灣如何合法投注世足</span>
+          <span class="kw longtail">邊看直播邊投注攻略</span>
+          <span class="kw brand">夜色娛樂城世足直播投注</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       3. ys89.biz（投注攻略站）
+  ══════════════════════════════════════ -->
+  <div class="site-card">
+    <div class="site-head">
+      <div class="site-emoji">📊</div>
+      <div class="site-info">
+        <div class="site-name">世足投注攻略・讓分波膽站</div>
+        <div class="site-url"><a href="https://ys89.biz" target="_blank">ys89.biz</a> · Cloudflare Pages</div>
+      </div>
+      <span class="site-tag tag-orange">投注攻略 · 15 關鍵字</span>
+    </div>
+    <div class="kw-grid">
+      <div class="kw-block">
+        <div class="kw-label">🔑 核心關鍵字</div>
+        <div class="kw-wrap">
+          <span class="kw core">世足投注攻略</span>
+          <span class="kw core">讓分盤</span>
+          <span class="kw core">波膽玩法</span>
+          <span class="kw core">串關投注</span>
+          <span class="kw core">冠軍賠率比較</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">📖 投注教學長尾</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">2026世界盃讓分盤怎麼看</span>
+          <span class="kw longtail">波膽投注教學完整攻略</span>
+          <span class="kw longtail">世足串關技巧與風險</span>
+          <span class="kw longtail">世界盃大小球算法教學</span>
+          <span class="kw longtail">世足賽新手投注入門</span>
+          <span class="kw longtail">娛樂城世足優惠整理</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">💡 進階技巧</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">即時盤口投注攻略</span>
+          <span class="kw longtail">冠軍賠率應該押多少</span>
+          <span class="kw normal">世足分組賽投注策略</span>
+          <span class="kw normal">死亡之組如何押</span>
+          <span class="kw brand">夜色娛樂城世足優惠</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       4. ys89.me（分組分析・球隊介紹站）
+  ══════════════════════════════════════ -->
+  <div class="site-card">
+    <div class="site-head">
+      <div class="site-emoji">🏆</div>
+      <div class="site-info">
+        <div class="site-name">分組分析・球隊介紹・球星資訊站</div>
+        <div class="site-url"><a href="https://ys89.me" target="_blank">ys89.me</a> · Cloudflare Pages</div>
+      </div>
+      <span class="site-tag tag-cyan">分組球隊 · 15 關鍵字</span>
+    </div>
+    <div class="kw-grid">
+      <div class="kw-block">
+        <div class="kw-label">🔑 核心關鍵字</div>
+        <div class="kw-wrap">
+          <span class="kw core">2026世界盃分組分析</span>
+          <span class="kw core">48隊球隊介紹</span>
+          <span class="kw core">世足球星資訊</span>
+          <span class="kw core">世界盃晉級預測</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">⭐ 球星長尾</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">梅西2026世界盃最後一戰</span>
+          <span class="kw longtail">姆巴佩2026世界盃表現預測</span>
+          <span class="kw longtail">C羅2026世界盃告別賽</span>
+          <span class="kw longtail">維尼西烏斯世足表現</span>
+          <span class="kw longtail">孫興慜世界盃表現分析</span>
+          <span class="kw longtail">亞馬爾最年輕球星預測</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">🗂️ 分組分析長尾</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">2026世界盃48隊分組介紹</span>
+          <span class="kw longtail">世界盃死亡之組哪個最難</span>
+          <span class="kw longtail">各組強隊晉級機率分析</span>
+          <span class="kw normal">A組/C組/F組/I組/J組/L組分析</span>
+          <span class="kw brand">夜色娛樂城分組投注推薦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       5. fifa-worldcups.tw（新站 / 純資訊站）
+  ══════════════════════════════════════ -->
+  <div class="section-label" style="margin-top:8px">🌐 新站</div>
+
+  <div class="site-card">
+    <div class="site-head">
+      <div class="site-emoji">🌍</div>
+      <div class="site-info">
+        <div class="site-name">純資訊站（白底，非博彩風格）</div>
+        <div class="site-url">
+          <a href="https://fifa-worldcups.tw" target="_blank">fifa-worldcups.tw</a>（已上線 ✅）
+          &nbsp;·&nbsp; 21 頁
+        </div>
+      </div>
+      <span class="site-tag tag-pink">純資訊 · 長尾為主</span>
+    </div>
+    <div class="kw-grid">
+      <div class="kw-block">
+        <div class="kw-label">🔑 核心關鍵字</div>
+        <div class="kw-wrap">
+          <span class="kw core">2026世界盃攻略</span>
+          <span class="kw core">世界盃賽程台灣時間</span>
+          <span class="kw core">48隊名單</span>
+          <span class="kw core">世界盃直播平台比較</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">⭐ 球星專頁</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">梅西2026世界盃完整資訊</span>
+          <span class="kw longtail">姆巴佩2026預測</span>
+          <span class="kw longtail">C羅世界盃最終章</span>
+          <span class="kw longtail">維尼西烏斯2026</span>
+          <span class="kw longtail">孫興慜2026世足告別賽</span>
+          <span class="kw longtail">亞馬爾2026世界盃</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">🗂️ 主題專頁</div>
+        <div class="kw-wrap">
+          <span class="kw longtail">2026世界盃台灣時間完整對照</span>
+          <span class="kw longtail">世界盃冠軍預測最全面分析</span>
+          <span class="kw longtail">世界盃淘汰賽制完整說明</span>
+          <span class="kw longtail">2026世界盃場館城市介紹</span>
+          <span class="kw longtail">世界盃黑馬隊伍預測2026</span>
+        </div>
+      </div>
+      <div class="kw-block">
+        <div class="kw-label">🗂️ 分組專頁</div>
+        <div class="kw-wrap">
+          <span class="kw normal">A組賽程分析</span>
+          <span class="kw normal">C組（巴西/摩洛哥死亡之組）</span>
+          <span class="kw normal">F組（荷蘭/日本）</span>
+          <span class="kw normal">I組（法國）</span>
+          <span class="kw normal">J組（阿根廷/梅西）</span>
+          <span class="kw normal">L組（英格蘭）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       站群分工總表
+  ══════════════════════════════════════ -->
+  <div class="section-label" style="margin-top:8px">🗺️ 站群分工 · 避免關鍵字互搶</div>
+  <div class="site-card">
+    <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:0.82em">
+      <thead>
+        <tr style="background:var(--bg);border-bottom:2px solid var(--border)">
+          <th style="padding:10px 16px;text-align:left;color:var(--muted);font-weight:700;white-space:nowrap">站點</th>
+          <th style="padding:10px 16px;text-align:left;color:var(--muted);font-weight:700">主題定位</th>
+          <th style="padding:10px 16px;text-align:left;color:var(--muted);font-weight:700">主打搜尋意圖</th>
+          <th style="padding:10px 16px;text-align:left;color:var(--muted);font-weight:700">目標受眾</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:10px 16px;font-weight:700;color:var(--green);white-space:nowrap"><a href="https://ys89.games" target="_blank">ys89.games</a></td>
+          <td style="padding:10px 16px">最完整世界盃資訊站</td>
+          <td style="padding:10px 16px">資訊型 + 投注型（混合）</td>
+          <td style="padding:10px 16px">想全面了解世足的台灣觀眾</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:10px 16px;font-weight:700;color:var(--purple);white-space:nowrap"><a href="https://ys89.info" target="_blank">ys89.info</a></td>
+          <td style="padding:10px 16px">台灣觀賽直播攻略</td>
+          <td style="padding:10px 16px">資訊型（找直播管道）</td>
+          <td style="padding:10px 16px">想知道哪裡看直播的人</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:10px 16px;font-weight:700;color:var(--orange);white-space:nowrap"><a href="https://ys89.biz" target="_blank">ys89.biz</a></td>
+          <td style="padding:10px 16px">世足投注攻略教學</td>
+          <td style="padding:10px 16px">商業型（投注意圖）</td>
+          <td style="padding:10px 16px">想學投注技巧的玩家</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:10px 16px;font-weight:700;color:var(--cyan);white-space:nowrap"><a href="https://ys89.me" target="_blank">ys89.me</a></td>
+          <td style="padding:10px 16px">分組分析・球隊球星</td>
+          <td style="padding:10px 16px">資訊型（球隊深度分析）</td>
+          <td style="padding:10px 16px">足球愛好者・球星粉絲</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:10px 16px;font-weight:700;color:var(--pink);white-space:nowrap">fifa-worldcups.tw</td>
+          <td style="padding:10px 16px">純資訊站（白底設計）</td>
+          <td style="padding:10px 16px">資訊型（AI搜尋 AEO）</td>
+          <td style="padding:10px 16px">一般球迷・AEO/GEO受眾</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 16px;font-weight:700;color:var(--yellow);white-space:nowrap"><a href="https://ys89.fun" target="_blank">ys89.fun</a></td>
+          <td style="padding:10px 16px">夜色娛樂城品牌主站</td>
+          <td style="padding:10px 16px">品牌型 + 轉換型</td>
+          <td style="padding:10px 16px">娛樂城玩家・準新會員</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- 各站主要頁面一覽 -->
+  <div style="margin-top:32px">
+    <div style="font-size:1em;font-weight:800;color:var(--text);margin-bottom:4px">各站主要頁面一覽（現有頁面・可直接點擊）</div>
+    <div style="color:var(--muted);font-size:0.8em;margin-bottom:20px">各站定位 + 已部署的關鍵頁面連結</div>
+
+    <!-- ys89.games -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(63,185,80,.05)">
+        <span style="font-size:1.4em">⚽</span>
+        <div style="flex:1">
+          <div style="font-weight:800;color:var(--green)">ys89.games</div>
+          <div style="font-size:0.75em;color:var(--muted)">定位：賽程・直播・賠率綜合站 ／ 意圖：資訊型 + 導流</div>
+        </div>
+        <a href="https://ys89.games" target="_blank" style="font-size:0.72em;padding:4px 12px;border-radius:16px;border:1px solid rgba(63,185,80,.4);color:var(--green);background:rgba(63,185,80,.08);font-weight:700">開啟網站 ↗</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0;padding:4px 0">
+        <a href="https://ys89.games/live-104" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="color:var(--red);font-size:1.1em">📺</span><div><div style="font-weight:700">104場直播廣告入口</div><div style="color:var(--muted);font-size:0.85em">/live-104</div></div></a>
+        <a href="https://ys89.games/live" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🔴</span><div><div style="font-weight:700">即時直播</div><div style="color:var(--muted);font-size:0.85em">/live</div></div></a>
+        <a href="https://ys89.games/schedule" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📅</span><div><div style="font-weight:700">完整賽程</div><div style="color:var(--muted);font-size:0.85em">/schedule</div></div></a>
+        <a href="https://ys89.games/odds" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📊</span><div><div style="font-weight:700">冠軍賠率</div><div style="color:var(--muted);font-size:0.85em">/odds</div></div></a>
+        <a href="https://ys89.games/prediction" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🏆</span><div><div style="font-weight:700">冠軍預測</div><div style="color:var(--muted);font-size:0.85em">/prediction</div></div></a>
+        <a href="https://ys89.games/streaming-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📡</span><div><div style="font-weight:700">直播管道攻略</div><div style="color:var(--muted);font-size:0.85em">/streaming-guide</div></div></a>
+        <a href="https://ys89.games/taiwan-time" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">⏰</span><div><div style="font-weight:700">台灣時間對照</div><div style="color:var(--muted);font-size:0.85em">/taiwan-time</div></div></a>
+        <a href="https://ys89.games/dark-horses" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🌑</span><div><div style="font-weight:700">黑馬分析</div><div style="color:var(--muted);font-size:0.85em">/dark-horses</div></div></a>
+        <a href="https://ys89.games/world-cup-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);font-size:0.82em"><span style="font-size:1.1em">📖</span><div><div style="font-weight:700">世界盃完整攻略</div><div style="color:var(--muted);font-size:0.85em">/world-cup-guide</div></div></a>
+      </div>
+    </div>
+
+    <!-- ys89.info -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(88,166,255,.05)">
+        <span style="font-size:1.4em">📡</span>
+        <div style="flex:1">
+          <div style="font-weight:800;color:var(--blue)">ys89.info</div>
+          <div style="font-size:0.75em;color:var(--muted)">定位：台灣觀賽直播攻略站 ／ 意圖：資訊型（哪裡看・怎麼看）</div>
+        </div>
+        <a href="https://ys89.info" target="_blank" style="font-size:0.72em;padding:4px 12px;border-radius:16px;border:1px solid rgba(88,166,255,.4);color:var(--blue);background:rgba(88,166,255,.08);font-weight:700">開啟網站 ↗</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0;padding:4px 0">
+        <a href="https://ys89.info/live-104" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="color:var(--red);font-size:1.1em">📺</span><div><div style="font-weight:700">104場直播廣告入口</div><div style="color:var(--muted);font-size:0.85em">/live-104</div></div></a>
+        <a href="https://ys89.info/live" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🔴</span><div><div style="font-weight:700">即時直播</div><div style="color:var(--muted);font-size:0.85em">/live</div></div></a>
+        <a href="https://ys89.info/streaming-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📡</span><div><div style="font-weight:700">直播管道攻略</div><div style="color:var(--muted);font-size:0.85em">/streaming-guide</div></div></a>
+        <a href="https://ys89.info/where-watch-worldcup-taiwan" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📍</span><div><div style="font-weight:700">台灣哪裡看世足</div><div style="color:var(--muted);font-size:0.85em">/where-watch-worldcup-taiwan</div></div></a>
+        <a href="https://ys89.info/live-broadcast-complete-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📋</span><div><div style="font-weight:700">直播完整指南</div><div style="color:var(--muted);font-size:0.85em">/live-broadcast-complete-guide</div></div></a>
+        <a href="https://ys89.info/taiwan-time" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">⏰</span><div><div style="font-weight:700">台灣時間對照</div><div style="color:var(--muted);font-size:0.85em">/taiwan-time</div></div></a>
+        <a href="https://ys89.info/live-schedule" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);font-size:0.82em"><span style="font-size:1.1em">📅</span><div><div style="font-weight:700">直播賽程</div><div style="color:var(--muted);font-size:0.85em">/live-schedule</div></div></a>
+      </div>
+    </div>
+
+    <!-- ys89.biz -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(240,136,62,.05)">
+        <span style="font-size:1.4em">💰</span>
+        <div style="flex:1">
+          <div style="font-weight:800;color:var(--orange)">ys89.biz</div>
+          <div style="font-size:0.75em;color:var(--muted)">定位：世足賽投注攻略教學站 ／ 意圖：商業型（投注技巧）</div>
+        </div>
+        <a href="https://ys89.biz" target="_blank" style="font-size:0.72em;padding:4px 12px;border-radius:16px;border:1px solid rgba(240,136,62,.4);color:var(--orange);background:rgba(240,136,62,.08);font-weight:700">開啟網站 ↗</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0;padding:4px 0">
+        <a href="https://ys89.biz/live-104" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="color:var(--red);font-size:1.1em">📺</span><div><div style="font-weight:700">104場直播投注入口</div><div style="color:var(--muted);font-size:0.85em">/live-104</div></div></a>
+        <a href="https://ys89.biz/betting-tutorial" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📖</span><div><div style="font-weight:700">投注教學</div><div style="color:var(--muted);font-size:0.85em">/betting-tutorial</div></div></a>
+        <a href="https://ys89.biz/betting-strategy-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🎯</span><div><div style="font-weight:700">投注策略指南</div><div style="color:var(--muted);font-size:0.85em">/betting-strategy-guide</div></div></a>
+        <a href="https://ys89.biz/live-betting-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">⚡</span><div><div style="font-weight:700">即時投注（滾球）</div><div style="color:var(--muted);font-size:0.85em">/live-betting-guide</div></div></a>
+        <a href="https://ys89.biz/handicap-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">➕</span><div><div style="font-weight:700">讓球盤指南</div><div style="color:var(--muted);font-size:0.85em">/handicap-guide</div></div></a>
+        <a href="https://ys89.biz/over-under-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">↕️</span><div><div style="font-weight:700">大小球指南</div><div style="color:var(--muted);font-size:0.85em">/over-under-guide</div></div></a>
+        <a href="https://ys89.biz/parlay-guide" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🔗</span><div><div style="font-weight:700">串關過關指南</div><div style="color:var(--muted);font-size:0.85em">/parlay-guide</div></div></a>
+        <a href="https://ys89.biz/correct-score" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🎯</span><div><div style="font-weight:700">波膽（正確比分）</div><div style="color:var(--muted);font-size:0.85em">/correct-score</div></div></a>
+        <a href="https://ys89.biz/death-group-analysis" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);font-size:0.82em"><span style="font-size:1.1em">💀</span><div><div style="font-weight:700">死亡之組分析</div><div style="color:var(--muted);font-size:0.85em">/death-group-analysis</div></div></a>
+      </div>
+    </div>
+
+    <!-- ys89.me -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(57,211,245,.05)">
+        <span style="font-size:1.4em">🌐</span>
+        <div style="flex:1">
+          <div style="font-weight:800;color:var(--cyan)">ys89.me</div>
+          <div style="font-size:0.75em;color:var(--muted)">定位：分組分析・球隊球星介紹站 ／ 意圖：資訊型（深度分析）</div>
+        </div>
+        <a href="https://ys89.me" target="_blank" style="font-size:0.72em;padding:4px 12px;border-radius:16px;border:1px solid rgba(57,211,245,.4);color:var(--cyan);background:rgba(57,211,245,.08);font-weight:700">開啟網站 ↗</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0;padding:4px 0">
+        <a href="https://ys89.me/live-104" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="color:var(--red);font-size:1.1em">📺</span><div><div style="font-weight:700">104場直播入口</div><div style="color:var(--muted);font-size:0.85em">/live-104</div></div></a>
+        <a href="https://ys89.me/group-a" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🏆</span><div><div style="font-weight:700">A組分析</div><div style="color:var(--muted);font-size:0.85em">/group-a ～ /group-l（12組）</div></div></a>
+        <a href="https://ys89.me/live" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🔴</span><div><div style="font-weight:700">即時直播</div><div style="color:var(--muted);font-size:0.85em">/live</div></div></a>
+        <a href="https://ys89.me/odds" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📊</span><div><div style="font-weight:700">賠率分析</div><div style="color:var(--muted);font-size:0.85em">/odds</div></div></a>
+        <a href="https://ys89.me/messi-2026" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">⚽</span><div><div style="font-weight:700">梅西2026</div><div style="color:var(--muted);font-size:0.85em">/messi-2026</div></div></a>
+        <a href="https://ys89.me/blog" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);font-size:0.82em"><span style="font-size:1.1em">📝</span><div><div style="font-weight:700">分析文章</div><div style="color:var(--muted);font-size:0.85em">/blog</div></div></a>
+      </div>
+    </div>
+
+    <!-- fifa-worldcups.tw -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:24px;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(255,126,182,.05)">
+        <span style="font-size:1.4em">🌍</span>
+        <div style="flex:1">
+          <div style="font-weight:800;color:var(--pink)">fifa-worldcups.tw</div>
+          <div style="font-size:0.75em;color:var(--muted)">定位：純資訊站（白底設計）／ 意圖：資訊型（AI搜尋 AEO/GEO導向）</div>
+        </div>
+        <a href="https://fifa-worldcups.tw" target="_blank" style="font-size:0.72em;padding:4px 12px;border-radius:16px;border:1px solid rgba(255,126,182,.4);color:var(--pink);background:rgba(255,126,182,.08);font-weight:700">開啟網站 ↗</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0;padding:4px 0">
+        <a href="https://fifa-worldcups.tw/live" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="color:var(--red);font-size:1.1em">🔴</span><div><div style="font-weight:700">直播</div><div style="color:var(--muted);font-size:0.85em">/live</div></div></a>
+        <a href="https://fifa-worldcups.tw/schedule" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">📅</span><div><div style="font-weight:700">完整賽程</div><div style="color:var(--muted);font-size:0.85em">/schedule</div></div></a>
+        <a href="https://fifa-worldcups.tw/taiwan-time" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">⏰</span><div><div style="font-weight:700">台灣時間</div><div style="color:var(--muted);font-size:0.85em">/taiwan-time</div></div></a>
+        <a href="https://fifa-worldcups.tw/teams" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🏳️</span><div><div style="font-weight:700">48支球隊</div><div style="color:var(--muted);font-size:0.85em">/teams</div></div></a>
+        <a href="https://fifa-worldcups.tw/champion-prediction" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🏆</span><div><div style="font-weight:700">冠軍預測</div><div style="color:var(--muted);font-size:0.85em">/champion-prediction</div></div></a>
+        <a href="https://fifa-worldcups.tw/messi-2026" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">⚽</span><div><div style="font-weight:700">梅西 2026</div><div style="color:var(--muted);font-size:0.85em">/messi-2026</div></div></a>
+        <a href="https://fifa-worldcups.tw/mbappe-2026" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">⚡</span><div><div style="font-weight:700">姆巴佩 2026</div><div style="color:var(--muted);font-size:0.85em">/mbappe-2026</div></div></a>
+        <a href="https://fifa-worldcups.tw/knockout-format" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);border-bottom:1px solid var(--border);font-size:0.82em"><span style="font-size:1.1em">🗂️</span><div><div style="font-weight:700">淘汰賽制說明</div><div style="color:var(--muted);font-size:0.85em">/knockout-format</div></div></a>
+        <a href="https://fifa-worldcups.tw/venues" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--text);font-size:0.82em"><span style="font-size:1.1em">🏟️</span><div><div style="font-weight:700">場館資訊</div><div style="color:var(--muted);font-size:0.85em">/venues</div></div></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;color:var(--muted);font-size:0.73em;padding-top:16px">
+    🔒 內部文件 · 2026-05-18 · YS89 SEO 站群
+    &nbsp;|&nbsp; <a href="PROJECT-OVERVIEW.html">返回專案總覽</a>
+  </div>
+
+</div>
+</body>
+</html>
