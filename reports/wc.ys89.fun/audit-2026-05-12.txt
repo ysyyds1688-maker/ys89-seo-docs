@@ -1,0 +1,311 @@
+
+ ███████╗███████╗ ██████╗ ███╗   ███╗ █████╗ ████████╗ ██████╗ ██████╗
+ ██╔════╝██╔════╝██╔═══██╗████╗ ████║██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
+ ███████╗█████╗  ██║   ██║██╔████╔██║███████║   ██║   ██║   ██║██████╔╝
+ ╚════██║██╔══╝  ██║   ██║██║╚██╔╝██║██╔══██║   ██║   ██║   ██║██╔══██╗
+ ███████║███████╗╚██████╔╝██║ ╚═╝ ██║██║  ██║   ██║   ╚██████╔╝██║  ██║
+ ╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
+
+  v2.1.0  •  https://seomator.com
+──────────────────────────────────────────────────
+Config: (none, using defaults)
+Auditing: wc.ys89.fun
+
+
+- Auditing Core...
+  ⚠ Core                  99 18 passed, 1 warnings
+- Auditing Technical SEO...
+  ✗ Technical SEO         98 11 passed, 1 warnings, 1 failed
+- Auditing Performance...
+  ⚠ Performance           94 17 passed, 5 warnings
+- Auditing Links...
+  ✗ Links                 99 17 passed, 1 warnings, 1 failed
+- Auditing Images...
+  ⚠ Images                92 10 passed, 4 warnings
+- Auditing Security...
+  ✗ Security              91 9 passed, 4 warnings, 3 failed
+- Auditing Crawlability...
+  ⚠ Crawlability          99 17 passed, 1 warnings
+- Auditing Structured Data...
+  ⚠ Structured Data       93 10 passed, 3 warnings
+- Auditing Accessibility...
+  ⚠ Accessibility         83 6 passed, 6 warnings
+- Auditing Content...
+  ✗ Content               88 10 passed, 6 warnings, 1 failed
+- Auditing Social...
+  ⚠ Social                90 6 passed, 3 warnings
+- Auditing E-E-A-T...
+  ⚠ E-E-A-T               83 7 passed, 7 warnings
+- Auditing URL Structure...
+  ✓ URL Structure        100 14 passed
+- Auditing Mobile...
+  ✗ Mobile                89 2 passed, 1 warnings, 2 failed
+- Auditing Internationalization...
+  ✓ Internationalization 100 10 passed
+- Auditing Legal Compliance...
+  ✓ Legal Compliance     100 1 passed
+- Auditing JavaScript Rendering...
+  ✓ JavaScript Rendering 100 13 passed
+- Auditing Redirects...
+  ✓ Redirects            100 8 passed
+- Auditing HTML Validation...
+  ✓ HTML Validation      100 9 passed
+- Auditing AI/GEO Readiness...
+  ✗ AI/GEO Readiness      50 0 passed, 4 warnings, 1 failed
+
+✓ Audited 1 page in 93.0s
+
+──────────────────────────────────────────────────
+SEOMATOR REPORT
+wc.ys89.fun • 1 page • 94/100 (A)
+──────────────────────────────────────────────────
+
+Health Score: 94/100 (A)
+
+Category Breakdown:
+--------------------------------------------------
+AI/GEO Readiness     █████░░░░░ 50%
+  Passed: 0 | Warnings: 4 | Failed: 1
+Accessibility        ████████░░ 83%
+  Passed: 6 | Warnings: 6
+E-E-A-T              ████████░░ 83%
+  Passed: 7 | Warnings: 7
+Content              █████████░ 88%
+  Passed: 10 | Warnings: 6 | Failed: 1
+Mobile               █████████░ 89%
+  Passed: 2 | Warnings: 1 | Failed: 2
+Social               █████████░ 90%
+  Passed: 6 | Warnings: 3
+Security             █████████░ 91%
+  Passed: 9 | Warnings: 4 | Failed: 3
+Images               █████████░ 92%
+  Passed: 10 | Warnings: 4
+Structured Data      █████████░ 93%
+  Passed: 10 | Warnings: 3
+Performance          █████████░ 94%
+  Passed: 17 | Warnings: 5
+Technical SEO        ██████████ 98%
+  Passed: 11 | Warnings: 1 | Failed: 1
+Core                 ██████████ 99%
+  Passed: 18 | Warnings: 1
+Links                ██████████ 99%
+  Passed: 17 | Warnings: 1 | Failed: 1
+Crawlability         ██████████ 99%
+  Passed: 17 | Warnings: 1
+URL Structure        ██████████ 100%
+  Passed: 14
+Internationalization ██████████ 100%
+  Passed: 10
+Legal Compliance     ██████████ 100%
+  Passed: 1
+JavaScript Rendering ██████████ 100%
+  Passed: 13
+Redirects            ██████████ 100%
+  Passed: 8
+HTML Validation      ██████████ 100%
+  Passed: 9
+
+Total: 195 passed, 47 warnings, 9 errors
+
+ISSUES
+
+Security (3 errors, 4 warnings)
+  security-hsts Security Hsts (error)
+    ✗ security-hsts: Strict-Transport-Security header is missing
+      → /
+  security-x-frame-options Security X Frame Options (error)
+    ✗ security-x-frame-options: Neither X-Frame-Options nor CSP frame-ancestors is set. Site is vulnerable to clickjacking.
+      → /
+  security-ssl-protocol Security Ssl Protocol (error)
+    ✗ security-ssl-protocol: No Strict-Transport-Security header on HTTPS site; browsers cannot enforce secure connections
+      → /
+  security-csp Security Csp (warning)
+    ⚠ security-csp: Content-Security-Policy header is missing. Consider adding CSP to prevent XSS attacks.
+      → /
+  security-external-links Security External Links (warning)
+    ⚠ security-external-links: 1 external link(s) with target="_blank" missing noopener/noreferrer
+      → /
+  security-permissions-policy Security Permissions Policy (warning)
+    ⚠ security-permissions-policy: Permissions-Policy header is missing. Consider adding to control browser features.
+      → /
+  security-ssl-expiry Security Ssl Expiry (warning)
+    ⚠ security-ssl-expiry: HTTPS is enabled but no Strict-Transport-Security header found; browsers can be downgraded to HTTP
+      → /
+
+Mobile (2 errors, 1 warnings)
+  mobile-font-size Mobile Font Size (error)
+    ✗ mobile-font-size: Found 2 critical font size issue(s) below 12px
+      → /
+  mobile-interstitials Mobile Interstitials (error)
+    ✗ mobile-interstitials: Found 1 potentially intrusive interstitial(s)
+      → /
+  mobile-horizontal-scroll Mobile Horizontal Scroll (warning)
+    ⚠ mobile-horizontal-scroll: Found 2 potential horizontal scroll issue(s)
+      → /
+
+Content (1 errors, 6 warnings)
+  content-keyword-stuffing Content Keyword Stuffing (error)
+    ✗ content-keyword-stuffing: Keyword stuffing detected: 8 words with excessive density
+      → /
+  content-word-count Content Word Count (warning)
+    ⚠ content-word-count: Thin content detected: 233 words (300+ recommended)
+      → /
+  content-reading-level Content Reading Level (warning)
+    ⚠ content-reading-level: Content may be too simplistic: 91.7 (Very Easy (5th grade))
+      → /
+  content-article-links Content Article Links (warning)
+    ⚠ content-article-links: Link density too high: 40.77 links per 100 words (maximum 5)
+      → /
+  content-heading-hierarchy Content Heading Hierarchy (warning)
+    ⚠ content-heading-hierarchy: Heading hierarchy issues found: 1 problem(s)
+      → /
+  content-heading-length Content Heading Length (warning)
+    ⚠ content-heading-length: Heading length issues: 7 too short (<10 chars)
+      → /
+  content-text-html-ratio Content Text Html Ratio (warning)
+    ⚠ content-text-html-ratio: Low text-to-HTML ratio: 18% (4974 text bytes / 27673 HTML bytes)
+      → /
+
+AI/GEO Readiness (1 errors, 4 warnings)
+  geo-schema-drift Geo Schema Drift (error)
+    ✗ geo-schema-drift: Schema name/headline not found in visible page content
+      → /
+  geo-semantic-html Geo Semantic Html (warning)
+    ⚠ geo-semantic-html: Good semantic structure (3 elements), could improve by adding: main, article, header
+      → /
+  geo-content-structure Geo Content Structure (warning)
+    ⚠ geo-content-structure: Good content structure (3/4 signals). Missing: main content area (<main>, <article>, or [role="main"])
+      → /
+  geo-ai-bot-access Geo Ai Bot Access (warning)
+    ⚠ geo-ai-bot-access: 5/9 AI bots blocked in robots.txt: GPTBot, Google-Extended, CCBot, Bytespider, Amazonbot
+      → /
+  geo-llms-txt Geo Llms Txt (warning)
+    ⚠ geo-llms-txt: No llms.txt reference found - consider adding for AI discoverability
+      → /
+
+Technical SEO (1 errors, 1 warnings)
+  technical-404-page Technical 404 Page (error)
+    ✗ technical-404-page: Non-existent page returned 200 instead of 404 (soft 404 issue)
+      → /
+  technical-robots-txt-valid Technical Robots Txt Valid (warning)
+    ⚠ technical-robots-txt-valid: robots.txt has 1 syntax issue(s)
+      → /
+
+Links (1 errors, 1 warnings)
+  links-onclick Links Onclick (error)
+    ✗ links-onclick: Found 1 element(s) using onclick for navigation
+      → /
+  links-anchor-text Links Anchor Text (warning)
+    ⚠ links-anchor-text: Found 2 link(s) with non-descriptive anchor text (2.1% of all links)
+      → /
+
+E-E-A-T (7 warnings)
+  eeat-about-page Eeat About Page (warning)
+    ⚠ eeat-about-page: No about page link found - important for trust and E-E-A-T
+      → /
+  eeat-author-byline Eeat Author Byline (warning)
+    ⚠ eeat-author-byline: No author byline found
+      → /
+  eeat-author-expertise Eeat Author Expertise (warning)
+    ⚠ eeat-author-expertise: No author present - expertise check not applicable
+      → /
+  eeat-citations Eeat Citations (warning)
+    ⚠ eeat-citations: 24 external links found, but none to recognized authoritative sources
+      → /
+  eeat-contact-page Eeat Contact Page (warning)
+    ⚠ eeat-contact-page: No contact page or contact methods found - important for trust
+      → /
+  eeat-content-dates Eeat Content Dates (warning)
+    ⚠ eeat-content-dates: No content date signals found
+      → /
+  eeat-privacy-policy Eeat Privacy Policy (warning)
+    ⚠ eeat-privacy-policy: No privacy policy link found - important for trust and legal compliance
+      → /
+
+Accessibility (6 warnings)
+  a11y-color-contrast A11y Color Contrast (warning)
+    ⚠ a11y-color-contrast: Found 2 potential contrast issue(s)
+      → /
+  a11y-heading-order A11y Heading Order (warning)
+    ⚠ a11y-heading-order: Found 1 heading hierarchy issue(s)
+      → /
+  a11y-landmark-regions A11y Landmark Regions (warning)
+    ⚠ a11y-landmark-regions: Missing essential landmark: <main>. Also missing: main, banner/header
+      → /
+  a11y-skip-link A11y Skip Link (warning)
+    ⚠ a11y-skip-link: No skip link found for keyboard navigation
+      → /
+  a11y-table-headers A11y Table Headers (warning)
+    ⚠ a11y-table-headers: Found 8 table accessibility issue(s)
+      → /
+  a11y-touch-targets A11y Touch Targets (warning)
+    ⚠ a11y-touch-targets: Found 3 potential touch target sizing issue(s)
+      → /
+
+Performance (5 warnings)
+  cwv-inp Cwv Inp (warning)
+    ⚠ cwv-inp: Could not measure Interaction to Next Paint (no user interaction detected or metric not available)
+      → /
+  perf-lazy-above-fold Perf Lazy Above Fold (warning)
+    ⚠ perf-lazy-above-fold: 1 above-fold image(s) have loading="lazy"
+      → /
+  perf-lcp-hints Perf Lcp Hints (warning)
+    ⚠ perf-lcp-hints: LCP candidate ([class*="banner"] img) could be optimized: missing preload
+      → /
+  perf-response-time Perf Response Time (warning)
+    ⚠ perf-response-time: Response time is 628ms (recommended: <500ms) — may impact user experience
+      → /
+  perf-video-for-animations Perf Video For Animations (warning)
+    ⚠ perf-video-for-animations: Found 1 GIF image(s) — consider using <video> (MP4/WebM) or animated WebP/AVIF for much smaller file sizes
+      → /
+
+Images (4 warnings)
+  images-dimensions Images Dimensions (warning)
+    ⚠ images-dimensions: Found 3 image(s) missing width and/or height attributes (75.0% of images)
+      → /
+  images-modern-format Images Modern Format (warning)
+    ⚠ images-modern-format: No modern image formats detected (0% WebP/AVIF usage)
+      → /
+  images-size Images Size (warning)
+    ⚠ images-size: Found 1 potentially oversized image(s) (may exceed 200KB)
+      → /
+  images-responsive Images Responsive (warning)
+    ⚠ images-responsive: No responsive image techniques detected (50.0% of images could benefit)
+      → /
+
+Structured Data (3 warnings)
+  schema-required-fields Schema Required Fields (warning)
+    ⚠ schema-required-fields: All required fields present, but 3 recommended field(s) missing
+      → /
+  schema-organization Schema Organization (warning)
+    ⚠ schema-organization: Organization schema valid with suggestions
+      → /
+  schema-website-search Schema Website Search (warning)
+    ⚠ schema-website-search: WebSite found but no SearchAction for sitelinks searchbox
+      → /
+
+Social (3 warnings)
+  social-og-image-size Social Og Image Size (warning)
+    ⚠ social-og-image-size: Missing og:image:width and og:image:height meta tags. Add these with recommended size 1200x630
+      → /
+  social-share-buttons Social Share Buttons (warning)
+    ⚠ social-share-buttons: No social sharing buttons detected. Add share buttons to encourage social engagement
+      → /
+  social-profiles Social Profiles (warning)
+    ⚠ social-profiles: No social media profile links found. Add links to your social profiles in header/footer
+      → /
+
+Core (1 warnings)
+  core-description-length Core Description Length (warning)
+    ⚠ core-description-length: Meta description is too short (79 characters). Recommended: 120-160 characters
+      → /
+
+Crawlability (1 warnings)
+  crawl-sitemap-orphan-urls Crawl Sitemap Orphan Urls (warning)
+    ⚠ crawl-sitemap-orphan-urls: 2 sitemap URL(s) (5.3%) are not linked from any crawled page
+      → /
+
+──────────────────────────────────────────────────
+195 passed • 47 warnings • 9 failed
+──────────────────────────────────────────────────
+

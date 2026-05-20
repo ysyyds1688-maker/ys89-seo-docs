@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YS89 夜色娛樂城 SEO 健康報告 — 2026-05-12</title>
+<style>
+  :root {
+    --green: #52c41a;
+    --yellow: #faad14;
+    --red: #ff4d4f;
+    --blue: #1677ff;
+    --gray: #8c8c8c;
+    --bg: #f5f5f5;
+    --card: #ffffff;
+    --border: #e8e8e8;
+    --text: #262626;
+    --text-secondary: #595959;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'PingFang TC', 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 48px 0 40px; text-align: center; }
+  .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 4px; }
+  .header .meta { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+
+  /* Score hero */
+  .score-hero { display: flex; justify-content: center; align-items: center; gap: 40px; margin: 32px 0 0; flex-wrap: wrap; }
+  .score-ring { width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#52c41a calc(94% * 3.6deg), rgba(255,255,255,0.15) 0); display: flex; align-items: center; justify-content: center; position: relative; }
+  .score-ring::before { content: ''; position: absolute; width: 110px; height: 110px; border-radius: 50%; background: #1a1a2e; }
+  .score-text { position: relative; z-index: 1; text-align: center; }
+  .score-text .num { font-size: 2.8rem; font-weight: 800; color: #52c41a; line-height: 1; }
+  .score-text .grade { font-size: 1.2rem; color: rgba(255,255,255,0.9); font-weight: 600; }
+  .score-stats { display: flex; flex-direction: column; gap: 8px; }
+  .score-stats .stat { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: rgba(255,255,255,0.85); }
+  .stat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .stat-dot.pass { background: #52c41a; }
+  .stat-dot.warn { background: #faad14; }
+  .stat-dot.fail { background: #ff4d4f; }
+  .stat-num { font-weight: 700; font-size: 1.1rem; }
+
+  /* Container */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-title { font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .section-title .icon { font-size: 1.1rem; }
+
+  /* Cards */
+  .card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 20px; margin-bottom: 16px; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+
+  /* Category scores */
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .cat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; position: relative; overflow: hidden; }
+  .cat-card::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+  .cat-card.score-a::after { background: var(--green); }
+  .cat-card.score-b::after { background: #73d13d; }
+  .cat-card.score-c::after { background: var(--yellow); }
+  .cat-card.score-d::after { background: #fa8c16; }
+  .cat-card.score-f::after { background: var(--red); }
+  .cat-name { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; }
+  .cat-score { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+  .cat-score.score-a { color: var(--green); }
+  .cat-score.score-b { color: #73d13d; }
+  .cat-score.score-c { color: var(--yellow); }
+  .cat-score.score-d { color: #fa8c16; }
+  .cat-score.score-f { color: var(--red); }
+  .cat-meta { font-size: 0.78rem; color: var(--gray); margin-top: 4px; }
+  .cat-bar { margin-top: 8px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .cat-bar-fill { height: 100%; border-radius: 2px; }
+  .bar-a { background: var(--green); }
+  .bar-b { background: #73d13d; }
+  .bar-c { background: var(--yellow); }
+  .bar-d { background: #fa8c16; }
+  .bar-f { background: var(--red); }
+
+  /* Badge */
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+  .badge-critical { background: #fff1f0; color: #cf1322; border: 1px solid #ffa39e; }
+  .badge-warning { background: #fffbe6; color: #ad6800; border: 1px solid #ffe58f; }
+  .badge-pass { background: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f; }
+
+  /* Issues list */
+  .issue-list { display: flex; flex-direction: column; gap: 10px; }
+  .issue-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
+  .issue-item.critical { border-left: 4px solid var(--red); }
+  .issue-item.warning { border-left: 4px solid var(--yellow); }
+  .issue-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .issue-body { flex: 1; }
+  .issue-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+  .issue-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+  .issue-rule { font-size: 0.75rem; color: var(--gray); margin-top: 4px; font-family: monospace; }
+  .issue-pages { font-size: 0.8rem; color: var(--text-secondary); margin-top: 6px; }
+  .pages-badge { display: inline-block; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px; font-size: 0.75rem; margin-right: 4px; margin-bottom: 4px; }
+
+  /* Fix table */
+  .fix-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .fix-table th { background: #fafafa; padding: 10px 14px; text-align: left; font-weight: 600; border-bottom: 2px solid var(--border); color: var(--text-secondary); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .fix-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .fix-table tr:last-child td { border-bottom: none; }
+  .fix-table tr:hover td { background: #fafafa; }
+  .priority-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+  .priority-p1 { background: #fff1f0; color: #cf1322; }
+  .priority-p2 { background: #fff7e6; color: #d46b08; }
+  .priority-p3 { background: #fffbe6; color: #ad6800; }
+  .priority-p4 { background: #e6f4ff; color: #0958d9; }
+
+  /* Summary box */
+  .summary-box { background: linear-gradient(135deg, #f6ffed, #fff); border: 1px solid #b7eb8f; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+  .summary-box h3 { color: #237804; margin-bottom: 10px; font-size: 1rem; }
+  .summary-box ul { list-style: none; }
+  .summary-box li { padding: 3px 0; font-size: 0.9rem; color: var(--text-secondary); }
+  .summary-box li::before { content: '✓ '; color: var(--green); font-weight: 700; }
+
+  .warn-box { background: linear-gradient(135deg, #fffbe6, #fff); border: 1px solid #ffe58f; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+  .warn-box h3 { color: #ad6800; margin-bottom: 10px; font-size: 1rem; }
+  .warn-box ul { list-style: none; }
+  .warn-box li { padding: 3px 0; font-size: 0.9rem; color: var(--text-secondary); }
+  .warn-box li::before { content: '⚠ '; color: var(--yellow); font-weight: 700; }
+
+  /* Progress bar for score overview */
+  .score-bar-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; font-size: 0.88rem; }
+  .score-bar-label { width: 160px; flex-shrink: 0; color: var(--text-secondary); }
+  .score-bar-track { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 4px; }
+  .score-bar-val { width: 36px; text-align: right; font-weight: 700; font-size: 0.85rem; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 32px; color: var(--gray); font-size: 0.83rem; border-top: 1px solid var(--border); margin-top: 20px; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .score-hero { gap: 24px; }
+    .fix-table { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>YS89 夜色娛樂城 SEO 健康報告</h1>
+  <div class="subtitle">網站：https://ys89.fun　｜　稽核工具：SEOmator CLI v1（251 條規則 × 20 類別）</div>
+  <div class="meta">稽核日期：2026-05-12　｜　爬取頁數：30 頁　｜　稽核時間：1187.8 秒</div>
+  <div class="score-hero">
+    <div class="score-ring">
+      <div class="score-text">
+        <div class="num">94</div>
+        <div class="grade">Grade A</div>
+      </div>
+    </div>
+    <div class="score-stats">
+      <div class="stat"><span class="stat-dot pass"></span><span class="stat-num">6,029</span>&nbsp;項目通過</div>
+      <div class="stat"><span class="stat-dot warn"></span><span class="stat-num">1,403</span>&nbsp;項目警告</div>
+      <div class="stat"><span class="stat-dot fail"></span><span class="stat-num">98</span>&nbsp;項目失敗</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 優點快照 -->
+  <div class="section">
+    <div class="card-grid">
+      <div class="summary-box">
+        <h3>已通過的優勢項目</h3>
+        <ul>
+          <li>連結結構完整，無斷鏈問題</li>
+          <li>網址結構乾淨，無特殊字元</li>
+          <li>國際化 hreflang 設定正確</li>
+          <li>法規合規（Cookie）100 分</li>
+          <li>JavaScript 渲染完整通過</li>
+          <li>重新導向鏈路正常</li>
+          <li>核心 SEO 97 分（標題/H1 架構良好）</li>
+        </ul>
+      </div>
+      <div class="warn-box">
+        <h3>需要優先修復的問題</h3>
+        <ul>
+          <li>AI/GEO 準備度僅 84 分（29 頁 Schema 漂移）</li>
+          <li>18 頁文字量不足（字數過少）</li>
+          <li>效能 87 分（Core Web Vitals 全項警告）</li>
+          <li>7 頁出現重複 meta description</li>
+          <li>2 頁缺少 meta description</li>
+          <li>無障礙設計 87 分（需補強）</li>
+          <li>E-E-A-T 信號不足（作者、引用、編輯政策）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分類得分 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span>各類別得分詳情</div>
+    <div class="cat-grid">
+
+      <div class="cat-card score-a">
+        <div class="cat-name">核心 SEO (Core)</div>
+        <div class="cat-score score-a">97</div>
+        <div class="cat-meta">通過 502 ｜警告 66 ｜失敗 2</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:97%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">技術 SEO (Technical)</div>
+        <div class="cat-score score-a">98</div>
+        <div class="cat-meta">通過 357 ｜警告 33 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:98%"></div></div>
+      </div>
+
+      <div class="cat-card score-c">
+        <div class="cat-name">效能 (Performance)</div>
+        <div class="cat-score score-c">87</div>
+        <div class="cat-meta">通過 392 ｜警告 264 ｜失敗 4</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-c" style="width:87%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">連結 (Links)</div>
+        <div class="cat-score score-a">97</div>
+        <div class="cat-meta">通過 510 ｜警告 60 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:97%"></div></div>
+      </div>
+
+      <div class="cat-card score-b">
+        <div class="cat-name">圖片 (Images)</div>
+        <div class="cat-score score-b">92</div>
+        <div class="cat-meta">通過 301 ｜警告 116 ｜失敗 3</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-b" style="width:92%"></div></div>
+      </div>
+
+      <div class="cat-card score-b">
+        <div class="cat-name">安全性 (Security)</div>
+        <div class="cat-score score-b">91</div>
+        <div class="cat-meta">通過 339 ｜警告 141 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-b" style="width:91%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">可抓取性 (Crawlability)</div>
+        <div class="cat-score score-a">97</div>
+        <div class="cat-meta">通過 480 ｜警告 60 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:97%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">結構化資料 (Schema)</div>
+        <div class="cat-score score-a">94</div>
+        <div class="cat-meta">通過 302 ｜警告 85 ｜失敗 3</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:94%"></div></div>
+      </div>
+
+      <div class="cat-card score-c">
+        <div class="cat-name">無障礙設計 (A11y)</div>
+        <div class="cat-score score-c">87</div>
+        <div class="cat-meta">通過 209 ｜警告 150 ｜失敗 1</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-c" style="width:87%"></div></div>
+      </div>
+
+      <div class="cat-card score-b">
+        <div class="cat-name">內容品質 (Content)</div>
+        <div class="cat-score score-b">92</div>
+        <div class="cat-meta">通過 332 ｜警告 133 ｜失敗 45</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-b" style="width:92%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">社群媒體 (Social)</div>
+        <div class="cat-score score-a">94</div>
+        <div class="cat-meta">通過 209 ｜警告 60 ｜失敗 1</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:94%"></div></div>
+      </div>
+
+      <div class="cat-card score-b">
+        <div class="cat-name">E-E-A-T 信任度</div>
+        <div class="cat-score score-b">90</div>
+        <div class="cat-meta">通過 283 ｜警告 137 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-b" style="width:90%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">URL 結構</div>
+        <div class="cat-score score-a">100</div>
+        <div class="cat-meta">通過 414 ｜警告 4 ｜失敗 2</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:100%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">行動裝置 (Mobile)</div>
+        <div class="cat-score score-a">94</div>
+        <div class="cat-meta">通過 118 ｜警告 31 ｜失敗 1</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:94%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">國際化 (i18n)</div>
+        <div class="cat-score score-a">100</div>
+        <div class="cat-meta">通過 300 ｜警告 0 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:100%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">法規合規 (Legal)</div>
+        <div class="cat-score score-a">100</div>
+        <div class="cat-meta">通過 30 ｜警告 0 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:100%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">JS 渲染</div>
+        <div class="cat-score score-a">100</div>
+        <div class="cat-meta">通過 390 ｜警告 0 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:100%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">重新導向 (Redirects)</div>
+        <div class="cat-score score-a">100</div>
+        <div class="cat-meta">通過 237 ｜警告 3 ｜失敗 0</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:100%"></div></div>
+      </div>
+
+      <div class="cat-card score-a">
+        <div class="cat-name">HTML 驗證</div>
+        <div class="cat-score score-a">100</div>
+        <div class="cat-meta">通過 262 ｜警告 1 ｜失敗 7</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-a" style="width:100%"></div></div>
+      </div>
+
+      <div class="cat-card score-d">
+        <div class="cat-name">AI/GEO 準備度</div>
+        <div class="cat-score score-d">84</div>
+        <div class="cat-meta">通過 62 ｜警告 59 ｜失敗 29</div>
+        <div class="cat-bar"><div class="cat-bar-fill bar-d" style="width:84%"></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 嚴重問題 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚨</span>嚴重問題（Critical Failures）— 須立即修復</div>
+    <div class="issue-list">
+
+      <div class="issue-item critical">
+        <div class="issue-icon">🤖</div>
+        <div class="issue-body">
+          <div class="issue-title">GEO Schema 漂移（geo-schema-drift）<span class="badge badge-critical" style="margin-left:8px">29 頁失敗</span></div>
+          <div class="issue-desc">頁面上的結構化資料（Schema.org）與實際顯示的內容不符，AI 引擎（ChatGPT、Perplexity、Google AIO）無法正確擷取並引用本站內容。這是影響 GEO（生成式引擎優化）最關鍵的問題。</div>
+          <div class="issue-rule">規則：geo-schema-drift ｜類別：AI/GEO 準備度</div>
+          <div class="issue-pages"><strong>修復方式：</strong>確保 FAQPage、Article、Organization 等 Schema 中的文字與頁面實際可見內容完全一致，移除僅出現在 ld+json 但正文中不存在的內容。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">📝</div>
+        <div class="issue-body">
+          <div class="issue-title">文字量不足（content-word-count）<span class="badge badge-critical" style="margin-left:8px">18 頁失敗</span></div>
+          <div class="issue-desc">偵測到 18 個頁面的文字字數低於搜尋引擎期望的最低門檻。對於博彩 YMYL 類型的網站，Google 對內容深度要求更高。</div>
+          <div class="issue-rule">規則：content-word-count ｜類別：內容品質</div>
+          <div class="issue-pages"><strong>修復方式：</strong>每篇文章至少 800 字（建議 1000-1500 字），補充實例、數據、操作步驟等深度內容。針對首頁/分類頁，增加導言段落和常見問答。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">📄</div>
+        <div class="issue-body">
+          <div class="issue-title">重複 Meta Description（htmlval-multiple-descriptions）<span class="badge badge-critical" style="margin-left:8px">7 頁失敗</span></div>
+          <div class="issue-desc">7 個頁面的 HTML 中出現多個 &lt;meta name="description"&gt; 標籤，搜尋引擎只會採用第一個，其他的被忽略，且會造成 HTML 驗證錯誤。</div>
+          <div class="issue-rule">規則：htmlval-multiple-descriptions ｜類別：HTML 驗證</div>
+          <div class="issue-pages"><strong>修復方式：</strong>檢查主題 header.php，確認 Rank Math 插件和主題本身沒有各自輸出一個 description 標籤。使用 WordPress Customizer 或主題選項移除重複來源。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">🏗️</div>
+        <div class="issue-body">
+          <div class="issue-title">結構化資料必填欄位缺失（schema-required-fields）<span class="badge badge-critical" style="margin-left:8px">3 頁失敗</span></div>
+          <div class="issue-desc">部分頁面的 Schema.org 標記缺少必要欄位（如 Article 需要 author、datePublished；FAQ 需要 acceptedAnswer），Google 不會顯示對應的複合式摘要（Rich Results）。</div>
+          <div class="issue-rule">規則：schema-required-fields ｜類別：結構化資料</div>
+          <div class="issue-pages"><strong>修復方式：</strong>在 FAQPage Schema 中確保每個 Question 都有完整的 acceptedAnswer。在 Article Schema 中加入 author（Person）、datePublished、image 欄位。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">🔗</div>
+        <div class="issue-body">
+          <div class="issue-title">缺少 Meta Description（core-description-present）<span class="badge badge-critical" style="margin-left:8px">2 頁失敗</span></div>
+          <div class="issue-desc">2 個頁面完全沒有 meta description，搜尋引擎會自動擷取頁面片段作為摘要，通常效果較差，影響點擊率。</div>
+          <div class="issue-rule">規則：core-description-present ｜類別：核心 SEO</div>
+          <div class="issue-pages"><strong>修復方式：</strong>在 Rank Math 後台為每個頁面填寫 120-160 字元的獨特 meta description，重點放在用戶利益和差異化。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">📋</div>
+        <div class="issue-body">
+          <div class="issue-title">重複 Meta Description 內容（content-duplicate-description）<span class="badge badge-critical" style="margin-left:8px">2 頁失敗</span></div>
+          <div class="issue-desc">2 個頁面的 meta description 內容與其他頁面完全相同，會讓 Google 認為這些頁面是重複內容。</div>
+          <div class="issue-rule">規則：content-duplicate-description ｜類別：內容品質</div>
+          <div class="issue-pages"><strong>修復方式：</strong>為每個頁面撰寫獨一無二的 description，強調該頁面的特定主題和關鍵字。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">⚠️</div>
+        <div class="issue-body">
+          <div class="issue-title">HTML 結構破損（content-broken-html）<span class="badge badge-critical" style="margin-left:8px">2 頁失敗</span></div>
+          <div class="issue-desc">2 個頁面偵測到格式錯誤的 HTML（如未關閉的標籤、嵌套錯誤等），可能影響搜尋引擎正確解析頁面內容。</div>
+          <div class="issue-rule">規則：content-broken-html ｜類別：內容品質</div>
+          <div class="issue-pages"><strong>修復方式：</strong>使用 W3C HTML 驗證器（validator.w3.org）找出具體的 HTML 錯誤位置，修正文章編輯器中的格式問題。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">📏</div>
+        <div class="issue-body">
+          <div class="issue-title">URL 過長（url-length）<span class="badge badge-critical" style="margin-left:8px">2 頁失敗</span></div>
+          <div class="issue-desc">2 個頁面的 URL 超過建議的最大長度，可能在搜尋結果中被截斷，影響使用者點擊意願。</div>
+          <div class="issue-rule">規則：url-length ｜類別：URL 結構</div>
+          <div class="issue-pages"><strong>修復方式：</strong>縮短文章 slug，移除停用詞（的、了、在等），保留最重要的 2-4 個關鍵字。修改後需設定 301 重新導向。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">🖼️</div>
+        <div class="issue-body">
+          <div class="issue-title">背景圖片無法被 SEO 識別（images-background-seo）<span class="badge badge-critical" style="margin-left:8px">2 頁失敗</span></div>
+          <div class="issue-desc">2 個頁面使用 CSS background-image 作為主要內容圖片，搜尋引擎無法讀取其 alt 文字。</div>
+          <div class="issue-rule">規則：images-background-seo ｜類別：圖片</div>
+          <div class="issue-pages"><strong>修復方式：</strong>將關鍵內容圖片改為 &lt;img&gt; 標籤並加上描述性 alt 屬性；裝飾性圖片才使用 CSS background-image。</div>
+        </div>
+      </div>
+
+      <div class="issue-item critical">
+        <div class="issue-icon">📣</div>
+        <div class="issue-body">
+          <div class="issue-title">Open Graph Description 缺失（social-og-description）<span class="badge badge-critical" style="margin-left:8px">1 頁失敗</span></div>
+          <div class="issue-desc">1 個頁面缺少 og:description 標籤，在 Facebook/LINE 分享時無法顯示摘要說明，降低分享點擊率。</div>
+          <div class="issue-rule">規則：social-og-description ｜類別：社群媒體</div>
+          <div class="issue-pages"><strong>修復方式：</strong>在 Rank Math 的「社群媒體」標籤中填寫 Facebook 描述，或確保 meta description 自動同步至 og:description。</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 警告項目 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⚠️</span>重要警告項目（全站性問題）</div>
+
+    <!-- Performance -->
+    <div class="card" style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:1rem;margin-bottom:12px;color:#d46b08;">⚡ 效能優化（影響 Core Web Vitals 排名）</div>
+      <div class="issue-list">
+        <div class="issue-item warning" style="border:none;padding:10px 0;border-bottom:1px solid var(--border)">
+          <div class="issue-body">
+            <div class="issue-title">Core Web Vitals 五項指標全部警告（30 頁）</div>
+            <div class="issue-desc">LCP（最大內容渲染）、CLS（累積版面位移）、INP（互動到下一次繪製）、FCP（首次內容繪製）、TTFB（伺服器回應時間）均需改善。這直接影響 Google 搜尋排名。</div>
+            <div class="issue-rule">規則：cwv-lcp / cwv-cls / cwv-inp / cwv-fcp / cwv-ttfb</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>在 Cloudways 啟用 Varnish + Nginx FastCGI Cache；安裝 WP Rocket 或 LiteSpeed Cache；使用 Cloudflare CDN；優化伺服器 TTFB（目標 &lt;200ms）。</div>
+          </div>
+        </div>
+        <div class="issue-item warning" style="border:none;padding:10px 0;border-bottom:1px solid var(--border)">
+          <div class="issue-body">
+            <div class="issue-title">字體載入阻塞渲染（perf-font-loading，30 頁）</div>
+            <div class="issue-desc">網頁字體（Google Fonts 等）使用阻塞方式載入，延遲 FCP 和 LCP。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>在 &lt;link&gt; 加入 <code>rel="preload" as="font" crossorigin</code>；或使用 font-display: swap；考慮自托管字體。</div>
+          </div>
+        </div>
+        <div class="issue-item warning" style="border:none;padding:10px 0">
+          <div class="issue-body">
+            <div class="issue-title">頁面體積過大、JS 未壓縮（29 頁）</div>
+            <div class="issue-desc">perf-page-weight、perf-minify-js、perf-js-file-size 警告影響下載速度，尤其是行動裝置用戶。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>使用 Autoptimize 或 WP Rocket 壓縮/合併 CSS/JS；啟用 Gzip/Brotli 壓縮；圖片轉換為 WebP 格式。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="card" style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:1rem;margin-bottom:12px;color:#0958d9;">🔒 安全性強化（影響信任度與 E-E-A-T）</div>
+      <div class="issue-list">
+        <div class="issue-item warning" style="border:none;padding:10px 0;border-bottom:1px solid var(--border)">
+          <div class="issue-body">
+            <div class="issue-title">缺少 CSP、Permissions Policy 安全標頭（30 頁）</div>
+            <div class="issue-desc">Content Security Policy 和 Permissions-Policy HTTP 標頭缺失，降低安全評分，也影響 Google 信任指標。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>在 Cloudways Nginx 設定或 .htaccess 加入安全標頭；或使用 Cloudflare Transform Rules 注入。建議最低配置：<code>X-Content-Type-Options: nosniff</code>、<code>X-Frame-Options: SAMEORIGIN</code>。</div>
+          </div>
+        </div>
+        <div class="issue-item warning" style="border:none;padding:10px 0">
+          <div class="issue-body">
+            <div class="issue-title">SSL 協定版本、Protocol-Relative URL 警告（30 頁）</div>
+            <div class="issue-desc">部分資源仍使用協定相對 URL（//domain/path），建議全部改用明確的 https://。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>在 wp-config.php 強制 HTTPS；使用 Better Search Replace 將資料庫中的 http:// 改為 https://。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI/GEO -->
+    <div class="card" style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:1rem;margin-bottom:12px;color:#722ed1;">🤖 AI/GEO 準備度（影響 ChatGPT/Perplexity 引用）</div>
+      <div class="issue-list">
+        <div class="issue-item warning" style="border:none;padding:10px 0;border-bottom:1px solid var(--border)">
+          <div class="issue-body">
+            <div class="issue-title">缺少 llms.txt 檔案（geo-llms-txt，30 頁）</div>
+            <div class="issue-desc">llms.txt 是新興的 AI 機器人指引標準，告訴 ChatGPT、Claude 等 AI 爬蟲哪些內容可以被訓練和引用。目前缺少此檔案。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>在網站根目錄建立 /llms.txt，說明網站用途、可引用內容清單、聯絡方式。參考格式：<code>https://llmstxt.org/</code></div>
+          </div>
+        </div>
+        <div class="issue-item warning" style="border:none;padding:10px 0;border-bottom:1px solid var(--border)">
+          <div class="issue-body">
+            <div class="issue-title">語義化 HTML 不足（geo-semantic-html，17 頁）</div>
+            <div class="issue-desc">頁面使用過多 &lt;div&gt; 而非語義化標籤（&lt;article&gt;、&lt;section&gt;、&lt;main&gt;、&lt;aside&gt;），AI 引擎較難理解內容結構。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>在主題模板中將文章容器改為 &lt;article&gt;，側欄使用 &lt;aside&gt;，頁首使用 &lt;header&gt;，主體使用 &lt;main&gt;。</div>
+          </div>
+        </div>
+        <div class="issue-item warning" style="border:none;padding:10px 0">
+          <div class="issue-body">
+            <div class="issue-title">內容結構未針對 AI 優化（geo-content-structure，12 頁）</div>
+            <div class="issue-desc">AI 引擎偏好具有清晰問答結構、清單、表格的內容，目前部分頁面缺乏這些結構。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>每篇文章加入「常見問題 FAQ」段落（已完成 FAQPage Schema）；使用有序/無序清單呈現步驟；加入比較表格。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-E-A-T -->
+    <div class="card" style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:1rem;margin-bottom:12px;color:#eb2f96;">👤 E-E-A-T 信任度（影響 YMYL 類網站排名）</div>
+      <div class="issue-list">
+        <div class="issue-item warning" style="border:none;padding:10px 0;border-bottom:1px solid var(--border)">
+          <div class="issue-body">
+            <div class="issue-title">缺少作者專業資訊（eeat-author-expertise，30 頁）</div>
+            <div class="issue-desc">博彩類網站屬於 YMYL（Your Money or Your Life）內容，Google 對作者資訊要求極高。目前文章缺少作者 byline 和專業背景說明。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>建立作者 WordPress 帳號，填寫詳細的個人簡介（含博彩經驗說明）；在文章中顯示作者資訊方塊；建立作者頁面。</div>
+          </div>
+        </div>
+        <div class="issue-item warning" style="border:none;padding:10px 0;border-bottom:1px solid var(--border)">
+          <div class="issue-body">
+            <div class="issue-title">缺少引用來源（eeat-citations，30 頁）</div>
+            <div class="issue-desc">文章中沒有引用可信賴的外部資料來源（如官方規則、研究報告等），降低內容可信度。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>在文章中適當引用官方來源（如台灣彩券、各大運動聯盟官網等）；使用 rel="nofollow" 外部連結。</div>
+          </div>
+        </div>
+        <div class="issue-item warning" style="border:none;padding:10px 0">
+          <div class="issue-body">
+            <div class="issue-title">缺少關於我們頁面和編輯政策（29/28 頁）</div>
+            <div class="issue-desc">eeat-about-page（29頁）和 eeat-editorial-policy（28頁）缺失，Google 的 Quality Rater 會優先評估這些頁面。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>建立「關於我們」頁面說明網站定位、團隊背景；建立「編輯方針」說明內容審核流程、免責聲明。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessibility -->
+    <div class="card" style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:1rem;margin-bottom:12px;color:#13c2c2;">♿ 無障礙設計（影響使用者體驗與 SEO）</div>
+      <div class="issue-list">
+        <div class="issue-item warning" style="border:none;padding:10px 0;border-bottom:1px solid var(--border)">
+          <div class="issue-body">
+            <div class="issue-title">缺少跳過導覽連結（a11y-skip-link）、地標區域（a11y-landmark-regions）、觸控目標大小（a11y-touch-targets）</div>
+            <div class="issue-desc">30 頁全部觸發以上三項警告，影響螢幕閱讀器使用者和行動裝置用戶體驗。</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:var(--text-secondary)"><strong>修復方式：</strong>在 header.php 加入「跳到主要內容」連結；確保 &lt;main&gt; &lt;nav&gt; &lt;header&gt; &lt;footer&gt; 地標標籤存在；按鈕/連結最小觸控面積 44×44px。</div>
+          </div>
+        </div>
+        <div class="issue-item warning" style="border:none;padding:10px 0">
+          <div class="issue-body">
+            <div class="issue-title">圖片缺少尺寸、未使用現代格式、未設定延遲載入（27 頁）</div>
+            <div class="issue-desc">images-dimensions、images-modern-format、images-responsive 警告，影響 CLS 和頁面載入速度。</div>
+            <div style="margin-top:8px;font-size:0.85nm;color:var(--text-secondary)"><strong>修復方式：</strong>所有 &lt;img&gt; 加入 width/height 屬性；安裝 WebP Express 插件自動轉換格式；加入 loading="lazy"（非首屏圖片）。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 優先修復計劃 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span>優先修復行動計劃</div>
+    <div class="card">
+      <table class="fix-table">
+        <thead>
+          <tr>
+            <th>優先</th>
+            <th>問題</th>
+            <th>影響頁數</th>
+            <th>預計工時</th>
+            <th>難度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="priority-tag priority-p1">P1 立即</span></td>
+            <td>修復 GEO Schema 漂移（確保 Schema 與正文一致）</td>
+            <td>29 頁</td>
+            <td>2-3 小時</td>
+            <td>中</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p1">P1 立即</span></td>
+            <td>補充文字量不足頁面（每篇達 800+ 字）</td>
+            <td>18 頁</td>
+            <td>8-16 小時</td>
+            <td>中</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p1">P1 立即</span></td>
+            <td>修復重複 meta description（檢查主題/插件衝突）</td>
+            <td>7 頁</td>
+            <td>1 小時</td>
+            <td>低</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p1">P1 立即</span></td>
+            <td>補寫缺少的 meta description（2 頁）</td>
+            <td>2 頁</td>
+            <td>30 分鐘</td>
+            <td>低</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p2">P2 本週</span></td>
+            <td>建立 llms.txt 檔案（AI 機器人指引）</td>
+            <td>全站</td>
+            <td>1 小時</td>
+            <td>低</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p2">P2 本週</span></td>
+            <td>建立「關於我們」和「編輯方針」頁面</td>
+            <td>全站</td>
+            <td>2 小時</td>
+            <td>低</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p2">P2 本週</span></td>
+            <td>加入作者資訊和 Person Schema</td>
+            <td>21 篇文章</td>
+            <td>2 小時</td>
+            <td>中</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p2">P2 本週</span></td>
+            <td>修復 HTML 結構錯誤（2 頁）</td>
+            <td>2 頁</td>
+            <td>1 小時</td>
+            <td>低</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p3">P3 本月</span></td>
+            <td>開啟 Cloudflare CDN + 啟用快取優化 CWV</td>
+            <td>全站</td>
+            <td>3-4 小時</td>
+            <td>中</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p3">P3 本月</span></td>
+            <td>圖片轉 WebP + 加入 width/height + loading="lazy"</td>
+            <td>27 頁</td>
+            <td>3 小時</td>
+            <td>低</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p3">P3 本月</span></td>
+            <td>加入安全標頭（CSP, Permissions-Policy）</td>
+            <td>全站</td>
+            <td>2 小時</td>
+            <td>中</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p3">P3 本月</span></td>
+            <td>改善語義化 HTML（article/main/aside）</td>
+            <td>全站</td>
+            <td>4 小時</td>
+            <td>中</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p4">P4 季度</span></td>
+            <td>全站無障礙改善（skip link, ARIA, 觸控目標）</td>
+            <td>全站</td>
+            <td>8 小時</td>
+            <td>高</td>
+          </tr>
+          <tr>
+            <td><span class="priority-tag priority-p4">P4 季度</span></td>
+            <td>加入 Organization + WebSite Schema（全站）</td>
+            <td>全站</td>
+            <td>2 小時</td>
+            <td>低</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 得分進度橫條 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📈</span>整體健康評分雷達</div>
+    <div class="card">
+      <div class="score-bar-row">
+        <div class="score-bar-label">核心 SEO</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-a" style="width:97%"></div></div>
+        <div class="score-bar-val" style="color:var(--green)">97</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">技術 SEO</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-a" style="width:98%"></div></div>
+        <div class="score-bar-val" style="color:var(--green)">98</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">連結結構</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-a" style="width:97%"></div></div>
+        <div class="score-bar-val" style="color:var(--green)">97</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">可抓取性</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-a" style="width:97%"></div></div>
+        <div class="score-bar-val" style="color:var(--green)">97</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">社群媒體</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-a" style="width:94%"></div></div>
+        <div class="score-bar-val" style="color:var(--green)">94</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">結構化資料</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-a" style="width:94%"></div></div>
+        <div class="score-bar-val" style="color:var(--green)">94</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">行動裝置</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-a" style="width:94%"></div></div>
+        <div class="score-bar-val" style="color:var(--green)">94</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">E-E-A-T 信任度</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-b" style="width:90%"></div></div>
+        <div class="score-bar-val" style="color:#73d13d">90</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">圖片</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-b" style="width:92%"></div></div>
+        <div class="score-bar-val" style="color:#73d13d">92</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">內容品質</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-b" style="width:92%"></div></div>
+        <div class="score-bar-val" style="color:#73d13d">92</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">安全性</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-b" style="width:91%"></div></div>
+        <div class="score-bar-val" style="color:#73d13d">91</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">效能</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-c" style="width:87%"></div></div>
+        <div class="score-bar-val" style="color:var(--yellow)">87</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">無障礙設計</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-c" style="width:87%"></div></div>
+        <div class="score-bar-val" style="color:var(--yellow)">87</div>
+      </div>
+      <div class="score-bar-row">
+        <div class="score-bar-label">AI/GEO 準備度</div>
+        <div class="score-bar-track"><div class="score-bar-fill bar-d" style="width:84%"></div></div>
+        <div class="score-bar-val" style="color:#fa8c16">84</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 已完成亮點 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">✅</span>本次已完成的 SEO 優化工作</div>
+    <div class="card">
+      <ul style="list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;">
+        <li style="padding:10px;background:#f6ffed;border-radius:6px;border:1px solid #b7eb8f;font-size:0.88rem;"><span style="color:var(--green);font-weight:700">✓</span> 批量建立 21 篇 SEO 文章（百家樂×5、老虎機×5、出金×4、新手×4、體育投注×3）</li>
+        <li style="padding:10px;background:#f6ffed;border-radius:6px;border:1px solid #b7eb8f;font-size:0.88rem;"><span style="color:var(--green);font-weight:700">✓</span> 全部 21 篇文章注入 FAQPage JSON-LD Schema（儲存於 post meta + wp_head 輸出）</li>
+        <li style="padding:10px;background:#f6ffed;border-radius:6px;border:1px solid #b7eb8f;font-size:0.88rem;"><span style="color:var(--green);font-weight:700">✓</span> 移除重複 CTA 按鈕（主題已有內建 CTA，清除文章內重複的黃色 CTA div）</li>
+        <li style="padding:10px;background:#f6ffed;border-radius:6px;border:1px solid #b7eb8f;font-size:0.88rem;"><span style="color:var(--green);font-weight:700">✓</span> 全部文章設定 Rank Math meta title/description</li>
+        <li style="padding:10px;background:#f6ffed;border-radius:6px;border:1px solid #b7eb8f;font-size:0.88rem;"><span style="color:var(--green);font-weight:700">✓</span> 文章結構符合倒金字塔原則（H2×5-6、FAQ×3、前言+結語）</li>
+        <li style="padding:10px;background:#f6ffed;border-radius:6px;border:1px solid #b7eb8f;font-size:0.88rem;"><span style="color:var(--green);font-weight:700">✓</span> 編寫 AK SEO Labs 寫作標準指南（akseolabs-writing-guide.md）供其他 session 使用</li>
+        <li style="padding:10px;background:#f6ffed;border-radius:6px;border:1px solid #b7eb8f;font-size:0.88rem;"><span style="color:var(--green);font-weight:700">✓</span> 完成 30 頁全站 SEO 稽核（251 條規則 × 20 類別）</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div style="font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px;">YS89 夜色娛樂城 SEO 健康報告</div>
+  <div>稽核工具：SEOmator CLI v1（@seomator/seo-audit）｜稽核日期：2026-05-12｜爬取頁數：30 頁</div>
+  <div style="margin-top:4px">整體評分 <strong>94 / Grade A</strong>｜通過 6,029 ｜警告 1,403 ｜失敗 98</div>
+</div>
+
+</body>
+</html>

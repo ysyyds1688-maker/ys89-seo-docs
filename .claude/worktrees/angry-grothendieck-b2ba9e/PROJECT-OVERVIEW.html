@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 SEO 站群 — 專案全覽 2026</title>
+<meta name="description" content="YS89 夜色娛樂城 SEO 站群專案全覽：8個衛星站架構、關鍵字佈局、Autopilot 自動化系統、三工具操作指南。">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="YS89 SEO 站群 — 專案全覽 2026">
+<meta property="og:description" content="YS89 SEO 站群架構：8站佈局、競爭者監控、Autopilot 自動化、SEO 工具指南。">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://ys89-seo-docs.pages.dev/PROJECT-OVERVIEW.html">
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2128;--border:#30363d;
+  --green:#3fb950;--blue:#58a6ff;--yellow:#d29922;--red:#f85149;
+  --purple:#bc8cff;--orange:#f0883e;--cyan:#39d3f5;
+  --text:#e6edf3;--muted:#8b949e
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* HEADER */
+header{background:#010409;border-bottom:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.2em;font-weight:800;font-family:monospace;color:var(--green)}
+.logo span{color:var(--text)}
+.header-meta{color:var(--muted);font-size:0.82em;font-family:monospace}
+
+/* LAYOUT */
+.page{max-width:1200px;margin:0 auto;padding:28px 20px}
+
+/* TOP METRICS */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:28px}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;text-align:center}
+.metric .val{font-size:1.8em;font-weight:900;font-family:monospace;line-height:1}
+.metric .lbl{color:var(--muted);font-size:0.75em;margin-top:5px}
+.v-green{color:var(--green)}.v-yellow{color:var(--yellow)}.v-red{color:var(--red)}.v-blue{color:var(--blue)}.v-purple{color:var(--purple)}.v-orange{color:var(--orange)}
+
+/* SECTION */
+.sec{margin-bottom:36px}
+.sec-title{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.sec-title h2{font-size:1em;font-weight:700;letter-spacing:.3px}
+.sec-badge{font-family:monospace;font-size:0.72em;padding:2px 8px;border-radius:3px;font-weight:700}
+.b-green{background:rgba(63,185,80,0.12);color:var(--green);border:1px solid rgba(63,185,80,0.3)}
+.b-blue{background:rgba(88,166,255,0.12);color:var(--blue);border:1px solid rgba(88,166,255,0.3)}
+.b-yellow{background:rgba(210,153,34,0.12);color:var(--yellow);border:1px solid rgba(210,153,34,0.3)}
+.b-red{background:rgba(248,81,73,0.12);color:var(--red);border:1px solid rgba(248,81,73,0.3)}
+.b-purple{background:rgba(188,140,255,0.12);color:var(--purple);border:1px solid rgba(188,140,255,0.3)}
+
+/* SITE GRID */
+.site-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.site-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;position:relative;transition:border-color .15s}
+.site-card:hover{border-color:#4a5568}
+.site-card.live{border-left:3px solid var(--green)}
+.site-card.warn{border-left:3px solid var(--yellow)}
+.site-card.new{border-left:3px solid var(--blue)}
+.site-card.plan{border-left:3px solid var(--border);opacity:.65}
+
+.site-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.site-name{font-weight:700;font-size:0.95em}
+.site-url{font-family:monospace;font-size:0.78em;color:var(--blue)}
+.site-status{font-size:0.7em;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-left:8px;margin-top:2px}
+.s-live{background:rgba(63,185,80,0.12);color:var(--green);border:1px solid rgba(63,185,80,0.3)}
+.s-warn{background:rgba(210,153,34,0.12);color:var(--yellow);border:1px solid rgba(210,153,34,0.3)}
+.s-new{background:rgba(88,166,255,0.12);color:var(--blue);border:1px solid rgba(88,166,255,0.3)}
+.s-plan{background:rgba(139,148,158,0.12);color:var(--muted);border:1px solid rgba(139,148,158,0.2)}
+
+.site-desc{color:var(--muted);font-size:0.82em;margin-bottom:12px;line-height:1.5}
+.site-kv{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.kv{display:flex;gap:4px;align-items:center}
+.kv .k{color:var(--muted);font-size:0.75em}
+.kv .v{font-size:0.78em;font-family:monospace;font-weight:600}
+
+.issue-list{list-style:none;padding:0;margin-top:8px}
+.issue-list li{font-size:0.78em;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:6px;color:var(--muted)}
+.issue-list li:last-child{border-bottom:none}
+.i-red::before{content:'●';color:var(--red);flex-shrink:0}
+.i-yellow::before{content:'●';color:var(--yellow);flex-shrink:0}
+.i-green::before{content:'●';color:var(--green);flex-shrink:0}
+.i-blue::before{content:'●';color:var(--blue);flex-shrink:0}
+
+.seo-tools-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.tool-tag{font-family:monospace;font-size:0.72em;padding:3px 8px;border-radius:4px;border:1px solid}
+.t-seo{background:rgba(63,185,80,0.08);color:var(--green);border-color:rgba(63,185,80,0.25)}
+.t-audit{background:rgba(88,166,255,0.08);color:var(--blue);border-color:rgba(88,166,255,0.25)}
+.t-coach{background:rgba(188,140,255,0.08);color:var(--purple);border-color:rgba(188,140,255,0.25)}
+
+/* FLOW DIAGRAM */
+.flow{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.flow-row{display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
+.flow-node{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:0.8em;text-align:center;min-width:100px}
+.flow-node .n-title{font-weight:700;font-size:0.9em}
+.flow-node .n-sub{color:var(--muted);font-size:0.78em;margin-top:2px}
+.flow-node.n-main{border-color:var(--green);background:rgba(63,185,80,0.06)}
+.flow-node.n-main .n-title{color:var(--green)}
+.flow-node.n-wp{border-color:var(--blue);background:rgba(88,166,255,0.06)}
+.flow-node.n-wp .n-title{color:var(--blue)}
+.flow-node.n-sat{border-color:var(--purple);background:rgba(188,140,255,0.06)}
+.flow-node.n-sat .n-title{color:var(--purple)}
+.flow-node.n-aff{border-color:var(--yellow);background:rgba(210,153,34,0.1);font-weight:800}
+.flow-node.n-aff .n-title{color:var(--yellow)}
+.arrow{color:var(--muted);font-size:1.2em;padding:0 6px;flex-shrink:0}
+.arrow-down{text-align:center;color:var(--muted);font-size:1.2em;margin:4px 0}
+
+/* AUTOPILOT */
+.auto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.auto-grid{grid-template-columns:1fr}}
+.auto-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.auto-card .ac-title{font-weight:700;margin-bottom:10px;font-size:0.88em;display:flex;align-items:center;gap:8px}
+.auto-card ul{list-style:none;padding:0}
+.auto-card li{font-size:0.8em;color:var(--muted);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;gap:6px}
+.auto-card li:last-child{border-bottom:none}
+
+/* RISK TABLE */
+.risk-table{width:100%;border-collapse:collapse}
+.risk-table th{background:rgba(88,166,255,0.08);color:var(--blue);padding:9px 14px;text-align:left;font-size:0.8em;font-weight:600;border-bottom:1px solid var(--border)}
+.risk-table td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.82em}
+.risk-table tr:hover td{background:rgba(255,255,255,0.02)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.75em;font-weight:700;font-family:monospace}
+.badge-green{background:rgba(63,185,80,0.12);color:var(--green);border:1px solid rgba(63,185,80,0.3)}
+.badge-yellow{background:rgba(210,153,34,0.12);color:var(--yellow);border:1px solid rgba(210,153,34,0.3)}
+.badge-red{background:rgba(248,81,73,0.12);color:var(--red);border:1px solid rgba(248,81,73,0.3)}
+
+/* KW TABLE */
+.kw-table{width:100%;border-collapse:collapse}
+.kw-table th{background:rgba(63,185,80,0.08);color:var(--green);padding:9px 14px;text-align:left;font-size:0.8em;font-weight:600;border-bottom:1px solid var(--border)}
+.kw-table td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.82em}
+.kw-table tr:hover td{background:rgba(255,255,255,0.02)}
+
+/* TOOL GUIDE */
+.tool-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.tool-guide{grid-template-columns:1fr}}
+.tg-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.tg-card .tg-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.tg-cmd{font-family:monospace;font-size:0.8em;padding:3px 8px;border-radius:4px;font-weight:700}
+.tg-card ul{list-style:none;padding:0}
+.tg-card li{font-size:0.78em;color:var(--muted);padding:3px 0;display:flex;gap:5px;align-items:flex-start}
+.tg-card li::before{content:'›';color:inherit;flex-shrink:0;margin-top:1px}
+
+/* PROGRESS */
+.progress-bar{height:6px;background:var(--border);border-radius:3px;margin-top:6px;overflow:hidden}
+.progress-fill{height:100%;border-radius:3px;transition:width .3s}
+
+footer{border-top:1px solid var(--border);padding:20px 28px;text-align:center;color:var(--muted);font-size:0.78em;margin-top:40px}
+footer code{color:var(--blue);font-family:monospace}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">YS89<span> SEO 站群</span></div>
+  <div class="header-meta">最後更新：2026/05/12 ｜ 站台數：8 上線 + 1 規劃 ｜ 主聯盟：lihi2.me/ho943</div>
+</header>
+
+<div class="page">
+
+  <!-- TOP METRICS -->
+  <div class="metrics">
+    <div class="metric"><div class="val v-green">8</div><div class="lbl">已上線站台</div></div>
+    <div class="metric"><div class="val v-yellow">39</div><div class="lbl">ys89.fun 月點擊</div></div>
+    <div class="metric"><div class="val v-green">53</div><div class="lbl">ys89.fun 已索引頁</div></div>
+    <div class="metric"><div class="val v-red">41</div><div class="lbl">ys89.fun 未索引頁</div></div>
+    <div class="metric"><div class="val v-blue">2</div><div class="lbl">Domain Authority</div></div>
+    <div class="metric"><div class="val v-yellow">19</div><div class="lbl">外部 Backlinks</div></div>
+    <div class="metric"><div class="val v-purple">3</div><div class="lbl">SEO 工具已安裝</div></div>
+    <div class="metric"><div class="val v-orange">26</div><div class="lbl">天後世界盃開賽</div></div>
+  </div>
+
+  <!-- NETWORK FLOW -->
+  <div class="sec">
+    <div class="sec-title">
+      <h2>📡 站群架構 — 流量網絡</h2>
+      <span class="sec-badge b-blue">內鏈設計</span>
+    </div>
+    <div class="flow">
+      <!-- Row 1: Satellites -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:8px">
+        <div class="flow-node n-sat"><div class="n-title">wc.ys89.fun</div><div class="n-sub">世足賽站</div></div>
+        <div class="flow-node n-sat"><div class="n-title">player-one</div><div class="n-sub">評測排行</div></div>
+        <div class="flow-node n-sat"><div class="n-title">bonus-ys89</div><div class="n-sub">優惠攻略</div></div>
+        <div class="flow-node n-sat"><div class="n-title">usdt-ys89</div><div class="n-sub">USDT入金</div></div>
+        <div class="flow-node n-sat"><div class="n-title">slot-ys89</div><div class="n-sub">老虎機</div></div>
+        <div class="flow-node n-sat"><div class="n-title">out-ys89</div><div class="n-sub">出金評價</div></div>
+        <div class="flow-node n-sat"><div class="n-title">sport-ys89</div><div class="n-sub">運彩</div></div>
+      </div>
+      <div class="arrow-down">↕ 交叉內鏈</div>
+      <!-- Row 2: Main -->
+      <div style="display:flex;justify-content:center;margin-bottom:8px">
+        <div class="flow-node n-wp" style="min-width:180px"><div class="n-title">ys89.fun（WordPress 論壇）</div><div class="n-sub">27篇品牌文章 ｜ 106篇總索引</div></div>
+      </div>
+      <div class="arrow-down">↓ 所有站皆導流</div>
+      <!-- Row 3: Affiliate -->
+      <div style="display:flex;justify-content:center">
+        <div class="flow-node n-aff" style="min-width:220px">
+          <div class="n-title">🎯 夜色娛樂城 YS89</div>
+          <div class="n-sub">lihi2.me/ho943 ｜ ys89.bet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITES -->
+  <div class="sec">
+    <div class="sec-title">
+      <h2>🌐 各站現況</h2>
+      <span class="sec-badge b-green">8 已上線</span>
+      <span class="sec-badge b-yellow">1 規劃中</span>
+    </div>
+    <div class="site-grid">
+
+      <!-- ys89.fun -->
+      <div class="site-card warn">
+        <div class="site-header">
+          <div>
+            <div class="site-name">ys89.fun — 論壇主站</div>
+            <div class="site-url">WordPress · Cloudways VPS</div>
+          </div>
+          <span class="site-status s-warn">⚠ 有問題</span>
+        </div>
+        <div class="site-desc">27篇 YS89 品牌文章 + CCR 每日世足分析自動發文。目前排名全品牌詞，非品牌詞尚未進榜。</div>
+        <div class="site-kv">
+          <div class="kv"><span class="k">點擊</span><span class="v v-yellow">39</span></div>
+          <div class="kv"><span class="k">索引</span><span class="v v-green">53頁</span></div>
+          <div class="kv"><span class="k">未索引</span><span class="v v-red">41頁</span></div>
+          <div class="kv"><span class="k">文章</span><span class="v v-blue">106篇</span></div>
+        </div>
+        <ul class="issue-list">
+          <li class="i-red">3個 404 頁面（需找出具體 URL + 做 301）</li>
+          <li class="i-red">2個 5xx 伺服器錯誤（偶發？需查 log）</li>
+          <li class="i-yellow">17個 Canonical 問題（Tag/Category 頁重複）</li>
+          <li class="i-yellow">9頁「已爬取未索引」（Google 還在評估）</li>
+          <li class="i-blue">非品牌排名全 0 → 正常新站週期</li>
+        </ul>
+        <div class="seo-tools-row">
+          <span class="tool-tag t-audit">/seo-audit → 找404具體URL</span>
+          <span class="tool-tag t-seo">/seo technical → redirect問題</span>
+          <span class="tool-tag t-coach">/seo-coach → 長期追蹤</span>
+        </div>
+      </div>
+
+      <!-- wc.ys89.fun -->
+      <div class="site-card warn">
+        <div class="site-header">
+          <div>
+            <div class="site-name">wc.ys89.fun — 世足賽 SEO 站</div>
+            <div class="site-url">Cloudflare Pages · wc2026</div>
+          </div>
+          <span class="site-status s-warn">⚠ Redirect Error</span>
+        </div>
+        <div class="site-desc">30頁靜態站，針對2026世界盃賭注關鍵字。CCR自動每日發文到ys89.fun，29頁均有 Schema/FAQ/Breadcrumb。</div>
+        <div class="site-kv">
+          <div class="kv"><span class="k">點擊</span><span class="v v-red">0</span></div>
+          <div class="kv"><span class="k">頁面數</span><span class="v v-blue">30頁</span></div>
+          <div class="kv"><span class="k">開賽</span><span class="v v-orange">6/11</span></div>
+        </div>
+        <ul class="issue-list">
+          <li class="i-red">3個重新導向錯誤 → 最緊急，影響索引</li>
+          <li class="i-yellow">GSC 尚未索引（新站）</li>
+          <li class="i-green">CCR 每日自動發文：世足分析 ✅</li>
+          <li class="i-green">交叉內鏈 → player-one-site ✅</li>
+        </ul>
+        <div class="seo-tools-row">
+          <span class="tool-tag t-seo">/seo technical → 找redirect錯誤</span>
+          <span class="tool-tag t-seo">/seo aeo → 世足關鍵字AEO</span>
+        </div>
+      </div>
+
+      <!-- player-one -->
+      <div class="site-card live">
+        <div class="site-header">
+          <div>
+            <div class="site-name">player-one-site — 評測排行榜</div>
+            <div class="site-url">player-one-site.pages.dev · GitHub Auto-deploy</div>
+          </div>
+          <span class="site-status s-live">✓ 已上線</span>
+        </div>
+        <div class="site-desc">娛樂城評測排行榜，14篇文章，排行榜+7篇評測頁+出金/體驗金/詐騙教學。AggregateRating + Article + FAQPage Schema 完整。</div>
+        <div class="site-kv">
+          <div class="kv"><span class="k">文章</span><span class="v v-blue">14篇</span></div>
+          <div class="kv"><span class="k">Schema</span><span class="v v-green">全站</span></div>
+          <div class="kv"><span class="k">字數</span><span class="v v-green">2500~12000字</span></div>
+        </div>
+        <ul class="issue-list">
+          <li class="i-green">7篇評測頁全上 AggregateRating Schema ✅</li>
+          <li class="i-green">交叉內鏈 wc.ys89.fun + ys89.fun ✅</li>
+          <li class="i-yellow">排名全 0（GSC 剛驗證，等 Google 索引）</li>
+          <li class="i-blue">自有網域尚未綁定（現用 .pages.dev）</li>
+        </ul>
+        <div class="seo-tools-row">
+          <span class="tool-tag t-seo">/seo content → E-E-A-T評分</span>
+          <span class="tool-tag t-seo">/seo schema → Schema驗證</span>
+        </div>
+      </div>
+
+      <!-- bonus-ys89 -->
+      <div class="site-card new">
+        <div class="site-header">
+          <div>
+            <div class="site-name">bonus-ys89 — 優惠攻略站</div>
+            <div class="site-url">bonus-ys89.pages.dev · 2026/05/12 上線</div>
+          </div>
+          <span class="site-status s-new">🆕 新上線</span>
+        </div>
+        <div class="site-desc">體驗金、首儲優惠、VIP禮金、優惠碼、免儲紅利全整理。主打「娛樂城體驗金」系列關鍵字。</div>
+        <div class="site-kv">
+          <div class="kv"><span class="k">目標詞</span><span class="v v-yellow">娛樂城體驗金</span></div>
+          <div class="kv"><span class="k">月搜</span><span class="v v-blue">12,100</span></div>
+        </div>
+        <ul class="issue-list">
+          <li class="i-yellow">GSC 尚未提交 sitemap</li>
+          <li class="i-yellow">文章頁尚未建立（只有首頁）</li>
+          <li class="i-blue">需加 JSON-LD Schema</li>
+        </ul>
+        <div class="seo-tools-row">
+          <span class="tool-tag t-seo">/seo audit → 首次完整審核</span>
+          <span class="tool-tag t-audit">/seo-audit → 技術問題</span>
+        </div>
+      </div>
+
+      <!-- usdt-ys89 -->
+      <div class="site-card new">
+        <div class="site-header">
+          <div>
+            <div class="site-name">usdt-ys89 — USDT入金教學站</div>
+            <div class="site-url">usdt-ys89.pages.dev · 2026/05/12 上線</div>
+          </div>
+          <span class="site-status s-new">🆕 新上線</span>
+        </div>
+        <div class="site-desc">USDT/TRC20 娛樂城入金完整教學，主打「娛樂城USDT」等加密貨幣博弈長尾詞（競爭極低）。</div>
+        <div class="site-kv">
+          <div class="kv"><span class="k">目標詞</span><span class="v v-yellow">娛樂城USDT</span></div>
+          <div class="kv"><span class="k">競爭</span><span class="v v-green">極低</span></div>
+        </div>
+        <ul class="issue-list">
+          <li class="i-green">資料正確性已驗證（對照ys89.com）✅</li>
+          <li class="i-yellow">GSC 尚未提交 sitemap</li>
+          <li class="i-yellow">文章頁尚未建立</li>
+        </ul>
+        <div class="seo-tools-row">
+          <span class="tool-tag t-seo">/seo audit → 首次審核</span>
+        </div>
+      </div>
+
+      <!-- slot-ys89 -->
+      <div class="site-card new">
+        <div class="site-header">
+          <div>
+            <div class="site-name">slot-ys89 — 老虎機攻略站</div>
+            <div class="site-url">slot-ys89.pages.dev · 2026/05/12 更新</div>
+          </div>
+          <span class="site-status s-new">🆕 剛更新</span>
+        </div>
+        <div class="site-desc">KT電子老虎機攻略，遊戲清單已對照 ys89.com 真實資料更新（麻將胡了、爆金浩克等）。</div>
+        <div class="site-kv">
+          <div class="kv"><span class="k">遊戲廠商</span><span class="v v-green">KT電子（已驗證）</span></div>
+        </div>
+        <ul class="issue-list">
+          <li class="i-green">遊戲名稱對照 ys89.com 真實資料 ✅</li>
+          <li class="i-yellow">GSC 待提交</li>
+        </ul>
+        <div class="seo-tools-row">
+          <span class="tool-tag t-seo">/seo content → 內容品質</span>
+        </div>
+      </div>
+
+      <!-- out-ys89 -->
+      <div class="site-card new">
+        <div class="site-header">
+          <div>
+            <div class="site-name">out-ys89 — 出金速度評測站</div>
+            <div class="site-url">out-ys89.pages.dev · 2026/05/12 更新</div>
+          </div>
+          <span class="site-status s-new">🆕 剛更新</span>
+        </div>
+        <div class="site-desc">實測20家娛樂城出金速度比較，夜色 YS89 排名第一（5-15分鐘）。</div>
+        <div class="site-kv">
+          <div class="kv"><span class="k">目標詞</span><span class="v v-yellow">娛樂城出金最快</span></div>
+        </div>
+        <ul class="issue-list">
+          <li class="i-green">競爭表格資料已更新（移除 A/B/C）✅</li>
+          <li class="i-yellow">GSC 待提交</li>
+        </ul>
+        <div class="seo-tools-row">
+          <span class="tool-tag t-seo">/seo audit → 首次審核</span>
+        </div>
+      </div>
+
+      <!-- sport-ys89 -->
+      <div class="site-card new">
+        <div class="site-header">
+          <div>
+            <div class="site-name">sport-ys89 — 運彩博彩站</div>
+            <div class="site-url">sport-ys89.pages.dev · 2026/05/12 更新</div>
+          </div>
+          <span class="site-status s-new">🆕 剛更新</span>
+        </div>
+        <div class="site-desc">運彩娛樂城推薦、世界盃投注攻略。提供熊貓體育、SUPER、WG、LIVE四大廠商介紹（已驗證為 ys89.com 實際供應商）。</div>
+        <div class="site-kv">
+          <div class="kv"><span class="k">目標詞</span><span class="v v-yellow">運彩娛樂城推薦</span></div>
+        </div>
+        <ul class="issue-list">
+          <li class="i-green">廠商資料已對照 ys89.com 驗證 ✅</li>
+          <li class="i-yellow">GSC 待提交</li>
+          <li class="i-blue">世足賽期間流量預期上升</li>
+        </ul>
+        <div class="seo-tools-row">
+          <span class="tool-tag t-seo">/seo aeo → 搶世足Featured Snippet</span>
+        </div>
+      </div>
+
+      <!-- newbie - planned -->
+      <div class="site-card plan">
+        <div class="site-header">
+          <div>
+            <div class="site-name">newbie-ys89 — 新手入門站</div>
+            <div class="site-url">規劃中（第一波第三站）</div>
+          </div>
+          <span class="site-status s-plan">📋 規劃中</span>
+        </div>
+        <div class="site-desc">娛樂城新手教學、如何選擇安全娛樂城、入門攻略。目標關鍵字：娛樂城新手、線上博弈教學。</div>
+        <ul class="issue-list">
+          <li class="i-blue">已有 /tmp/new_sites/newbie/ 初稿</li>
+          <li class="i-blue">需驗證資料、部署、GSC 提交</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEO TOOLS GUIDE FOR THIS PROJECT -->
+  <div class="sec">
+    <div class="sec-title">
+      <h2>🛠 三工具 × 本專案 — 怎麼用</h2>
+      <span class="sec-badge b-purple">使用指南</span>
+    </div>
+    <div class="tool-guide">
+
+      <div class="tg-card">
+        <div class="tg-header">
+          <span style="font-size:1.3em">🔍</span>
+          <div>
+            <div style="font-weight:700">Agentic SEO</div>
+            <span class="tg-cmd t-seo">/seo</span>
+          </div>
+        </div>
+        <ul>
+          <li style="color:var(--green)">每月一次全站健診</li>
+          <li>/seo audit ys89.fun → FULL-AUDIT-REPORT.md</li>
+          <li>/seo aeo wc.ys89.fun → 世足Featured Snippet</li>
+          <li>/seo content player-one-site → E-E-A-T評分</li>
+          <li>/seo schema → 驗證所有 JSON-LD</li>
+          <li>/seo geo → ChatGPT/Perplexity 能找到嗎</li>
+          <li>/seo plan → 季度關鍵字策略</li>
+        </ul>
+        <div class="progress-bar"><div class="progress-fill" style="width:30%;background:var(--green)"></div></div>
+        <div style="color:var(--muted);font-size:0.72em;margin-top:4px">尚未跑過第一次 audit</div>
+      </div>
+
+      <div class="tg-card">
+        <div class="tg-header">
+          <span style="font-size:1.3em">🛠</span>
+          <div>
+            <div style="font-weight:700">SEOmator 技術審核</div>
+            <span class="tg-cmd t-audit">/seo-audit</span>
+          </div>
+        </div>
+        <ul>
+          <li style="color:var(--blue)">技術問題排查首選</li>
+          <li>/seo-audit ys89.fun → 找出3個404具體URL</li>
+          <li>/seo-audit wc.ys89.fun → Redirect Error 根因</li>
+          <li>A-F 健康分數 + 251條規則逐一檢查</li>
+          <li>AI/GEO 準備度（llms.txt 需要加嗎）</li>
+          <li>robots.txt / sitemap 結構驗證</li>
+          <li>Core Web Vitals 各項指標</li>
+        </ul>
+        <div class="progress-bar"><div class="progress-fill" style="width:0%;background:var(--blue)"></div></div>
+        <div style="color:var(--muted);font-size:0.72em;margin-top:4px">立即執行 → 解決404和redirect error</div>
+      </div>
+
+      <div class="tg-card">
+        <div class="tg-header">
+          <span style="font-size:1.3em">🎯</span>
+          <div>
+            <div style="font-weight:700">SEO 陪跑教練</div>
+            <span class="tg-cmd t-coach">/seo-coach</span>
+          </div>
+        </div>
+        <ul>
+          <li style="color:var(--purple)">每週追蹤用，跨對話記憶</li>
+          <li>自動維護 seo-progress.md</li>
+          <li>自動維護 seo-actions.md 待辦清單</li>
+          <li>AK 教練引導 → 每次聚焦1個問題</li>
+          <li>回答「canonical 是什麼」等概念</li>
+          <li>「我的曝光 0 怎麼辦」→ 診斷</li>
+          <li>版本更新追蹤（check update）</li>
+        </ul>
+        <div class="progress-bar"><div class="progress-fill" style="width:10%;background:var(--purple)"></div></div>
+        <div style="color:var(--muted);font-size:0.72em;margin-top:4px">seo-progress.md 已初始化</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AUTOPILOT -->
+  <div class="sec">
+    <div class="sec-title">
+      <h2>🤖 SEO Autopilot 自動化系統</h2>
+      <span class="sec-badge b-green">已運作中</span>
+    </div>
+    <div class="auto-grid">
+      <div class="auto-card">
+        <div class="ac-title"><span style="color:var(--yellow)">⏰</span> 每週一 09:03 自動觸發</div>
+        <ul>
+          <li><span style="color:var(--green)">✓</span> CCR 排程 job：b0c6a953（已設定）</li>
+          <li><span style="color:var(--green)">✓</span> 自站關鍵字監控（3站）</li>
+          <li><span style="color:var(--green)">✓</span> 競爭者監控（6站）</li>
+          <li><span style="color:var(--green)">✓</span> AEO Featured Snippet 偵測</li>
+          <li><span style="color:var(--green)">✓</span> TG Bot inline keyboard 確認機制</li>
+          <li><span style="color:var(--green)">✓</span> PM2 常駐（seo-tg-bot）</li>
+        </ul>
+      </div>
+      <div class="auto-card">
+        <div class="ac-title"><span style="color:var(--blue)">👁</span> 監控競爭者</div>
+        <ul>
+          <li><span style="color:var(--red)">⚠</span> blog.qywin88.com（DA10, 1.9萬流量）</li>
+          <li><span style="color:var(--red)">⚠</span> wager.tw（DA14, 曾124K→現4.7K崩潰）</li>
+          <li><span style="color:var(--yellow)">○</span> yulecheng.tw（DA1 卻排第一）</li>
+          <li><span style="color:var(--yellow)">○</span> suhea.com.tw（體驗金第一）</li>
+          <li><span style="color:var(--orange)">↑</span> gsbet888.tw（6個月×675倍增長）</li>
+          <li><span style="color:var(--yellow)">○</span> worldcups.tw（世足主題，wc直競）</li>
+        </ul>
+      </div>
+      <div class="auto-card">
+        <div class="ac-title"><span style="color:var(--green)">📱</span> TG 通知頻道</div>
+        <ul>
+          <li><span style="color:var(--green)">✓</span> 每週 SEO 週報自動發送</li>
+          <li><span style="color:var(--green)">✓</span> 高風險改動需確認 → [✅確認][⏭略過]</li>
+          <li><span style="color:var(--green)">✓</span> 世足賽 CCR 每日自動發文</li>
+          <li style="color:var(--muted)">Bot: @Seoys1688_bot</li>
+          <li style="color:var(--muted)">Chat: -1003930674336</li>
+          <li style="color:var(--muted)">Topic: 2</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- RISK TABLE -->
+  <div class="sec">
+    <div class="sec-title">
+      <h2>⚡ Autopilot 執行風險等級</h2>
+    </div>
+    <table class="risk-table">
+      <thead><tr><th>動作</th><th>風險</th><th>執行方式</th></tr></thead>
+      <tbody>
+        <tr><td>更新 meta keywords / description</td><td><span class="badge badge-green">低</span></td><td>全自動執行 + deploy</td></tr>
+        <tr><td>更新 FAQ schema / AggregateRating</td><td><span class="badge badge-green">低</span></td><td>全自動執行 + deploy</td></tr>
+        <tr><td>更新 title / H1</td><td><span class="badge badge-yellow">中</span></td><td>自動改完 → TG 通知確認 → 你回「確認」才 deploy</td></tr>
+        <tr><td>新增文章頁</td><td><span class="badge badge-yellow">中</span></td><td>自動生成 HTML → TG 發預覽 → 確認才 deploy</td></tr>
+        <tr><td>大幅改寫內文</td><td><span class="badge badge-red">高</span></td><td>不全自動，TG 發 diff 讓你決定</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- KEYWORDS -->
+  <div class="sec">
+    <div class="sec-title">
+      <h2>🎯 目標關鍵字市場</h2>
+      <span class="sec-badge b-yellow">台灣市場</span>
+    </div>
+    <table class="kw-table">
+      <thead><tr><th>關鍵字</th><th>月搜尋量</th><th>SEO難度</th><th>目前排名</th><th>負責站台</th><th>優先度</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>娛樂城推薦排行榜</td>
+          <td>14,800</td>
+          <td><span class="badge badge-yellow">38 中</span></td>
+          <td><span class="badge badge-red">未進榜</span></td>
+          <td>player-one-site</td>
+          <td>⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>娛樂城體驗金</td>
+          <td>12,100</td>
+          <td><span class="badge badge-yellow">42 中</span></td>
+          <td><span class="badge badge-red">未進榜</span></td>
+          <td>bonus-ys89</td>
+          <td>⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>2026世界盃投注</td>
+          <td>5,400 ↑↑</td>
+          <td><span class="badge badge-green">34 中低</span></td>
+          <td><span class="badge badge-red">未進榜</span></td>
+          <td>wc.ys89.fun + sport-ys89</td>
+          <td>⭐⭐⭐ 🔥黃金期</td>
+        </tr>
+        <tr>
+          <td>娛樂城出金速度</td>
+          <td>長尾</td>
+          <td><span class="badge badge-green">低</span></td>
+          <td><span class="badge badge-red">未進榜</span></td>
+          <td>out-ys89</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+          <td>娛樂城USDT入金</td>
+          <td>長尾</td>
+          <td><span class="badge badge-green">極低</span></td>
+          <td><span class="badge badge-red">未進榜</span></td>
+          <td>usdt-ys89</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+          <td>老虎機攻略推薦</td>
+          <td>中高</td>
+          <td><span class="badge badge-yellow">中</span></td>
+          <td><span class="badge badge-red">未進榜</span></td>
+          <td>slot-ys89</td>
+          <td>⭐⭐</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NEXT ACTIONS -->
+  <div class="sec">
+    <div class="sec-title">
+      <h2>📋 立即行動清單</h2>
+      <span class="sec-badge b-red">本週必做</span>
+    </div>
+    <table class="kw-table">
+      <thead><tr><th>#</th><th>任務</th><th>工具</th><th>影響</th></tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--red);font-weight:700">1</td>
+          <td>找出 wc.ys89.fun 3個 redirect error 具體 URL</td>
+          <td><code style="color:var(--green);font-family:monospace;font-size:0.85em">/seo technical wc.ys89.fun</code></td>
+          <td style="color:var(--red)">🔴 影響索引</td>
+        </tr>
+        <tr>
+          <td style="color:var(--red);font-weight:700">2</td>
+          <td>找出 ys89.fun 3個 404 並做 301 redirect</td>
+          <td><code style="color:var(--blue);font-family:monospace;font-size:0.85em">/seo-audit ys89.fun</code></td>
+          <td style="color:var(--red)">🔴 修復排名流失</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow);font-weight:700">3</td>
+          <td>bonus / usdt / slot / out / sport 五站提交 GSC sitemap</td>
+          <td>GSC 後台手動</td>
+          <td style="color:var(--yellow)">🟡 加速索引</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow);font-weight:700">4</td>
+          <td>wc.ys89.fun AEO 優化（世足開賽前搶 Featured Snippet）</td>
+          <td><code style="color:var(--green);font-family:monospace;font-size:0.85em">/seo aeo wc.ys89.fun</code></td>
+          <td style="color:var(--orange)">🟠 6/11 前搶排名</td>
+        </tr>
+        <tr>
+          <td style="color:var(--blue);font-weight:700">5</td>
+          <td>全站首次完整健診，建立基準報告</td>
+          <td><code style="color:var(--green);font-family:monospace;font-size:0.85em">/seo audit ys89.fun</code></td>
+          <td style="color:var(--blue)">🔵 建立基準線</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p>YS89 SEO 站群專案全覽 ｜ 工作空間：<code>~/Desktop/seo-workspace/</code> ｜ 更新：2026/05/12</p>
+</footer>
+
+</body>
+</html>
