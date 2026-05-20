@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NT$10 萬高權重域名採購 ROI 報告｜給老闆</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --gold: #C9A84C; --gold-light: #E8C96A;
+  --dark: #0D0D0D; --dark-2: #161616; --dark-3: #1F1F1F; --dark-4: #2A2A2A;
+  --text: #E8E8E8; --text-muted: #888;
+  --red: #E05252; --green: #52C07A; --blue: #5B8FD4;
+}
+body {
+  background: var(--dark); color: var(--text);
+  font-family: 'Helvetica Neue', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  line-height: 1.7; font-size: 15px;
+}
+.header {
+  background: linear-gradient(135deg, #0D0D0D 0%, #1a1200 50%, #0D0D0D 100%);
+  border-bottom: 1px solid var(--gold);
+  padding: 48px 0 40px; text-align: center; position: relative;
+}
+.header-badge {
+  display: inline-block; background: var(--gold); color: #000;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  padding: 4px 14px; border-radius: 2px; margin-bottom: 20px;
+}
+.header h1 { font-size: 30px; font-weight: 800; color: #fff; letter-spacing: 1px; margin-bottom: 10px; }
+.header h1 span { color: var(--gold); }
+.header-sub { color: var(--text-muted); font-size: 14px; }
+.container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.section:last-child { border-bottom: none; }
+.section-label { font-size: 11px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.section-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.box {
+  background: var(--dark-3); border: 1px solid var(--dark-4);
+  border-radius: 6px; padding: 20px 24px; margin: 14px 0;
+}
+.box.gold { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.04); }
+.box.green { border-color: rgba(82,192,122,0.3); background: rgba(82,192,122,0.04); }
+.box.red { border-color: rgba(224,82,82,0.3); background: rgba(224,82,82,0.04); }
+.box.blue { border-color: rgba(91,143,212,0.3); background: rgba(91,143,212,0.04); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 14px 0; }
+th { text-align: left; padding: 12px 14px; font-size: 11px; letter-spacing: 1.5px; color: var(--gold); font-weight: 600; background: var(--dark-4); border-bottom: 1px solid var(--gold); }
+td { padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
+tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+@media(max-width:720px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
+.metric { background: var(--dark-3); border: 1px solid var(--dark-4); border-radius: 6px; padding: 18px; text-align: center; }
+.metric .v { font-size: 28px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.metric .l { font-size: 12px; color: var(--text-muted); }
+.scenarios { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+@media(max-width:720px) { .scenarios { grid-template-columns: 1fr; } }
+.scenario { background: var(--dark-3); border: 2px solid var(--dark-4); border-radius: 8px; padding: 20px; }
+.scenario.bad { border-color: rgba(224,82,82,0.4); }
+.scenario.good { border-color: rgba(82,192,122,0.4); }
+.scenario h3 { color: #fff; font-size: 16px; margin-bottom: 12px; }
+.scenario.bad h3 { color: var(--red); }
+.scenario.good h3 { color: var(--green); }
+.flag-buy { background: var(--green); color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+.flag-warn { background: #f59e0b; color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+.flag-bad { background: var(--red); color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+ul { padding-left: 20px; }
+ul li { margin: 6px 0; }
+.signature { text-align: center; color: var(--text-muted); font-size: 13px; padding: 30px 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">CONFIDENTIAL · 給老闆</div>
+  <h1>NT$10 萬高權重域名採購 <span>ROI 報告</span></h1>
+  <p class="header-sub">2026-05-20｜YS89 SEO 戰術組｜阿翔（Sean）</p>
+</div>
+
+<div class="container">
+
+<div class="section">
+  <div class="section-label">// EXECUTIVE SUMMARY</div>
+  <div class="section-title">一頁版：要 / 不要的根本理由</div>
+
+  <div class="box gold">
+    <p><strong style="color:var(--gold)">現況：</strong>ys89.fun 主站 DR 0，競品 wager.tw DR 54、168gambling DR 57。寫再多文章也排不上 Google 前 10，因為 Google 看「網域權威分數」（DR）比看內容品質更早。</p>
+    <p style="margin-top:10px"><strong style="color:var(--gold)">解法：</strong>買 5 個 DR 20+ 的「真實老域名」做 PBN（私有部落格網絡），把它們的權重透過自然連結傳給 ys89.fun，60 天內讓主站 DR 從 0 上升到 15-20。</p>
+    <p style="margin-top:10px"><strong style="color:var(--gold)">預算：</strong>NT$10 萬／回收路徑：DR 上去 → Google 排名上升 → 流量增加 → 1-3 個月內覆蓋採購成本。</p>
+  </div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="v">NT$10萬</div><div class="l">採購總預算</div></div>
+    <div class="metric"><div class="v">5 個</div><div class="l">高權重域名</div></div>
+    <div class="metric"><div class="v">60 天</div><div class="l">DR 提升期</div></div>
+    <div class="metric"><div class="v">+15-20</div><div class="l">ys89.fun DR 提升</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">// 為什麼是現在</div>
+  <div class="section-title">世足倒數 22 天的時機窗</div>
+
+  <table>
+    <tr><th style="width:130px">日期</th><th>事件</th><th>對 YS89 的意義</th></tr>
+    <tr><td>2026-06-11</td><td>世足賽開幕</td><td>「世足投注」「世足賠率」搜尋量爆 5-10 倍</td></tr>
+    <tr><td>2026-05-20 → 06-10</td><td>衝刺期（22 天）</td><td>必須在開賽前讓主站 DR 上 10+，才有機會搶到流量</td></tr>
+    <tr><td>2026-06-11 → 07-19</td><td>收割期（38 天）</td><td>排名穩定即可吃流量，無法臨陣磨槍</td></tr>
+  </table>
+
+  <div class="box red" style="margin-top:18px">
+    <strong style="color:var(--red)">如果現在不做 PBN：</strong>
+    <ul>
+      <li>世足期間 ys89.fun 排在搜尋第 2-3 頁，流量被 wager.tw / 168gambling 全部吃走</li>
+      <li>競品連結資產持續累積，差距越拉越大</li>
+      <li>需要等下一個 4 年才會有同等流量機會</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">// 採購配置</div>
+  <div class="section-title">5 個域名分階段購入</div>
+
+  <table>
+    <tr><th>階段</th><th>域名</th><th>DR</th><th>價格</th><th>狀態</th></tr>
+    <tr><td rowspan="3" style="background:rgba(91,143,212,0.05)"><strong>Phase 1<br>已購入</strong></td><td>HipGreenScene.com（旅遊主題）</td><td>21</td><td>NT$399</td><td><span class="flag-buy">✓ 已買</span></td></tr>
+    <tr><td>adviseist.com（戶外運動主題）</td><td>20</td><td>NT$399</td><td><span class="flag-buy">✓ 已買</span></td></tr>
+    <tr><td>DeckMatt.com（多主題, Tier-3）</td><td>24</td><td>NT$399</td><td><span class="flag-buy">✓ 已買</span></td></tr>
+    <tr><td rowspan="2" style="background:rgba(201,168,76,0.05)"><strong>Phase 2<br>採購中</strong></td><td>待採購 Tier-1 域名 A</td><td>50+</td><td>~NT$30-50K</td><td><span class="flag-warn">⚠️ 找候選中</span></td></tr>
+    <tr><td>待採購 Tier-1 域名 B</td><td>50+</td><td>~NT$30-50K</td><td><span class="flag-warn">⚠️ 找候選中</span></td></tr>
+    <tr><td colspan="2"><strong>合計</strong></td><td colspan="2"><strong>NT$61-100K（已花 NT$1,197）</strong></td><td></td></tr>
+  </table>
+
+  <div class="box blue" style="margin-top:14px">
+    <strong style="color:var(--blue)">為什麼是「5 個」不是「10 個」？</strong>
+    <ul>
+      <li>10 個一次梭哈 → 沒有試錯空間，老闆難以驗收 ROI</li>
+      <li>5 個是「最小可驗證單位」：3 個 Tier-2 撐底 + 2 個 Tier-1 主力</li>
+      <li>60 天看效果，效果好就批 Phase 2 再加碼 5 個</li>
+    </ul>
+  </div>
+
+  <div class="box" style="margin-top:14px">
+    <strong>剩餘預算分配（NT$98,803）：</strong>
+    <table style="margin-top:8px">
+      <tr><td>Tier-1 域名 × 2</td><td style="text-align:right">NT$60,000-100,000</td></tr>
+      <tr><td>WHOIS 隱私（轉 CF 後免費，過渡期）</td><td style="text-align:right">NT$3,000</td></tr>
+      <tr><td>VPS / 主機分散（不同 IP）</td><td style="text-align:right">NT$15,000-25,000</td></tr>
+      <tr><td>Spamzilla 訂閱 1 個月（域名搜尋工具）</td><td style="text-align:right">NT$3,000</td></tr>
+      <tr><td>備用金</td><td style="text-align:right">NT$5,000-10,000</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">// 預期 ROI</div>
+  <div class="section-title">60 天 DR 與流量預測</div>
+
+  <table>
+    <tr><th>站點</th><th>現在 DR</th><th>30 天</th><th>60 天</th><th>90 天</th><th>競品基準</th></tr>
+    <tr><td><strong>ys89.fun</strong>（母站）</td><td>0</td><td>5-10</td><td><strong style="color:var(--gold)">15-20</strong></td><td>22-28</td><td>wager.tw 54</td></tr>
+    <tr><td>ys89.games</td><td>3.2</td><td>6-10</td><td><strong style="color:var(--green)">10-15</strong></td><td>15-20</td><td>—</td></tr>
+    <tr><td>fifa-worldcups.tw</td><td>0</td><td>3-6</td><td><strong style="color:var(--green)">8-12</strong></td><td>12-18</td><td>—</td></tr>
+  </table>
+
+  <div class="box green" style="margin-top:14px">
+    <strong style="color:var(--green)">流量推估（保守估計）：</strong>
+    <table style="margin-top:8px">
+      <tr><th></th><th>現在/月</th><th>60 天/月</th><th>世足期間/月</th></tr>
+      <tr><td>有機搜尋流量</td><td>~500</td><td>~3,000</td><td>~10,000-20,000</td></tr>
+      <tr><td>排名前 10 的關鍵字</td><td>5-10</td><td>30-50</td><td>50-80</td></tr>
+      <tr><td>潛在轉換（保守 1%）</td><td>5</td><td>30</td><td>100-200</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">// PREMORTEM</div>
+  <div class="section-title">如果失敗，會怎麼失敗？</div>
+
+  <table>
+    <tr><th>風險</th><th>機率</th><th>應對</th></tr>
+    <tr><td>買到的域名被 Google deindex（污染歷史沒查清）</td><td>低（已有完整查驗 SOP）</td><td>每個域名先 Wayback + Ahrefs + Google 三關驗證再買</td></tr>
+    <tr><td>PBN footprint 被識別</td><td>中</td><td>不同 IP / WHOIS Privacy / 主題保留原域名歷史 / 連結密度 ≤ 6%</td></tr>
+    <tr><td>Google 演算法更新打 PBN</td><td>低-中</td><td>Tier 分層 + 真實內容（非自動生成）+ 自然連結節奏</td></tr>
+    <tr><td>2 個 Tier-1 找不到合適候選</td><td>中</td><td>備案：用 NT$ 同等預算買 5-7 個 DR 30-40 替代</td></tr>
+    <tr><td>世足前內容沒準備好</td><td>中</td><td>已交接 PBN 內容建置包給另一執行端，並行作業</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-label">// 對照</div>
+  <div class="section-title">做 vs 不做的代價</div>
+
+  <div class="scenarios">
+    <div class="scenario bad">
+      <h3>❌ 不投資 PBN</h3>
+      <ul>
+        <li>主站 DR 維持 0-2，60 天後仍排不到前 10</li>
+        <li>世足流量被 wager.tw / 168gambling 全收</li>
+        <li>NT$10 萬省下來，但「無法上 Google 第 1 頁」是長期問題</li>
+        <li>競品差距持續拉大，未來追趕成本更高</li>
+        <li>下次 4 年後才有同等世足流量機會</li>
+      </ul>
+    </div>
+    <div class="scenario good">
+      <h3>✅ 投資 NT$10 萬 PBN</h3>
+      <ul>
+        <li>60 天主站 DR → 15-20，搜尋排名顯著上升</li>
+        <li>世足期間吃到 5-10 倍流量</li>
+        <li>PBN 資產可重複使用，不只世足 ROI</li>
+        <li>建立長期 SEO 基礎，未來追趕競品有起跑線</li>
+        <li>5 個 Tier-2 域名也可獨立做廣告投放著陸頁</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">// 60 天驗收</div>
+  <div class="section-title">KPI 怎麼看效果</div>
+
+  <table>
+    <tr><th>週次</th><th>KPI</th><th>達標 / 警戒</th></tr>
+    <tr><td>Week 1-2</td><td>5 個 PBN 站全部上線（首頁 + 5 篇文章）</td><td>✓ 達標 / ❌ &lt; 3 站上線</td></tr>
+    <tr><td>Week 3-4</td><td>Ahrefs 偵測到 PBN → ys89.fun 連結</td><td>✓ &gt; 5 條 / ❌ 仍 0 條</td></tr>
+    <tr><td>Week 5-6</td><td>ys89.fun DR 上升幅度</td><td>✓ DR +5 以上 / ❌ DR 仍 &lt; 3</td></tr>
+    <tr><td>Week 7-8</td><td>Google 自然流量月增幅</td><td>✓ +200% 以上 / ❌ +50% 以下</td></tr>
+    <tr><td>Week 8+</td><td>是否進入 Phase 2 加碼採購</td><td>看 Week 7-8 的 KPI 決定</td></tr>
+  </table>
+
+  <div class="box gold" style="margin-top:14px">
+    <strong style="color:var(--gold)">關鍵驗收節點：2026-07-15</strong>
+    <p style="margin-top:8px">屆時可依照數據明確判斷：</p>
+    <ul>
+      <li><span class="flag-buy">繼續加碼</span> ys89.fun DR ≥ 15 + 流量 +200% → 批 Phase 2 NT$10 萬</li>
+      <li><span class="flag-warn">調整策略</span> DR 5-15 + 流量 +50-200% → 補強內容後再投</li>
+      <li><span class="flag-bad">停損認賠</span> DR &lt; 5 + 流量 &lt; +50% → 暫停，剩餘預算轉投廣告</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">// 老闆要做的事</div>
+  <div class="section-title">3 個確認點</div>
+
+  <ol style="padding-left:20px">
+    <li style="margin:10px 0"><strong>批准 NT$10 萬預算</strong>（已花 NT$1,197，剩餘 NT$98,803 用於 2 個 Tier-1 + 工具 + 主機）</li>
+    <li style="margin:10px 0"><strong>同意 60 天驗收節點</strong>（2026-07-15 看 KPI 決定是否進入 Phase 2）</li>
+    <li style="margin:10px 0"><strong>授權 Phase 2 自動加碼條件</strong>（DR ≥ 15 + 流量 +200% 達標時可直接批 NT$10 萬第二輪，不用再開會）</li>
+  </ol>
+
+  <div class="box green" style="margin-top:18px">
+    <strong style="color:var(--green)">為什麼第 3 點重要：</strong>
+    <p style="margin-top:8px">DR 上去後是有時效的 — 連結權重需要持續注入才能上升，等「再開會討論」的時間差會讓 60 天努力被中斷。預先授權「達標自動加碼」可確保動能不斷。當然如果沒達標就停。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">// 結論</div>
+  <div class="section-title">建議：批准</div>
+
+  <div class="box gold">
+    <p>NT$10 萬 / 60 天 / DR +15-20 / 世足流量爆 5-10 倍，這是 4 年才有的時機窗。</p>
+    <p style="margin-top:10px">已花 NT$1,197 買到 3 個 DR 20+ 的真實老域名作為試水溫，證明：（1）市場真有 DR 20+ 域名可低價購入，（2）我們有能力篩出乾淨候選，（3）採購流程跑得通。</p>
+    <p style="margin-top:10px">剩下的 NT$98,803 是「主力部隊」採購預算，**現在不投，世足窗口錯過了**。</p>
+  </div>
+</div>
+
+<div class="signature">
+  製作：阿翔（Sean）/ YS89 SEO 戰術組｜2026-05-20｜給老闆<br>
+  附件：<a href="domain-purchase-proposal-2026.html" style="color:var(--gold)">採購提案完整版</a> ·
+  <a href="domain-shopping-list.html" style="color:var(--gold)">待買清單</a> ·
+  <a href="domain-verification-guide.html" style="color:var(--gold)">查驗 SOP</a>
+</div>
+
+</div>
+
+</body>
+</html>
