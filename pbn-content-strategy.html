@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 PBN 內容策略 — 高權重域名怎麼用</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  max-width: 1100px; margin: 0 auto; padding: 30px 20px;
+  background: #fafafa; color: #1a1a1a; line-height: 1.7; font-size: 15px;
+}
+h1 { border-bottom: 3px solid #7c3aed; padding-bottom: 10px; color: #4c1d95; }
+h2 { background: #7c3aed; color: #fff; padding: 12px 18px; border-radius: 6px; margin-top: 38px; font-size: 20px; }
+h3 { color: #4c1d95; border-left: 4px solid #7c3aed; padding-left: 14px; margin-top: 24px; font-size: 17px; }
+h4 { color: #4c1d95; margin-top: 14px; }
+.callout {
+  background: #fef3c7; border-left: 5px solid #f59e0b;
+  padding: 14px 18px; margin: 16px 0; border-radius: 4px;
+}
+.callout-danger { background: #fee2e2; border-left-color: #ef4444; }
+.callout-success { background: #d1fae5; border-left-color: #10b981; }
+.callout-info { background: #dbeafe; border-left-color: #3b82f6; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; background: #fff; font-size: 14px; }
+th, td { border: 1px solid #d1d5db; padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: #4c1d95; color: #fff; font-size: 13px; }
+tr:nth-child(even) td { background: #faf5ff; }
+.tier-card {
+  background: #fff; border: 2px solid #e5e7eb; border-radius: 10px;
+  padding: 22px; margin: 18px 0;
+}
+.tier-card.t1 { border-color: #f97316; }
+.tier-card.t2 { border-color: #7c3aed; }
+.tier-card.t3 { border-color: #6b7280; }
+.tier-header { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+.tier-card.t1 .tier-header { color: #c2410c; }
+.tier-card.t2 .tier-header { color: #6d28d9; }
+.tier-card.t3 .tier-header { color: #374151; }
+.tier-badge {
+  display: inline-block; padding: 3px 12px; border-radius: 12px;
+  font-size: 12px; font-weight: 700; margin-left: 8px;
+}
+.t1 .tier-badge { background: #fed7aa; color: #9a3412; }
+.t2 .tier-badge { background: #e9d5ff; color: #6b21a8; }
+.t3 .tier-badge { background: #e5e7eb; color: #1f2937; }
+.code-box {
+  background: #1e293b; color: #fbbf24; padding: 12px 16px;
+  border-radius: 6px; font-family: "SF Mono", Menlo, monospace;
+  white-space: pre-wrap; word-break: break-word; font-size: 13px;
+  margin: 8px 0; line-height: 1.5;
+}
+.metric-row {
+  display: flex; gap: 14px; margin: 10px 0;
+}
+.metric-box {
+  flex: 1; background: #fff; border: 1px solid #d1d5db;
+  border-radius: 6px; padding: 12px; text-align: center;
+}
+.metric-label { color: #6b7280; font-size: 11px; letter-spacing: 0.5px; }
+.metric-value { font-size: 20px; font-weight: 700; color: #4c1d95; margin-top: 2px; }
+.do-list, .dont-list {
+  background: #fff; padding: 12px 18px; border-radius: 6px; margin: 10px 0;
+}
+.do-list { border-left: 4px solid #10b981; }
+.dont-list { border-left: 4px solid #ef4444; }
+.do-list li { color: #059669; }
+.dont-list li { color: #dc2626; }
+ul li { margin: 5px 0 5px 20px; }
+.cluster-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;
+  margin: 14px 0;
+}
+.cluster-card {
+  background: #fff; border: 1px solid #d1d5db; border-radius: 8px;
+  padding: 14px;
+}
+.cluster-title { font-weight: 700; color: #4c1d95; margin-bottom: 6px; }
+.cluster-desc { font-size: 13px; color: #6b7280; }
+code {
+  background: #ede9fe; padding: 2px 8px; border-radius: 4px;
+  color: #6d28d9; font-family: monospace;
+}
+</style>
+</head>
+<body>
+
+<h1>🕸️ YS89 PBN 內容策略</h1>
+<p><strong>核心問題：</strong>買了高權重域名之後，要寫什麼內容？能不能複製 ys89.fun 的風格？<br>
+<strong>核心答案：</strong>不能。PBN 域名必須「看起來像獨立的真實網站」，否則 Google 馬上識破。<br>
+<strong>製作：</strong>2026-05-20 | 阿翔（Sean）</p>
+
+<div class="callout-danger callout">
+<strong>⚠️ 為什麼不能複製 ys89.fun 的策略到 PBN？</strong><br><br>
+Google 偵測 PBN 的 8 大訊號（任一中招就被識破）：
+<ol>
+<li><strong>內容主題集中</strong>：所有 PBN 都寫娛樂城 = 一望即知</li>
+<li><strong>外連模式單一</strong>：所有 PBN 都連 ys89.fun = footprint 明顯</li>
+<li><strong>同 IP / C-class</strong>：主機集中</li>
+<li><strong>同 WHOIS</strong>：註冊人資訊重複</li>
+<li><strong>同 footer / theme</strong>：模板抄一樣</li>
+<li><strong>同 Google Analytics ID</strong>：追蹤碼洩底</li>
+<li><strong>Anchor text 同質</strong>：100% 都用「夜色娛樂城」</li>
+<li><strong>連結密度過高</strong>：每篇文都連 ys89.fun</li>
+</ol>
+<strong>結論：PBN 不是「縮小版 ys89.fun」，是「外型完全不同的旁支系統」，透過自然連結傳遞權重。</strong>
+</div>
+
+<h2>🎯 3 層 PBN 架構（不同 DR 不同玩法）</h2>
+
+<table>
+<thead>
+<tr><th>層級</th><th>DR 範圍</th><th>數量</th><th>定位</th><th>連結策略</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong style="color:#c2410c;">Tier-1 旗艦</strong></td>
+<td>DR 40+</td>
+<td>1-2 個</td>
+<td>真實感最強的權威站</td>
+<td>301 跳轉 OR 自然 contextual link 到 ys89.fun</td>
+</tr>
+<tr>
+<td><strong style="color:#6d28d9;">Tier-2 主力</strong></td>
+<td>DR 20-40</td>
+<td>5-8 個</td>
+<td>同主題權威站</td>
+<td>每篇 1-2 個內鏈到 ys89.fun（品牌錨）</td>
+</tr>
+<tr>
+<td><strong style="color:#374151;">Tier-3 配套</strong></td>
+<td>DR 10-20</td>
+<td>5-10 個</td>
+<td>支援 Tier-2 的小站</td>
+<td>Tier-3 → Tier-2（不直連 ys89.fun，避免明顯）</td>
+</tr>
+</tbody>
+</table>
+
+<div class="callout-info callout">
+<strong>權重流動圖：</strong><br>
+<code>Tier-3 (支援站) → Tier-2 (主力站) → ys89.fun (受益站)</code><br><br>
+Tier-3 不直接連 ys89.fun，是因為 Tier-3 通常品質較差。讓它們先把權重灌給 Tier-2，再由 Tier-2 「過濾」乾淨後傳給 ys89.fun。
+</div>
+
+<!-- Tier-1 -->
+<div class="tier-card t1">
+<div class="tier-header">🥇 Tier-1 旗艦 <span class="tier-badge">DR 40+</span></div>
+
+<h4>核心策略</h4>
+<p>用「真實內容創作」偽裝成獨立網站，Google 看不出是 PBN。</p>
+
+<h4>內容規格</h4>
+<ul>
+<li><strong>篇數</strong>：每站 20-30 篇深度文章（每篇 1,500-3,000 字）</li>
+<li><strong>更新頻率</strong>：每月新增 2-3 篇，持續 6-12 個月</li>
+<li><strong>原創度</strong>：100% 原創（不能 AI 完全生成，要人工潤稿）</li>
+<li><strong>內鏈密度</strong>：每篇文章 5-10 個內部連結（同站內互鏈）</li>
+<li><strong>外連 ys89.fun</strong>：每篇 0-1 個（部分文章不連，看起來自然）</li>
+<li><strong>非 ys89 外連</strong>：每篇 2-3 個（連 Wikipedia / 官方資料 / 新聞）</li>
+</ul>
+
+<h4>主機/設定隔離（嚴格）</h4>
+<ul>
+<li>獨立 VPS（不同 IP，不同國家更好）</li>
+<li>獨立 CF 帳號（不同 email）</li>
+<li>獨立 GA4（或乾脆不裝 Analytics）</li>
+<li>WHOIS 用 CF Registrar 隱私保護</li>
+<li>WordPress 用不同主題（不能跟 ys89.fun 同主題）</li>
+<li>不同 admin email + 不同 GSC 帳號</li>
+</ul>
+
+<h4>301 跳轉決策</h4>
+<table>
+<tr><th>方案</th><th>用途</th><th>風險</th></tr>
+<tr><td><strong>方案 A：保留站點 + 內含連結</strong></td><td>長期 PBN 經營</td><td>低（要持續寫內容）</td></tr>
+<tr><td><strong>方案 B：整域 301 跳 ys89.fun</strong></td><td>快速權重注入</td><td>中（Google 會檢視 301 來源是否合理）</td></tr>
+<tr><td><strong>方案 C：301 部分頁面</strong></td><td>混合策略</td><td>低</td></tr>
+</table>
+<p><strong>建議：方案 A（長期投資）。</strong>301 整域容易被 Google 識破，特別是過期域名重新註冊立即 301。</p>
+</div>
+
+<!-- Tier-2 -->
+<div class="tier-card t2">
+<div class="tier-header">🥈 Tier-2 主力 <span class="tier-badge">DR 20-40</span></div>
+
+<h4>核心策略</h4>
+<p>建「同主題權威站」，內容跟域名歷史主題盡量保持一致（傳遞 topical relevance），定期注入連結到 ys89.fun。</p>
+
+<h4>內容規格</h4>
+<ul>
+<li><strong>篇數</strong>：每站 10-15 篇文章（每篇 1,000-2,000 字）</li>
+<li><strong>更新頻率</strong>：每月新增 1-2 篇</li>
+<li><strong>原創度</strong>：80%+ 原創，可用 AI 輔助但要重寫</li>
+<li><strong>內鏈密度</strong>：每篇 3-5 個內部連結</li>
+<li><strong>外連 ys89.fun</strong>：每篇 1-2 個（contextual，自然出現）</li>
+<li><strong>非 ys89 外連</strong>：每篇 1-2 個（其他權威站）</li>
+</ul>
+
+<h4>Anchor Text 分配（最重要）</h4>
+<div class="metric-row">
+<div class="metric-box"><div class="metric-label">品牌錨</div><div class="metric-value">60%</div></div>
+<div class="metric-box"><div class="metric-label">裸 URL</div><div class="metric-value">20%</div></div>
+<div class="metric-box"><div class="metric-label">通用詞</div><div class="metric-value">10%</div></div>
+<div class="metric-box"><div class="metric-label">關鍵字</div><div class="metric-value">10%</div></div>
+</div>
+
+<h4>Anchor Text 範例</h4>
+<div class="code-box">品牌錨 (60%): "ys89"、"夜色娛樂城"、"YS89 評測"、"ys89.fun"
+裸 URL (20%): "https://ys89.fun"、"ys89.fun/casino-account-frozen-2026/"
+通用詞 (10%): "點此查看"、"完整指南"、"閱讀更多"、"詳細說明"
+關鍵字 (10%): "百家樂評測"、"出金教學"、"警示帳戶解除"</div>
+
+<div class="callout-danger callout">
+<strong>絕對不要：</strong>所有連結都用「夜色娛樂城」這同一個錨文字。100% 同質 = footprint 明顯。
+</div>
+
+<h4>主機/設定隔離（中度）</h4>
+<ul>
+<li>不同 VPS 共用 1-2 個 IP（Tier-2 不需要每個都獨立 IP）</li>
+<li>同一個 CF 帳號可以放 3-5 個 Tier-2 站（不要超過 5）</li>
+<li>WHOIS 用 CF Registrar 隱私保護</li>
+<li>WordPress 主題每 2-3 個站換一個</li>
+</ul>
+</div>
+
+<!-- Tier-3 -->
+<div class="tier-card t3">
+<div class="tier-header">🥉 Tier-3 配套 <span class="tier-badge">DR 10-20</span></div>
+
+<h4>核心策略</h4>
+<p>輕量內容，主要任務是「灌權重給 Tier-2」。不直接連 ys89.fun。</p>
+
+<h4>內容規格</h4>
+<ul>
+<li><strong>篇數</strong>：每站 5-10 篇基礎文章（每篇 600-1,200 字）</li>
+<li><strong>更新頻率</strong>：每 2-3 個月更新 1 篇即可</li>
+<li><strong>原創度</strong>：可用 AI 生成大量內容，輕度潤稿</li>
+<li><strong>連結對象</strong>：Tier-2 站點 + 中性外部資源</li>
+<li><strong>連結 ys89.fun</strong>：禁止直連</li>
+</ul>
+
+<h4>主機/設定（寬鬆）</h4>
+<ul>
+<li>可以集中放 1 個 VPS（同 IP 沒關係，因為 DR 低 Google 比較不關注）</li>
+<li>共用 CF 帳號可以</li>
+<li>內容可以模板化</li>
+</ul>
+
+<div class="callout">
+<strong>Tier-3 的真正用途：</strong>不是直接給 ys89.fun 加分，而是讓 Tier-2 主力站「看起來有人引用它」。Google 看到 Tier-2 有反向連結 → 給 Tier-2 加 DR → Tier-2 連 ys89.fun → ys89.fun 受益。
+</div>
+</div>
+
+<h2>🛠️ YS89 已採購 3 個域名的具體規劃</h2>
+
+<!-- HipGreenScene -->
+<div class="tier-card t2">
+<div class="tier-header">📍 HipGreenScene.com <span class="tier-badge">DR 21 · Tier-2</span></div>
+
+<h4>原始主題</h4>
+<p>"Hip Green Scene - a travel guide" 旅遊指南站（歷史乾淨）</p>
+
+<h4>新定位</h4>
+<p><strong>「綠色慢遊 × 體育旅遊指南」</strong> — 保留原旅遊主題，加入體育旅遊角度，與 ys89.games / fifa-worldcups.tw 自然連動。</p>
+
+<h4>5 個 Topic Cluster（10-15 篇文章）</h4>
+<div class="cluster-grid">
+<div class="cluster-card">
+<div class="cluster-title">🏟️ 世足主辦城市旅遊</div>
+<div class="cluster-desc">2026 美墨加 16 個主辦城市深度旅遊指南。自然連到 fifa-worldcups.tw 賽事資訊。</div>
+</div>
+<div class="cluster-card">
+<div class="cluster-title">⚽ 球迷遊行程</div>
+<div class="cluster-desc">「看球週末」行程設計、票務、住宿、交通。自然連到 ys89.games 賠率資訊。</div>
+</div>
+<div class="cluster-card">
+<div class="cluster-title">🥾 戶外運動旅遊</div>
+<div class="cluster-desc">登山、騎行、潛水目的地。可內鏈到 adviseist.com 裝備評測。</div>
+</div>
+<div class="cluster-card">
+<div class="cluster-title">🌱 永續慢遊</div>
+<div class="cluster-desc">綠色旅宿、生態旅遊。保留原域名「Green」精神，建立內容正當性。</div>
+</div>
+<div class="cluster-card">
+<div class="cluster-title">🎒 旅遊裝備</div>
+<div class="cluster-desc">背包、旅遊鞋、輕量裝備推薦。內鏈到 adviseist 強化 PBN 互連。</div>
+</div>
+</div>
+
+<h4>連結策略</h4>
+<ul>
+<li><strong>對 ys89.fun</strong>：每月 1-2 篇文章自然出現連結（不超過 6%）</li>
+<li><strong>對 fifa-worldcups.tw</strong>：每篇世足主題文都連 1-2 次（純資訊連結）</li>
+<li><strong>對 ys89.games</strong>：賽事相關文章自然連結到賠率頁</li>
+<li><strong>對 adviseist.com</strong>：裝備相關文章每月 1 篇互連</li>
+</ul>
+
+<h4>第一波文章清單（買後 7 天內上架）</h4>
+<ol>
+<li>2026 世足美墨加 16 城旅遊總覽（內鏈 fifa-worldcups.tw）</li>
+<li>洛杉磯看球週末完整攻略（內鏈 ys89.games）</li>
+<li>球迷遊住宿選擇指南</li>
+<li>新手登山入門：裝備與目的地（內鏈 adviseist）</li>
+<li>10 個永續旅宿推薦</li>
+</ol>
+</div>
+
+<!-- adviseist -->
+<div class="tier-card t2">
+<div class="tier-header">📍 adviseist.com <span class="tier-badge">DR 20 · Tier-2</span></div>
+
+<h4>原始主題</h4>
+<p>"Adviseist Limited - Endüstriyel Dağcılık"（土耳其工業攀岩設備公司）</p>
+
+<h4>新定位</h4>
+<p><strong>「戶外運動裝備評測站」</strong> — 保留原域名的「裝備評測」DNA，擴展到所有運動類別。</p>
+
+<h4>5 個 Topic Cluster（8-12 篇文章）</h4>
+<div class="cluster-grid">
+<div class="cluster-card">
+<div class="cluster-title">🧗 攀岩裝備（保留歷史）</div>
+<div class="cluster-desc">繩索、安全帶、攀岩鞋評測。保留原域名歷史相關性，建立內容信任。</div>
+</div>
+<div class="cluster-card">
+<div class="cluster-title">⛺ 露營裝備</div>
+<div class="cluster-desc">帳篷、睡袋、燈具評測。受眾廣泛，流量高。</div>
+</div>
+<div class="cluster-card">
+<div class="cluster-title">🏃 跑步裝備</div>
+<div class="cluster-desc">跑鞋、運動服、心率帶評測。延伸到體育受眾。</div>
+</div>
+<div class="cluster-card">
+<div class="cluster-title">⚽ 球類運動裝備</div>
+<div class="cluster-desc">足球鞋、護具、運動配件。自然連到 ys89.games 球迷社群。</div>
+</div>
+<div class="cluster-card">
+<div class="cluster-title">🛡️ 戶外運動安全</div>
+<div class="cluster-desc">急救包、安全裝備、保險。與 HipGreenScene 互連。</div>
+</div>
+</div>
+
+<h4>連結策略</h4>
+<ul>
+<li><strong>對 ys89.fun</strong>：每月 1 篇文章連結（隱含「投資自己 / 理性消費」哲學話題）</li>
+<li><strong>對 ys89.games</strong>：每月 1-2 次（運動裝備 → 比賽資訊）</li>
+<li><strong>對 HipGreenScene</strong>：每月 1-2 次（裝備 → 戶外旅遊）</li>
+</ul>
+
+<h4>第一波文章清單</h4>
+<ol>
+<li>2026 攀岩裝備完整選購指南</li>
+<li>世足前的 5 雙足球鞋推薦（內鏈 ys89.games）</li>
+<li>新手露營裝備懶人包</li>
+<li>跑者必備：5 款心率帶評測</li>
+<li>戶外運動意外保險選擇</li>
+</ol>
+</div>
+
+<!-- DeckMatt -->
+<div class="tier-card t3">
+<div class="tier-header">📍 DeckMatt.com <span class="tier-badge">DR 24 · Tier-3（先清理連結）</span></div>
+
+<h4>狀況</h4>
+<p>內容歷史多變（英文 → 中國信用社 / 西班牙文），疑似被洗過 PBN。需先 disavow 清連結。</p>
+
+<h4>新定位</h4>
+<p><strong>「個人風格生活筆記」</strong> — 不打主題，做成「個人部落格風格」，輕量內容養站。</p>
+
+<h4>處理步驟（買後 14 天內完成）</h4>
+<ol>
+<li><strong>第 1-3 天</strong>：用 Ahrefs 抓出所有 reverse links，列出可疑 spam 來源</li>
+<li><strong>第 4-7 天</strong>：透過 Google Search Console 提交 disavow.txt</li>
+<li><strong>第 8-14 天</strong>：上線 5-8 篇基礎內容（個人興趣、生活心得）</li>
+</ol>
+
+<h4>內容方向（簡單輕量）</h4>
+<ul>
+<li>個人興趣（咖啡、書籍、音樂、寵物）</li>
+<li>生活實用筆記（時間管理、整理收納）</li>
+<li>輕量旅遊（不深度，留給 HipGreenScene）</li>
+<li>輕量運動（不深度，留給 adviseist）</li>
+</ul>
+
+<h4>連結策略（Tier-3 嚴格）</h4>
+<ul>
+<li><strong>對 ys89.fun</strong>：禁止</li>
+<li><strong>對 HipGreenScene</strong>：每 2 個月 1 次（自然提及）</li>
+<li><strong>對 adviseist</strong>：每 2 個月 1 次</li>
+<li><strong>對其他外部</strong>：自然引用 Wikipedia、新聞、官方資料</li>
+</ul>
+</div>
+
+<h2>📊 內容生產時程表（買 10 個域名情境）</h2>
+
+<table>
+<thead>
+<tr><th>時間</th><th>動作</th><th>產出</th></tr>
+</thead>
+<tbody>
+<tr><td>Week 1（買後）</td><td>所有域名 DNS 切 CF + WordPress 建站</td><td>10 個基礎站上線（首頁 + About + 1 篇文章）</td></tr>
+<tr><td>Week 2-3</td><td>Tier-2 域名上 5 篇核心文章</td><td>每個 Tier-2 站 5 篇 = 約 25-40 篇</td></tr>
+<tr><td>Week 4</td><td>內部互連 + 對 ys89.fun 第一波連結</td><td>連結圖建立</td></tr>
+<tr><td>Month 2-3</td><td>每域名每月 2-3 篇新文章</td><td>累積到 100+ 篇 PBN 文章</td></tr>
+<tr><td>Month 4-6</td><td>觀察 GSC + Ahrefs 數據，調整策略</td><td>ys89.fun DR 開始上升</td></tr>
+</tbody>
+</table>
+
+<h2>🚨 避雷紅線（任一中招 = PBN 暴露）</h2>
+
+<div class="dont-list">
+<strong>絕對禁止：</strong>
+<ul>
+<li>所有 PBN 都連到 ys89.fun 同一頁面</li>
+<li>所有 anchor text 都是「夜色娛樂城」</li>
+<li>所有 PBN 共用 Google Analytics ID</li>
+<li>所有 PBN 共用 footer 簽名或聯絡 email</li>
+<li>所有 PBN 同一個 IP 主機</li>
+<li>剛買域名立刻 301 整域到 ys89.fun（需先養 1-3 個月再 301）</li>
+<li>內容 100% AI 生成（要人工潤稿）</li>
+<li>連結密度過高（每篇文章超過 3 個 ys89.fun 連結）</li>
+<li>所有 PBN 同一天大量發文（要分散）</li>
+<li>PBN 之間明顯互連結（要透過中間站）</li>
+</ul>
+</div>
+
+<div class="do-list">
+<strong>必須做：</strong>
+<ul>
+<li>每個 PBN 主題與原域名歷史保持一致或相關（保留 topical authority）</li>
+<li>Anchor text 分散（品牌錨 60% / 裸 URL 20% / 通用 10% / 關鍵字 10%）</li>
+<li>不同 PBN 用不同 WordPress 主題</li>
+<li>外連除了 ys89.fun，每篇也連 2-3 個權威站（Wikipedia / 新聞）</li>
+<li>定期更新（每月至少 1 次）</li>
+<li>追蹤 GSC 確認沒被人工懲罰</li>
+</ul>
+</div>
+
+<h2>💰 預算估算（10 個域名 PBN 全年成本）</h2>
+
+<table>
+<thead><tr><th>項目</th><th>數量</th><th>單價</th><th>年成本</th></tr></thead>
+<tbody>
+<tr><td>域名註冊（CF Registrar）</td><td>10 個</td><td>USD$10/年</td><td>NT$3,200</td></tr>
+<tr><td>VPS（Tier-1 獨立）</td><td>2 個</td><td>NT$500/月</td><td>NT$12,000</td></tr>
+<tr><td>VPS（Tier-2 共用）</td><td>2 個（5 站/個）</td><td>NT$500/月</td><td>NT$12,000</td></tr>
+<tr><td>VPS（Tier-3 共用）</td><td>1 個（5 站/個）</td><td>NT$500/月</td><td>NT$6,000</td></tr>
+<tr><td>內容生產（AI 輔助）</td><td>~100 篇/年</td><td>NT$100/篇</td><td>NT$10,000</td></tr>
+<tr><td>WordPress 主題 ×3-5 套</td><td>3-5 個</td><td>USD$50/個</td><td>NT$8,000</td></tr>
+<tr><td>備用金</td><td>-</td><td>-</td><td>NT$8,800</td></tr>
+<tr><td><strong>合計</strong></td><td></td><td></td><td><strong>NT$60,000/年</strong></td></tr>
+</tbody>
+</table>
+
+<p style="color:#6b7280;font-size:13px;">域名一次性購入成本（NT$50-70K）+ 年度營運成本 NT$60K = 第一年總投入約 NT$110-130K，跟原 NT$10 萬域名採購預算合計約 NT$13-15 萬。</p>
+
+<hr style="margin: 40px 0;">
+
+<p style="text-align: center; color: #6b7280; font-size: 13px;">
+製作：阿翔（Sean）/ YS89 PBN 戰術組<br>
+更新：2026-05-20｜下次更新：得標後依實際域名再細化每站內容計劃<br>
+公開網址：https://ys89-seo-docs.pages.dev/pbn-content-strategy.html
+</p>
+
+</body>
+</html>
