@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 站群現況與下一階段預算需求報告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --gold: #C9A84C; --gold-light: #E8C96A;
+  --dark: #0D0D0D; --dark-2: #161616; --dark-3: #1F1F1F; --dark-4: #2A2A2A;
+  --text: #E8E8E8; --text-muted: #888;
+  --red: #E05252; --green: #52C07A; --blue: #5B8FD4; --purple: #A876D4;
+}
+body {
+  background: var(--dark); color: var(--text);
+  font-family: 'Helvetica Neue', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  line-height: 1.75; font-size: 15px;
+}
+.header {
+  background: linear-gradient(135deg, #0D0D0D 0%, #1a1200 50%, #0D0D0D 100%);
+  border-bottom: 1px solid var(--gold);
+  padding: 48px 0 40px; text-align: center;
+}
+.header h1 { font-size: 32px; font-weight: 800; color: #fff; letter-spacing: 1px; margin-bottom: 10px; }
+.header h1 span { color: var(--gold); }
+.header-sub { color: var(--text-muted); font-size: 14px; }
+.container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.section:last-child { border-bottom: none; }
+.section-label { font-size: 11px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.section-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.box {
+  background: var(--dark-3); border: 1px solid var(--dark-4);
+  border-radius: 6px; padding: 20px 24px; margin: 14px 0;
+}
+.box.gold { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.04); }
+.box.green { border-color: rgba(82,192,122,0.3); background: rgba(82,192,122,0.04); }
+.box.red { border-color: rgba(224,82,82,0.3); background: rgba(224,82,82,0.04); }
+.box.blue { border-color: rgba(91,143,212,0.3); background: rgba(91,143,212,0.04); }
+.box.social {
+  border: 2px dashed var(--blue);
+  background: rgba(91,143,212,0.06);
+}
+.box.social .placeholder {
+  color: var(--blue); font-size: 13px; font-weight: 700; letter-spacing: 1px;
+  margin-bottom: 10px; text-transform: uppercase;
+}
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 14px 0; }
+th { text-align: left; padding: 12px 14px; font-size: 11px; letter-spacing: 1.5px; color: var(--gold); font-weight: 600; background: var(--dark-4); border-bottom: 1px solid var(--gold); }
+td { padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
+tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+.metric-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0;
+}
+@media (max-width: 720px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
+.metric { background: var(--dark-3); border: 1px solid var(--dark-4); border-radius: 6px; padding: 18px; text-align: center; }
+.metric .v { font-size: 26px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.metric .l { font-size: 12px; color: var(--text-muted); }
+.site-row {
+  display: grid; grid-template-columns: 160px 1fr 100px; gap: 14px; align-items: center;
+  padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.site-row .name { font-weight: 700; color: #fff; }
+.site-row .desc { color: var(--text-muted); font-size: 13.5px; }
+.site-row .dr { text-align: right; }
+.dr-badge {
+  display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 12px; font-weight: 700;
+}
+.dr-0 { background: rgba(224,82,82,0.15); color: var(--red); }
+.dr-low { background: rgba(201,168,76,0.15); color: var(--gold); }
+.dr-mid { background: rgba(82,192,122,0.15); color: var(--green); }
+.dr-high { background: rgba(91,143,212,0.15); color: var(--blue); }
+.flag-done { background: var(--green); color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+.flag-ongoing { background: var(--gold); color: #000; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+.flag-pending { background: var(--text-muted); color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+ul li { margin: 6px 0 6px 20px; }
+.signature { text-align: center; color: var(--text-muted); font-size: 13px; padding: 30px 0; }
+.input-field {
+  background: rgba(91,143,212,0.08); border: 1px dashed rgba(91,143,212,0.4);
+  padding: 8px 12px; border-radius: 4px; margin: 6px 0; color: var(--text-muted);
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>YS89 站群現況與<span>下一階段預算需求</span></h1>
+  <p class="header-sub">2026-05-20｜製作：YS89 SEO 戰術組</p>
+</div>
+
+<div class="container">
+
+<!-- 1. Executive Summary -->
+<div class="section">
+  <div class="section-label">// 一頁版總覽</div>
+  <div class="section-title">我們在做什麼 ｜ 現在到哪 ｜ 還缺什麼</div>
+
+  <div class="box gold">
+    <p><strong style="color:var(--gold)">做什麼：</strong>經營 YS89 娛樂城評測站群，目標是世足賽季成為台灣評測類流量第一。</p>
+    <p style="margin-top:8px"><strong style="color:var(--gold)">現在到哪：</strong>已建立 6 個站、累積 120+ 篇內容、5 個編輯人設、3 個 PBN 域名已採購。母站 SEO 健康度 86/100。</p>
+    <p style="margin-top:8px"><strong style="color:var(--gold)">還缺什麼：</strong>2 個 DR 50+ 高權重域名（已批 NT$10 萬）+ 社群行銷投放預算（社群負責人提報）。</p>
+    <p style="margin-top:8px"><strong style="color:var(--gold)">關鍵時機：</strong>世足賽 2026-06-11 開幕，倒數 22 天，現在不投資後續追趕成本高 3-5 倍。</p>
+  </div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="v">6</div><div class="l">站群數量</div></div>
+    <div class="metric"><div class="v">120+</div><div class="l">已發布文章</div></div>
+    <div class="metric"><div class="v">86/100</div><div class="l">SEO 健康度</div></div>
+    <div class="metric"><div class="v">22 天</div><div class="l">世足倒數</div></div>
+  </div>
+</div>
+
+<!-- 2. 資產盤點 -->
+<div class="section">
+  <div class="section-label">// 結果 · 已建立的資產</div>
+  <div class="section-title">我們累積了什麼</div>
+
+  <h3 style="color:#fff; margin: 14px 0 10px">A. 6 個站群</h3>
+  <div class="box">
+    <div class="site-row">
+      <div class="name">ys89.fun</div>
+      <div class="desc">主站｜娛樂城評測中心｜18 + 42 頁＝60 頁完整架構</div>
+      <div class="dr"><span class="dr-badge dr-0">DR 0</span></div>
+    </div>
+    <div class="site-row">
+      <div class="name">ys89.games</div>
+      <div class="desc">主力衛星｜世足賽事情報中心</div>
+      <div class="dr"><span class="dr-badge dr-low">DR 3.2</span></div>
+    </div>
+    <div class="site-row">
+      <div class="name">ys89.info</div>
+      <div class="desc">直播觀賽資訊站｜21 頁</div>
+      <div class="dr"><span class="dr-badge dr-0">DR 0</span></div>
+    </div>
+    <div class="site-row">
+      <div class="name">ys89.biz</div>
+      <div class="desc">投注教育專站｜21 頁</div>
+      <div class="dr"><span class="dr-badge dr-0">DR 0</span></div>
+    </div>
+    <div class="site-row">
+      <div class="name">ys89.me</div>
+      <div class="desc">球迷文化情報站｜21 頁</div>
+      <div class="dr"><span class="dr-badge dr-0">DR 0</span></div>
+    </div>
+    <div class="site-row" style="border-bottom: none">
+      <div class="name">fifa-worldcups.tw</div>
+      <div class="desc">世足歷史資料站（PBN）｜建置中</div>
+      <div class="dr"><span class="dr-badge dr-0">DR 0</span></div>
+    </div>
+  </div>
+
+  <h3 style="color:#fff; margin: 18px 0 10px">B. 已採購 PBN 高權重域名（試水溫，僅 NT$1,197）</h3>
+  <div class="box">
+    <table>
+      <tr><th>域名</th><th>主題</th><th>DR</th><th>用途</th></tr>
+      <tr><td>HipGreenScene.com</td><td>旅遊主題</td><td><span class="dr-badge dr-mid">21</span></td><td>Tier-2 連結權重</td></tr>
+      <tr><td>adviseist.com</td><td>戶外運動</td><td><span class="dr-badge dr-mid">20</span></td><td>Tier-2 連結權重</td></tr>
+      <tr><td>DeckMatt.com</td><td>多主題</td><td><span class="dr-badge dr-mid">24</span></td><td>Tier-3 配套</td></tr>
+    </table>
+    <p style="margin-top:10px; color:var(--text-muted); font-size:13.5px">合計 DR 權重 65 分，總購入成本僅 NT$1,197，驗證了「市場有可用的真實老域名」與「我們的採購流程跑得通」。</p>
+  </div>
+
+  <h3 style="color:#fff; margin: 18px 0 10px">C. 編輯團隊（5 個獨立人設）</h3>
+  <div class="box">
+    <table>
+      <tr><th>人設</th><th>負責領域</th><th>用途</th></tr>
+      <tr><td>阿凱（Casey）</td><td>老虎機 / 戰神賽特 / 電子遊戲</td><td>文章作者署名</td></tr>
+      <tr><td>小娟（Joy）</td><td>百家樂 / 真人遊戲 / 機率分析</td><td>文章作者署名</td></tr>
+      <tr><td>Mark</td><td>世足 / 運彩 / 體育投注</td><td>世足賽季主力</td></tr>
+      <tr><td>Jay</td><td>出金 / USDT / 流水</td><td>金流類文章</td></tr>
+      <tr><td>阿翔（Sean）</td><td>詐騙 / 黑名單 / 法律</td><td>調查專欄</td></tr>
+    </table>
+    <p style="margin-top:10px; color:var(--text-muted); font-size:13.5px">每個人設都有獨立 WordPress 帳號 + Schema.org Author markup，符合 Google E-E-A-T 要求。</p>
+  </div>
+</div>
+
+<!-- 3. 市場位置 -->
+<div class="section">
+  <div class="section-label">// 我們在哪裡</div>
+  <div class="section-title">vs 競品 ｜ 真實對比</div>
+
+  <table>
+    <tr><th>項目</th><th>YS89.fun</th><th>wager.tw（競品 #1）</th><th>168gambling（競品 #2）</th></tr>
+    <tr><td>DR（網域權威分數）</td><td><span class="dr-badge dr-0">0</span></td><td><span class="dr-badge dr-high">54</span></td><td><span class="dr-badge dr-high">57</span></td></tr>
+    <tr><td>內容深度</td><td>120+ 篇</td><td>200+ 篇</td><td>180+ 篇</td></tr>
+    <tr><td>編輯團隊</td><td>5 人設</td><td>無明確署名</td><td>無明確署名</td></tr>
+    <tr><td>世足專屬站</td><td>5 個（已切割隔離）</td><td>無</td><td>1 個</td></tr>
+    <tr><td>SEO 健康度</td><td>86/100</td><td>未公開</td><td>未公開</td></tr>
+  </table>
+
+  <div class="box red">
+    <strong style="color:var(--red)">核心問題：</strong>
+    <p style="margin-top:6px">我們在「內容品質」和「結構深度」已超越部分競品，但<strong>「網域權威分數 DR」差距太大</strong>（我們 0 vs 對手 54+），Google 排名演算法把 DR 當第一關，所以我們寫再多內容也排不上前 10。</p>
+    <p style="margin-top:6px"><strong>解法：購入 DR 50+ 高權重老域名做 PBN 連結權重傳遞 → 60 天內 ys89.fun DR 從 0 → 15-20。</strong></p>
+  </div>
+</div>
+
+<!-- 4. 過程 / 正在進行 -->
+<div class="section">
+  <div class="section-label">// 過程 · 正在進行</div>
+  <div class="section-title">這個月做了什麼</div>
+
+  <table>
+    <tr><th style="width:240px">工作項目</th><th>狀態</th><th>結果</th></tr>
+    <tr><td>母站結構完整化</td><td><span class="flag-done">✓ 完成</span></td><td>42 個新頁面建立並綁定 template，404 全部清除</td></tr>
+    <tr><td>5 篇競品深度評測發布</td><td><span class="flag-done">✓ 完成</span></td><td>HOYA / LEO / BCR / KG / Game One 全部上線</td></tr>
+    <tr><td>4 個衛星站重新定位</td><td><span class="flag-done">✓ 完成</span></td><td>定位完全分離，無內容相食問題</td></tr>
+    <tr><td>5 個編輯人設建立</td><td><span class="flag-done">✓ 完成</span></td><td>WordPress 帳號 + 文章作者重新分配</td></tr>
+    <tr><td>3 個 PBN 域名採購</td><td><span class="flag-done">✓ 完成</span></td><td>HipGreenScene / adviseist / DeckMatt 入手</td></tr>
+    <tr><td>5 衛星站 footprint 隔離</td><td><span class="flag-done">✓ 完成</span></td><td>fifa-worldcups.tw 切割到不同 CF 帳號</td></tr>
+    <tr><td>Rank Math SEO 衝分</td><td><span class="flag-done">✓ 完成</span></td><td>SEO 分數從 77 → 86</td></tr>
+    <tr><td>PBN 第一階段內容補強</td><td><span class="flag-ongoing">進行中</span></td><td>3 個 PBN 站文章寫作中（另一電腦負責）</td></tr>
+    <tr><td>2 個 Tier-1 域名採購</td><td><span class="flag-ongoing">進行中</span></td><td>DR 50+ 候選篩選中</td></tr>
+    <tr><td>編輯人設 IG/Threads 籌備</td><td><span class="flag-ongoing">進行中</span></td><td>社群負責人接手中</td></tr>
+  </table>
+</div>
+
+<!-- 5. 下一階段 - SEO 戰術 -->
+<div class="section">
+  <div class="section-label">// 下一階段 · SEO 戰術</div>
+  <div class="section-title">SEO 端要做的事 + 需要的預算</div>
+
+  <div class="box gold">
+    <h3 style="color:#fff; margin-bottom: 10px">A. 2 個高權重老域名採購（已批 NT$10 萬）</h3>
+    <p>剩餘預算 NT$98,803 用於：</p>
+    <ul>
+      <li><strong>Tier-1 域名 A（戰神賽特主題）</strong>：DR 50+，NT$30-50K</li>
+      <li><strong>Tier-1 域名 B（百家樂主題）</strong>：DR 50+，NT$30-50K</li>
+      <li>VPS 主機分散託管：NT$15-25K</li>
+      <li>Spamzilla 域名搜尋工具 1 個月：NT$3K</li>
+      <li>備用金：NT$5-10K</li>
+    </ul>
+    <p style="margin-top:10px; color:var(--gold-light)"><strong>預期效果：60 天內 ys89.fun DR 從 0 → 15-20</strong>，搜尋排名顯著上升，世足期間吃到 5-10 倍流量。</p>
+  </div>
+
+  <div class="box blue">
+    <h3 style="color:#fff; margin-bottom: 10px">B. PBN 第二階段建置（已批預算內）</h3>
+    <p>2 個 Tier-1 高權重站建置：</p>
+    <ul>
+      <li><strong>戰神賽特專精站</strong>：10 篇深度文章，玩家視角寫作</li>
+      <li><strong>百家樂深度策略站</strong>：10 篇講師風格文章</li>
+      <li>兩站完全不同技術棧、不同主機、不同寫作 voice</li>
+      <li>14 天時程，站 A 上線後 5 天才上線站 B（避免時間 footprint）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 6. 社群負責人專區 -->
+<div class="section">
+  <div class="section-label">// 下一階段 · 社群行銷</div>
+  <div class="section-title">社群行銷端 — 由社群負責人填寫</div>
+
+  <div class="box social">
+    <div class="placeholder">⚠️ 此區塊由社群負責人填寫</div>
+    <p style="color:var(--text-muted); margin-bottom: 14px; font-size: 13.5px">以下是建議填入的內容架構，社群負責人可依實際狀況補完。</p>
+
+    <h3 style="color:var(--blue); margin: 16px 0 10px">A. 目前社群現況</h3>
+    <table>
+      <tr><th style="background: rgba(91,143,212,0.15); color: var(--blue)">項目</th><th style="background: rgba(91,143,212,0.15); color: var(--blue)">內容</th></tr>
+      <tr><td>管理的帳號數</td><td><div class="input-field">請填入：IG ___ 個 / Threads ___ 個 / FB ___ 個</div></td></tr>
+      <tr><td>5 個人設經營進度</td><td><div class="input-field">請填入：阿凱 / 小娟 / Mark / Jay / 阿翔 各自狀態</div></td></tr>
+      <tr><td>每月觸及人次</td><td><div class="input-field">請填入：合計 ___ 人次</div></td></tr>
+      <tr><td>平均互動率</td><td><div class="input-field">請填入：___ %</div></td></tr>
+      <tr><td>追蹤者總數</td><td><div class="input-field">請填入：___ 人</div></td></tr>
+    </table>
+
+    <h3 style="color:var(--blue); margin: 22px 0 10px">B. 內容生產節奏</h3>
+    <table>
+      <tr><th style="background: rgba(91,143,212,0.15); color: var(--blue)">人設</th><th style="background: rgba(91,143,212,0.15); color: var(--blue)">每週貼文數</th><th style="background: rgba(91,143,212,0.15); color: var(--blue)">內容主題</th></tr>
+      <tr><td>阿凱（Casey）</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
+      <tr><td>小娟（Joy）</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
+      <tr><td>Mark</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
+      <tr><td>Jay</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
+      <tr><td>阿翔（Sean）</td><td><div class="input-field">請填入</div></td><td><div class="input-field">請填入</div></td></tr>
+    </table>
+
+    <h3 style="color:var(--blue); margin: 22px 0 10px">C. 下一階段社群計畫</h3>
+    <ul>
+      <li><strong>3 個月目標：</strong><div class="input-field">請填入：總追蹤者目標、月觸及目標、互動率目標</div></li>
+      <li><strong>主要戰術：</strong><div class="input-field">請填入：IG Reels / Threads 串文 / 投票互動 / KOL 合作等</div></li>
+      <li><strong>世足期間特別計畫：</strong><div class="input-field">請填入：Mark 人設加強發文 / 即時賽事 Story / 球迷互動</div></li>
+    </ul>
+
+    <h3 style="color:var(--blue); margin: 22px 0 10px">D. 需要爭取的社群預算</h3>
+    <table>
+      <tr><th style="background: rgba(91,143,212,0.15); color: var(--blue)">項目</th><th style="background: rgba(91,143,212,0.15); color: var(--blue)">預估金額</th><th style="background: rgba(91,143,212,0.15); color: var(--blue)">用途</th></tr>
+      <tr><td>FB / IG / Google 廣告投放</td><td><div class="input-field">請填入：NT$ ___</div></td><td><div class="input-field">請填入：月投放策略</div></td></tr>
+      <tr><td>KOL 業配合作</td><td><div class="input-field">請填入：NT$ ___（___ 位 KOL）</div></td><td><div class="input-field">請填入：合作方式</div></td></tr>
+      <tr><td>內容設計工具</td><td><div class="input-field">請填入：NT$ ___</div></td><td><div class="input-field">請填入：Canva Pro / 攝影 / 設計外包</div></td></tr>
+      <tr><td>影片製作</td><td><div class="input-field">請填入：NT$ ___</div></td><td><div class="input-field">請填入：Reels / Shorts / TikTok 影片</div></td></tr>
+      <tr><td><strong>社群預算合計</strong></td><td><div class="input-field"><strong>請填入：NT$ ___</strong></div></td><td>—</td></tr>
+    </table>
+
+    <h3 style="color:var(--blue); margin: 22px 0 10px">E. 社群面臨的挑戰與需要的支援</h3>
+    <div class="input-field" style="padding: 12px">請填入：目前社群經營遇到的問題、人力是否充足、需要 SEO 端配合的事項等</div>
+  </div>
+</div>
+
+<!-- 7. 預算總表 -->
+<div class="section">
+  <div class="section-label">// 預算總表</div>
+  <div class="section-title">總共需要多少 ｜ 已批多少 ｜ 還缺多少</div>
+
+  <table>
+    <tr><th>項目</th><th>金額</th><th>狀態</th></tr>
+    <tr><td>SEO — 2 個 Tier-1 域名 + 主機 + 工具</td><td>NT$ 100,000</td><td><span class="flag-done">已批</span></td></tr>
+    <tr><td>SEO — 已花（3 個 Tier-2 / 3 域名）</td><td>NT$ 1,197</td><td><span class="flag-done">已花</span></td></tr>
+    <tr><td>社群 — 廣告投放（月度）</td><td><div class="input-field">由社群負責人填</div></td><td><span class="flag-pending">待爭取</span></td></tr>
+    <tr><td>社群 — KOL 業配</td><td><div class="input-field">由社群負責人填</div></td><td><span class="flag-pending">待爭取</span></td></tr>
+    <tr><td>社群 — 內容工具 + 影片製作</td><td><div class="input-field">由社群負責人填</div></td><td><span class="flag-pending">待爭取</span></td></tr>
+    <tr><td><strong>總計</strong></td><td><strong>NT$ ___（待社群填寫後合算）</strong></td><td>—</td></tr>
+  </table>
+
+  <div class="box gold">
+    <strong style="color:var(--gold)">業主視角的關鍵問題：</strong>
+    <ul>
+      <li>已花 NT$1,197 證明<strong>採購流程跑得通</strong> + <strong>市場確實有便宜的真實老域名</strong></li>
+      <li>已批 NT$10 萬是「主力部隊」採購預算，世足窗口錯過了就要等 4 年</li>
+      <li>SEO 跟社群是<strong>互補</strong>不是替代 — DR 上去後內容才有人看，社群可導流並做轉換</li>
+      <li>世足倒數 22 天，<strong>所有投資的最佳時機</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- 8. 驗收 -->
+<div class="section">
+  <div class="section-label">// 60 天驗收</div>
+  <div class="section-title">怎麼知道有沒有成效</div>
+
+  <table>
+    <tr><th>項目</th><th>現在</th><th>60 天目標</th><th>達標 / 警戒</th></tr>
+    <tr><td>ys89.fun DR</td><td>0</td><td>15-20</td><td>✓ ≥ 10 / ❌ &lt; 5</td></tr>
+    <tr><td>有機搜尋月流量</td><td>~500</td><td>~3,000</td><td>✓ +200% 以上 / ❌ +50% 以下</td></tr>
+    <tr><td>排名前 10 關鍵字</td><td>5-10 個</td><td>30-50 個</td><td>✓ ≥ 25 個 / ❌ &lt; 15 個</td></tr>
+    <tr><td>社群總追蹤者</td><td><div class="input-field">由社群填</div></td><td><div class="input-field">由社群填</div></td><td><div class="input-field">由社群填</div></td></tr>
+  </table>
+
+  <div class="box gold">
+    <strong style="color:var(--gold)">關鍵驗收節點：2026-07-15（世足收割期中段）</strong>
+    <ul>
+      <li><strong>達標</strong>：DR ≥ 15 + 流量 +200% → 進入下一階段加碼採購</li>
+      <li><strong>調整</strong>：部分達標 → 調整策略後繼續</li>
+      <li><strong>停損</strong>：完全未達標 → 暫停 PBN 投資，轉戰廣告</li>
+    </ul>
+  </div>
+</div>
+
+<div class="signature">
+  製作：YS89 SEO 戰術組｜2026-05-20｜內部報告<br>
+  社群行銷部分由社群負責人填寫｜兩部分合併後送業主審閱
+</div>
+
+</div>
+
+</body>
+</html>
