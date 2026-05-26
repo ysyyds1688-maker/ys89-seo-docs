@@ -53,6 +53,42 @@ header{background:#010409;border-bottom:1px solid var(--border);padding:20px 32p
 .dot-new{background:var(--blue)}
 
 footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;color:var(--muted);font-size:0.78em;margin-top:20px}
+
+/* ── Sticky Tab Nav（手機優先）── */
+.tab-nav{position:sticky;top:0;z-index:100;background:#0d1117e6;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);margin:0 -24px 32px;padding:0;overflow:hidden}
+.tab-nav-inner{display:flex;gap:0;overflow-x:auto;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 12px}
+.tab-nav-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:14px 16px;font-size:13.5px;font-weight:600;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap;font-family:inherit}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green)}
+.tab-btn-icon{font-size:16px}
+.tab-btn-count{display:inline-block;background:rgba(139,148,158,.15);color:var(--muted);font-size:10.5px;padding:1px 7px;border-radius:10px;font-weight:700}
+.tab-btn.active .tab-btn-count{background:rgba(63,185,80,.18);color:var(--green)}
+
+/* hint 小提示（只在 mobile 顯示）*/
+.tab-hint{display:none;font-size:11px;color:var(--muted);text-align:center;padding:8px;background:rgba(88,166,255,.06);border-bottom:1px solid var(--border)}
+
+/* ── RWD 手機優化 ── */
+@media (max-width:768px){
+  header{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:4px}
+  .logo{font-size:1.1em}
+  .header-sub{font-size:0.75em}
+  .page{padding:24px 16px}
+  .hero{padding:20px 0 28px}
+  .hero h1{font-size:1.5em}
+  .hero p{font-size:0.88em}
+  .doc-grid{grid-template-columns:1fr;gap:12px;margin-bottom:32px}
+  .doc-card{padding:16px}
+  .doc-title{font-size:0.95em}
+  .tab-nav{margin:0 -16px 24px}
+  .tab-btn{padding:12px 14px;font-size:13px}
+  .tab-hint{display:block}
+  .sec-label{font-size:0.7em;margin-bottom:10px}
+}
+@media (max-width:380px){
+  .tab-btn{padding:10px 12px;font-size:12.5px}
+  .doc-card{padding:14px}
+}
 </style>
 </head>
 <body>
@@ -69,8 +105,22 @@ footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;co
     <p>夜色娛樂城站群策略、工具操作、競爭分析、Autopilot 自動化系統文件全集｜2026/05/26 重新整理</p>
   </div>
 
+  
+  <!-- 手機 RWD Tab Nav -->
+  <nav class="tab-nav">
+    <div class="tab-hint">← 左右滑動切換分類 →</div>
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" data-target="sec-e"><span class="tab-btn-icon">📅</span>最新總結<span class="tab-btn-count">1</span></button>
+      <button class="tab-btn" data-target="sec-a"><span class="tab-btn-icon">👔</span>A. 給老闆<span class="tab-btn-count">3</span></button>
+      <button class="tab-btn" data-target="sec-b"><span class="tab-btn-icon">🧠</span>B. 戰略總覽<span class="tab-btn-count">4</span></button>
+      <button class="tab-btn" data-target="sec-c"><span class="tab-btn-icon">🚀</span>C. 執行 SOP<span class="tab-btn-count">6</span></button>
+      <button class="tab-btn" data-target="sec-d"><span class="tab-btn-icon">👥</span>D. 內容與社群<span class="tab-btn-count">6</span></button>
+      <button class="tab-btn" data-target="sec-f"><span class="tab-btn-icon">📚</span>F. 補充策略<span class="tab-btn-count">+</span></button>
+    </div>
+  </nav>
+
   <!-- 區 E. 今日總結（最新最重要）-->
-  <div class="sec-label">// 📅 最新總結（從這裡開始看）</div>
+  <div class="sec-label" id="sec-e">// 📅 最新總結（從這裡開始看）</div>
   <div class="doc-grid">
 
     <a href="daily-summary-2026-05-26.html" class="doc-card featured" style="border-color:#3fb950;background:rgba(63,185,80,.04);">
@@ -83,7 +133,7 @@ footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;co
   </div>
 
   <!-- 區 A. 給老闆 -->
-  <div class="sec-label">// 👔 A. 給老闆（執行決策層）</div>
+  <div class="sec-label" id="sec-a">// 👔 A. 給老闆（執行決策層）</div>
   <div class="doc-grid">
 
     <a href="owner-roi-report-2026-05-20.html" class="doc-card" style="border-color:#C9A84C;">
@@ -110,7 +160,7 @@ footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;co
   </div>
 
   <!-- 區 B. 戰略總覽 -->
-  <div class="sec-label">// 🧠 B. 戰略總覽（架構層）</div>
+  <div class="sec-label" id="sec-b">// 🧠 B. 戰略總覽（架構層）</div>
   <div class="doc-grid">
 
     <a href="google-algorithm-2026-strategy.html" class="doc-card" style="border-color:#3fb950;">
@@ -144,7 +194,7 @@ footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;co
   </div>
 
   <!-- 區 C. 執行 SOP -->
-  <div class="sec-label">// 🚀 C. 執行 SOP（操作層）</div>
+  <div class="sec-label" id="sec-c">// 🚀 C. 執行 SOP（操作層）</div>
   <div class="doc-grid">
 
     <a href="strategies-2026-05-26/deploy-sop-5-pbn.md" class="doc-card featured" style="border-color:#3fb950;background:rgba(63,185,80,.04);">
@@ -192,7 +242,7 @@ footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;co
   </div>
 
   <!-- 區 D. 內容與社群 -->
-  <div class="sec-label">// 👥 D. 內容與社群（給社群/編輯同事）</div>
+  <div class="sec-label" id="sec-d">// 👥 D. 內容與社群（給社群/編輯同事）</div>
   <div class="doc-grid">
 
     <a href="strategies-2026-05-26/social-matrix-editors.md" class="doc-card featured" style="border-color:#a78bfa;background:rgba(167,139,250,.04);">
@@ -240,7 +290,7 @@ footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;co
   </div>
 
   <!-- 區 F. 補充策略文件（保留原 markdown 區）-->
-  <div class="sec-label">// 📚 F. 補充策略文件（Markdown）</div>
+  <div class="sec-label" id="sec-f">// 📚 F. 補充策略文件（Markdown）</div>
 <div class="doc-grid">
 
     <a href="台灣娛樂城品牌SEO攻略.md" class="doc-card">
@@ -346,6 +396,50 @@ footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;co
 <footer>
   <p>YS89 SEO 文件庫 ｜ <a href="https://github.com/ysyyds1688-maker/ys89-seo-docs" target="_blank">GitHub</a> ｜ 僅供內部使用</p>
 </footer>
+
+
+<script>
+(function(){
+  const tabs = document.querySelectorAll('.tab-btn');
+  const sections = Array.from(tabs).map(t => document.getElementById(t.dataset.target));
+
+  // 點擊跳轉 + 設定 active
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = document.getElementById(tab.dataset.target);
+      if (target) {
+        const offset = 60;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({top, behavior:'smooth'});
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      }
+    });
+  });
+
+  // 滾動時自動高亮對應 tab
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollPos = window.pageYOffset + 100;
+        let currentIdx = 0;
+        sections.forEach((sec, i) => {
+          if (sec && sec.offsetTop <= scrollPos) currentIdx = i;
+        });
+        tabs.forEach((t, i) => t.classList.toggle('active', i === currentIdx));
+        // auto scroll tab into view
+        const activeTab = tabs[currentIdx];
+        if (activeTab) {
+          activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
