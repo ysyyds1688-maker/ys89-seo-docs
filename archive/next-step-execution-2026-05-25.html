@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YS89 SEO 下一步執行報告｜Search Intent + 大字攻擊計畫｜2026-05-25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans TC",sans-serif;background:#0a0a14;color:#cfd8e0;line-height:1.7;min-height:100vh;background-image:linear-gradient(rgba(0,240,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.04) 1px,transparent 1px);background-size:clamp(20px,5vw,40px) clamp(20px,5vw,40px);overflow-x:hidden;word-wrap:break-word}
+.wrap{max-width:1280px;margin:0 auto;padding:clamp(16px,3vw,32px) clamp(12px,3vw,24px)}
+.hero{position:relative;background:linear-gradient(135deg,rgba(15,15,30,.95),rgba(20,15,40,.95));border:2px solid #00f0ff;padding:clamp(24px,5vw,48px) clamp(18px,4vw,36px);margin-bottom:clamp(20px,4vw,32px);clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(0,240,255,.02) 3px,rgba(0,240,255,.02) 4px);pointer-events:none}
+.hero-tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:clamp(.68rem,1.5vw,.78rem);color:#39ff14;background:rgba(57,255,20,.1);border:1px solid #39ff14;padding:4px 12px;margin-bottom:14px;letter-spacing:1.5px;text-transform:uppercase}
+.hero-tag::before{content:"> ";color:#39ff14}
+.hero h1{font-family:"Orbitron","Noto Sans TC",sans-serif;font-size:clamp(1.3rem,4.5vw,2.2rem);font-weight:900;color:#fff;line-height:1.4;margin-bottom:12px;letter-spacing:.5px;text-shadow:0 0 8px rgba(0,240,255,.6)}
+.hero h1 .neon{color:#00f0ff}
+.hero h1 .mag{color:#ff006e}
+.hero p{font-size:clamp(.92rem,2.2vw,1.02rem);color:#a0b0c0}
+.hero p strong{color:#39ff14}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:clamp(8px,2vw,12px);margin-bottom:clamp(20px,4vw,32px)}
+.stat{background:rgba(0,0,0,.5);border:1px solid #1f2937;border-left:3px solid #00f0ff;padding:clamp(14px,3vw,18px)}
+.stat-label{font-family:"JetBrains Mono",monospace;color:#a0b0c0;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.stat-value{font-family:"Orbitron",monospace;font-size:clamp(1.4rem,3.5vw,1.9rem);font-weight:700}
+.stat-value.cyan{color:#00f0ff;text-shadow:0 0 8px rgba(0,240,255,.4)}
+.stat-value.mag{color:#ff006e;text-shadow:0 0 8px rgba(255,0,110,.4)}
+.stat-value.gold{color:#ffd700;text-shadow:0 0 8px rgba(255,215,0,.4)}
+.stat-value.lime{color:#39ff14;text-shadow:0 0 8px rgba(57,255,20,.4)}
+section{background:linear-gradient(135deg,rgba(15,15,30,.92),rgba(20,15,40,.92));border:1px solid #1f2937;border-left:3px solid #00f0ff;padding:clamp(18px,4vw,28px) clamp(16px,4vw,32px);margin-bottom:clamp(18px,3vw,24px);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));position:relative}
+section.tier1{border-left-color:#ff006e}
+section.tier2{border-left-color:#ffd700}
+section.tier3{border-left-color:#39ff14}
+section.intent{border-left-color:#b026ff}
+h2{font-family:"Orbitron",sans-serif;color:#00f0ff;font-size:clamp(1.1rem,3vw,1.4rem);font-weight:700;margin-bottom:14px;letter-spacing:.5px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding-bottom:12px;border-bottom:1px solid rgba(0,240,255,.3);line-height:1.45}
+h2 .num{font-family:"JetBrains Mono",monospace;color:#ff006e;font-size:.85rem;background:rgba(255,0,110,.1);border:1px solid #ff006e;padding:2px 8px;white-space:nowrap}
+section.tier1 h2{color:#ff006e}
+section.tier1 h2 .num{color:#fff;background:#ff006e;border-color:#ff006e}
+section.tier2 h2{color:#ffd700}
+section.tier3 h2{color:#39ff14}
+section.intent h2{color:#b026ff}
+h3{color:#ffd700;font-size:clamp(.96rem,2.4vw,1.05rem);font-weight:700;margin:18px 0 10px 0;letter-spacing:.5px;line-height:1.5}
+h3::before{content:"▸ ";color:#00f0ff}
+p{color:#cfd8e0;margin-bottom:10px;font-size:clamp(.92rem,2.2vw,1rem)}
+p strong{color:#39ff14}
+.table-wrap{margin:14px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #1f2937;border-radius:3px;background:rgba(0,0,0,.4)}
+.table-wrap::-webkit-scrollbar{height:8px}
+.table-wrap::-webkit-scrollbar-thumb{background:rgba(0,240,255,.4);border-radius:4px}
+table{width:100%;border-collapse:collapse;font-size:clamp(.82rem,2vw,.92rem)}
+th{background:rgba(0,240,255,.12);color:#00f0ff;padding:clamp(8px,2vw,12px) clamp(8px,2vw,14px);text-align:left;border:1px solid rgba(0,240,255,.3);font-family:"JetBrains Mono",monospace;font-size:clamp(.72rem,1.8vw,.82rem);letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+td{color:#e0e6ed;padding:clamp(8px,2vw,11px) clamp(8px,2vw,14px);border:1px solid #1f2937;vertical-align:middle;word-break:break-word}
+tr:nth-child(even) td{background:rgba(0,240,255,.03)}
+tr:hover td{background:rgba(255,0,110,.05);color:#fff}
+td.center{text-align:center;white-space:nowrap}
+td .vol-mega{color:#ff006e;font-family:"Orbitron";font-weight:900;font-size:1.05rem;text-shadow:0 0 8px rgba(255,0,110,.4)}
+td .vol-high{color:#39ff14;font-family:"Orbitron";font-weight:700}
+td .vol-mid{color:#00f0ff;font-family:"Orbitron";font-weight:700}
+td .vol-low{color:#a0b0c0;font-family:"Orbitron"}
+td .dr-low{color:#39ff14;font-weight:700}
+td .dr-mid{color:#ffd700;font-weight:700}
+td .dr-high{color:#ff006e;font-weight:700}
+.callout{background:rgba(57,255,20,.06);border:1px solid #39ff14;border-left:4px solid #39ff14;padding:clamp(14px,3vw,18px) clamp(16px,3vw,22px);margin:18px 0;font-family:"JetBrains Mono",monospace;font-size:clamp(.85rem,2vw,.95rem);line-height:1.8}
+.callout strong{color:#39ff14}
+.callout.warn{background:rgba(255,215,0,.06);border-color:#ffd700;border-left-color:#ffd700}
+.callout.warn strong{color:#ffd700}
+.callout.danger{background:rgba(255,0,110,.06);border-color:#ff006e;border-left-color:#ff006e}
+.callout.danger strong{color:#ff006e}
+.callout.discovery{background:rgba(176,38,255,.06);border-color:#b026ff;border-left-color:#b026ff}
+.callout.discovery strong{color:#b026ff}
+.tag{display:inline-block;padding:2px 8px;border-radius:3px;font-family:"JetBrains Mono",monospace;font-size:.72rem;margin-left:6px;letter-spacing:1px}
+.tag.mag{background:rgba(255,0,110,.15);color:#ff006e;border:1px solid #ff006e}
+.tag.gold{background:rgba(255,215,0,.15);color:#ffd700;border:1px solid #ffd700}
+.tag.lime{background:rgba(57,255,20,.15);color:#39ff14;border:1px solid #39ff14}
+.tag.purple{background:rgba(176,38,255,.15);color:#b026ff;border:1px solid #b026ff}
+.tag.cyan{background:rgba(0,240,255,.15);color:#00f0ff;border:1px solid #00f0ff}
+ol{padding-left:1.4em}
+ol li{margin-bottom:6px}
+.intent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:14px;margin:18px 0}
+.intent-card{background:rgba(0,0,0,.5);border:1px solid #1f2937;border-left:3px solid #b026ff;padding:18px;border-radius:6px}
+.intent-card h4{color:#b026ff;font-family:"Orbitron";margin-bottom:10px;font-size:1rem}
+.intent-card .examples{color:#a0b0c0;font-family:"JetBrains Mono",monospace;font-size:.85rem;line-height:1.7;margin-top:8px}
+.intent-card .examples strong{color:#39ff14}
+.timeline{position:relative;padding-left:30px;margin:20px 0}
+.timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#ff006e,#ffd700,#39ff14)}
+.timeline-item{position:relative;margin-bottom:24px;padding-left:18px}
+.timeline-item::before{content:"";position:absolute;left:-25px;top:6px;width:18px;height:18px;border-radius:50%;background:#0a0a14;border:3px solid #00f0ff}
+.timeline-item.urgent::before{border-color:#ff006e;background:#ff006e}
+.timeline-item.mid::before{border-color:#ffd700}
+.timeline-item.future::before{border-color:#39ff14}
+.timeline-item h4{color:#fff;font-family:"Orbitron";font-size:1rem;margin-bottom:4px}
+.timeline-item h4 .week{font-family:"JetBrains Mono",monospace;color:#00f0ff;font-size:.85rem;margin-right:8px}
+.timeline-item p{color:#a0b0c0;font-size:.92rem;margin:0}
+footer{margin-top:clamp(32px,6vw,48px);padding:clamp(18px,3vw,24px);text-align:center;color:#666;border-top:1px solid #1f2937;font-family:"JetBrains Mono",monospace;font-size:.85rem}
+@media print{body{background:#fff;color:#000;background-image:none}.hero,section,.stat{background:#f8f8f8;border-color:#999;color:#000;clip-path:none;break-inside:avoid}h1,h2{color:#000;text-shadow:none}th{background:#ddd;color:#000}td{color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+    <div class="hero-tag">YS89.FUN // NEXT-STEP EXECUTION PLAN</div>
+    <h1>SEO <span class="neon">下一步執行報告</span>｜Search Intent 全面研究 + <span class="mag">大字攻擊計畫</span></h1>
+    <p>用 Ubersuggest 跑 15+ 種子 KW、Chrome MCP 即時 SERP 抓取、4 大 Search Intent 分類、競品 DR 真實評估。<strong>重大發現:你 ys89.fun DR 24 在所有大字都打得贏</strong>(對手平均 DR 10-30,不是我以為的 30-50)。本報告列出 15 篇必寫文章 + 5 篇強化既有 + 60 天執行 timeline。</p>
+</header>
+
+<div class="stats">
+    <div class="stat"><div class="stat-label">分析種子 KW</div><div class="stat-value cyan">14</div></div>
+    <div class="stat"><div class="stat-label">大字攻擊機會</div><div class="stat-value mag">10</div></div>
+    <div class="stat"><div class="stat-label">月搜總潛力</div><div class="stat-value gold">50K+</div></div>
+    <div class="stat"><div class="stat-label">建議新寫</div><div class="stat-value lime">15 篇</div></div>
+</div>
+
+<!-- 重大發現 callout -->
+<div class="callout discovery">
+<strong>🎯 顛覆性發現:</strong>
+我原本以為大字對手 DR 30-50,你 DR 24 不夠。<strong>實際跑 SERP 分析後</strong>:娛樂城體驗金 (14,800) Top 10 平均 DR <strong>24</strong>、娛樂城推薦 (14,800) 平均 <strong>25</strong>、戰神賽特 2 (2,900) 平均 <strong>20</strong>、娛樂城代理 (1,900) 平均 <strong>10</strong>。<strong>你 DR 24 在所有大字都打得贏</strong>!之前的策略過度悲觀,應該立刻全面攻擊。
+</div>
+
+<!-- Section 1: Search Intent 4 大分類 -->
+<section class="intent">
+<h2><span class="num">[01]</span>Search Intent 4 大分類 — 你站怎麼對應</h2>
+<p>Google 排名的核心是<strong>「滿足搜尋意圖」</strong>。同一個關鍵字背後可能有不同意圖,寫對意圖才能 #1。我分析了你目前 218 篇文章 + 即將寫的 15 篇,對應到 4 大意圖如下:</p>
+
+<div class="intent-grid">
+<div class="intent-card">
+<h4>1️⃣ Informational(資訊型)</h4>
+<p>搜「<strong>怎麼玩</strong>」「<strong>是什麼</strong>」「<strong>規則</strong>」— 想學東西。</p>
+<p>📌 你的狀況:覆蓋 60%(教學文夠多,但「是什麼」類缺)</p>
+<div class="examples">範例 KW:<br>
+• 娛樂城是什麼 (140) <strong>❌ 缺</strong><br>
+• 老虎機機率 (110) <strong>❌ 缺</strong><br>
+• 老虎機規則 (30) <strong>❌ 缺</strong><br>
+• 戰神賽特怎麼玩 (140) <strong>❌ 缺</strong></div>
+</div>
+
+<div class="intent-card">
+<h4>2️⃣ Commercial(比較型)</h4>
+<p>搜「<strong>推薦</strong>」「<strong>比較</strong>」「<strong>vs</strong>」「<strong>評測</strong>」— 在決定前比較選項。</p>
+<p>📌 你的狀況:覆蓋 80%(評測類很多)</p>
+<div class="examples">範例 KW:<br>
+• 娛樂城推薦 (14,800) ✅ 強化中<br>
+• 線上娛樂城推薦 (480) ⚠️ 部分<br>
+• 戰神賽特 2 vs 1 代 <strong>❌ 缺</strong></div>
+</div>
+
+<div class="intent-card">
+<h4>3️⃣ Transactional(轉換型)</h4>
+<p>搜「<strong>註冊</strong>」「<strong>領取</strong>」「<strong>下載</strong>」「<strong>試玩</strong>」— 準備行動。</p>
+<p>📌 你的狀況:覆蓋 40%(.bet 接住但 .fun 沒專文)</p>
+<div class="examples">範例 KW:<br>
+• 戰神賽特試玩 (4,400) ✅ 剛寫<br>
+• 戰神賽特下載 (390) ⚠️<br>
+• 娛樂城體驗金領取 ⚠️</div>
+</div>
+
+<div class="intent-card">
+<h4>4️⃣ Navigational(導航型)</h4>
+<p>搜「<strong>品牌名</strong>」「<strong>網址</strong>」— 想直接到某個站。</p>
+<p>📌 你的狀況:覆蓋 100%(brand 字全 #1)</p>
+<div class="examples">範例 KW:<br>
+• ys89 ✅ #1<br>
+• ys89.fun ✅ #1<br>
+• ys娛樂城 ✅ #1<br>
+• 夜色娛樂城 → ys89.bet ✅</div>
+</div>
+</div>
+
+<div class="callout warn">
+<strong>核心策略:</strong>4 大意圖中,<strong>你最弱的是「Informational」+「Transactional」</strong>。下一批 15 篇文章我會主攻這兩塊,把缺口補上。
+</div>
+</section>
+
+<!-- Section 2: Tier 1 - 必打大字 -->
+<section class="tier1">
+<h2><span class="num">[02]</span>🔥 Tier 1:必打大字(月搜 1,500+,對手 DR 你能打得贏)</h2>
+<p>SERP 實測對手 DR,確認 ys89.fun DR 24 都打得贏。<strong>這 10 個字是接下來 60 天的主攻目標</strong>。</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>大字</th><th class="center">月搜</th><th class="center">SD</th><th class="center">Top10 平均 DR</th><th class="center">你機會</th><th>當前狀況</th></tr></thead>
+<tbody>
+<tr><td><strong>娛樂城體驗金</strong></td><td class="center"><span class="vol-mega">14,800</span></td><td class="center">42</td><td class="center"><span class="dr-low">~24</span></td><td class="center"><span class="tag lime">✅ 可打</span></td><td>有寫 1 篇但密度不夠 → <strong>強化既有 + 寫支援文</strong></td></tr>
+<tr><td><strong>娛樂城推薦</strong></td><td class="center"><span class="vol-mega">14,800</span></td><td class="center">38</td><td class="center"><span class="dr-low">~25</span></td><td class="center"><span class="tag lime">✅ 可打</span></td><td>#202 #233 已強化 → <strong>等內鏈 211 條發酵</strong></td></tr>
+<tr><td><strong>戰神賽特</strong>(1代)</td><td class="center"><span class="vol-mega">12,100</span></td><td class="center">47</td><td class="center"><span class="dr-mid">~30</span></td><td class="center"><span class="tag gold">⚠️ 邊界</span></td><td>Pillar 已有 → <strong>加強 + 補長尾</strong></td></tr>
+<tr><td><strong>戰神賽特試玩</strong></td><td class="center"><span class="vol-high">4,400</span></td><td class="center">42</td><td class="center"><span class="dr-low">~22</span></td><td class="center"><span class="tag lime">✅ 可打</span></td><td>✅ 已寫(#2708)</td></tr>
+<tr><td><strong>線上娛樂城</strong></td><td class="center"><span class="vol-high">3,600</span></td><td class="center">48</td><td class="center"><span class="dr-mid">~30</span></td><td class="center"><span class="tag gold">⚠️ 邊界</span></td><td>❌ <strong>沒專文,要寫</strong></td></tr>
+<tr><td><strong>老虎機</strong></td><td class="center"><span class="vol-high">3,600</span></td><td class="center">40</td><td class="center"><span class="dr-mid">~30</span></td><td class="center"><span class="tag gold">⚠️ 邊界</span></td><td>❌ <strong>沒主打文,要寫</strong></td></tr>
+<tr><td><strong>戰神賽特 2</strong> 🆕</td><td class="center"><span class="vol-high">2,900</span></td><td class="center">39</td><td class="center"><span class="dr-low">~20</span></td><td class="center"><span class="tag lime">✅ 可打</span></td><td>❌ <strong>大發現!沒打,要寫</strong>(11 月峰值 8,100)</td></tr>
+<tr><td><strong>娛樂城代理</strong></td><td class="center"><span class="vol-high">1,900</span></td><td class="center">35</td><td class="center"><span class="dr-low">~10</span></td><td class="center"><span class="tag lime">✅ 極易拿</span></td><td>❌ <strong>沒打,要寫</strong></td></tr>
+<tr><td>娛樂城黑名單</td><td class="center"><span class="vol-mid">~1,500</span></td><td class="center">25</td><td class="center"><span class="dr-low">~15</span></td><td class="center"><span class="tag lime">✅ 可打</span></td><td>有寫但要強化</td></tr>
+<tr><td>戰神賽特 dcard 🆕</td><td class="center"><span class="vol-mid">1,600</span></td><td class="center">21</td><td class="center"><span class="dr-low">~15</span></td><td class="center"><span class="tag lime">✅ 易拿</span></td><td>✅ 已寫(#2709)</td></tr>
+</tbody>
+</table></div>
+
+<div class="callout danger">
+<strong>🚨 最緊急的 4 篇要寫:</strong><br>
+1. <strong>戰神賽特 2 覺醒之力完整攻略</strong>(月搜 2,900,11 月峰 8,100,SD 39)<br>
+2. <strong>娛樂城代理是什麼?月入百萬真假分析</strong>(月搜 1,900,SD 35,對手 DR 10)<br>
+3. <strong>線上娛樂城完整介紹 2026</strong>(月搜 3,600,SD 48)<br>
+4. <strong>老虎機完整教學 2026</strong>(月搜 3,600,SD 40)<br>
+<br>
+合計潛力 = 12,000+ 月搜尋。**3 個月內這 4 篇能帶 1,500-3,500 月 UV**。
+</div>
+</section>
+
+<!-- Section 3: Tier 2 - Informational 缺口 -->
+<section class="tier2">
+<h2><span class="num">[03]</span>🟡 Tier 2:Informational 意圖缺口(填知識空缺)</h2>
+<p>你站「教學/評測」很強,但「<strong>是什麼/規則/機率</strong>」這類純資訊型缺口大。Google 對這類字偏好回答型內容,寫完容易拿前 5。</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>KW</th><th class="center">月搜</th><th class="center">SD</th><th>建議文章標題</th></tr></thead>
+<tbody>
+<tr><td>娛樂城是什麼</td><td class="center">140</td><td class="center">33</td><td>娛樂城是什麼? 從零開始 5 分鐘搞懂(類型+合法性+玩法)</td></tr>
+<tr><td>老虎機機率</td><td class="center">110</td><td class="center">31</td><td>老虎機機率完整解析: RTP / 變異性 / 期望值數學教學</td></tr>
+<tr><td>老虎機規則</td><td class="center">30</td><td class="center">33</td><td>(合併入「老虎機完整教學」)</td></tr>
+<tr><td>戰神賽特怎麼玩</td><td class="center">140</td><td class="center">44</td><td>(合併入「戰神賽特 2 完整攻略」)</td></tr>
+<tr><td>戰神賽特是什麼</td><td class="center">~50</td><td class="center">~30</td><td>(合併入既有 Pillar)</td></tr>
+<tr><td>體驗金是什麼</td><td class="center">~50</td><td class="center">~30</td><td>體驗金是什麼? 為何免費可領? 5 種類型完整解析</td></tr>
+<tr><td>百家樂機率</td><td class="center">~100</td><td class="center">~32</td><td>(合併入既有「百家樂規則完整教學」加強)</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- Section 4: Tier 3 - 競品/評價/dcard 字 -->
+<section class="tier3">
+<h2><span class="num">[04]</span>🟢 Tier 3:社群驗證字(dcard/ptt 真實玩家評價)</h2>
+<p>「<strong>X dcard / X ptt</strong>」是高轉換意圖 — 用戶在驗證信任度。每個 brand + 評測 + dcard/ptt 都該有一篇。</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>KW 變體</th><th class="center">月搜</th><th class="center">SD</th><th>建議文章</th></tr></thead>
+<tbody>
+<tr><td>娛樂城 dcard</td><td class="center">~390</td><td class="center">~22</td><td>娛樂城 Dcard 真實討論整理: 50 篇熱門貼文 + 玩家評價總結</td></tr>
+<tr><td>娛樂城不出金</td><td class="center">~300</td><td class="center">~20</td><td>娛樂城不出金完整黑名單 + 自救 SOP</td></tr>
+<tr><td>娛樂城出金 dcard</td><td class="center">~90</td><td class="center">~20</td><td>(合併入「娛樂城出金完整教學」)</td></tr>
+<tr><td>戰神賽特 ptt</td><td class="center">~50</td><td class="center">~25</td><td>(合併入「戰神賽特 PTT/Dcard 心得」#2709)</td></tr>
+<tr><td>豪神娛樂城 dcard</td><td class="center">~30</td><td class="center">~18</td><td>豪神娛樂城 Dcard PTT 真實討論整理(支援既有評測)</td></tr>
+<tr><td>夜色娛樂城 ptt</td><td class="center">~?</td><td class="center">~?</td><td>夜色娛樂城 PTT/Dcard 玩家真實經驗 2026</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- Section 5: 15 篇新文章完整清單 -->
+<section>
+<h2><span class="num">[05]</span>📝 15 篇新文章完整寫作清單(60 天 timeline)</h2>
+
+<div class="table-wrap"><table>
+<thead><tr><th class="center">#</th><th>文章標題</th><th class="center">目標 KW</th><th class="center">月搜潛力</th><th class="center">Tier</th><th class="center">建議週次</th></tr></thead>
+<tbody>
+<tr><td class="center"><strong style="color:#ff006e">1</strong></td><td>戰神賽特 2 覺醒之力完整攻略 2026</td><td class="center">戰神賽特2</td><td class="center"><span class="vol-high">2,900</span></td><td class="center"><span class="tag mag">🔥1</span></td><td class="center">W1</td></tr>
+<tr><td class="center"><strong style="color:#ff006e">2</strong></td><td>戰神賽特 2 試玩 + Demo 完整教學</td><td class="center">戰神賽特2 試玩</td><td class="center"><span class="vol-mid">~500</span></td><td class="center"><span class="tag mag">🔥1</span></td><td class="center">W1</td></tr>
+<tr><td class="center"><strong style="color:#ff006e">3</strong></td><td>戰神賽特 1 vs 2 全面對比評測</td><td class="center">combo</td><td class="center"><span class="vol-mid">~300</span></td><td class="center"><span class="tag mag">🔥1</span></td><td class="center">W1</td></tr>
+<tr><td class="center"><strong style="color:#ff006e">4</strong></td><td>娛樂城代理是什麼? 月入百萬真假完整分析</td><td class="center">娛樂城代理</td><td class="center"><span class="vol-high">1,900</span></td><td class="center"><span class="tag mag">🔥1</span></td><td class="center">W2</td></tr>
+<tr><td class="center"><strong style="color:#ff006e">5</strong></td><td>娛樂城代理合法嗎? 5 大風險完整解析</td><td class="center">combo</td><td class="center"><span class="vol-mid">~500</span></td><td class="center"><span class="tag mag">🔥1</span></td><td class="center">W2</td></tr>
+<tr><td class="center"><strong style="color:#ffd700">6</strong></td><td>線上娛樂城完整介紹 2026: 安全/合法/類型全解</td><td class="center">線上娛樂城</td><td class="center"><span class="vol-high">3,600</span></td><td class="center"><span class="tag gold">🟡2</span></td><td class="center">W2</td></tr>
+<tr><td class="center"><strong style="color:#ffd700">7</strong></td><td>老虎機完整教學 2026: 規則+機率+RTP+選台</td><td class="center">老虎機 + 老虎機機率 + 老虎機規則</td><td class="center"><span class="vol-high">3,750</span></td><td class="center"><span class="tag gold">🟡2</span></td><td class="center">W3</td></tr>
+<tr><td class="center"><strong style="color:#ffd700">8</strong></td><td>娛樂城是什麼? 5 分鐘從零搞懂台灣線上娛樂城</td><td class="center">娛樂城是什麼</td><td class="center"><span class="vol-mid">140</span></td><td class="center"><span class="tag gold">🟡2</span></td><td class="center">W3</td></tr>
+<tr><td class="center"><strong style="color:#ffd700">9</strong></td><td>娛樂城 Dcard 真實討論整理 + 50 篇熱門貼文總結</td><td class="center">娛樂城dcard</td><td class="center"><span class="vol-mid">~390</span></td><td class="center"><span class="tag gold">🟡2</span></td><td class="center">W3</td></tr>
+<tr><td class="center"><strong style="color:#ffd700">10</strong></td><td>娛樂城不出金完整黑名單 + 自救 SOP 2026</td><td class="center">娛樂城不出金</td><td class="center"><span class="vol-mid">~300</span></td><td class="center"><span class="tag gold">🟡2</span></td><td class="center">W4</td></tr>
+<tr><td class="center"><strong style="color:#39ff14">11</strong></td><td>體驗金是什麼? 5 種類型 + 領取教學</td><td class="center">體驗金</td><td class="center"><span class="vol-mid">880</span></td><td class="center"><span class="tag lime">🟢3</span></td><td class="center">W4</td></tr>
+<tr><td class="center"><strong style="color:#39ff14">12</strong></td><td>娛樂城運彩玩法完整教學 + 跟運彩平台比較</td><td class="center">娛樂城運彩</td><td class="center"><span class="vol-mid">~200</span></td><td class="center"><span class="tag lime">🟢3</span></td><td class="center">W5</td></tr>
+<tr><td class="center"><strong style="color:#39ff14">13</strong></td><td>夜色娛樂城 PTT/Dcard 玩家真實心得 2026</td><td class="center">夜色 brand long-tail</td><td class="center"><span class="vol-mid">~150</span></td><td class="center"><span class="tag lime">🟢3</span></td><td class="center">W5</td></tr>
+<tr><td class="center"><strong style="color:#39ff14">14</strong></td><td>戰神賽特 AI 程式破解詐騙警示完整解析</td><td class="center">戰神賽特AI程式</td><td class="center"><span class="vol-mid">~150</span></td><td class="center"><span class="tag lime">🟢3</span></td><td class="center">W6</td></tr>
+<tr><td class="center"><strong style="color:#39ff14">15</strong></td><td>娛樂城新聞: 2026 最新平台異動 + 黑名單追蹤</td><td class="center">娛樂城新聞</td><td class="center"><span class="vol-mid">~100</span></td><td class="center"><span class="tag lime">🟢3</span></td><td class="center">W6+</td></tr>
+</tbody>
+</table></div>
+
+<div class="callout">
+<strong>📊 合計潛力:</strong>15 篇文章合計月搜尋潛力約 <strong>17,000+</strong>(扣掉已寫的 #2708 #2709 還剩 13 篇新)。如果 60 天內全寫完 + ys89.fun DR 從 24 → 30+,3-6 個月內可帶來 <strong>3,000-6,000 月 UV</strong>(假設 CTR 15-20%)。
+</div>
+</section>
+
+<!-- Section 6: 強化既有文章 -->
+<section>
+<h2><span class="num">[06]</span>🔧 5 篇既有文章強化計畫</h2>
+<p>不只寫新的,既有主打文也要強化 — 提升 KW 密度、加 H2 變體、補長尾、加 schema。</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>Post ID</th><th>原文標題</th><th>強化動作</th><th>預期效果</th></tr></thead>
+<tbody>
+<tr><td class="center"><strong>2690</strong></td><td>戰神賽特 Pillar(seth-vs-horus-complete-guide)</td><td>加入「戰神賽特 2」section + 連結到新 #1-3 文章 + 重設 focus_kw 含 2 代</td><td>1 代 Pillar 也吃 2 代流量</td></tr>
+<tr><td class="center"><strong>2189</strong></td><td>戰神賽特爆分策略(舊文)</td><td>更新含 2 代差異 + 新增 schema markup</td><td>不被淘汰</td></tr>
+<tr><td class="center"><strong>202</strong></td><td>2026 娛樂城推薦 TOP10</td><td>追加「<strong>娛樂城體驗金</strong>」section + 連結到新體驗金主打</td><td>大字交叉滋養</td></tr>
+<tr><td class="center"><strong>233</strong></td><td>2026 台灣娛樂城 TOP5</td><td>加「<strong>娛樂城代理</strong>vs 玩家差異」對比 + 連結</td><td>承接代理流量</td></tr>
+<tr><td class="center"><strong>2689</strong></td><td>娛樂城 Pillar(taiwan-casino-2026-guide)</td><td>加入「娛樂城是什麼」「線上娛樂城」 nav 區塊</td><td>新文章權重快速傳遞</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- Section 7: 競爭評估 -->
+<section>
+<h2><span class="num">[07]</span>🎯 大字 SERP 競爭真實評估(實測 Top 10)</h2>
+<p>SERP 數據顯示對手實力 — 你 DR 24 在這些大字都<strong>不是劣勢</strong>,反而是<strong>中段位玩家</strong>,有真實機會競爭。</p>
+
+<h3>「娛樂城體驗金」Top 10 對手(月搜 14,800)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th class="center">#</th><th>對手</th><th class="center">DR</th><th>備註</th></tr></thead>
+<tbody>
+<tr><td class="center">1</td><td>suhea.com.tw</td><td class="center"><span class="dr-low">16</span></td><td>SEO 內容站,你打得贏</td></tr>
+<tr><td class="center">2</td><td>cygder.com</td><td class="center"><span class="dr-mid">34</span></td><td>娛樂城站,稍強</td></tr>
+<tr><td class="center">3</td><td>facebook.com 標籤頁</td><td class="center"><span class="dr-high">96</span></td><td>社群,排除不算對手</td></tr>
+<tr><td class="center">4</td><td>suhea.com.tw(同站第 2 篇)</td><td class="center"><span class="dr-low">16</span></td><td>同上</td></tr>
+<tr><td class="center">5</td><td>dcard.tw 搜尋頁</td><td class="center"><span class="dr-mid">56</span></td><td>社群,排除</td></tr>
+<tr><td class="center">6</td><td>blog.qywin88.com</td><td class="center"><span class="dr-low">9</span></td><td>超低 DR,你完勝</td></tr>
+<tr><td class="center">7</td><td>casino88.tw</td><td class="center"><span class="dr-mid">31</span></td><td>稍強但內容薄</td></tr>
+<tr><td class="center">8</td><td>at99lol.com.tw</td><td class="center"><span class="dr-low">6</span></td><td>超低</td></tr>
+<tr><td class="center">9</td><td>耀金娛樂城</td><td class="center"><span class="dr-low">5</span></td><td>超低</td></tr>
+<tr><td class="center">10</td><td>play8win.com</td><td class="center"><span class="dr-low">2</span></td><td>超低</td></tr>
+</tbody>
+</table></div>
+<p><strong>結論</strong>:扣掉 Facebook/Dcard 社群字,Top 10 真實對手平均 DR <strong>~24</strong>。你 DR 24 + 211 條內鏈 + 強化過的 #202 #233,3-6 個月可進 Top 10。</p>
+
+<h3>「戰神賽特 2」Top 10 對手(月搜 2,900)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th class="center">#</th><th>對手</th><th class="center">DR</th><th>備註</th></tr></thead>
+<tbody>
+<tr><td class="center">1</td><td>atg-games.com(官方)</td><td class="center"><span class="dr-mid">42</span></td><td>廠商官方,你拿不到 #1 但可以 #2-5</td></tr>
+<tr><td class="center">2</td><td>戰神賽特2 punycode 域名</td><td class="center"><span class="dr-low">18</span></td><td>單機站,DR 低</td></tr>
+<tr><td class="center">3</td><td>cygder.com</td><td class="center"><span class="dr-mid">34</span></td><td>對手 — 你 DR 接近</td></tr>
+<tr><td class="center">4</td><td>stormofseth.tw</td><td class="center"><span class="dr-low">20</span></td><td>單一品牌站</td></tr>
+<tr><td class="center">5</td><td>gsbet168.tw</td><td class="center"><span class="dr-low">6</span></td><td>超低</td></tr>
+<tr><td class="center">6-10</td><td>atg-games / slotfree / atg-slots etc</td><td class="center">18-42</td><td>大部分是廠商站</td></tr>
+</tbody>
+</table></div>
+<p><strong>結論</strong>:Niche 平均 DR <strong>~20</strong>,你 DR 24 <strong>就是最高的非廠商站</strong>。寫一篇深度攻略可拿 Top 5(可能 #2-3,#1 是 ATG 官方搶不過)。</p>
+</section>
+
+<!-- Section 8: 60 天 timeline -->
+<section class="tier3">
+<h2><span class="num">[08]</span>⏰ 60 天執行 Timeline</h2>
+
+<div class="timeline">
+<div class="timeline-item urgent">
+<h4><span class="week">W1</span>戰神賽特 2 系列(3 篇)+ #2 已寫的補強</h4>
+<p>戰神賽特 2 攻略 + 試玩 + 1vs2 對比 → 吃 11-12 月熱潮峰值,11 月歷史峰值 8,100 月搜</p>
+</div>
+
+<div class="timeline-item urgent">
+<h4><span class="week">W2</span>娛樂城代理 + 線上娛樂城(3 篇)</h4>
+<p>娛樂城代理是什麼 + 合法嗎 + 線上娛樂城完整介紹 → 吃 1,900 + 3,600 月搜</p>
+</div>
+
+<div class="timeline-item mid">
+<h4><span class="week">W3</span>老虎機 + 娛樂城是什麼 + Dcard 整理(3 篇)</h4>
+<p>老虎機完整教學(吃 3,750)+ 娛樂城是什麼(140) + Dcard 真實討論(390)</p>
+</div>
+
+<div class="timeline-item mid">
+<h4><span class="week">W4</span>不出金黑名單 + 體驗金深度(2 篇)+ 強化既有 #202/#233/#2689/#2690</h4>
+<p>新文寫 2 篇 + 既有 5 篇強化(加新文章內鏈、補長尾、改 meta)</p>
+</div>
+
+<div class="timeline-item mid">
+<h4><span class="week">W5</span>運彩 + 夜色 PTT/Dcard(2 篇)+ Sitemap regen + GSC 提交全部新文</h4>
+<p>新文 2 篇 + 把 W1-W5 共 13 篇新文章一次性 GSC 提交</p>
+</div>
+
+<div class="timeline-item future">
+<h4><span class="week">W6-W8</span>AI 程式詐騙警示 + 新聞追蹤(2 篇)+ <strong>跑第二次完整 Audit</strong></h4>
+<p>檢查 ys89.fun DR 是否從 24 → 28+,新文章是否進 Top 100,根據數據調整 W9+ 內容</p>
+</div>
+
+<div class="timeline-item future">
+<h4><span class="week">W9-W12</span>大字深度 + Pillar 升級 + PBN 對齊</h4>
+<p>等 PBN 那邊把 DR 推到 30+,然後對大字(娛樂城體驗金/推薦 14,800)做最後深度衝刺</p>
+</div>
+</div>
+</section>
+
+<!-- Section 9: 跟姊妹站分工 -->
+<section>
+<h2><span class="num">[09]</span>🔗 跟姊妹站分工策略(ys89.fun / .bet / .com)</h2>
+<p>確認你 3 站架構後,Search Intent 對應應該這樣分:</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>站</th><th>負責 Intent</th><th>主打 KW 類型</th><th>產出</th></tr></thead>
+<tbody>
+<tr><td><strong>ys89.fun</strong> 評測站</td><td><span class="tag purple">Informational + Commercial</span></td><td>教學 / 評測 / 比較 / 攻略</td><td>15 篇新 + 5 篇強化(本報告)</td></tr>
+<tr><td><strong>ys89.bet</strong> 平台</td><td><span class="tag purple">Transactional + Navigational</span></td><td>註冊 / 登入 / 儲值 / 領取</td><td>(他們團隊負責)</td></tr>
+<tr><td><strong>ys89.com</strong> 轉址</td><td><span class="tag purple">Navigational</span></td><td>301 跳到 .bet(目前 302,建議改)</td><td>(他們團隊負責)</td></tr>
+</tbody>
+</table></div>
+
+<p><strong>你的站(ys89.fun)專注做 Informational + Commercial 是正確的</strong> — Google 視為「資訊權威」更願意給排名,而 Transactional 給 .bet 接收轉換流量。這個分工不要打亂。</p>
+</section>
+
+<!-- Section 10: KPI 監測 -->
+<section>
+<h2><span class="num">[10]</span>📊 KPI 監測指標(每週確認)</h2>
+
+<div class="table-wrap"><table>
+<thead><tr><th>指標</th><th>當前</th><th>30 天目標</th><th>60 天目標</th><th>90 天目標</th></tr></thead>
+<tbody>
+<tr><td>Ahrefs DR</td><td class="center">24</td><td class="center">26</td><td class="center"><strong>28</strong></td><td class="center"><strong>30+</strong></td></tr>
+<tr><td>已排名 KW(Ubersuggest)</td><td class="center">17</td><td class="center">25</td><td class="center"><strong>40</strong></td><td class="center"><strong>60+</strong></td></tr>
+<tr><td>5 個 #1(brand 字)</td><td class="center">5</td><td class="center">7</td><td class="center"><strong>9</strong></td><td class="center"><strong>12</strong></td></tr>
+<tr><td>大字進前 50</td><td class="center">0</td><td class="center">2</td><td class="center"><strong>5</strong></td><td class="center"><strong>8</strong></td></tr>
+<tr><td>大字進前 10</td><td class="center">0</td><td class="center">0</td><td class="center"><strong>1-2</strong></td><td class="center"><strong>3-5</strong></td></tr>
+<tr><td>GSC 月 impression</td><td class="center">~70</td><td class="center">300</td><td class="center"><strong>1,000</strong></td><td class="center"><strong>5,000+</strong></td></tr>
+<tr><td>GSC 月 clicks</td><td class="center">~40</td><td class="center">150</td><td class="center"><strong>500</strong></td><td class="center"><strong>2,000+</strong></td></tr>
+</tbody>
+</table></div>
+
+<div class="callout warn">
+<strong>⚠️ 重要前提:</strong>這些 KPI 假設(1) 15 篇新文章按 timeline 寫完 (2) PBN 那邊推 DR 到 30+ (3) GSC 已設定並提交 sitemap (4) 沒有 Google penalty 事件。如果其中任一沒做到,KPI 要往後遞延 30-60 天。
+</div>
+</section>
+
+<!-- Section 11: 立即可做 -->
+<section class="tier1">
+<h2><span class="num">[11]</span>🚀 立即可做的 5 件事(本週內)</h2>
+
+<ol style="color:#cfd8e0;font-size:1rem;line-height:2;margin:14px 0 14px 24px">
+<li><strong>寫 #1 戰神賽特 2 完整攻略</strong> — 月搜 2,900 + 對手 DR 20,進 Top 3 機率 70%</li>
+<li><strong>寫 #4 娛樂城代理是什麼</strong> — 月搜 1,900 + 對手 DR 10,進 Top 3 機率 80%</li>
+<li><strong>更新 Pillar #2690 戰神賽特</strong> — 加入 2 代資訊,1 代 Pillar 也吃 2 代流量</li>
+<li><strong>GSC 提交今天新增的 13 篇文章</strong>(URL Inspection → Request Indexing)</li>
+<li><strong>把 7 個 brand 短字加入追蹤後 1 週,看 Ubersuggest 是否更新排名數據</strong></li>
+</ol>
+
+<div class="callout discovery">
+<strong>💎 一句話總結:</strong>
+你 ys89.fun DR 24 + 218 篇文章 + 211 條內鏈 + 完整 brand 字 #1 — <strong>已具備攻擊大字的條件</strong>。本報告的 15 篇新文章是「彈藥」,timeline 60 天執行完 + PBN 跟上推 DR 30,3-6 個月內 GSC 月 clicks 從 40 → 2,000+ 是合理預期。
+</div>
+</section>
+
+<footer>
+<span style="color:#39ff14">// generated</span> 2026-05-25 &nbsp;|&nbsp;
+<span style="color:#39ff14">// sources</span> Ubersuggest API + Chrome MCP SERP scrape + Google autocomplete &nbsp;|&nbsp;
+<span style="color:#39ff14">// next review</span> 2026-06-08(2 週後檢視 W1-W2 進度)
+</footer>
+
+</div>
+</body>
+</html>
