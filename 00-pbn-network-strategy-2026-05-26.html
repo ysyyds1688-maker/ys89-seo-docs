@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ys89 全網絡架構 · PBN 策略完整報告</title>
+  <style>
+    :root {
+      --bg: #0c0e14;
+      --surface: #161923;
+      --surface2: #1e2235;
+      --surface3: #252a40;
+      --border: #2a3050;
+      --border2: #353d5c;
+      --accent: #5b8dee;
+      --accent2: #a78bfa;
+      --gold: #f59e0b;
+      --green: #10b981;
+      --green2: #34d399;
+      --yellow: #fbbf24;
+      --red: #ef4444;
+      --red2: #f87171;
+      --orange: #f97316;
+      --cyan: #06b6d4;
+      --text: #dde2f0;
+      --muted: #7b85a3;
+      --heading: #f0f4ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 14.5px;
+    }
+
+    /* ── Sidebar TOC ── */
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: 220px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 24px 0;
+      z-index: 100;
+    }
+    .sidebar-logo {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .sidebar-logo-main { font-size: 16px; font-weight: 700; color: var(--heading); }
+    .sidebar-logo-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .nav-group { margin-bottom: 8px; }
+    .nav-group-label {
+      padding: 4px 20px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+    }
+    .nav-item {
+      display: block;
+      padding: 7px 20px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .nav-item:hover { color: var(--text); background: var(--surface2); border-left-color: var(--accent); }
+    .nav-item.active { color: var(--accent); background: var(--surface2); border-left-color: var(--accent); }
+
+    /* ── Main Content ── */
+    .main { margin-left: 220px; }
+    .page-wrap { max-width: 860px; padding: 48px 40px 100px; }
+
+    /* ── Header ── */
+    .report-header {
+      padding-bottom: 36px;
+      margin-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .report-eyebrow {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .report-eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    }
+    .report-title { font-size: 34px; font-weight: 800; color: var(--heading); line-height: 1.2; margin-bottom: 12px; }
+    .report-title .hl { color: var(--gold); }
+    .report-desc { font-size: 15px; color: var(--muted); max-width: 600px; margin-bottom: 24px; }
+    .meta-row { display: flex; gap: 20px; flex-wrap: wrap; }
+    .meta-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 20px; padding: 4px 12px;
+      font-size: 12px; color: var(--text);
+    }
+    .meta-chip-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+    /* ── Sections ── */
+    .section { margin-bottom: 60px; }
+    .section-eyebrow {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 21px; font-weight: 700; color: var(--heading);
+      margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 { font-size: 15px; font-weight: 600; color: var(--heading); margin: 24px 0 12px; }
+    h4 { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 8px; }
+    p { margin-bottom: 12px; }
+
+    /* ── Architecture Diagram ── */
+    .arch-diagram {
+      background: #080a10;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 12.5px;
+      line-height: 2;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+    .arch-diagram .layer-label { color: var(--muted); font-size: 10px; letter-spacing: 2px; }
+    .arch-diagram .tier0 { color: var(--gold); font-weight: 700; }
+    .arch-diagram .tier1 { color: var(--green2); font-weight: 600; }
+    .arch-diagram .tier2 { color: var(--cyan); }
+    .arch-diagram .tier3 { color: var(--accent); }
+    .arch-diagram .tier4 { color: var(--accent2); }
+    .arch-diagram .arrow { color: var(--border2); }
+    .arch-diagram .note { color: #4a5270; font-size: 11px; }
+    .arch-diagram .warn { color: var(--yellow); }
+    .arch-diagram .ok { color: var(--green); }
+
+    /* ── Cards ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .card.c-gold { border-color: var(--gold); }
+    .card.c-green { border-color: var(--green); }
+    .card.c-blue { border-color: var(--accent); }
+    .card.c-purple { border-color: var(--accent2); }
+    .card.c-red { border-color: var(--red); }
+    .card.c-yellow { border-color: var(--yellow); }
+    .card.c-cyan { border-color: var(--cyan); }
+    .card-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 8px; }
+    .card-val { font-size: 26px; font-weight: 700; color: var(--heading); }
+    .card-val.gold { color: var(--gold); }
+    .card-val.green { color: var(--green2); }
+    .card-val.cyan { color: var(--cyan); }
+    .card-val.purple { color: var(--accent2); }
+    .card-desc { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; margin-bottom: 24px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    th {
+      background: var(--surface2); color: var(--muted);
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+      padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border);
+    }
+    td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--surface2); }
+    td strong { color: var(--heading); }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-block; padding: 2px 9px;
+      border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
+    }
+    .bg { background: rgba(16,185,129,.15); color: var(--green2); }
+    .by { background: rgba(251,191,36,.15); color: var(--yellow); }
+    .br { background: rgba(239,68,68,.15); color: var(--red2); }
+    .bb { background: rgba(91,141,238,.15); color: var(--accent); }
+    .bp { background: rgba(167,139,250,.15); color: var(--accent2); }
+    .bo { background: rgba(249,115,22,.15); color: var(--orange); }
+    .bc { background: rgba(6,182,212,.15); color: var(--cyan); }
+    .bgold { background: rgba(245,158,11,.15); color: var(--gold); }
+
+    /* ── Code block ── */
+    .code-block {
+      background: #080a10;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 12.5px;
+      line-height: 1.9;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+    .c-cm { color: #445070; }
+    .c-ok { color: var(--green2); }
+    .c-wn { color: var(--yellow); }
+    .c-er { color: var(--red2); }
+    .c-ac { color: var(--accent); }
+    .c-cy { color: var(--cyan); }
+    .c-gd { color: var(--gold); }
+    .c-pu { color: var(--accent2); }
+
+    /* ── Callout ── */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--surface);
+      padding: 13px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 18px;
+      font-size: 13.5px;
+    }
+    .callout.warn { border-color: var(--yellow); }
+    .callout.danger { border-color: var(--red); }
+    .callout.success { border-color: var(--green); }
+    .callout.gold { border-color: var(--gold); }
+    .callout strong { color: var(--heading); }
+
+    /* ── Check list ── */
+    ul.cl { list-style: none; padding: 0; margin-bottom: 14px; }
+    ul.cl li { padding: 5px 0 5px 22px; position: relative; font-size: 13.5px; }
+    ul.cl li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+    ul.cl li.ok::before { content: '✓'; color: var(--green2); }
+    ul.cl li.wn::before { content: '⚠'; color: var(--yellow); }
+    ul.cl li.er::before { content: '✗'; color: var(--red2); }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+    .tl-item { position: relative; margin-bottom: 28px; }
+    .tl-dot { position: absolute; left: -24px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+    .tl-dot.green { background: var(--green); }
+    .tl-dot.yellow { background: var(--yellow); }
+    .tl-dot.gold { background: var(--gold); }
+    .tl-dot.red { background: var(--red); }
+    .tl-week { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 4px; }
+    .tl-title { font-size: 14px; font-weight: 600; color: var(--heading); margin-bottom: 5px; }
+    .tl-body { font-size: 13px; color: var(--muted); }
+
+    /* ── Phase Visual Roadmap ── */
+    .phase-roadmap { display: flex; flex-direction: column; gap: 0; }
+    .phase-lane {
+      display: flex; align-items: stretch; gap: 0;
+      position: relative;
+    }
+    .phase-lane + .phase-lane { margin-top: -1px; }
+    .phase-label {
+      width: 120px; min-width: 120px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 20px 12px;
+      border-radius: 10px 0 0 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      text-align: center; gap: 6px;
+    }
+    .phase-label-num { font-size: 18px; font-weight: 900; line-height: 1; }
+    .phase-steps {
+      flex: 1; display: flex; align-items: stretch; gap: 0;
+      border: 1px solid var(--border); border-left: none;
+      border-radius: 0 10px 10px 0;
+      overflow: hidden;
+    }
+    .phase-step {
+      flex: 1; padding: 18px 16px;
+      border-right: 1px solid var(--border);
+      position: relative; display: flex; flex-direction: column; gap: 8px;
+      background: var(--surface);
+      transition: background 0.15s;
+    }
+    .phase-step:last-child { border-right: none; }
+    .phase-step:hover { background: var(--surface2); }
+    .phase-step-connector {
+      position: absolute; right: -1px; top: 50%; transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 8px solid var(--border);
+      z-index: 2;
+    }
+    .phase-step:last-child .phase-step-connector { display: none; }
+    .ps-timing {
+      font-size: 9.5px; text-transform: uppercase; letter-spacing: 1.5px;
+      font-weight: 700; margin-bottom: 2px;
+    }
+    .ps-title { font-size: 13px; font-weight: 700; color: var(--heading); line-height: 1.3; }
+    .ps-body { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 4px; }
+    .ps-body li { list-style: none; padding-left: 14px; position: relative; }
+    .ps-body li::before { content: '›'; position: absolute; left: 0; color: inherit; opacity: 0.7; }
+
+    .ph-red   .phase-label { background: rgba(239,68,68,.15); color: var(--red2); border: 1px solid rgba(239,68,68,.3); }
+    .ph-red   .phase-steps { border-color: rgba(239,68,68,.2); }
+    .ph-red   .phase-step  { border-right-color: rgba(239,68,68,.2); }
+    .ph-red   .ps-timing   { color: var(--red2); }
+    .ph-red   .phase-step-connector { border-left-color: rgba(239,68,68,.3); }
+
+    .ph-gold  .phase-label { background: rgba(245,158,11,.15); color: var(--gold); border: 1px solid rgba(245,158,11,.3); }
+    .ph-gold  .phase-steps { border-color: rgba(245,158,11,.2); }
+    .ph-gold  .phase-step  { border-right-color: rgba(245,158,11,.2); }
+    .ph-gold  .ps-timing   { color: var(--gold); }
+    .ph-gold  .phase-step-connector { border-left-color: rgba(245,158,11,.3); }
+
+    .ph-green .phase-label { background: rgba(16,185,129,.15); color: var(--green2); border: 1px solid rgba(16,185,129,.3); }
+    .ph-green .phase-steps { border-color: rgba(16,185,129,.2); }
+    .ph-green .phase-step  { border-right-color: rgba(16,185,129,.2); }
+    .ph-green .ps-timing   { color: var(--green2); }
+    .ph-green .phase-step-connector { border-left-color: rgba(16,185,129,.3); }
+
+    .phase-connector-row {
+      display: flex; justify-content: center; align-items: center;
+      height: 32px; color: var(--muted); font-size: 11px; gap: 8px;
+    }
+    .phase-connector-row::before,
+    .phase-connector-row::after {
+      content: ''; flex: 1; max-width: 80px; height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Network Scale Map (Section 08) ── */
+    .nm12-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+    .nm12-target {
+      width: 100%; max-width: 480px;
+      background: rgba(245,158,11,.12); border: 2px solid rgba(245,158,11,.5);
+      border-radius: 14px; padding: 18px 24px; text-align: center; position: relative;
+    }
+    .nm12-target-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 4px; }
+    .nm12-target-domain { font-size: 22px; font-weight: 900; color: var(--gold); }
+    .nm12-target-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .nm12-target-badge {
+      display: inline-block; background: rgba(16,185,129,.2); color: var(--green2);
+      border: 1px solid rgba(16,185,129,.4); border-radius: 20px;
+      font-size: 10px; padding: 2px 10px; margin-top: 8px;
+    }
+
+    .nm12-arrow { text-align: center; color: var(--muted); font-size: 18px; line-height: 1; padding: 4px 0; }
+    .nm12-arrow-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+
+    .nm12-tier { width: 100%; display: flex; flex-direction: column; gap: 8px; margin: 0; }
+    .nm12-tier-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
+    }
+    .nm12-tier-badge {
+      font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;
+    }
+    .nm12-tier-line { flex: 1; height: 1px; background: var(--border); }
+    .nm12-tier-desc { font-size: 11px; color: var(--muted); }
+
+    .nm12-nodes { display: flex; gap: 8px; flex-wrap: wrap; }
+    .nm12-node {
+      flex: 1; min-width: 140px; padding: 12px 14px;
+      border-radius: 10px; border: 1px solid var(--border2);
+      background: var(--surface);
+    }
+    .nm12-node.new { border-style: dashed; }
+    .nm12-node-name { font-size: 13px; font-weight: 700; color: var(--heading); margin-bottom: 3px; }
+    .nm12-node-da { font-size: 11px; font-weight: 600; margin-bottom: 4px; }
+    .nm12-node-tag {
+      display: inline-block; font-size: 9.5px; padding: 1px 7px; border-radius: 10px;
+      background: var(--surface3); color: var(--muted);
+    }
+    .nm12-node.new .nm12-node-tag { background: rgba(91,141,238,.15); color: var(--accent); }
+
+    .nm12-da50  .nm12-tier-badge { background: rgba(245,158,11,.2); color: var(--gold); border: 1px solid rgba(245,158,11,.4); }
+    .nm12-da50  .nm12-node-da { color: var(--gold); }
+    .nm12-da50  .nm12-node { border-color: rgba(245,158,11,.25); }
+
+    .nm12-da35  .nm12-tier-badge { background: rgba(52,211,153,.15); color: var(--green2); border: 1px solid rgba(52,211,153,.35); }
+    .nm12-da35  .nm12-node-da { color: var(--green2); }
+    .nm12-da35  .nm12-node { border-color: rgba(52,211,153,.2); }
+
+    .nm12-da20  .nm12-tier-badge { background: rgba(91,141,238,.15); color: var(--accent); border: 1px solid rgba(91,141,238,.35); }
+    .nm12-da20  .nm12-node-da { color: var(--accent); }
+    .nm12-da20  .nm12-node { border-color: rgba(91,141,238,.2); }
+
+    .nm12-gp    .nm12-tier-badge { background: rgba(167,139,250,.15); color: var(--accent2); border: 1px solid rgba(167,139,250,.35); }
+    .nm12-gp    .nm12-node-da { color: var(--accent2); }
+    .nm12-gp    .nm12-node { border-color: rgba(167,139,250,.2); }
+
+    .nm12-sat   .nm12-tier-badge { background: rgba(6,182,212,.15); color: var(--cyan); border: 1px solid rgba(6,182,212,.35); }
+    .nm12-sat   .nm12-node-da { color: var(--cyan); }
+    .nm12-sat   .nm12-node { border-color: rgba(6,182,212,.2); }
+
+    .nm12-summary {
+      width: 100%; margin-top: 16px;
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .nm12-sum-card {
+      flex: 1; min-width: 120px;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 10px; padding: 12px 14px; text-align: center;
+    }
+    .nm12-sum-num { font-size: 22px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+    .nm12-sum-label { font-size: 11px; color: var(--muted); }
+
+    /* ── Progress ── */
+    .prog-row { margin-bottom: 12px; }
+    .prog-label { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 5px; }
+    .prog-bar { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+    .prog-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+    .prog-fill.green { background: var(--green); }
+    .prog-fill.yellow { background: var(--yellow); }
+    .prog-fill.red { background: var(--red); }
+    .prog-fill.gold { background: var(--gold); }
+
+    /* ── Divider ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+
+    /* ══ SPA MODE ══ */
+    .section { display: none; }
+    .section.active { display: block; animation: fadeIn .2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-item.active { color: var(--accent); background: var(--surface2); border-left-color: var(--accent); font-weight: 600; }
+    /* Summary section also hidden by default */
+    .summary-section { display: none; }
+    .summary-section.active { display: block; animation: fadeIn .2s ease; }
+    /* Section header breadcrumb */
+    .section-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 0 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .section-header-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+    }
+    .section-header-text { flex: 1; }
+    .section-header-label { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+    .section-header-title { font-size: 18px; font-weight: 700; color: var(--heading); margin-top: 2px; }
+    /* Report header always visible */
+    .report-header { display: block !important; }
+
+    /* ── Two-col ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+
+    /* ── Domain pill ── */
+    .domain-pill {
+      display: inline-block;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 6px; padding: 3px 10px;
+      font-family: monospace; font-size: 12.5px; color: var(--cyan);
+    }
+
+    /* ══ NETWORK MAP ══ */
+    .netmap {
+      background: #080b12;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 28px;
+      margin-bottom: 28px;
+      overflow-x: auto;
+    }
+    .nm-tier {
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .nm-tier-meta {
+      width: 88px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 3px;
+    }
+    .nm-tier-tag {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .nm-tier-name {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.3;
+    }
+    .t0-tag { background: rgba(245,158,11,.18); color: var(--gold); }
+    .t1-tag { background: rgba(16,185,129,.18); color: var(--green2); }
+    .t2-tag { background: rgba(6,182,212,.18); color: var(--cyan); }
+    .t3-tag { background: rgba(239,68,68,.15); color: var(--red2); }
+    .t4-tag { background: rgba(167,139,250,.15); color: var(--accent2); }
+    .t5-tag { background: rgba(123,133,163,.15); color: var(--muted); }
+
+    .nm-nodes {
+      flex: 1;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: stretch;
+      min-width: 0;
+    }
+    .nm-node {
+      background: var(--surface);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      min-width: 140px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: transform .15s;
+    }
+    .nm-node:hover { transform: translateY(-1px); }
+    .nm-node-icon { font-size: 18px; }
+    .nm-node-domain {
+      font-size: 14px; font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--heading);
+      letter-spacing: -.2px;
+    }
+    .nm-node-role { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
+    .nm-node-desc { font-size: 11.5px; color: var(--text); line-height: 1.5; }
+    .nm-node-warn {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 10.5px; color: var(--yellow); margin-top: 2px;
+    }
+    .nm-tag {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      padding: 2px 7px; border-radius: 4px; margin-top: 4px; letter-spacing: .3px;
+      align-self: flex-start;
+    }
+    /* Node variants */
+    .nm-n-gold { border-color: rgba(245,158,11,.7); background: linear-gradient(135deg,rgba(245,158,11,.07),var(--surface) 55%); }
+    .nm-n-gold .nm-node-domain { color: var(--gold); }
+    .nm-n-green { border-color: rgba(16,185,129,.7); background: linear-gradient(135deg,rgba(16,185,129,.07),var(--surface) 55%); }
+    .nm-n-green .nm-node-domain { color: var(--green2); }
+    .nm-n-cyan { border-color: rgba(6,182,212,.5); background: linear-gradient(135deg,rgba(6,182,212,.05),var(--surface) 55%); }
+    .nm-n-cyan .nm-node-domain { color: var(--cyan); }
+    .nm-n-red { border-color: rgba(239,68,68,.6); background: linear-gradient(135deg,rgba(239,68,68,.07),var(--surface) 55%); }
+    .nm-n-red .nm-node-domain { color: var(--red2); }
+    .nm-n-def { border-color: rgba(16,185,129,.5); background: linear-gradient(135deg,rgba(16,185,129,.06),var(--surface) 55%); }
+    .nm-n-def .nm-node-domain { color: var(--green2); }
+    .nm-n-purple { border-color: rgba(167,139,250,.5); background: linear-gradient(135deg,rgba(167,139,250,.05),var(--surface) 55%); }
+    .nm-n-purple .nm-node-domain { color: var(--accent2); }
+    .nm-n-gray { border-color: var(--border2); }
+    .nm-n-gray .nm-node-domain { color: var(--muted); }
+
+    /* Tag variants */
+    .nm-tag-gold { background:rgba(245,158,11,.15);color:var(--gold); }
+    .nm-tag-green { background:rgba(16,185,129,.15);color:var(--green2); }
+    .nm-tag-red { background:rgba(239,68,68,.15);color:var(--red2); }
+    .nm-tag-yellow { background:rgba(251,191,36,.15);color:var(--yellow); }
+    .nm-tag-blue { background:rgba(91,141,238,.15);color:var(--accent); }
+    .nm-tag-purple { background:rgba(167,139,250,.15);color:var(--accent2); }
+    .nm-tag-gray { background:var(--surface2);color:var(--muted); }
+
+    /* Connectors */
+    .nm-conn {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 0 0 0 108px; /* align with nodes */
+      margin: 4px 0;
+      min-height: 40px;
+    }
+    .nm-conn-single {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+    }
+    .nm-conn-line { width: 2px; height: 16px; background: var(--border2); }
+    .nm-conn-arrow {
+      width: 0; height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 7px solid var(--border2);
+    }
+    .nm-conn-label {
+      font-size: 10.5px; color: var(--muted);
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 2px 8px;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+    .nm-conn-group {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+      justify-content: space-around;
+    }
+    .nm-conn-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .nm-conn-item .nm-conn-label { font-size: 10px; }
+
+    /* Footer ── */
+    .report-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      margin-top: 60px;
+      font-size: 11.5px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ── Teal isolated node ── */
+    .nm-n-teal { border-color: rgba(20,184,166,.7); background: linear-gradient(135deg,rgba(20,184,166,.08),var(--surface) 55%); }
+    .nm-n-teal .nm-node-domain { color: #2dd4bf; }
+    .nm-tag-teal { background:rgba(20,184,166,.15);color:#2dd4bf; }
+
+    /* ── Funnel visualization ── */
+    .fv-wrap { background: #080b12; border-radius: 14px; padding: 26px 22px 22px; margin-bottom: 24px; }
+    .fv-header { text-align:center; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+    .fv-cols { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+    .fv-col { display:flex; flex-direction:column; align-items:center; padding:16px 14px; background:var(--surface); }
+    .fv-col:first-child { border-right:1px solid var(--border); }
+    .fv-col-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:13px; }
+    .fv-label-seo { color:var(--green);background:rgba(16,185,129,.12); }
+    .fv-label-sat { color:var(--cyan);background:rgba(6,182,212,.12); }
+    .fv-node { width:100%; border-radius:9px; padding:10px 13px; border:1px solid var(--border); background:var(--bg); text-align:center; }
+    .fv-node-title { font-size:12.5px; font-weight:700; color:var(--heading); font-family:'JetBrains Mono',monospace; }
+    .fv-node-sub { font-size:10.5px; color:var(--muted); margin-top:3px; line-height:1.45; }
+    .fv-node-tag { display:inline-block; font-size:10px; padding:2px 7px; border-radius:4px; margin-top:5px; }
+    .fv-n-user { border-color:var(--border2); }
+    .fv-n-user .fv-node-title { color:var(--text); font-family:inherit; font-size:12px; }
+    .fv-n-fun { border-color:rgba(16,185,129,.6); background:linear-gradient(135deg,rgba(16,185,129,.07),var(--bg)); }
+    .fv-n-fun .fv-node-title { color:var(--green2); }
+    .fv-n-sat { border-color:rgba(6,182,212,.5); background:linear-gradient(135deg,rgba(6,182,212,.05),var(--bg)); }
+    .fv-n-sat .fv-node-title { color:var(--cyan); }
+    .fv-n-bet { border-color:rgba(245,158,11,.7); background:linear-gradient(135deg,rgba(245,158,11,.08),var(--bg)); }
+    .fv-n-bet .fv-node-title { color:var(--gold); }
+    .fv-arrow { width:100%; text-align:center; padding:5px 0; }
+    .fv-arr-inner { display:inline-flex; flex-direction:column; align-items:center; gap:1px; }
+    .fv-arr-line { width:2px; height:12px; background:var(--border2); }
+    .fv-arr-tip { width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:6px solid var(--border2); }
+    .fv-arr-text { font-size:10px; color:var(--muted); background:var(--surface2); border:1px solid var(--border); border-radius:3px; padding:1px 7px; white-space:nowrap; margin-top:3px; }
+    .fv-fifa { border-top:1px solid rgba(20,184,166,.25); margin-top:7px; padding-top:7px; }
+    /* Link graph */
+    .fv-lg { margin-top:18px; padding-top:16px; border-top:1px solid var(--border); }
+    .fv-lg-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-align:center; margin-bottom:12px; }
+    .fv-chain { display:flex; align-items:center; gap:6px; flex-wrap:wrap; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:9px 14px; margin-bottom:7px; }
+    .fv-chain:last-child { margin-bottom:0; }
+    .fv-cn { padding:3px 11px; border-radius:5px; font-size:11px; font-weight:600; font-family:'JetBrains Mono',monospace; }
+    .fv-cn-red { background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:var(--red2); }
+    .fv-cn-grn { background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.25);color:var(--green2); }
+    .fv-cn-pur { background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.25);color:var(--accent2); }
+    .fv-ca { color:var(--muted); font-size:14px; flex-shrink:0; }
+    .fv-cnote { font-size:10px; color:var(--muted); margin-left:2px; }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; }
+      .page-wrap { padding: 32px 20px 80px; }
+      .two-col { grid-template-columns: 1fr; }
+      .fv-cols { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══ -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-main">ys89 Network</div>
+    <div class="sidebar-logo-sub">Strategy Report · 2026</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">架構</div>
+    <a class="nav-item" href="#arch">完整網絡架構圖</a>
+    <a class="nav-item" href="#layers">各層角色分析</a>
+    <a class="nav-item" href="#funnel">流量漏斗</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">PBN 策略</div>
+    <a class="nav-item" href="#da20">DA 20+ 優化方向</a>
+    <a class="nav-item" href="#da50">DA 50+ 部署策略</a>
+    <a class="nav-item" href="#anchor">Anchor Text</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">擴張</div>
+    <a class="nav-item" href="#phase">分階段執行計畫</a>
+    <a class="nav-item" href="#expand">擴張路線圖</a>
+    <a class="nav-item" href="#risk">風險管理</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">總覽</div>
+    <a class="nav-item" href="#summary">一頁總覽</a>
+  </div>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+<div class="page-wrap">
+
+  <!-- ── Header ── -->
+  <header class="report-header">
+    <div class="report-eyebrow"><div class="report-eyebrow-dot"></div>Internal Strategy Document · Confidential · 2026</div>
+    <h1 class="report-title"><span class="hl">ys89</span> 全網絡架構<br>PBN 策略完整報告</h1>
+    <p class="report-desc">涵蓋完整網絡層次、各站角色定義、DA 20+ / DA 50+ PBN 優化方向與後續擴張計畫</p>
+    <div class="meta-row">
+      <div class="meta-chip"><div class="meta-chip-dot" style="background:var(--gold)"></div>目標站：5 層架構</div>
+      <div class="meta-chip"><div class="meta-chip-dot" style="background:var(--green)"></div>PBN 站：3（DA 20+）+ 2（DA 50+）</div>
+      <div class="meta-chip"><div class="meta-chip-dot" style="background:var(--cyan)"></div>衛星站：4 個世足域名</div>
+      <div class="meta-chip"><div class="meta-chip-dot" style="background:var(--red)"></div>足跡風險：待修復</div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: 架構圖 -->
+  <!-- ════════════════════════════════ -->
+  <section class="section active" id="arch">
+    <div class="section-eyebrow">Section 01</div>
+    <h2>完整網絡架構圖</h2>
+
+    <div class="netmap">
+
+      <!-- ── TIER 0 ── -->
+      <div class="nm-tier">
+        <div class="nm-tier-meta">
+          <div class="nm-tier-tag t0-tag">TIER 0</div>
+          <div class="nm-tier-name">最終轉換</div>
+        </div>
+        <div class="nm-nodes">
+          <div class="nm-node nm-n-gold" style="max-width:420px">
+            <div class="nm-node-icon">🎯</div>
+            <div class="nm-node-role">主平台 · 最高導流目標</div>
+            <div class="nm-node-domain">ys89.bet</div>
+            <div class="nm-node-desc">所有流量的最終目的地，實際轉換發生在此。完全不依賴搜尋引擎排名，靠上層站點直接導流。</div>
+            <span class="nm-tag nm-tag-green">✓ SEO 風險完全隔離</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- connector 0→1 -->
+      <div class="nm-conn">
+        <div class="nm-conn-single">
+          <div class="nm-conn-line"></div>
+          <div class="nm-conn-arrow"></div>
+          <div class="nm-conn-label">↑ 站內 CTA 直接導流</div>
+        </div>
+      </div>
+
+      <!-- ── TIER 1 ── -->
+      <div class="nm-tier">
+        <div class="nm-tier-meta">
+          <div class="nm-tier-tag t1-tag">TIER 1</div>
+          <div class="nm-tier-name">SEO 主站</div>
+        </div>
+        <div class="nm-nodes">
+          <div class="nm-node nm-n-green" style="max-width:420px">
+            <div class="nm-node-icon">🔍</div>
+            <div class="nm-node-role">SEO 主攻目標</div>
+            <div class="nm-node-domain">ys89.fun</div>
+            <div class="nm-node-desc">Organic traffic 的唯一接收站。所有 PBN 外鏈的最終受益者，負責在 Google 排名後將流量轉介給 ys89.bet。</div>
+            <span class="nm-tag nm-tag-green">主要 PBN 外鏈目標</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- connector 1→2 -->
+      <div class="nm-conn">
+        <div class="nm-conn-group">
+          <div class="nm-conn-item">
+            <div class="nm-conn-line"></div>
+            <div class="nm-conn-arrow"></div>
+            <div class="nm-conn-label">↑ 品牌搜尋溢出導流</div>
+          </div>
+          <div class="nm-conn-item">
+            <div class="nm-conn-line"></div>
+            <div class="nm-conn-arrow"></div>
+            <div class="nm-conn-label">↑ ys89.* 世足流量</div>
+          </div>
+          <div class="nm-conn-item">
+            <div class="nm-conn-line" style="background:rgba(20,184,166,.5)"></div>
+            <div class="nm-conn-arrow" style="border-bottom-color:rgba(20,184,166,.5)"></div>
+            <div class="nm-conn-label" style="color:#2dd4bf;border-color:rgba(20,184,166,.3)">↑↑ fifa-worldcups.tw → ys89.bet 直跳</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TIER 2 ── -->
+      <div class="nm-tier">
+        <div class="nm-tier-meta">
+          <div class="nm-tier-tag t2-tag">TIER 2</div>
+          <div class="nm-tier-name">衛星站群</div>
+        </div>
+        <div class="nm-nodes">
+          <div class="nm-node nm-n-cyan">
+            <div class="nm-node-domain">ys89.me</div>
+            <div class="nm-node-desc">球迷故事<br>觀賽體驗</div>
+            <span class="nm-tag nm-tag-blue">長尾關鍵字</span>
+          </div>
+          <div class="nm-node nm-n-cyan">
+            <div class="nm-node-domain">ys89.games</div>
+            <div class="nm-node-desc">世足遊戲<br>運彩介紹</div>
+            <span class="nm-tag nm-tag-blue">直接相關詞</span>
+          </div>
+          <div class="nm-node nm-n-cyan">
+            <div class="nm-node-domain">ys89.biz</div>
+            <div class="nm-node-desc">商業分析<br>贊助商觀察</div>
+            <span class="nm-tag nm-tag-blue">商業角度詞</span>
+          </div>
+          <div class="nm-node nm-n-cyan">
+            <div class="nm-node-domain">ys89.info</div>
+            <div class="nm-node-desc">賽事資訊<br>數據統計</div>
+            <span class="nm-tag nm-tag-blue">資訊型搜尋</span>
+          </div>
+          <div class="nm-node nm-n-teal" style="flex:0 0 100%;margin-top:6px">
+            <div class="nm-node-icon">🏟</div>
+            <div class="nm-node-role">獨立世足衛星站 · 完全隔離</div>
+            <div class="nm-node-domain">fifa-worldcups.tw</div>
+            <div class="nm-node-desc">獨立 Cloudflare 帳號、獨立 GSC、獨立主機 IP。不與 ys89.* 任何站點共用帳號。世足搜尋流量直通 ys89.bet，不經過 ys89.fun。</div>
+            <span class="nm-tag nm-tag-teal">✓ 完全隔離 · 獨立 CF / GSC</span>
+          </div>
+          <div class="nm-node" style="border:1px dashed var(--yellow);background:rgba(251,191,36,.04);flex:0 0 100%;margin-top:6px">
+            <div class="nm-node-warn">⚠ 足跡風險：ys89.me / .games / .biz / .info 四站域名均含品牌前綴，Google 一旦串聯其中一個，其餘 ys89.* 均受影響。各站主機 IP 必須完全分離。fifa-worldcups.tw 已完全隔離，不在此風險範圍。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- connector 2→3 -->
+      <div class="nm-conn">
+        <div class="nm-conn-group">
+          <div class="nm-conn-item">
+            <div class="nm-conn-line"></div>
+            <div class="nm-conn-arrow"></div>
+            <div class="nm-conn-label">↑ 直打 ys89.fun 競爭頁</div>
+          </div>
+          <div class="nm-conn-item">
+            <div class="nm-conn-line"></div>
+            <div class="nm-conn-arrow"></div>
+            <div class="nm-conn-label">↑ 拉升 DA 20+ 站群</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TIER 3 ── -->
+      <div class="nm-tier">
+        <div class="nm-tier-meta">
+          <div class="nm-tier-tag t3-tag">TIER 3</div>
+          <div class="nm-tier-name">高權 PBN</div>
+        </div>
+        <div class="nm-nodes">
+          <div class="nm-node nm-n-red">
+            <div class="nm-node-icon">⚔️</div>
+            <div class="nm-node-role">快攻站</div>
+            <div class="nm-node-domain">DA 50+</div>
+            <div class="nm-node-desc">直接指向 ys89.fun 主競爭頁。外鏈 2–3 條，博弈主題偽裝文章，榨取最大即時排名效益。</div>
+            <span class="nm-tag nm-tag-red">消耗型資產</span>
+          </div>
+          <div class="nm-node nm-n-def">
+            <div class="nm-node-icon">🛡️</div>
+            <div class="nm-node-role">防禦站</div>
+            <div class="nm-node-domain">DA 50+</div>
+            <div class="nm-node-desc">指向 DA 20+ PBN 站群，拉升整體網絡 DA。完全正規內容，無博弈主題，難以被追蹤。</div>
+            <span class="nm-tag nm-tag-green">長期型資產</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- connector 3→4 -->
+      <div class="nm-conn">
+        <div class="nm-conn-group">
+          <div class="nm-conn-item">
+            <div class="nm-conn-line"></div>
+            <div class="nm-conn-arrow"></div>
+            <div class="nm-conn-label">↑ 外鏈傳遞 Link Equity</div>
+          </div>
+          <div class="nm-conn-item">
+            <div class="nm-conn-line"></div>
+            <div class="nm-conn-arrow"></div>
+            <div class="nm-conn-label">↑ DA 拉升後釋放更多外鏈</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TIER 4 ── -->
+      <div class="nm-tier">
+        <div class="nm-tier-meta">
+          <div class="nm-tier-tag t4-tag">TIER 4</div>
+          <div class="nm-tier-name">外部 PBN</div>
+        </div>
+        <div class="nm-nodes">
+          <div class="nm-node nm-n-purple">
+            <div class="nm-node-role">個人部落格</div>
+            <div class="nm-node-domain">deckmatt.com</div>
+            <div class="nm-node-desc">Matt 的個人筆記站</div>
+            <span class="nm-tag nm-tag-purple">DA 20+</span>
+            <div class="nm-node-warn">⚠ 外鏈比例待修復</div>
+          </div>
+          <div class="nm-node nm-n-purple">
+            <div class="nm-node-role">裝備評測站</div>
+            <div class="nm-node-domain">adviseist.com</div>
+            <div class="nm-node-desc">Tony 的戶外裝備評測</div>
+            <span class="nm-tag nm-tag-purple">DA 20+</span>
+            <div class="nm-node-warn">⚠ 足跡問題最高</div>
+          </div>
+          <div class="nm-node nm-n-purple">
+            <div class="nm-node-role">永續旅遊站</div>
+            <div class="nm-node-domain">hipgreenscene.com</div>
+            <div class="nm-node-desc">Maya 的旅遊筆記</div>
+            <span class="nm-tag nm-tag-purple">DA 20+</span>
+            <div class="nm-node-warn">⚠ 同指 ys89.games 首頁</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- connector 4→5 -->
+      <div class="nm-conn">
+        <div class="nm-conn-single">
+          <div class="nm-conn-line"></div>
+          <div class="nm-conn-arrow"></div>
+          <div class="nm-conn-label">↑ Web 2.0 / 論壇引用 / Guest Post 建外鏈</div>
+        </div>
+      </div>
+
+      <!-- ── TIER 5 ── -->
+      <div class="nm-tier">
+        <div class="nm-tier-meta">
+          <div class="nm-tier-tag t5-tag">TIER 5</div>
+          <div class="nm-tier-name">基礎信號</div>
+        </div>
+        <div class="nm-nodes">
+          <div class="nm-node nm-n-gray">
+            <div class="nm-node-icon">📱</div>
+            <div class="nm-node-domain" style="font-size:12px">社群帳號</div>
+            <div class="nm-node-desc">Twitter / Instagram 品牌存在感</div>
+          </div>
+          <div class="nm-node nm-n-gray">
+            <div class="nm-node-icon">📝</div>
+            <div class="nm-node-domain" style="font-size:12px">Web 2.0</div>
+            <div class="nm-node-desc">Medium / Blogger 補充外鏈</div>
+          </div>
+          <div class="nm-node nm-n-gray">
+            <div class="nm-node-icon">💬</div>
+            <div class="nm-node-domain" style="font-size:12px">論壇引用</div>
+            <div class="nm-node-desc">PTT / Dcard 真實流量信號</div>
+          </div>
+          <div class="nm-node nm-n-gray">
+            <div class="nm-node-icon">✍️</div>
+            <div class="nm-node-domain" style="font-size:12px">Guest Post</div>
+            <div class="nm-node-desc">DA 25+ 真實站自然外鏈</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout gold">
+      <strong>架構強度評估：</strong> 這是一個設計成熟的多層網絡。最大的優勢是 ys89.bet 完全不依賴搜尋引擎，即使 ys89.fun 被懲罰，主平台不受直接影響。<strong>fifa-worldcups.tw 完全隔離的設計是加分項</strong>——它作為獨立的世足流量入口，與 ys89 品牌域名群無任何帳號關聯，即使 ys89.* 衛星站被串聯調查，fifa-worldcups.tw 不受波及。目前最大的弱點是 Tier 4 的 DA 20+ 站足跡問題，以及 Tier 2 的同品牌域名暴露風險。
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: 各層分析 -->
+  <!-- ════════════════════════════════ -->
+  <section class="section" id="layers">
+    <div class="section-eyebrow">Section 02</div>
+    <h2>各層角色分析</h2>
+
+    <h3>Tier 0 · <span class="domain-pill">ys89.bet</span> 主平台</h3>
+    <div class="two-col">
+      <div class="card c-gold">
+        <div class="card-label">角色</div>
+        <div class="card-val gold" style="font-size:18px">最終轉換</div>
+        <div class="card-desc">所有流量的最終目的地，實際發生用戶行為的主平台。完全不需要排名，靠上層導流</div>
+      </div>
+      <div class="card">
+        <div class="card-label">風險隔離</div>
+        <div class="card-val" style="font-size:18px;color:var(--green2)">最高</div>
+        <div class="card-desc">與 SEO 層完全分離，Google 懲罰 ys89.fun 不影響此站的流量。架構設計正確</div>
+      </div>
+    </div>
+
+    <h3>Tier 1 · <span class="domain-pill">ys89.fun</span> SEO 主站</h3>
+    <p>整個 SEO 操作的核心目標。所有 PBN 外鏈的最終受益方，負責在 Google 排名，然後把流量轉介給 ys89.bet。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>面向</th><th>現狀</th><th>目標</th></tr></thead>
+        <tbody>
+          <tr><td>外鏈來源</td><td>DA 20+ PBN 站 × 3（少量）</td><td>DA 50+ × 2 + DA 20+ × 5–6 + Guest Post × 5–10</td></tr>
+          <tr><td>主攻關鍵字</td><td>未確認</td><td>博弈 / 運彩 / 百家樂 / 戰神賽特等核心競爭詞</td></tr>
+          <tr><td>Referring Domains</td><td>少（待確認）</td><td>目標 25–35 個高品質 RD</td></tr>
+          <tr><td>流量去向</td><td>→ ys89.bet（直跳）</td><td>保持，加強 CTA 效率</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tier 2 · 衛星站群 <span class="domain-pill">ys89.me / .games / .biz / .info</span></h3>
+    <p>四個世足主題的衛星站，各有不同的內容定位，形成品牌覆蓋矩陣。</p>
+    <div class="callout warn">
+      <strong>重要足跡警告：</strong> 四個域名都帶有 <code>ys89</code> 品牌前綴。Google 一旦識別其中一個是操控性連結站，會直接串聯調查所有 ys89.* 域名，包括 ys89.fun 和 ys89.bet。這是整個架構目前最大的系統性風險。
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>域名</th><th>建議內容定位</th><th>功能</th><th>與 ys89.fun 的關係</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ys89.me</strong></td><td>球迷個人故事 / 觀賽體驗</td><td>長尾關鍵字覆蓋</td><td>可互鏈（謹慎）</td></tr>
+          <tr><td><strong>ys89.games</strong></td><td>世足遊戲 / 運彩介紹</td><td>直接相關關鍵字</td><td>最直接，但也最高風險</td></tr>
+          <tr><td><strong>ys89.biz</strong></td><td>世足商業分析 / 贊助商</td><td>商業角度關鍵字</td><td>間接補充</td></tr>
+          <tr><td><strong>ys89.info</strong></td><td>賽事資訊 / 數據統計</td><td>資訊型關鍵字</td><td>資訊型搜尋入口</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: 流量漏斗 -->
+  <!-- ════════════════════════════════ -->
+  <section class="section" id="funnel">
+    <div class="section-eyebrow">Section 03</div>
+    <h2>流量漏斗分析</h2>
+
+    <div class="fv-wrap">
+      <div class="fv-header">流量漏斗全景</div>
+
+      <!-- ── 雙流量路徑 ── -->
+      <div class="fv-cols">
+
+        <!-- 左：SEO 路徑 -->
+        <div class="fv-col">
+          <div class="fv-col-label fv-label-seo">🔍 SEO 流量路徑</div>
+
+          <div class="fv-node fv-n-user">
+            <div class="fv-node-title">👤 Google 搜尋用戶</div>
+            <div class="fv-node-sub">搜尋博弈 / 運彩關鍵字</div>
+          </div>
+
+          <div class="fv-arrow"><div class="fv-arr-inner">
+            <div class="fv-arr-line"></div><div class="fv-arr-tip"></div>
+            <div class="fv-arr-text">PBN 外鏈撐起排名</div>
+          </div></div>
+
+          <div class="fv-node fv-n-fun">
+            <div class="fv-node-title">ys89.fun</div>
+            <div class="fv-node-sub">Organic 流量唯一接收站<br>DA 20+ / DA 50+ PBN 支撐</div>
+            <span class="fv-node-tag" style="background:rgba(16,185,129,.12);color:var(--green)">主要 PBN 外鏈目標</span>
+          </div>
+
+          <div class="fv-arrow"><div class="fv-arr-inner">
+            <div class="fv-arr-line"></div><div class="fv-arr-tip"></div>
+            <div class="fv-arr-text">站內 CTA 導流連結</div>
+          </div></div>
+
+          <div class="fv-node fv-n-bet">
+            <div class="fv-node-title">🎯 ys89.bet</div>
+            <div class="fv-node-sub">實際轉換發生在此</div>
+            <span class="fv-node-tag" style="background:rgba(245,158,11,.12);color:var(--gold)">✓ SEO 風險完全隔離</span>
+          </div>
+        </div>
+
+        <!-- 右：衛星站直連路徑 -->
+        <div class="fv-col">
+          <div class="fv-col-label fv-label-sat">⚽ 衛星站直連路徑</div>
+
+          <div class="fv-node fv-n-user">
+            <div class="fv-node-title">👤 世足搜尋用戶</div>
+            <div class="fv-node-sub">搜尋 2026 世足相關關鍵字</div>
+          </div>
+
+          <div class="fv-arrow"><div class="fv-arr-inner">
+            <div class="fv-arr-line"></div><div class="fv-arr-tip"></div>
+          </div></div>
+
+          <div class="fv-node fv-n-sat">
+            <div class="fv-node-title">ys89 衛星站群</div>
+            <div class="fv-node-sub">ys89.me · ys89.games · ys89.biz · ys89.info<br>各站不同世足內容定位</div>
+            <div class="fv-fifa">
+              <div class="fv-node-title" style="color:#2dd4bf;font-size:12px">🏟 fifa-worldcups.tw</div>
+              <div class="fv-node-sub">獨立 CF / GSC · 完全隔離</div>
+              <span class="fv-node-tag" style="background:rgba(20,184,166,.12);color:#2dd4bf">✓ 零帳號關聯</span>
+            </div>
+          </div>
+
+          <div class="fv-arrow"><div class="fv-arr-inner">
+            <div class="fv-arr-line"></div><div class="fv-arr-tip"></div>
+            <div class="fv-arr-text">直跳（不經 ys89.fun）</div>
+          </div></div>
+
+          <div class="fv-node fv-n-bet">
+            <div class="fv-node-title">🎯 ys89.bet</div>
+            <div class="fv-node-sub">直接轉換，無需排名</div>
+            <span class="fv-node-tag" style="background:rgba(245,158,11,.12);color:var(--gold)">直接轉換</span>
+          </div>
+        </div>
+
+      </div><!-- /fv-cols -->
+
+      <!-- ── Link Graph ── -->
+      <div class="fv-lg">
+        <div class="fv-lg-title">Google Link Graph · PBN 外鏈傳遞路徑</div>
+
+        <div class="fv-chain">
+          <div class="fv-cn fv-cn-red">⚔️ DA 50+ 快攻站</div>
+          <div class="fv-ca">→</div>
+          <div class="fv-cn fv-cn-grn">ys89.fun 主競爭頁</div>
+          <div class="fv-cnote">直打主詞，即時排名效益最大化</div>
+        </div>
+
+        <div class="fv-chain">
+          <div class="fv-cn fv-cn-grn">🛡️ DA 50+ 防禦站</div>
+          <div class="fv-ca">→</div>
+          <div class="fv-cn fv-cn-pur">DA 20+ 站群</div>
+          <div class="fv-ca">→</div>
+          <div class="fv-cn fv-cn-grn">ys89.fun 次要頁</div>
+          <div class="fv-cnote">迂迴路徑，拉升整體網絡 DA</div>
+        </div>
+
+        <div class="fv-chain">
+          <div class="fv-cn fv-cn-pur">DA 20+ 站群</div>
+          <div class="fv-ca">→</div>
+          <div class="fv-cn fv-cn-grn">ys89.fun</div>
+          <div class="fv-ca">+</div>
+          <div class="fv-cn" style="background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.25);color:var(--cyan)">ys89.games / ys89.me</div>
+          <div class="fv-cnote">選擇性執行，多元化 RD 來源</div>
+        </div>
+
+      </div>
+    </div>
+
+    <h3>雙流量架構的優勢</h3>
+    <div class="card-grid">
+      <div class="card c-green">
+        <div class="card-label">SEO 流量（ys89.fun）</div>
+        <div class="card-desc" style="font-size:13px">靠 PBN 外鏈撐起排名，流量穩定但依賴演算法。這條路被打斷不影響主平台存活</div>
+      </div>
+      <div class="card c-cyan">
+        <div class="card-label">品牌直流（衛星站）</div>
+        <div class="card-desc" style="font-size:13px">世足熱點期間的品牌搜尋流量，時效性強。不依賴競爭關鍵字排名</div>
+      </div>
+      <div class="card c-gold">
+        <div class="card-label">主平台隔離（ys89.bet）</div>
+        <div class="card-desc" style="font-size:13px">完全不在 Google Link Graph 中承擔 PBN 風險，是整個架構最乾淨的部分</div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: DA 20+ 優化 -->
+  <!-- ════════════════════════════════ -->
+  <section class="section" id="da20">
+    <div class="section-eyebrow">Section 04</div>
+    <h2>DA 20+ PBN 優化方向</h2>
+
+    <h3>三站現狀健診</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>站點</th><th>主題</th><th>DA</th><th>現有外鏈</th><th>足跡問題</th><th>緊急度</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>deckmatt.com</strong></td>
+            <td>個人部落格</td>
+            <td><span class="badge bg">20+</span></td>
+            <td>2 條 → ys89.fun</td>
+            <td>外鏈比例二元化</td>
+            <td><span class="badge by">中</span></td>
+          </tr>
+          <tr>
+            <td><strong>adviseist.com</strong></td>
+            <td>戶外裝備評測</td>
+            <td><span class="badge bg">20+</span></td>
+            <td>1 條 → ys89.games</td>
+            <td>與 hipgreenscene 指向同首頁</td>
+            <td><span class="badge br">高</span></td>
+          </tr>
+          <tr>
+            <td><strong>hipgreenscene.com</strong></td>
+            <td>永續旅遊</td>
+            <td><span class="badge bg">20+</span></td>
+            <td>2 條 → ys89.games + fifa-worldcups.tw</td>
+            <td>同上 + 建站時間集中</td>
+            <td><span class="badge br">高</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Step 1 · 立即修復（第 1–2 週）</h3>
+    <ul class="cl">
+      <li class="er">adviseist + hipgreenscene 同時指向 ys89.games 首頁 → 其中一站改指向 ys89.games 子頁面</li>
+      <li class="er">三站目前所有外鏈集中在博弈主題文章 → 各站補 2–3 個指向維基 / 品牌官網的無害外鏈</li>
+      <li class="wn">三站的 robots.txt 全部封鎖 AI 爬蟲，pattern 一致 → 考慮各站用稍微不同的封鎖策略</li>
+    </ul>
+
+    <h3>Step 2 · 站齡強化（第 2–3 週）</h3>
+    <ul class="cl">
+      <li>各站補發 3–5 篇日期標記為 2024–2025 年的 Backdated 文章</li>
+      <li>文章主題為各站的核心議題（不帶外鏈），讓 Google 索引時看到「歷史」</li>
+      <li>確認三站的主機 IP 是否在不同 C-class，若不是立即安排遷移</li>
+    </ul>
+
+    <h3>Step 3 · 外鏈使用率提升（第 3–5 週）</h3>
+    <p>DA 20+ 每站建議容量 5–6 條外鏈，目前只用了 1–2 條，使用率不到 30%。</p>
+    <div class="prog-row">
+      <div class="prog-label"><span>deckmatt.com 使用率</span><span style="color:var(--yellow)">2 / 6</span></div>
+      <div class="prog-bar"><div class="prog-fill yellow" style="width:33%"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label"><span>adviseist.com 使用率</span><span style="color:var(--red2)">1 / 6</span></div>
+      <div class="prog-bar"><div class="prog-fill red" style="width:17%"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label"><span>hipgreenscene.com 使用率</span><span style="color:var(--yellow)">2 / 6</span></div>
+      <div class="prog-bar"><div class="prog-fill yellow" style="width:33%"></div></div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:16px">
+      <table>
+        <thead><tr><th>站點</th><th>建議新增文章主題</th><th>外鏈目標</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>deckmatt</strong></td>
+            <td>線上消遣盤點 / 春節娛樂選擇</td>
+            <td>ys89.fun 分類頁 / 遊戲內頁</td>
+          </tr>
+          <tr>
+            <td><strong>adviseist</strong></td>
+            <td>看球 APP 整理 / 世足球迷線上娛樂</td>
+            <td>ys89.games 子頁（換掉首頁）</td>
+          </tr>
+          <tr>
+            <td><strong>hipgreenscene</strong></td>
+            <td>世足旅遊前的賽事追蹤工具 / 預算規劃</td>
+            <td>ys89.games 世足子頁 / ys89.fun</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Step 4 · DA 提升（第 2–3 個月）</h3>
+    <p>DA 20+ 的站如果 DA 能被拉升到 28–32，它傳遞的 link equity 會顯著提升。方法：</p>
+    <ul class="cl">
+      <li>從 Web 2.0（Medium / Blogger / HubPages）給三站建立外鏈</li>
+      <li>在 PTT / Dcard 偶爾引用三站的文章（製造真實流量信號）</li>
+      <li>防禦站 DA 50+ 部署後，指向三站中的 2 個，效果最顯著</li>
+    </ul>
+
+    <div class="callout success">
+      <strong>最大化目標：</strong> 三站各達到 5 條有效外鏈，合計 15 條 DA 20+ 外鏈指向 ys89.fun / ys89.games，加上 DA 被拉升到 28+ 後，效果將是目前的 4–5 倍。
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: DA 50+ 策略 -->
+  <!-- ════════════════════════════════ -->
+  <section class="section" id="da50">
+    <div class="section-eyebrow">Section 05</div>
+    <h2>DA 50+ 部署策略：快攻 × 防禦</h2>
+
+    <div class="two-col">
+      <div class="card c-red">
+        <div class="card-label">快攻站 DA 50+</div>
+        <div class="card-val" style="font-size:18px;color:var(--red2)">直打主戰場</div>
+        <div class="card-desc">直接指向 ys89.fun 最重要的競爭頁面。接受較高風險，榨取最大即時排名效益。這個站是消耗型資產。</div>
+      </div>
+      <div class="card c-green">
+        <div class="card-label">防禦站 DA 50+</div>
+        <div class="card-val" style="font-size:18px;color:var(--green2)">拉升網絡整體</div>
+        <div class="card-desc">指向 DA 20+ PBN 站群，提升現有站的傳遞價值。內容完全正規，無博弈主題。這個站是長期資產。</div>
+      </div>
+    </div>
+
+    <h3>快攻站部署細節</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>規格</th></tr></thead>
+        <tbody>
+          <tr><td>外鏈數量</td><td>2–3 條（用滿）</td></tr>
+          <tr><td>外鏈目標</td><td>ys89.fun 最重要的 1–2 個競爭頁面（不打首頁）</td></tr>
+          <tr><td>戰神賽特內容</td><td><span class="badge by">可以放</span>，但以「台灣熱門線上娛樂盤點」包裝，戰神賽特是清單中的一項而非唯一主角</td></tr>
+          <tr><td>外鏈部署時機</td><td>站上線 + 10–15 篇一般文章後，第 4–6 週才放第一條</td></tr>
+          <tr><td>Anchor Text</td><td>第 1 條長尾詞 / 第 2 條品牌詞 / 第 3 條自然詞</td></tr>
+          <tr><td>心態</td><td>消耗品。若被識別立即移除外鏈，讓站轉為普通內容站</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>防禦站部署細節</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>規格</th></tr></thead>
+        <tbody>
+          <tr><td>外鏈目標</td><td>adviseist.com 和 hipgreenscene.com 的一般文章頁（非首頁）</td></tr>
+          <tr><td>外鏈數量</td><td>2 條即可（各指向不同的 DA 20+ 站）</td></tr>
+          <tr><td>內容要求</td><td>完全正規，可以是旅遊 / 財經 / 科技等，<strong>不需要任何博弈內容</strong></td></tr>
+          <tr><td>與目標站的距離</td><td>防禦站 → DA 20+ 站 → ys89.fun（兩層距離，更難被追蹤）</td></tr>
+          <tr><td>部署時機</td><td>快攻站確認有效後再啟動，比快攻晚 4–6 週</td></tr>
+          <tr><td>長期價值</td><td>DA 20+ 站被拉升至 DA 28–32 後，整個 Tier 4 的輸出翻倍</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>兩站協同時間軸</h3>
+    <div class="code-block">
+<span class="c-cm"># 兩站部署時間差（避免同時啟動）</span>
+
+Month 1   <span class="c-er">快攻站上線</span>，發 10–15 篇一般文章，不放外鏈
+Month 2   <span class="c-er">快攻站</span>放第 1 條外鏈 → ys89.fun 競爭頁，觀察排名變化
+          <span class="c-ok">防禦站上線</span>，發一般內容，不放外鏈
+Month 2.5 <span class="c-er">快攻站</span>放第 2 條外鏈（若第 1 條有效）
+Month 3   <span class="c-ok">防禦站</span>放外鏈 → adviseist.com 或 hipgreenscene.com 一般文章
+Month 4   觀察 DA 20+ 站的 DA 是否上升
+          若有上升，<span class="c-gd">DA 20+ 站新增貨幣文章</span>，釋放升值後的 link equity
+Month 5+  <span class="c-ok">防禦站</span>可視情況放第 2 條 → 另一個 DA 20+ 站
+
+<span class="c-cm"># 先確認快攻有效，再投入防禦資源——損失最小化原則</span>
+    </div>
+
+    <div class="callout warn">
+      <strong>戰神賽特專欄的正確姿勢：</strong> DA 50+ 快攻站不應開設「戰神賽特專欄」（太集中、太明顯）。正確做法是 1 篇「台灣線上娛樂盤點」文章，戰神賽特作為盤點項目之一，文章中段自然埋入 1 條外鏈指向 ys89.fun 的對應頁面。2–3 個月後再發第 2 篇不同角度的文章補第 2 條外鏈。
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: Anchor Text -->
+  <!-- ════════════════════════════════ -->
+  <section class="section" id="anchor">
+    <div class="section-eyebrow">Section 06</div>
+    <h2>Anchor Text 全網絡策略</h2>
+
+    <div class="card-grid">
+      <div class="card"><div class="card-label">品牌型</div><div class="card-val green">30%</div><div class="card-desc">ys89、ys89.fun 品牌名、域名</div></div>
+      <div class="card"><div class="card-label">自然詞</div><div class="card-val green">25%</div><div class="card-desc">「這裡」「這份資料」「點此查看」</div></div>
+      <div class="card"><div class="card-label">長尾關鍵字</div><div class="card-val" style="color:var(--yellow)">25%</div><div class="card-desc">含目標詞但非完整 exact match</div></div>
+      <div class="card"><div class="card-label">完整關鍵字</div><div class="card-val" style="color:var(--red2)">≤20%</div><div class="card-desc">直接使用競爭關鍵字，嚴格控制比例</div></div>
+    </div>
+
+    <h3>目標頁面分散比例</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>目標頁面類型</th><th>佔比</th><th>範例</th></tr></thead>
+        <tbody>
+          <tr><td>ys89.fun 首頁</td><td>25%</td><td>ys89.fun/</td></tr>
+          <tr><td>ys89.fun 主分類頁</td><td>35%</td><td>ys89.fun/baccarat/ · /poker/</td></tr>
+          <tr><td>ys89.fun 具體遊戲頁</td><td>25%</td><td>ys89.fun/gates-of-olympus/ 等</td></tr>
+          <tr><td>衛星站（ys89.games 等）</td><td>15%</td><td>世足相關內頁</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: 分階段執行 -->
+  <!-- ════════════════════════════════ -->
+  <section class="section" id="phase">
+    <div class="section-eyebrow">Section 07</div>
+    <h2>分階段執行計畫</h2>
+
+    <div class="phase-roadmap">
+
+      <!-- Phase 1 -->
+      <div class="phase-lane ph-red">
+        <div class="phase-label">
+          <div class="phase-label-num">1</div>
+          <div>緊急修復<br>Week 1–5</div>
+        </div>
+        <div class="phase-steps">
+          <div class="phase-step">
+            <div class="ps-timing">Week 1–2 · 緊急修復</div>
+            <div class="ps-title">DA 20+ 足跡問題修復</div>
+            <ul class="ps-body">
+              <li>adviseist / hipgreenscene 其中一站外鏈改指向 ys89.games 子頁面</li>
+              <li>三站各補 2–3 條無害外鏈（維基 / 品牌官網）</li>
+              <li>確認三站主機 IP 是否在不同 C-class</li>
+            </ul>
+            <div class="phase-step-connector"></div>
+          </div>
+          <div class="phase-step">
+            <div class="ps-timing">Week 2–3 · 站齡強化</div>
+            <div class="ps-title">補發 Backdated 文章 + 基礎建設</div>
+            <ul class="ps-body">
+              <li>三站各補發 3–5 篇 2024–2025 年舊文章</li>
+              <li>三站各建立獨立 Google 帳號 + GSC 驗證</li>
+              <li>各站建立對應社群帳號（Instagram / Twitter）</li>
+            </ul>
+            <div class="phase-step-connector"></div>
+          </div>
+          <div class="phase-step">
+            <div class="ps-timing">Week 3–5 · 使用率提升</div>
+            <div class="ps-title">新增貨幣文章，外鏈使用率 → 60%+</div>
+            <ul class="ps-body">
+              <li>各站新增 1–2 篇博弈主題文章，各帶 1 條外鏈</li>
+              <li>Anchor Text 按比例分配</li>
+              <li>外鏈目標指向 ys89.fun 不同子頁面</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-connector-row">↓ Phase 1 完成後啟動 DA 50+ 部署</div>
+
+      <!-- Phase 2 -->
+      <div class="phase-lane ph-gold">
+        <div class="phase-label">
+          <div class="phase-label-num">2</div>
+          <div>DA 50+<br>部署<br>Month 2–3</div>
+        </div>
+        <div class="phase-steps">
+          <div class="phase-step">
+            <div class="ps-timing">Month 2 · 快攻部署</div>
+            <div class="ps-title">⚔️ DA 50+ 快攻站上線</div>
+            <ul class="ps-body">
+              <li>建站，主題：體育媒體 / 娛樂消費評論</li>
+              <li>發 10–15 篇一般文章</li>
+              <li>第 4–6 週放第 1 條外鏈 → ys89.fun 主競爭頁</li>
+            </ul>
+            <div class="phase-step-connector"></div>
+          </div>
+          <div class="phase-step">
+            <div class="ps-timing">Month 3 · 防禦部署</div>
+            <div class="ps-title">🛡️ DA 50+ 防禦站上線</div>
+            <ul class="ps-body">
+              <li>建站，完全正規內容主題</li>
+              <li>放 2 條外鏈各指向不同 DA 20+ 站一般文章</li>
+              <li>觀察 DA 20+ 站的 DA 變化（通常 2–3 個月後可見）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-connector-row">↓ DA 20+ 站群被防禦站拉升後</div>
+
+      <!-- Phase 3 -->
+      <div class="phase-lane ph-green">
+        <div class="phase-label">
+          <div class="phase-label-num">3</div>
+          <div>網絡擴張<br>Month 4–12</div>
+        </div>
+        <div class="phase-steps">
+          <div class="phase-step">
+            <div class="ps-timing">Month 4–5 · 網絡收穫</div>
+            <div class="ps-title">DA 20+ 升值後釋放更多外鏈</div>
+            <ul class="ps-body">
+              <li>DA 升至 28+ 後，各站再新增 1–2 條外鏈</li>
+              <li>Guest Post 洽談啟動（DA 25+ 真實站 × 3–5 篇）</li>
+              <li>評估是否新增第 4、5 個 DA 15–25 PBN 站</li>
+            </ul>
+            <div class="phase-step-connector"></div>
+          </div>
+          <div class="phase-step">
+            <div class="ps-timing">Month 6–12 · 擴張與鞏固</div>
+            <div class="ps-title">網絡擴張 + 持續維護</div>
+            <ul class="ps-body">
+              <li>新增 2–3 個 DA 20+ PBN 站（財經 / 電玩主題）</li>
+              <li>每站每月更新 1–2 篇維持活躍度</li>
+              <li>監控全網 DA 變化，適時補充外鏈</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: 擴張路線圖 -->
+  <!-- ════════════════════════════════ -->
+  <section class="section" id="expand">
+    <div class="section-eyebrow">Section 08</div>
+    <h2>擴張路線圖（6–12 個月）</h2>
+
+    <h3>理想的 12 個月後網絡規模</h3>
+
+    <div class="nm12-wrap">
+
+      <!-- 最終目標站 -->
+      <div class="nm12-target">
+        <div class="nm12-target-label">🎯 所有外鏈最終指向</div>
+        <div class="nm12-target-domain">ys89.fun</div>
+        <div class="nm12-target-sub">Organic traffic 唯一接收站 · SEO 主攻目標</div>
+        <div class="nm12-target-badge">目標 RD：25–35 個（高品質混合來源）</div>
+      </div>
+
+      <div class="nm12-arrow">↑<br><span class="nm12-arrow-label">全部外鏈指向此站</span></div>
+
+      <!-- DA 50+ 層 -->
+      <div class="nm12-tier nm12-da50">
+        <div class="nm12-tier-header">
+          <div class="nm12-tier-badge">DA 50+ × 2</div>
+          <div class="nm12-tier-line"></div>
+          <div class="nm12-tier-desc">快攻 + 防禦（現有，持續維護）</div>
+        </div>
+        <div class="nm12-nodes">
+          <div class="nm12-node">
+            <div class="nm12-node-name">⚔️ 快攻站</div>
+            <div class="nm12-node-da">DA 50+</div>
+            <span class="nm12-node-tag">打主競爭詞</span>
+          </div>
+          <div class="nm12-node">
+            <div class="nm12-node-name">🛡️ 防禦站</div>
+            <div class="nm12-node-da">DA 50+</div>
+            <span class="nm12-node-tag">拉升 DA 20+ 站群</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nm12-arrow">↑</div>
+
+      <!-- DA 28-35 層 -->
+      <div class="nm12-tier nm12-da35">
+        <div class="nm12-tier-header">
+          <div class="nm12-tier-badge">DA 28–35 × 3</div>
+          <div class="nm12-tier-line"></div>
+          <div class="nm12-tier-desc">現有三站被防禦站拉升後的狀態</div>
+        </div>
+        <div class="nm12-nodes">
+          <div class="nm12-node">
+            <div class="nm12-node-name">adviseist</div>
+            <div class="nm12-node-da">DA 28–35（升值後）</div>
+            <span class="nm12-node-tag">各站 2–5 條外鏈</span>
+          </div>
+          <div class="nm12-node">
+            <div class="nm12-node-name">hipgreenscene</div>
+            <div class="nm12-node-da">DA 28–35（升值後）</div>
+            <span class="nm12-node-tag">各站 2–5 條外鏈</span>
+          </div>
+          <div class="nm12-node">
+            <div class="nm12-node-name">第三站</div>
+            <div class="nm12-node-da">DA 28–35（升值後）</div>
+            <span class="nm12-node-tag">各站 2–5 條外鏈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nm12-arrow">↑</div>
+
+      <!-- DA 20-25 層（新建） -->
+      <div class="nm12-tier nm12-da20">
+        <div class="nm12-tier-header">
+          <div class="nm12-tier-badge">DA 20–25 × 3</div>
+          <div class="nm12-tier-line"></div>
+          <div class="nm12-tier-desc">Phase 3 新建（每 2 個月最多 2 站）</div>
+        </div>
+        <div class="nm12-nodes">
+          <div class="nm12-node new">
+            <div class="nm12-node-name">財經 / 個人理財</div>
+            <div class="nm12-node-da">DA 20–25</div>
+            <span class="nm12-node-tag">P1 · 待建</span>
+          </div>
+          <div class="nm12-node new">
+            <div class="nm12-node-name">電玩 / 手遊評測</div>
+            <div class="nm12-node-da">DA 20–25</div>
+            <span class="nm12-node-tag">P1 · 待建</span>
+          </div>
+          <div class="nm12-node new">
+            <div class="nm12-node-name">美食 / 夜生活</div>
+            <div class="nm12-node-da">DA 15–20</div>
+            <span class="nm12-node-tag">P2 · 待建</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nm12-arrow">↑</div>
+
+      <!-- Guest Post 層 -->
+      <div class="nm12-tier nm12-gp">
+        <div class="nm12-tier-header">
+          <div class="nm12-tier-badge">Guest Post × 5–10</div>
+          <div class="nm12-tier-line"></div>
+          <div class="nm12-tier-desc">真實站外鏈，補充自然信號</div>
+        </div>
+        <div class="nm12-nodes">
+          <div class="nm12-node new">
+            <div class="nm12-node-name">真實站外鏈</div>
+            <div class="nm12-node-da">DA 25+ 真實站</div>
+            <span class="nm12-node-tag">Month 4–5 開始洽談</span>
+          </div>
+          <div class="nm12-node new">
+            <div class="nm12-node-name">多元來源補充</div>
+            <div class="nm12-node-da">自然信號</div>
+            <span class="nm12-node-tag">避免單一 PBN 依賴</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nm12-arrow">↑</div>
+
+      <!-- 衛星站層 -->
+      <div class="nm12-tier nm12-sat">
+        <div class="nm12-tier-header">
+          <div class="nm12-tier-badge">衛星站 × 4</div>
+          <div class="nm12-tier-line"></div>
+          <div class="nm12-tier-desc">ys89.me / .games / .biz / .info（品牌流量 + 持續更新）</div>
+        </div>
+        <div class="nm12-nodes">
+          <div class="nm12-node"><div class="nm12-node-name">ys89.me</div><div class="nm12-node-da">球迷故事</div><span class="nm12-node-tag">長尾關鍵字</span></div>
+          <div class="nm12-node"><div class="nm12-node-name">ys89.games</div><div class="nm12-node-da">世足遊戲</div><span class="nm12-node-tag">直接相關詞</span></div>
+          <div class="nm12-node"><div class="nm12-node-name">ys89.biz</div><div class="nm12-node-da">商業分析</div><span class="nm12-node-tag">商業角度詞</span></div>
+          <div class="nm12-node"><div class="nm12-node-name">ys89.info</div><div class="nm12-node-da">賽事資訊</div><span class="nm12-node-tag">資訊型搜尋</span></div>
+        </div>
+      </div>
+
+      <!-- 匯總指標 -->
+      <div class="nm12-summary">
+        <div class="nm12-sum-card">
+          <div class="nm12-sum-num" style="color:var(--gold)">8</div>
+          <div class="nm12-sum-label">PBN 站總數<br>DA 20–50+</div>
+        </div>
+        <div class="nm12-sum-card">
+          <div class="nm12-sum-num" style="color:var(--accent2)">5–10</div>
+          <div class="nm12-sum-label">Guest Post<br>真實站外鏈</div>
+        </div>
+        <div class="nm12-sum-card">
+          <div class="nm12-sum-num" style="color:var(--green2)">25–35</div>
+          <div class="nm12-sum-label">總 RD 目標<br>指向 ys89.fun</div>
+        </div>
+        <div class="nm12-sum-card">
+          <div class="nm12-sum-num" style="color:var(--cyan)">4</div>
+          <div class="nm12-sum-label">衛星站<br>品牌流量補充</div>
+        </div>
+      </div>
+
+    </div>
+
+    <h3>新站主題優先序（避免與現有三站重複）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>優先</th><th>主題</th><th>博弈橋接方式</th><th>目標 DA</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge bg">P1</span></td>
+            <td>財經 / 個人理財</td>
+            <td>機率 / 資金管理 → 娛樂城出金 / 期望值</td>
+            <td>DA 20–25</td>
+          </tr>
+          <tr>
+            <td><span class="badge bg">P1</span></td>
+            <td>電玩 / 手遊評測</td>
+            <td>線上遊戲 → 線上娛樂城 / 老虎機</td>
+            <td>DA 20–25</td>
+          </tr>
+          <tr>
+            <td><span class="badge bb">P2</span></td>
+            <td>美食 / 夜生活</td>
+            <td>台灣娛樂消費 → 線上娛樂選擇</td>
+            <td>DA 15–20</td>
+          </tr>
+          <tr>
+            <td><span class="badge bp">P3</span></td>
+            <td>新聞 / 時事評論</td>
+            <td>世足賽事 → 運彩預測</td>
+            <td>DA 20–25</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>擴張速度控制</h3>
+    <div class="callout">
+      <strong>關鍵原則：</strong> 每 2 個月最多新增 2 個 PBN 站。ys89.fun 的 referring domain 增速如果在短時間內異常暴增，Google 會主動調查連結來源。每批新站啟動後至少等 6 週再放第一條外鏈。
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ -->
+  <!-- SECTION: 風險管理 -->
+  <!-- ════════════════════════════════ -->
+  <section class="section" id="risk">
+    <div class="section-eyebrow">Section 09</div>
+    <h2>風險管理</h2>
+
+    <h3>全網絡風險矩陣</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>風險項目</th><th>影響層級</th><th>當前狀態</th><th>應對</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>衛星站同品牌域名（ys89.*）被串聯</td>
+            <td><span class="badge br">Tier 0–2 全影響</span></td>
+            <td><span class="badge br">高風險</span></td>
+            <td>各站主題差異化，避免互相連結，確保各站主機完全分離</td>
+          </tr>
+          <tr>
+            <td>DA 20+ 三站足跡被識別</td>
+            <td><span class="badge by">Tier 4 外鏈失效</span></td>
+            <td><span class="badge by">中風險（待修復）</span></td>
+            <td>按 Section 04 修復清單執行</td>
+          </tr>
+          <tr>
+            <td>快攻站 DA 50+ 被識別</td>
+            <td><span class="badge by">失去 2–3 條高品質外鏈</span></td>
+            <td><span class="badge bg">低（尚未部署）</span></td>
+            <td>移除外鏈，讓站轉為普通內容站。不刪站</td>
+          </tr>
+          <tr>
+            <td>ys89.fun 遭 Manual Action</td>
+            <td><span class="badge by">SEO 流量中斷</span></td>
+            <td><span class="badge bg">低（ys89.bet 不受影響）</span></td>
+            <td>提交 Disavow，申訴，或啟用備援 SEO 主站</td>
+          </tr>
+          <tr>
+            <td>Google 演算法更新</td>
+            <td><span class="badge by">排名波動</span></td>
+            <td><span class="badge bb">常態風險</span></td>
+            <td>多元化連結來源（PBN + Guest Post），避免單一依賴</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>被識別時的分站處理 SOP</h3>
+    <div class="code-block">
+<span class="c-cm"># 任一 PBN 站被 Google deindex 或收到 Manual Action</span>
+
+Step 1  <span class="c-er">立即停止</span>該站的新外鏈發布
+Step 2  將該站所有金錢外鏈改為 nofollow 或移除
+Step 3  <span class="c-wn">不要刪除整個站</span>（刪除更可疑，且 Google 已有記錄）
+Step 4  讓該站轉為普通內容站，繼續正常更新
+Step 5  評估是否有其他站與被識別站有足跡關聯
+        若有，立即處理關聯足跡
+
+<span class="c-cm"># 各站獨立，被識別不應連帶影響其他站</span>
+<span class="c-cm"># 前提是主機 IP / 主機商 / 域名足跡確實分離</span>
+    </div>
+
+    <h3>監控頻率</h3>
+    <ul class="cl">
+      <li>每週：GSC 檢查各站是否有 Manual Action 或 Coverage 異常</li>
+      <li>每月：Ahrefs / Semrush 確認 ys89.fun 的 DR / referring domain 變化</li>
+      <li>每月：確認三個 DA 20+ 站的 DA 是否維持或上升</li>
+      <li>每季：重新評估各 PBN 站容量，決定是否新增外鏈或新站</li>
+    </ul>
+  </section>
+
+  <!-- ── 總結 ── -->
+  <section class="section" id="summary">
+    <h2>一頁總覽</h2>
+    <div class="card-grid">
+      <div class="card c-red">
+        <div class="card-label">立即執行（本週）</div>
+        <div class="card-desc" style="font-size:13px">修復 DA 20+ 三站的外鏈足跡問題，補充無害外鏈打破二元模式</div>
+      </div>
+      <div class="card c-yellow">
+        <div class="card-label">短期（第 2–4 週）</div>
+        <div class="card-desc" style="font-size:13px">Backdated 文章 + 新增貨幣文章，把三站使用率從 22% 拉到 65%+</div>
+      </div>
+      <div class="card c-gold">
+        <div class="card-label">中期（Month 2–3）</div>
+        <div class="card-desc" style="font-size:13px">快攻站 DA 50+ 上線打主競爭詞，防禦站 DA 50+ 拉升 DA 20+ 站群</div>
+      </div>
+      <div class="card c-green">
+        <div class="card-label">長期（Month 4–12）</div>
+        <div class="card-desc" style="font-size:13px">DA 20+ 升值後釋放更多外鏈，新建 2–3 站補充 RD 多元性，Guest Post 補充自然信號</div>
+      </div>
+    </div>
+    <div class="callout gold" style="margin-top:8px">
+      <strong>核心邏輯：</strong> ys89.bet 靠架構隔離保持乾淨。ys89.fun 靠 PBN 外鏈排名，是整個 SEO 操作的核心受益站。DA 20+ 站負責量的覆蓋，DA 50+ 站負責質的突破——快攻打主詞，防禦養網絡。擴張節奏控制在每 2 個月 2 站以內，避免 ys89.fun 的 referring domain 增速觸發 Google 警戒。
+    </div>
+  </section>
+
+  <footer class="report-footer">
+    <span>ys89 Network Strategy Report · 2026</span>
+    <span>Internal Use Only · Confidential</span>
+  </footer>
+
+</div>
+</div>
+
+<script>
+(function () {
+  const sections = document.querySelectorAll('.section');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  // Mark the first nav item as active on load
+  const firstNav = document.querySelector('.nav-item[href="#arch"]');
+  if (firstNav) firstNav.classList.add('active');
+
+  navItems.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      var id = item.getAttribute('href').slice(1);
+
+      // Hide all sections
+      sections.forEach(function (s) { s.classList.remove('active'); });
+      // Deactivate all nav items
+      navItems.forEach(function (n) { n.classList.remove('active'); });
+
+      // Show target section
+      var target = document.getElementById(id);
+      if (target) { target.classList.add('active'); }
+      item.classList.add('active');
+
+      // Scroll back to top
+      window.scrollTo(0, 0);
+    });
+  });
+})();
+</script>
+</body>
+</html>

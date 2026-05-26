@@ -1,0 +1,333 @@
+═══════════════════════════════════════════════════════════
+YS89.fun 完整生圖提示詞清單
+═══════════════════════════════════════════════════════════
+日期：2026-05-26
+品牌色：cyan #00f0ff / hot pink #ff006e / gold #ffd700 / green #39ff14 / 深底 #020617
+建議工具：Midjourney v6 (推薦) / ChatGPT DALL-E 3 / Stable Diffusion XL
+═══════════════════════════════════════════════════════════
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   PART 1：5 編輯人設頭像 (Avatar, 正方形 1:1)             ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+【共通風格】
+- 1:1 比例（IG / WP author 用）
+- 半身或頭像 close-up
+- 賽博龐克霓虹背景
+- 漫畫風 / illustration style（不要寫實，避免肖像權問題）
+- 角色面向鏡頭，神情符合人設
+
+────────────────────────────────────
+1-1. 電玩凱凱 (Casey) - 老虎機 / 電子遊戲
+檔名：avatar-casey-kai.png
+────────────────────────────────────
+
+[Midjourney v6]
+illustrated portrait of a 30-year-old asian male gamer, headphones on neck, holding a phone showing slot machine, cyberpunk neon background with floating slot symbols (cherries, 7s, gold coins), neon cyan and gold glow, retrowave aesthetic, anime style portrait, friendly approachable expression --ar 1:1 --style raw --v 6
+
+[ChatGPT DALL-E 3]
+An illustrated anime-style portrait of a 30-year-old Asian male gamer. He wears casual hoodie with headphones around his neck, holding a smartphone showing a slot machine reel. Background: cyberpunk neon with floating slot symbols (cherries, sevens, gold coins). Color palette: deep navy background, cyan glow #00f0ff outlining figure, gold accents #ffd700, hot pink highlights #ff006e. Friendly expression. Square 1:1 format, suitable for IG profile.
+
+────────────────────────────────────
+1-2. 面具男 (Joy) - 百家樂 / 機率分析
+檔名：avatar-joy-mask.png
+────────────────────────────────────
+
+[Midjourney v6]
+illustrated portrait of a mysterious figure wearing a sleek geometric white mask, hand holding playing cards (baccarat banker hand), mathematical equations and probability charts floating in background, neon purple and cyan glow, cyberpunk anime style, intellectual mysterious vibe --ar 1:1 --style raw --v 6
+
+[ChatGPT DALL-E 3]
+An anime-style illustrated portrait of a mysterious slender figure wearing a sleek geometric white mask covering the face. Holding playing cards (baccarat banker hand). Background: floating mathematical equations, probability charts, and bell curves in neon purple and cyan #00f0ff. Cyberpunk anime style, intellectual mysterious atmosphere. Deep navy background, hot pink #ff006e and cyan accents. Square 1:1, suitable for IG profile.
+
+────────────────────────────────────
+1-3. mark - 出金 / USDT / 流水
+檔名：avatar-mark-fintech.png
+────────────────────────────────────
+
+[Midjourney v6]
+illustrated portrait of a 32-year-old asian businessman with glasses, smart casual shirt, laptop and coffee cup visible, USDT crypto coins floating, financial dashboard charts background, cyberpunk neon aesthetic, gold and green glow, fintech professional vibe, anime style --ar 1:1 --v 6
+
+[ChatGPT DALL-E 3]
+An anime-style illustrated portrait of a 32-year-old Asian businessman with thin black-rimmed glasses, wearing a smart casual collared shirt. Background: floating USDT crypto coins, financial dashboard with rising charts, and bank icons. Cyberpunk neon palette: deep navy background, gold #ffd700 and green #39ff14 glow, cyan accents. Confident calm expression. Square 1:1 IG profile format.
+
+────────────────────────────────────
+1-4. 阿奇 (Jay/Sean...) - 世足 / 運彩
+檔名：avatar-aqi-football.png
+────────────────────────────────────
+
+[Midjourney v6]
+illustrated portrait of a 28-year-old asian male sports fan wearing soccer jersey, holding a tablet showing live football match score, floating soccer balls and goal posts in background, world cup trophy silhouette, neon green and gold glow, cyberpunk stadium aesthetic, energetic expression, anime style --ar 1:1 --v 6
+
+[ChatGPT DALL-E 3]
+An anime-style illustrated portrait of a 28-year-old Asian male sports enthusiast wearing a soccer jersey. Holding a tablet showing live football scores. Background: floating soccer balls, goal posts, World Cup trophy silhouette. Cyberpunk neon palette: deep navy, green #39ff14 and gold #ffd700 glow, cyan accents #00f0ff. Energetic enthusiastic expression. Square 1:1 IG profile format.
+
+────────────────────────────────────
+1-5. 扁扁 (Sean) - 詐騙 / 黑名單 / 法律
+檔名：avatar-sean-antiscam.png
+────────────────────────────────────
+
+[Midjourney v6]
+illustrated portrait of a 35-year-old asian male wearing detective-style trench coat, magnifying glass in hand, warning signs and red alert icons floating in background, document files scattered, neon red and cyan glow, cyberpunk noir aesthetic, serious protective expression, anime style --ar 1:1 --v 6
+
+[ChatGPT DALL-E 3]
+An anime-style illustrated portrait of a 35-year-old Asian male in a detective-style dark trench coat, holding a magnifying glass. Background: floating red warning signs, exclamation marks, document files, blacklist icons. Cyberpunk noir palette: deep navy background, red #ef4444 alert glow, cyan #00f0ff accents. Serious protective expression conveying trustworthiness. Square 1:1 IG profile format.
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   PART 2：4 大 Pillar Pages 封面圖 (16:9 比例 1920×1080) ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+【共通規格】
+- 1920×1080 px（16:9）
+- WebP 格式 / 60-80% 壓縮
+- 文字留白區域（標題會疊在圖上）
+- 賽博龐克霓虹一致風格
+
+────────────────────────────────────
+2-1. 戰神賽特 PILLAR
+URL: ys89.fun/storm-of-seth-rtp-jp-strategy-2026/
+檔名：storm-of-seth-hero-neon.webp
+────────────────────────────────────
+
+[Midjourney v6]
+Egyptian god Seth with Set-animal head, holding glowing was-scepter, ancient Egyptian armor with neon hieroglyphic patterns, swirling sand storm effects, cyberpunk neon aesthetic, deep navy black background, neon cyan glow #00f0ff outlining figure, hot pink #ff006e accents, gold #ffd700 highlights, electric green #39ff14 lightning, slot machine reels in background mist, eye of Horus and ankh floating as glowing neon symbols, retrowave style, cinematic hero shot, dramatic god rays, epic gambling atmosphere --ar 16:9 --style raw --v 6
+
+[ChatGPT DALL-E 3]
+A cinematic 16:9 hero image of the Egyptian god Seth with his iconic Set-animal head, depicted in cyberpunk neon aesthetic. Character holds glowing was-scepter, wears ancient Egyptian armor with luminous hieroglyphic patterns. Color palette: deep navy black background (#020617), neon cyan glow (#00f0ff) outlining the figure, hot pink (#ff006e) accents, gold (#ffd700) on Egyptian motifs, electric green (#39ff14) lightning. Background: swirling sand storm, slot machine reels subtle in mist, floating eye of Horus and ankh as glowing neon symbols. Dramatic cinematic god rays. Epic mysterious atmosphere. No text, no logos.
+
+────────────────────────────────────
+2-2. 百家樂 PILLAR
+URL: ys89.fun/baccarat-complete-guide-2026/
+檔名：baccarat-pillar-hero.webp
+────────────────────────────────────
+
+[Midjourney v6]
+elegant baccarat table with playing cards (king of hearts, ace of spades) glowing with neon cyan edges, gold poker chips stacked, hot pink and cyan probability charts floating in background, art deco geometric patterns, deep navy black background, cyberpunk casino aesthetic, dramatic spotlight, cinematic hero shot --ar 16:9 --style raw --v 6
+
+[ChatGPT DALL-E 3]
+A cinematic 16:9 hero image of an elegant baccarat table scene in cyberpunk neon aesthetic. Center: playing cards (King of Hearts, Ace of Spades) with glowing neon cyan edges. Foreground: stacked gold and hot pink poker chips. Background: floating probability charts and bell curves in neon. Art deco geometric patterns. Color palette: deep navy black (#020617), cyan #00f0ff, hot pink #ff006e, gold #ffd700. Dramatic spotlight, cinematic atmosphere, no text.
+
+────────────────────────────────────
+2-3. 出金 PILLAR
+URL: ys89.fun/casino-withdrawal-complete-pillar-2026/
+檔名：withdrawal-pillar-hero.webp
+────────────────────────────────────
+
+[Midjourney v6]
+glowing USDT crypto coins flowing from screen into digital wallet, ATM card and Taiwan currency notes floating, financial dashboard with rising green arrows, security shield icon, cyberpunk neon aesthetic, gold and green glow, cyan accents, deep navy background, fintech professional vibe, cinematic 16:9 --ar 16:9 --v 6
+
+[ChatGPT DALL-E 3]
+A cinematic 16:9 hero image showing digital currency withdrawal in cyberpunk neon style. Center: glowing USDT crypto coins flowing from a phone screen into a digital wallet. Floating: ATM card, Taiwan currency notes (with NT$ symbols), financial dashboard with rising green arrows, security shield icon. Color palette: deep navy background (#020617), gold #ffd700, green #39ff14, cyan #00f0ff. Professional fintech atmosphere, dramatic lighting, no text.
+
+────────────────────────────────────
+2-4. 老虎機 PILLAR
+URL: ys89.fun/slots-complete-guide-2026/
+檔名：slots-pillar-hero.webp
+────────────────────────────────────
+
+[Midjourney v6]
+3 cyberpunk slot machine reels showing 7-7-7 jackpot, gold coins exploding outward, neon cyan and hot pink light beams, deep navy background, lightning effects, slot symbols (cherries, bells, diamonds) floating, retrowave aesthetic, dramatic hero shot, cinematic 16:9 --ar 16:9 --v 6
+
+[ChatGPT DALL-E 3]
+A cinematic 16:9 hero image of cyberpunk slot machines. Center: 3 spinning reels showing 7-7-7 jackpot alignment with explosive gold coin burst. Background: floating slot symbols (cherries, bells, diamonds, BAR), neon cyan and hot pink light beams, electric lightning effects. Color palette: deep navy black (#020617), cyan #00f0ff, hot pink #ff006e, gold #ffd700. Retrowave dramatic atmosphere, no text or logos.
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   PART 3：5 篇新發母站文章封面 (16:9)                     ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+────────────────────────────────────
+3-1. 娛樂城推薦 2026
+URL: ys89.fun/casino-recommend-2026/
+檔名：casino-recommend-2026-hero.webp
+────────────────────────────────────
+[Prompt]
+Top 10 ranking podium with floating logos and ratings (5 stars), Taiwan map silhouette in background, neon cyan and gold glow, deep navy cyberpunk aesthetic, comparison chart elements, dramatic cinematic lighting, no text --ar 16:9 --v 6
+
+────────────────────────────────────
+3-2. 娛樂城體驗金 NT$368
+URL: ys89.fun/casino-bonus-guide-2026/
+檔名：casino-bonus-hero.webp
+────────────────────────────────────
+[Prompt]
+NT$368 banknote glowing in neon cyan light, gift box with bow exploding gold coins, floating "FREE" badges, percentage calculator interface, cyberpunk neon hot pink and cyan glow, deep navy background, celebratory atmosphere --ar 16:9 --v 6
+
+────────────────────────────────────
+3-3. 娛樂城出金完整攻略
+URL: ys89.fun/casino-withdrawal-complete-guide-2026/
+檔名：casino-withdrawal-complete-hero.webp
+────────────────────────────────────
+[Prompt]
+Speed line motion blur showing Taiwan currency NT$ notes flying out of computer screen, stopwatch showing "5 minutes", green checkmark icons, cyberpunk neon green and gold, deep navy background, fast withdrawal concept --ar 16:9 --v 6
+
+────────────────────────────────────
+3-4. 百家樂技巧 2026
+URL: ys89.fun/baccarat-strategy-2026/
+檔名：baccarat-strategy-hero.webp
+────────────────────────────────────
+[Prompt]
+Banker vs Player baccarat cards facing off, glowing probability percentages "45.86%" and "44.62%" floating, road-map paper with red and blue dots, neon cyan and gold cyberpunk aesthetic, deep navy background, strategic atmosphere --ar 16:9 --v 6
+
+────────────────────────────────────
+3-5. 老虎機高 RTP 排行
+URL: ys89.fun/slots-rtp-guide-2026/
+檔名：slots-rtp-ranking-hero.webp
+────────────────────────────────────
+[Prompt]
+Top 10 slot machines lineup with floating RTP percentage labels (99%, 98%, 96.89%), Mega Joker and Storm of Seth themed elements, gold trophy in center, neon cyan and hot pink glow, deep navy cyberpunk aesthetic --ar 16:9 --v 6
+
+────────────────────────────────────
+3-6. Sweet Bonanza 攻略
+URL: ys89.fun/sweet-bonanza-strategy-2026/
+檔名：sweet-bonanza-hero.webp
+────────────────────────────────────
+[Prompt]
+Colorful candy explosion (lollipops, gummy bears, hearts), pink and purple sweet bonanza game theme, multiplier bombs glowing, 21,100x text element, vibrant neon cyan and pink, deep navy background with magical sparkles, playful cyberpunk aesthetic --ar 16:9 --v 6
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   PART 4：缺 featured image 的舊文章補圖                  ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+────────────────────────────────────
+4-1. 戰神賽特爆獎技巧 (post 1287)
+URL: ys89.fun/?p=1287
+檔名：seth-big-win-explosion.webp
+────────────────────────────────────
+[Prompt]
+Egyptian Set deity figure in dynamic pose, gold coins exploding from broken slot reel, expanding wild symbols glowing cyan, ankh and eye of Horus emerging from sand storm, 500x multiplier text element, cyberpunk neon aesthetic, deep navy background, explosive big-win moment --ar 16:9 --v 6
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   PART 5：2 衛星站 hero / cover (16:9)                   ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+────────────────────────────────────
+5-1. pansurihotel.com (世足旅遊主題)
+檔名：pansuri-hero.webp
+風格：要跟主站不同（米色暖橘調，非賽博龐克）
+────────────────────────────────────
+[Prompt]
+Vintage travel map of North America (USA Mexico Canada), passport with World Cup 2026 stamps, airplane silhouette flying across continents, soccer ball icons, warm amber and orange travel aesthetic, beige background with sepia tones, illustrated style, watercolor texture, retro travel poster vibe --ar 16:9 --v 6
+
+[作者頭像 - Allen 林志雄]
+檔名：avatar-allen.png
+[Prompt]
+illustrated portrait of a 32-year-old asian male travel writer, casual khaki jacket, holding a notebook, friendly approachable expression, warm beige and orange background, soft watercolor illustration style, sepia tones, anime-inspired but mature --ar 1:1 --v 6
+
+────────────────────────────────────
+5-2. plainjanedesigners.com (極簡生活)
+檔名：plainjane-hero.webp
+風格：米白極簡，跟主站完全不同
+────────────────────────────────────
+[Prompt]
+Minimalist still life: empty wooden table with single ceramic coffee cup, open notebook with pen, small plant in white pot, soft natural window light, beige and cream color palette, warm minimal scandinavian aesthetic, low contrast, slow living vibe --ar 16:9 --v 6
+
+[作者頭像 - Daniel 吳]
+檔名：avatar-daniel.png
+[Prompt]
+illustrated portrait of a 30-year-old asian male in plain white shirt, simple background, calm peaceful expression, beige and warm tones, soft watercolor illustration style, minimalist art style --ar 1:1 --v 6
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   PART 6：OG / Social Share 圖（1200×630，給 FB/IG）     ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+────────────────────────────────────
+通用 OG 範本（適用任何文章分享時的預覽圖）
+檔名：og-template-1200x630.webp
+────────────────────────────────────
+[Prompt]
+YS89 brand cyberpunk neon banner, futuristic logo placeholder area in center, glowing slot machine reels and playing cards on sides, deep navy background, gold cyan and pink accents, professional social media share format, no text, leave center area for logo overlay --ar 1.91:1 --v 6
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   執行優先順序建議                                        ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+🔴 P0（先做這些，最影響 CTR + 排名）：
+   1. 戰神賽特 PILLAR hero (2-1) - 主關鍵字 12,100/月
+   2. 百家樂 PILLAR hero (2-2)
+   3. 出金 PILLAR hero (2-3)
+   4. 老虎機 PILLAR hero (2-4)
+   5. 5 編輯人設頭像 (1-1 到 1-5)
+
+🟡 P1（GSC SERP CTR 提升）：
+   6. 3-1 到 3-6（6 篇新文章封面）
+   7. 4-1（戰神賽特爆獎技巧補圖）
+
+🟢 P2（部署時用）：
+   8. 2 衛星站 hero + 作者頭像 (5-1, 5-2)
+
+🔵 P3（後續）：
+   9. OG 範本 (6-1)
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   生圖完成後的處理流程                                    ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+1. 用 Midjourney 或 DALL-E 生圖
+2. 下載 PNG 後用 Squoosh.app 壓縮成 WebP（quality 75）
+3. 檔名照本檔指定（slug-friendly）
+4. 上傳到 ys89.fun/wp-admin/media-new.php
+5. 把對應的 featured image 設給對應的 post：
+
+   - 戰神賽特 pillar (post 2188) → storm-of-seth-hero-neon.webp
+   - 百家樂 pillar (post 3295) → baccarat-pillar-hero.webp
+   - 出金 pillar (post 3299) → withdrawal-pillar-hero.webp
+   - 老虎機 pillar (post 3303) → slots-pillar-hero.webp
+   - 戰神賽特爆獎 (post 1287) → seth-big-win-explosion.webp
+
+6. 5 編輯頭像：上傳後設給對應 user profile（Settings → Users → Edit Profile → Profile Picture）
+
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   AI 工具差異建議                                         ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+🎨 Midjourney v6 - 最推薦
+   - 風格一致性最好
+   - 賽博龐克 / 動漫風最強
+   - 月費 $10-30 美金
+
+🎨 ChatGPT Plus (DALL-E 3) - 第二選擇
+   - 文字理解最好
+   - 角色頭像也行
+   - 月費 $20 美金
+
+🎨 Stable Diffusion XL - 免費但需要技術
+   - 完全免費（本地跑）
+   - 控制最細
+   - 要懂 prompt engineering
+
+═══════════════════════════════════════════════════════════
+總計需要生：
+- 5 編輯頭像（1:1）
+- 4 Pillar hero（16:9）
+- 6 新文章封面（16:9）
+- 1 戰神賽特爆獎補圖（16:9）
+- 2 衛星站 hero + 2 作者頭像
+- 1 OG 範本
+─────────────────────
+合計 21 張圖
+═══════════════════════════════════════════════════════════
