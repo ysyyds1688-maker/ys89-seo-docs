@@ -698,6 +698,10 @@
     <a class="nav-item" href="#risk">風險管理</a>
   </div>
   <div class="nav-group">
+    <div class="nav-group-label">運維</div>
+    <a class="nav-item" href="#vpn-container">VPN × Container 對照</a>
+  </div>
+  <div class="nav-group">
     <div class="nav-group-label">總覽</div>
     <a class="nav-item" href="#summary">一頁總覽</a>
   </div>
@@ -1782,6 +1786,92 @@ Step 5  評估是否有其他站與被識別站有足跡關聯
   </section>
 
   <!-- ── 總結 ── -->
+  <section class="section" id="vpn-container">
+    <h2>🌐 VPN × Firefox Container 對照表（Footprint 隔離）</h2>
+    <div class="callout gold" style="margin-bottom:14px">
+      <strong>核心規則：</strong>
+      <ul style="margin:6px 0 0 18px;font-size:13px">
+        <li><strong>GitHub 推檔 → 永遠用澳洲</strong>（ysyyds1688-maker 帳號的「家」國家，避免異常登入警報）</li>
+        <li><strong>CF Pages dashboard → 永遠用澳洲</strong>（同 CF 帳號）</li>
+        <li><strong>每個 PBN 的 GSC → 用該 GSC 當初驗證時的國家</strong>（保持帳號歷史一致性）</li>
+        <li><strong>Firefox Container 仍然要切</strong>（隔離 cookie / login session，與 IP 國家無關）</li>
+        <li><strong>母站 ys89.fun 永遠用澳洲</strong>（家國家）</li>
+      </ul>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>PBN / 站</th>
+          <th>狀態</th>
+          <th>Firefox Container</th>
+          <th>GSC 驗證國家</th>
+          <th>GitHub Repo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ys89.fun</strong>（母站）</td>
+          <td>🟢 上線</td>
+          <td>Chrome（保留不切）</td>
+          <td>🇦🇺 澳洲</td>
+          <td>WordPress / Cloudways SSH</td>
+        </tr>
+        <tr>
+          <td><strong>deckmatt.com</strong></td>
+          <td>🟢 上線</td>
+          <td>deckmatt</td>
+          <td>🇨🇦 加拿大</td>
+          <td>ysyyds1688-maker/deckmatt</td>
+        </tr>
+        <tr>
+          <td><strong>adviseist.com</strong></td>
+          <td>🟢 上線</td>
+          <td>adviseist</td>
+          <td>🇺🇸 美國</td>
+          <td>yaobenyuanofficial-coder/adviseist-site</td>
+        </tr>
+        <tr>
+          <td><strong>hipgreenscene.com</strong></td>
+          <td>🟢 上線</td>
+          <td>hipgreenscene</td>
+          <td>🇨🇦 加拿大</td>
+          <td>ysyyds1688-maker/hipgreenscene-site</td>
+        </tr>
+        <tr>
+          <td><strong>fifa-worldcups.tw</strong></td>
+          <td>🟢 上線</td>
+          <td>fifa-worldcups</td>
+          <td>🇦🇺 澳洲（同 ys89 家族）</td>
+          <td>（待補）</td>
+        </tr>
+        <tr>
+          <td><strong>bolalive77.com</strong></td>
+          <td>🟡 待部署</td>
+          <td>bolalive77（待建）</td>
+          <td>🇮🇩 印尼（首次驗證即用）</td>
+          <td>待建立</td>
+        </tr>
+        <tr>
+          <td><strong>pansurihotel.com</strong></td>
+          <td>🟡 待部署</td>
+          <td>pansurihotel（待建）</td>
+          <td>🇸🇬 新加坡</td>
+          <td>待建立</td>
+        </tr>
+        <tr>
+          <td><strong>plainjanedesigners.com</strong></td>
+          <td>🟡 待部署</td>
+          <td>plainjanedesigners（待建）</td>
+          <td>🇯🇵 日本</td>
+          <td>待建立</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout" style="margin-top:14px">
+      <strong>⚠️ GoDaddy 同帳號風險：</strong> 所有域名都在同一個 GoDaddy 帳號買 → 馬上去開 <strong>WHOIS Privacy</strong> (Domain Privacy Protection)，否則 WHOIS 查 registrant email 會把所有 PBN 連起來。長期：新 PBN 換不同註冊商（Namecheap / Porkbun / Cloudflare Registrar）+ 不同付款卡。
+    </div>
+  </section>
+
   <section class="section" id="summary">
     <h2>一頁總覽</h2>
     <div class="card-grid">
