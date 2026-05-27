@@ -682,14 +682,85 @@
       h2 { font-size: 18px; }
       h3 { font-size: 15px; }
 
-      /* 網絡架構卡片 stack */
-      .nm-tier { flex-direction: column; align-items: stretch; }
-      .nm-tier-meta { width: 100%; margin-bottom: 12px; text-align: left; }
-      .nm-nodes { flex-direction: column; gap: 10px; }
-      .nm-node { flex: 1 1 100% !important; max-width: 100% !important; min-width: 0; }
-
-      /* Connector 換成垂直方向 */
-      .nm-conn-group { flex-direction: column; gap: 8px; }
+      /* === 網絡架構圖 RWD === */
+      .netmap {
+        padding: 18px 12px;
+        border-radius: 10px;
+      }
+      .nm-tier {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 0 !important;
+      }
+      /* TIER 標籤改成 banner 樣式（在 top） */
+      .nm-tier-meta {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 6px 0;
+        margin-bottom: 4px;
+        border-bottom: 1px solid var(--border);
+      }
+      .nm-tier-tag {
+        font-size: 11px !important;
+        padding: 4px 10px !important;
+        letter-spacing: 1.5px !important;
+      }
+      .nm-tier-name {
+        font-size: 12px !important;
+        text-align: left !important;
+        color: var(--text) !important;
+        font-weight: 600;
+      }
+      /* nodes 全部 stack */
+      .nm-nodes {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+      .nm-node {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        min-width: 0;
+        padding: 14px !important;
+      }
+      .nm-node-domain {
+        font-size: 16px !important;
+        word-break: break-all;
+      }
+      .nm-node-desc {
+        font-size: 12.5px !important;
+        line-height: 1.55 !important;
+      }
+      .nm-node-warn {
+        font-size: 11px !important;
+        padding: 8px 10px !important;
+        word-break: break-word;
+      }
+      /* TIER 1.5 含框的 tier 縮小邊距 */
+      .nm-tier[style*="border:2px dashed"] {
+        padding: 12px !important;
+        border-radius: 10px !important;
+        margin: 12px 0 !important;
+      }
+      /* Connector 換成垂直方向 + 縮小 */
+      .nm-conn { margin: 4px 0 !important; }
+      .nm-conn-single { padding: 0 !important; }
+      .nm-conn-group {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .nm-conn-item { width: 100%; }
+      .nm-conn-label {
+        font-size: 11px !important;
+        padding: 3px 10px !important;
+        white-space: normal !important;
+        text-align: center;
+      }
+      .nm-conn-line { height: 12px !important; }
 
       /* 表格橫向滾動 */
       table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
@@ -708,9 +779,6 @@
       .meta-chip { font-size: 11px; padding: 4px 8px; }
       .callout { padding: 10px 12px; font-size: 12.5px; }
       th, td { padding: 7px 10px; font-size: 12px; }
-      .nm-node { padding: 14px; }
-      .nm-node-domain { font-size: 16px; }
-      .nm-node-desc { font-size: 12.5px; }
       .domain-pill { font-size: 12px; padding: 2px 8px; }
       pre, code { font-size: 11.5px; }
 
@@ -721,8 +789,17 @@
       /* Nav badge 縮小 */
       .nav-item { padding: 6px 14px; font-size: 12.5px; }
 
-      /* 連線標籤 */
-      .nm-conn-label { font-size: 11px; padding: 3px 8px; }
+      /* 網絡架構圖 phone 優化 */
+      .netmap { padding: 14px 10px; }
+      .nm-node { padding: 12px !important; }
+      .nm-node-icon { font-size: 22px; }
+      .nm-node-domain { font-size: 15px !important; }
+      .nm-node-desc { font-size: 12px !important; }
+      .nm-node-role { font-size: 10px !important; }
+      .nm-tag { font-size: 10px !important; padding: 2px 6px !important; }
+      .nm-conn-label { font-size: 10.5px !important; padding: 3px 8px !important; }
+      .nm-tier-tag { font-size: 10px !important; padding: 3px 8px !important; }
+      .nm-tier-name { font-size: 11px !important; }
 
       /* card 縮小 padding */
       .card { padding: 14px; }
