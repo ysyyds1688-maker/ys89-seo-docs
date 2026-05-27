@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 自動發文 Pipeline 技術架構</title>
+<style>
+:root{--bg:#0c0e14;--surface:#161923;--surface2:#1e2235;--surface3:#252a40;--border:#2a3050;--accent:#5b8dee;--accent2:#a78bfa;--gold:#f59e0b;--green:#10b981;--yellow:#fbbf24;--red:#ef4444;--orange:#f97316;--cyan:#06b6d4;--text:#dde2f0;--muted:#7b85a3;--heading:#f0f4ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang TC','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:14.5px;padding:40px 20px}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font-size:28px;color:var(--heading);margin-bottom:8px}
+.subtitle{color:var(--muted);font-size:14px;margin-bottom:30px}
+h2{font-size:20px;color:var(--heading);margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+h3{font-size:16px;color:var(--accent2);margin:20px 0 10px}
+h4{font-size:14px;color:var(--gold);margin:14px 0 6px}
+.callout{background:var(--surface2);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 6px 6px 0;margin:10px 0}
+.callout.gold{border-left-color:var(--gold);background:rgba(245,158,11,0.08)}
+.callout.green{border-left-color:var(--green);background:rgba(16,185,129,0.08)}
+.callout.red{border-left-color:var(--red);background:rgba(239,68,68,0.08)}
+.callout strong{color:var(--heading)}
+table{width:100%;border-collapse:collapse;margin:12px 0;background:var(--surface);border-radius:6px;overflow:hidden;font-size:13px}
+th{background:var(--surface3);color:var(--heading);padding:9px 12px;text-align:left;font-weight:600}
+td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover td{background:var(--surface2)}
+ul,ol{padding-left:22px;line-height:1.85}
+li{margin-bottom:3px}
+code{background:var(--surface3);padding:1px 6px;border-radius:3px;font-size:12.5px;color:var(--yellow)}
+pre{background:#000;border:1px solid var(--border);padding:14px;border-radius:6px;overflow-x:auto;font-size:12px;line-height:1.6;margin:10px 0}
+pre code{background:none;padding:0;color:#a8e0ff}
+.q-box{background:rgba(167,139,250,0.1);border:1px dashed var(--accent2);padding:12px;border-radius:6px;margin:12px 0;font-size:13.5px}
+.q-box strong{color:var(--accent2)}
+.flow-step{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:6px;padding:14px 18px;margin:10px 0}
+.flow-num{display:inline-block;background:var(--accent);color:#fff;width:26px;height:26px;border-radius:50%;text-align:center;line-height:26px;font-weight:700;font-size:14px;margin-right:10px}
+.cost{display:inline-block;background:var(--gold);color:#0c0e14;padding:1px 8px;border-radius:3px;font-weight:600;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>AI 自動發文 Pipeline 技術架構</h1>
+<p class="subtitle">2026-05-27 · ys89.fun 每日 5 篇自動化 · Claude API + WP-CLI · 5 編輯人設輪流</p>
+
+<div class="callout gold">
+<strong>🎯 目標：</strong>每天自動產出 5 篇 SEO 文章，套用 5 個編輯人設（mark / 扁扁 / 阿奇 / 面具男 / 電玩凱凱）輪流發佈，內容品質要像真人寫，<strong>每月 150 篇</strong>，3 個月增加 450 篇。
+</div>
+
+<h2>🗺️ 整體 Pipeline 流程</h2>
+
+<div class="flow-step">
+<span class="flow-num">1</span><strong>關鍵字佇列（Keyword Queue）</strong>
+<p style="margin-top:6px;color:var(--muted);font-size:13px">從 sites.json + Ubersuggest API 抓長尾關鍵字 → 寫入 backlog DB → 標記主題分類</p>
+</div>
+
+<div class="flow-step">
+<span class="flow-num">2</span><strong>競品研究（SERP Analysis）</strong>
+<p style="margin-top:6px;color:var(--muted);font-size:13px">對每個關鍵字抓 Google 前 10 名 → 提取共同元素（標題模式、字數、結構）→ 餵給 AI 當參考</p>
+</div>
+
+<div class="flow-step">
+<span class="flow-num">3</span><strong>內容生成（Content Generation）</strong>
+<p style="margin-top:6px;color:var(--muted);font-size:13px">Claude API (Sonnet 4.6) 寫文 → 套編輯人設 → 自動內嵌 wc-article 結構 + Schema + 內鏈</p>
+</div>
+
+<div class="flow-step">
+<span class="flow-num">4</span><strong>品質檢查（QA）</strong>
+<p style="margin-top:6px;color:var(--muted);font-size:13px">字數檢查 / 關鍵字密度 / 敏感詞過濾 / 重複度檢查 / 內鏈數驗證</p>
+</div>
+
+<div class="flow-step">
+<span class="flow-num">5</span><strong>排程發佈（Schedule）</strong>
+<p style="margin-top:6px;color:var(--muted);font-size:13px">WP-CLI 建草稿 → 設 schedule（08:00 / 12:00 / 15:00 / 19:00 / 22:00 各 1 篇）→ 自動發佈</p>
+</div>
+
+<div class="flow-step">
+<span class="flow-num">6</span><strong>後置處理（Post-Publish）</strong>
+<p style="margin-top:6px;color:var(--muted);font-size:13px">自動 ping sitemap / 推 GSC / 內部交叉內鏈更新 / 清快取</p>
+</div>
+
+<div class="flow-step">
+<span class="flow-num">7</span><strong>人工抽查（5 分鐘/天）</strong>
+<p style="margin-top:6px;color:var(--muted);font-size:13px">你每天看 5 篇預覽（手機 5 分鐘）→ 發現問題立刻撤回（WP-CLI 自動腳本）</p>
+</div>
+
+<h2>🛠️ 技術選型</h2>
+
+<table>
+<thead><tr><th>元件</th><th>選型</th><th>理由</th><th>成本</th></tr></thead>
+<tbody>
+<tr><td><strong>AI 模型</strong></td><td>Claude Sonnet 4.6 API</td><td>中文長文最強、便宜、上下文 200K</td><td><span class="cost">$3/M input · $15/M output</span></td></tr>
+<tr><td><strong>排程引擎</strong></td><td>Cron + bash script（在 Cloudways）</td><td>不需額外服務</td><td><span class="cost">$0</span></td></tr>
+<tr><td><strong>關鍵字資料</strong></td><td>sites.json + keywords.json + Ubersuggest API</td><td>已有基礎</td><td><span class="cost">既有</span></td></tr>
+<tr><td><strong>SERP 抓取</strong></td><td>SerpAPI 或自家 curl + parse</td><td>SerpAPI 較穩，curl 較省</td><td><span class="cost">$0 或 $75/月</span></td></tr>
+<tr><td><strong>WP 接入</strong></td><td>WP-CLI（已裝）</td><td>最原生、最穩</td><td><span class="cost">$0</span></td></tr>
+<tr><td><strong>監控</strong></td><td>Telegram Bot 通知</td><td>每日發佈成功/失敗推送</td><td><span class="cost">$0</span></td></tr>
+<tr><td><strong>備份</strong></td><td>Cloudways 自動備份</td><td>萬一錯誤可回滾</td><td><span class="cost">既有</span></td></tr>
+</tbody>
+</table>
+
+<h2>📂 檔案架構</h2>
+
+<pre><code>~/seo-tools/ai-publish/
+├── config.json                 # API key、人設、發文時段
+├── keywords-queue.json         # 待寫關鍵字（每天從 backlog 抽 5 個）
+├── personas/
+│   ├── mark.md                 # 編輯人設 prompt
+│   ├── pp.md                   # 扁扁
+│   ├── achi.md                 # 阿奇
+│   ├── mask.md                 # 面具男
+│   └── kk.md                   # 電玩凱凱
+├── prompts/
+│   ├── system-prompt.md        # 系統提示（SEO 規則 + 結構）
+│   ├── article-template.md     # 文章模板（wc-article CSS）
+│   └── qa-checklist.md         # 品質檢查清單
+├── lib/
+│   ├── fetch-keyword.py        # 從 backlog 抽關鍵字
+│   ├── fetch-serp.py           # 抓 Google 前 10 名
+│   ├── generate-article.py     # 呼叫 Claude API 生文
+│   ├── qa-check.py             # 品質檢查
+│   ├── publish-wp.py           # WP-CLI 發佈
+│   ├── notify-telegram.py      # 通知
+│   └── rollback.py             # 撤回腳本
+├── output/
+│   ├── drafts/                 # AI 生成中
+│   ├── published/              # 已發佈備份
+│   └── failed/                 # 失敗紀錄
+├── run-daily.sh                # 主入口（cron 跑）
+└── README.md
+</code></pre>
+
+<h2>🤖 編輯人設範本</h2>
+
+<h3>例：mark.md</h3>
+<pre><code>--- mark 人設 prompt ---
+
+你是 Mark，ys89.fun 的資深編輯之一。
+
+【背景】
+- 32 歲男性，台北人
+- 5 年娛樂城產業經驗（從客服到內容編輯）
+- 個性：理性、數據導向、會講真話
+- 興趣：撲克、體育投注、數據分析
+
+【寫作風格】
+- 開頭直接給結論，不繞圈子
+- 大量用具體數字（賠率、RTP、流水）
+- 會主動指出市場黑暗面（但會給建議）
+- 不浮誇、不堆砌形容詞
+- 偶爾用一句台灣口語：「老實說...」「講白了...」「我自己玩到...」
+
+【禁忌】
+- 不寫「保證贏錢」「百分百」「無風險」
+- 不寫過度行銷話術
+- 不用簡體字
+- 不超出娛樂博弈合法討論範圍
+</code></pre>
+
+<h2>📝 文章生成 System Prompt（核心）</h2>
+
+<pre><code>--- system-prompt.md ---
+
+你正在為 ys89.fun（夜色娛樂城評測論壇）寫一篇 SEO 文章。
+
+【嚴格規則】
+1. 字數：1800-2500 字（不能少於 1500）
+2. 結構必須包含：
+   - 開頭 highlight-box（4 行重點摘要）
+   - 主標題（H1）含目標關鍵字
+   - 3-5 個 H2 子段落
+   - 至少 1 個 .wc-table 表格
+   - 6 個 FAQ（.faq-item 結構）
+   - 結尾 .cta-block 含 https://lihi2.me/LiqMX
+3. 內鏈：必須自然嵌入 2-3 個內部連結（從給定清單挑）
+4. 關鍵字密度：主關鍵字 1-2%（不能堆疊）
+5. 不可重複內容（與站內現有文章差異 > 70%）
+
+【SEO 強化】
+- Title：含主關鍵字 + 年份 + 1 個 modifier（攻略/教學/評測等）
+- Meta description：120-150 字，含主關鍵字
+- Schema：自動套用 Article + FAQPage
+- 圖片 alt：所有圖片要有描述性 alt
+
+【寫作品質】
+- 第一段必須命中搜尋意圖
+- 用具體例子、數字、案例
+- 避免 AI 感（不要說「總而言之」「綜上所述」）
+- 語氣自然，像真人在分享經驗
+
+【輸出格式】
+HTML（已加 wc-article CSS），可直接放入 WP 編輯器
+
+【目標關鍵字】
+{KEYWORD}
+
+【目標長尾變體】
+{LSI_KEYWORDS}
+
+【SERP 競品摘要】
+{COMPETITOR_SUMMARY}
+
+【可選內鏈】
+{INTERNAL_LINKS}
+
+【編輯人設】
+{PERSONA}
+</code></pre>
+
+<h2>⏰ 排程設計</h2>
+
+<table>
+<thead><tr><th>時段</th><th>編輯</th><th>主題傾向</th><th>cron</th></tr></thead>
+<tbody>
+<tr><td>08:00</td><td>Mark</td><td>數據分析、賠率、攻略</td><td><code>0 8 * * *</code></td></tr>
+<tr><td>12:00</td><td>扁扁（pp）</td><td>娛樂城評測、新手指南</td><td><code>0 12 * * *</code></td></tr>
+<tr><td>15:00</td><td>阿奇（achi）</td><td>遊戲玩法、技巧分享</td><td><code>0 15 * * *</code></td></tr>
+<tr><td>19:00</td><td>面具男（mask）</td><td>黑歷史揭露、詐騙警告</td><td><code>0 19 * * *</code></td></tr>
+<tr><td>22:00</td><td>電玩凱凱（kk）</td><td>新遊戲開箱、世足賽</td><td><code>0 22 * * *</code></td></tr>
+</tbody>
+</table>
+
+<h2>🎬 主入口腳本範例</h2>
+
+<pre><code># ~/seo-tools/ai-publish/run-daily.sh
+
+#!/bin/bash
+TIME=$(date +%H)
+DATE=$(date +%Y-%m-%d)
+
+# 根據時段選編輯
+case $TIME in
+  08) PERSONA="mark" ;;
+  12) PERSONA="pp" ;;
+  15) PERSONA="achi" ;;
+  19) PERSONA="mask" ;;
+  22) PERSONA="kk" ;;
+  *) echo "不在發文時段" && exit 0 ;;
+esac
+
+cd ~/seo-tools/ai-publish
+LOG="output/logs/$DATE-$TIME.log"
+
+echo "▶ [$DATE $TIME] 開始 ($PERSONA)" > $LOG
+
+# 1. 抽關鍵字
+KW=$(python3 lib/fetch-keyword.py 2>>$LOG)
+echo "關鍵字: $KW" >> $LOG
+
+# 2. 抓 SERP
+python3 lib/fetch-serp.py "$KW" > /tmp/serp.json 2>>$LOG
+
+# 3. 生文章
+python3 lib/generate-article.py \
+  --kw "$KW" \
+  --persona "$PERSONA" \
+  --serp /tmp/serp.json \
+  --out "output/drafts/$DATE-$TIME.html" 2>>$LOG
+
+# 4. 品質檢查
+python3 lib/qa-check.py "output/drafts/$DATE-$TIME.html" 2>>$LOG
+if [ $? -ne 0 ]; then
+  python3 lib/notify-telegram.py "❌ QA 失敗 $DATE $TIME" 2>>$LOG
+  exit 1
+fi
+
+# 5. 發佈
+python3 lib/publish-wp.py "output/drafts/$DATE-$TIME.html" --persona "$PERSONA" 2>>$LOG
+
+# 6. 通知
+python3 lib/notify-telegram.py "✅ 已發 [$PERSONA] $KW" 2>>$LOG
+
+echo "▶ 完成" >> $LOG
+</code></pre>
+
+<h2>📊 預期成本</h2>
+
+<table>
+<thead><tr><th>項目</th><th>單價</th><th>用量</th><th>月成本</th></tr></thead>
+<tbody>
+<tr><td>Claude Sonnet 4.6 API（input）</td><td>$3/M tokens</td><td>每篇 ~5K input × 150 篇 = 750K</td><td>~$2.25</td></tr>
+<tr><td>Claude Sonnet 4.6 API（output）</td><td>$15/M tokens</td><td>每篇 ~3K output × 150 篇 = 450K</td><td>~$6.75</td></tr>
+<tr><td>SerpAPI（可選）</td><td>$75/月</td><td>150 次 search</td><td>$75 或 $0（自家 curl）</td></tr>
+<tr><td>VPS（既有 Cloudways）</td><td>—</td><td>—</td><td>$0 新增</td></tr>
+<tr><td><strong>合計（最省版）</strong></td><td>—</td><td>—</td><td><strong>~$9/月</strong></td></tr>
+<tr><td><strong>合計（含 SerpAPI）</strong></td><td>—</td><td>—</td><td><strong>~$84/月</strong></td></tr>
+</tbody>
+</table>
+
+<h2>🚨 風險與防護</h2>
+
+<table>
+<thead><tr><th>風險</th><th>防護</th></tr></thead>
+<tbody>
+<tr><td>AI 文重複度高 → Google 識別</td><td>每篇 QA 檢查與站內現有文章相似度 < 30%</td></tr>
+<tr><td>關鍵字密度過高 → keyword stuffing penalty</td><td>QA 檢查密度 < 2%</td></tr>
+<tr><td>AI 生錯誤事實 → E-E-A-T 扣分</td><td>提示加「只引用公開可查事實，不確定的用模糊語氣」</td></tr>
+<tr><td>連續發爆量 → 異常信號</td><td>限 5 篇/天 + 分散時段</td></tr>
+<tr><td>WP API 出錯 → 漏發</td><td>失敗自動 retry + Telegram 通知</td></tr>
+<tr><td>內容過敏 → 法律風險</td><td>敏感詞表過濾（保證贏 / 包贏 / 必中 等）</td></tr>
+</tbody>
+</table>
+
+<h2>⏱ 建置時程</h2>
+
+<table>
+<thead><tr><th>階段</th><th>時間</th><th>動作</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>第 1 天</td><td>建檔案架構 + 寫 5 個人設 prompt + system prompt</td></tr>
+<tr><td>2</td><td>第 2-3 天</td><td>寫 6 個 lib 腳本（fetch / generate / qa / publish）</td></tr>
+<tr><td>3</td><td>第 4 天</td><td>手動跑 5 篇測試（每個編輯人設各 1 篇）</td></tr>
+<tr><td>4</td><td>第 5 天</td><td>你檢查 5 篇品質 → 調 prompt → 再跑 5 篇</td></tr>
+<tr><td>5</td><td>第 6 天</td><td>裝 cron + Telegram 通知 + 正式上線</td></tr>
+<tr><td>6</td><td>第 7 天起</td><td>每日 5 篇自動發 + 你每天 5 分鐘看預覽</td></tr>
+</tbody>
+</table>
+
+<h2>❓ 待你確認</h2>
+
+<div class="q-box">
+<strong>Q1：</strong>Claude API key 用你既有的？還是新開一個專給這個 pipeline 用（方便算成本）？
+</div>
+
+<div class="q-box">
+<strong>Q2：</strong>SerpAPI 要花 $75/月嗎？還是先用自家 curl 抓 SERP（免費但較不穩）？
+</div>
+
+<div class="q-box">
+<strong>Q3：</strong>5 個編輯人設的細節（背景 / 語氣 / 禁忌）你有要補的嗎？還是用我建議的版本？
+</div>
+
+<div class="q-box">
+<strong>Q4：</strong>Telegram 通知要不要做？（每篇發成功 / 失敗都推送，可即時掌握）
+</div>
+
+<div class="q-box">
+<strong>Q5：</strong>初期要不要設「人工審核閘」？（AI 生完先進草稿區，你點批准才發）<br>
+<span style="color:var(--muted);font-size:12.5px">建議：前 1-2 週設審核閘，建立信心後改自動發</span>
+</div>
+
+<div class="q-box">
+<strong>Q6：</strong>這 pipeline 只用在 ys89.fun？還是 6 個 PBN 站也要套（每週 1 篇）？
+</div>
+
+</div>
+</body>
+</html>

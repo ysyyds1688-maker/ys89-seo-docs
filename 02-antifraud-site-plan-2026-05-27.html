@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>反詐騙資訊整合站 完整規劃 (plainjanedesigners.com)</title>
+<style>
+:root{--bg:#0c0e14;--surface:#161923;--surface2:#1e2235;--surface3:#252a40;--border:#2a3050;--accent:#5b8dee;--accent2:#a78bfa;--gold:#f59e0b;--green:#10b981;--yellow:#fbbf24;--red:#ef4444;--orange:#f97316;--cyan:#06b6d4;--text:#dde2f0;--muted:#7b85a3;--heading:#f0f4ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang TC','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:14.5px;padding:40px 20px}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font-size:28px;color:var(--heading);margin-bottom:8px}
+.subtitle{color:var(--muted);font-size:14px;margin-bottom:30px}
+h2{font-size:20px;color:var(--heading);margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+h3{font-size:16px;color:var(--accent2);margin:20px 0 10px}
+h4{font-size:14px;color:var(--gold);margin:14px 0 6px}
+.callout{background:var(--surface2);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 6px 6px 0;margin:10px 0}
+.callout.gold{border-left-color:var(--gold);background:rgba(245,158,11,0.08)}
+.callout.green{border-left-color:var(--green);background:rgba(16,185,129,0.08)}
+.callout.red{border-left-color:var(--red);background:rgba(239,68,68,0.08)}
+.callout.purple{border-left-color:var(--accent2);background:rgba(167,139,250,0.08)}
+.callout strong{color:var(--heading)}
+table{width:100%;border-collapse:collapse;margin:12px 0;background:var(--surface);border-radius:6px;overflow:hidden;font-size:13px}
+th{background:var(--surface3);color:var(--heading);padding:9px 12px;text-align:left;font-weight:600}
+td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover td{background:var(--surface2)}
+ul,ol{padding-left:22px;line-height:1.85}
+li{margin-bottom:4px}
+code{background:var(--surface3);padding:1px 6px;border-radius:3px;font-size:12.5px;color:var(--yellow)}
+.q-box{background:rgba(167,139,250,0.1);border:1px dashed var(--accent2);padding:12px;border-radius:6px;margin:12px 0;font-size:13.5px}
+.q-box strong{color:var(--accent2)}
+.warn-box{background:rgba(239,68,68,0.08);border:1px solid var(--red);padding:14px;border-radius:6px;margin:14px 0}
+.warn-box strong{color:var(--red)}
+.kw-tag{display:inline-block;padding:2px 8px;background:var(--surface3);border-radius:3px;font-size:12px;margin:2px 3px}
+.kw-tag.target{background:var(--gold);color:#0c0e14;font-weight:600}
+.mock{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;margin:14px 0;font-family:'Courier New',monospace;font-size:12.5px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>反詐騙資訊整合站 完整規劃</h1>
+<p class="subtitle">2026-05-27 · <code>plainjanedesigners.com</code> · SERP 控評煙霧彈 · 編輯部模式</p>
+
+<div class="callout gold">
+<strong>🎯 戰略目標：</strong>當用戶搜「ys 詐騙」、「夜色 娛樂城 詐騙」、「線上博彩 騙局」時，<strong>第一頁不是負評，是我們的客觀反詐騙資訊站</strong>。站本身與 ys89 表面無關，但內容巧妙引導用戶「正規平台 = 安全選擇」的結論。
+</div>
+
+<div class="warn-box">
+<strong>⚠️ 法律免責關鍵：</strong>
+<ul style="margin:6px 0 0 18px">
+<li>絕對不能冒充政府單位（內政部 165 的延伸 / 警政署官方等）→ 會被罰</li>
+<li>免責聲明必須清楚：「本站為民間自發資訊整合，與內政部 165 防詐服務、警政署無任何關聯」</li>
+<li>不能在站上直接連到 ys89.fun / 不能 mention 夜色娛樂城（會被識破為 SEO 操作）</li>
+<li>建議引導：教用戶「如何辨別正規平台」→ 列出特徵 → 用戶自己 Google 找到符合特徵的 = ys89.fun</li>
+</ul>
+</div>
+
+<h2>🎭 站體身份規劃</h2>
+
+<h3>站名（候選 3 選 1）</h3>
+<table>
+<thead><tr><th>站名</th><th>定位感</th><th>SEO 潛力</th><th>推薦度</th></tr></thead>
+<tbody>
+<tr><td><strong>反詐騙資訊整合站</strong></td><td>中性、客觀、第三方</td><td>「反詐騙」搜量大</td><td>🟢 首選</td></tr>
+<tr><td>線上詐騙警示中心</td><td>警示、權威感</td><td>「線上詐騙」精準</td><td>🟢 備選</td></tr>
+<tr><td>消費者反詐知識庫</td><td>消保感、教育</td><td>較窄</td><td>🟡</td></tr>
+</tbody>
+</table>
+
+<h3>編輯部模式（無主理人）</h3>
+<table>
+<thead><tr><th>角色</th><th>顯名</th><th>背景描述（虛構但合理）</th></tr></thead>
+<tbody>
+<tr><td>編輯 1</td><td>反詐騙編輯部</td><td>「由一群關注網路安全的志工組成」</td></tr>
+<tr><td>編輯 2</td><td>法律顧問</td><td>「協助本站內容法律合規審核」（不具名）</td></tr>
+<tr><td>編輯 3</td><td>資安觀察員</td><td>「協助技術分析與資料整理」（不具名）</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<strong>About 頁範本：</strong>
+<div class="mock" style="margin-top:8px">
+本站由一群<strong>關注網路詐騙議題的志工</strong>於 2024 年共同發起，
+我們不隸屬於任何政府單位或商業組織，純粹希望透過公開透明的資訊整理，
+協助一般網路使用者辨識常見詐騙手法，避免落入陷阱。
+
+【本站宗旨】
+1. 不指名特定平台，避免商業色彩
+2. 客觀整理公開報導的詐騙案例
+3. 教導使用者「如何自我保護」的通用方法
+4. 提供查詢資源連結（含官方 165 反詐騙專線）
+
+【免責聲明】
+本站為民間自發性反詐騙資訊整合，<strong>與內政部 165 反詐騙專線、
+警政署及其他政府機關無任何關聯</strong>。所有內容僅供參考，不構成法律建議。
+真正遭遇詐騙請撥打 165 或 110 報案。
+</div>
+</div>
+
+<h2>🎯 目標關鍵字策略</h2>
+
+<h3>主要攻擊式關鍵字（SERP 控評）</h3>
+<div style="margin:10px 0">
+<span class="kw-tag target">ys 詐騙</span>
+<span class="kw-tag target">夜色詐騙</span>
+<span class="kw-tag target">夜色娛樂城詐騙</span>
+<span class="kw-tag target">ys89 是詐騙嗎</span>
+<span class="kw-tag target">夜色娛樂城黑網</span>
+<span class="kw-tag target">夜色娛樂城評價ptt</span>
+</div>
+
+<h3>支援式長尾關鍵字（流量 + 信任）</h3>
+<div style="margin:10px 0">
+<span class="kw-tag">娛樂城詐騙手法</span>
+<span class="kw-tag">線上娛樂城詐騙</span>
+<span class="kw-tag">如何辨別娛樂城真假</span>
+<span class="kw-tag">娛樂城黑名單 2026</span>
+<span class="kw-tag">娛樂城不出金怎麼辦</span>
+<span class="kw-tag">線上博弈詐騙案例</span>
+<span class="kw-tag">假娛樂城特徵</span>
+<span class="kw-tag">娛樂城ptt 黑名單</span>
+<span class="kw-tag">165 反詐騙 娛樂城</span>
+<span class="kw-tag">投資詐騙 娛樂城</span>
+</div>
+
+<h2>📐 站體架構</h2>
+
+<h3>首頁版型</h3>
+<div class="mock">
+┌─────────────────────────────────────────────┐
+│ Header: 反詐騙資訊整合站                       │
+│ 「教你辨識網路詐騙 · 保護自己與家人」          │
+├─────────────────────────────────────────────┤
+│ [警示橫幅] 本週新增 5 個常見詐騙手法 →        │
+├─────────────────────────────────────────────┤
+│ 📊 詐騙類型分類                                │
+│ ├ 投資詐騙       ├ 假冒平台詐騙              │
+│ ├ 線上博弈詐騙   ├ 釣魚簡訊                  │
+│ ├ 假交友詐騙     ├ 假冒客服                  │
+├─────────────────────────────────────────────┤
+│ 📰 最新案例分析（10 篇預覽）                    │
+├─────────────────────────────────────────────┤
+│ 🛡️ 「如何辨別正規平台」5 大關鍵特徵 →         │
+├─────────────────────────────────────────────┤
+│ 📞 求助管道                                    │
+│ • 165 反詐騙專線（連到 165.npa.gov.tw）       │
+│ • 110 報案專線                                │
+│ • 各縣市消保官                                │
+├─────────────────────────────────────────────┤
+│ Footer: 編輯部 / About / 免責聲明 / 聯絡       │
+└─────────────────────────────────────────────┘
+</div>
+
+<h3>主要分類目錄結構</h3>
+<table>
+<thead><tr><th>分類</th><th>子分類 / 文章類型</th></tr></thead>
+<tbody>
+<tr><td>📰 詐騙案例</td><td>近期實例分析（依公開報導改寫）</td></tr>
+<tr><td>🎰 線上博弈詐騙</td><td>假娛樂城辨識 / 不出金案例 / 黑名單清單（不具名）</td></tr>
+<tr><td>💰 投資詐騙</td><td>假股票群組 / 加密貨幣詐騙 / 虛擬投資平台</td></tr>
+<tr><td>📱 簡訊 / 釣魚</td><td>連結詐騙 / 假銀行通知 / OTP 騙取</td></tr>
+<tr><td>👤 假身份詐騙</td><td>假交友 / 假客服 / 假網路紅人</td></tr>
+<tr><td>🛡️ 自保指南</td><td>如何辨別正規平台 / 個資保護 / 報案 SOP</td></tr>
+<tr><td>📞 求助資源</td><td>165 連結 / 各縣市消保 / 律師諮詢</td></tr>
+</tbody>
+</table>
+
+<h2>📝 首批 15 篇文章規劃</h2>
+
+<table>
+<thead><tr><th>#</th><th>標題</th><th>目標關鍵字</th><th>巧妙引導點</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>線上娛樂城詐騙手法大全 2026｜10 種常見陷阱與辨別方法</td><td>線上娛樂城詐騙</td><td>列出特徵 → 暗示符合特徵的是安全的</td></tr>
+<tr><td>2</td><td>娛樂城不出金怎麼辦？4 階段自救 SOP + 預防指南</td><td>娛樂城不出金</td><td>「選擇出金紀錄良好的平台」</td></tr>
+<tr><td>3</td><td>如何辨別娛樂城真假？5 大關鍵特徵教你避雷</td><td>娛樂城真假</td><td>5 特徵剛好符合 ys89.fun（不具名）</td></tr>
+<tr><td>4</td><td>2026 假娛樂城黑名單特徵清單｜這些網域要小心</td><td>娛樂城黑名單</td><td>列假網域特徵，正規平台不符合</td></tr>
+<tr><td>5</td><td>網路博弈詐騙真實案例分析（依新聞改寫）</td><td>網路博弈詐騙</td><td>受害者是用了非正規平台</td></tr>
+<tr><td>6</td><td>165 反詐騙專線使用教學｜什麼時候該打？</td><td>165 反詐騙</td><td>純資訊文，建立站體信任</td></tr>
+<tr><td>7</td><td>正規線上平台必備的 7 大資安認證</td><td>線上平台 資安認證</td><td>列認證 → 暗示有認證的平台是安全的</td></tr>
+<tr><td>8</td><td>娛樂城客服詐騙！假冒客服 3 種手法</td><td>娛樂城客服詐騙</td><td>強調「24 小時官方客服才正規」</td></tr>
+<tr><td>9</td><td>線上博弈被騙怎麼辦？報案完整 SOP 2026</td><td>線上博弈被騙</td><td>建立站體權威</td></tr>
+<tr><td>10</td><td>娛樂城體驗金詐騙？真假體驗金辨別</td><td>娛樂城體驗金詐騙</td><td>暗示正規平台體驗金有清楚規則</td></tr>
+<tr><td>11</td><td>夜色娛樂城 詐騙傳聞解析｜真相是什麼？</td><td>夜色娛樂城詐騙</td><td>「經查並非詐騙，是正規營運」(關鍵置入)</td></tr>
+<tr><td>12</td><td>ys 詐騙 是真的嗎？網友爭議完整整理</td><td>ys 詐騙</td><td>「ys 系列平台屬合法營運範圍」</td></tr>
+<tr><td>13</td><td>娛樂城 PTT 評價怎麼看？分辨真假評論</td><td>娛樂城 ptt 評價</td><td>「假評論特徵 vs 真實玩家分享」</td></tr>
+<tr><td>14</td><td>投資詐騙與線上博弈的差別｜不要混淆</td><td>投資詐騙 博弈</td><td>釐清概念，建立站體中立感</td></tr>
+<tr><td>15</td><td>2026 詐騙統計報告｜內政部數據 + 民間觀察</td><td>2026 詐騙統計</td><td>引用 165 dashboard 數據，建立權威</td></tr>
+</tbody>
+</table>
+
+<h2>🎨 視覺風格</h2>
+
+<table>
+<tbody>
+<tr><td>主色</td><td>深藍 #1a3b6e + 警示橘 #f59e0b + 中性灰 #5c6478</td></tr>
+<tr><td>整體感</td><td>政府機關感 / 新聞媒體感 / 不要任何娛樂城色彩（避免身份洩漏）</td></tr>
+<tr><td>字體</td><td>思源黑體 / Noto Sans TC（系統字，無設計感）</td></tr>
+<tr><td>圖示</td><td>警示三角 / 盾牌 / 放大鏡 / 不用任何遊戲圖示</td></tr>
+<tr><td>禁忌</td><td>❌ 賭場圖片 ❌ 撲克牌 ❌ 老虎機 ❌ 金幣 ❌ 任何娛樂城品牌色（紫紅金）</td></tr>
+</tbody>
+</table>
+
+<h2>🔗 反連策略</h2>
+
+<div class="callout red">
+<strong>🚨 鐵則：</strong>
+<ul>
+<li>❌ <strong>絕對不能直連 ys89.fun</strong>（直接 SEO 操作會被識破）</li>
+<li>❌ 不能 mention「夜色娛樂城」（除了第 11 篇巧妙置入）</li>
+<li>❌ 不能跟任何 PBN / 衛星站互連</li>
+<li>✅ 可連 <code>165.npa.gov.tw</code>（建立信任）</li>
+<li>✅ 可連各縣市消保資源（建立中立感）</li>
+<li>✅ 可連自家其他文章（內部 SEO）</li>
+</ul>
+</div>
+
+<h2>🌐 部署 + GSC</h2>
+
+<table>
+<thead><tr><th>項目</th><th>規劃</th></tr></thead>
+<tbody>
+<tr><td>域名</td><td><code>plainjanedesigners.com</code>（已持有）</td></tr>
+<tr><td>原內容處理</td><td>Daniel 吳極簡設計內容 → <strong>全部棄用</strong>（移到備份資料夾）</td></tr>
+<tr><td>新內容類型</td><td>純靜態 HTML（仿 ys89-pbn 風格）/ 或 WP 輕量（看是否要持續發文）</td></tr>
+<tr><td>主機</td><td>建議 Cloudflare Pages（靜態，免費）</td></tr>
+<tr><td>GitHub Repo</td><td>新建（用全新 GitHub 帳號 → 完全隔離）</td></tr>
+<tr><td>Gmail / GSC</td><td>全新 Gmail（不能用任何現有的）→ 仿 bolalive77 yuan5566520 模式</td></tr>
+<tr><td>VPN</td><td>建議用台灣 VPN 註冊（看起來最像本地反詐騙網站）</td></tr>
+<tr><td>WHOIS Privacy</td><td>必開</td></tr>
+</tbody>
+</table>
+
+<h2>⏱ 預期時間軸</h2>
+<table>
+<thead><tr><th>階段</th><th>時間</th><th>動作</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>本週</td><td>plainjanedesigners 原內容備份 + 新版型設計</td></tr>
+<tr><td>2</td><td>第 1 週</td><td>新 Gmail + GitHub + CF 帳號（全新獨立）</td></tr>
+<tr><td>3</td><td>第 2 週</td><td>首頁 + About + 免責聲明 + 5 篇文章上線</td></tr>
+<tr><td>4</td><td>第 3 週</td><td>剩 10 篇文章補完 + GSC 驗證</td></tr>
+<tr><td>5</td><td>第 4-8 週</td><td>觀察「ys 詐騙」「夜色詐騙」等關鍵字排名</td></tr>
+<tr><td>6</td><td>第 8-12 週</td><td>可能進前 20，巧妙置入文章開始發揮控評效果</td></tr>
+</tbody>
+</table>
+
+<h2>❓ 待你確認</h2>
+
+<div class="q-box">
+<strong>Q1：</strong>站名選哪個？「反詐騙資訊整合站」/「線上詐騙警示中心」/「消費者反詐知識庫」？
+</div>
+
+<div class="q-box">
+<strong>Q2：</strong>網站要做純靜態 HTML（仿 PBN，CF Pages 免費）還是 WP（可持續發文，要 VPS）？
+<br><span style="color:var(--muted);font-size:12.5px">建議：先靜態 15 篇上線觀察排名，有效果再轉 WP</span>
+</div>
+
+<div class="q-box">
+<strong>Q3：</strong>第 11、12 篇「夜色娛樂城詐騙解析 / ys 詐騙真相」這種<strong>巧妙置入</strong>的文章可以嗎？還是太露？
+<br><span style="color:var(--muted);font-size:12.5px">這是控評核心武器，但風險：太明顯會被識破</span>
+</div>
+
+<div class="q-box">
+<strong>Q4：</strong>VPN 用台灣（最像本地）還是另一個國家（多一層隔離）？
+</div>
+
+<div class="q-box">
+<strong>Q5：</strong>15 篇全 AI 寫作可以嗎？還是這個站特別敏感要人工校對？
+</div>
+
+</div>
+</body>
+</html>
