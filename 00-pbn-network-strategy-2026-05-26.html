@@ -700,6 +700,7 @@
   <div class="nav-group">
     <div class="nav-group-label">運維</div>
     <a class="nav-item" href="#vpn-container">VPN × Container 對照</a>
+    <a class="nav-item" href="#bolalive77">🎰 bolalive77 部署紀錄</a>
   </div>
   <div class="nav-group">
     <div class="nav-group-label">總覽</div>
@@ -1844,12 +1845,12 @@ Step 5  評估是否有其他站與被識別站有足跡關聯
           <td>🇦🇺 澳洲（同 ys89 家族）</td>
           <td>（待補）</td>
         </tr>
-        <tr>
-          <td><strong>bolalive77.com</strong></td>
-          <td>🟡 待部署</td>
-          <td>bolalive77（待建）</td>
-          <td>🇮🇩 印尼（首次驗證即用）</td>
-          <td>待建立</td>
+        <tr style="background:#fef9e7">
+          <td><strong>bolalive77.com</strong> 🎰</td>
+          <td>🟢 上線 2026-05-27</td>
+          <td>bolalive77</td>
+          <td>🇲🇾 馬來西亞（GSC × GitHub × CF 全新獨立帳號 yuan5566520）</td>
+          <td>yuan5566520/65boal</td>
         </tr>
         <tr>
           <td><strong>pansurihotel.com</strong></td>
@@ -1870,6 +1871,110 @@ Step 5  評估是否有其他站與被識別站有足跡關聯
     <div class="callout" style="margin-top:14px">
       <strong>⚠️ GoDaddy 同帳號風險：</strong> 所有域名都在同一個 GoDaddy 帳號買 → 馬上去開 <strong>WHOIS Privacy</strong> (Domain Privacy Protection)，否則 WHOIS 查 registrant email 會把所有 PBN 連起來。長期：新 PBN 換不同註冊商（Namecheap / Porkbun / Cloudflare Registrar）+ 不同付款卡。
     </div>
+  </section>
+
+  <section class="section" id="bolalive77">
+    <h2>🎰 bolalive77.com 部署紀錄（2026-05-27）</h2>
+    <div class="callout gold" style="margin-bottom:14px">
+      <strong>策略決定：</strong>從原本黑帽計畫降級為 <strong>灰帽</strong>（移除所有隱藏連結），用 yuan5566520 全新獨立帳號（Gmail × GitHub × CF 三層獨立）部署。
+    </div>
+
+    <h3 style="margin-top:18px">🎉 老域名繼承權重（Ahrefs 數據）</h3>
+    <table class="table">
+      <thead>
+        <tr><th>指標</th><th>數字</th><th>評估</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Linking Websites（referring domains）</td><td><strong>2,100 個</strong></td><td>🟢🟢🟢🟢🟢 史詩級</td></tr>
+        <tr><td>Backlinks 總數</td><td>38,000 條</td><td>🟢🟢🟢🟢🟢</td></tr>
+        <tr><td>Domain Rating</td><td>11</td><td>🟡 但 2.1K RD 真實值更高</td></tr>
+        <tr><td>Dofollow 比例</td><td>99%（backlinks）/ 95%（websites）</td><td>✅ 完美</td></tr>
+        <tr><td>Anchor text 主題</td><td>全部博彩 / 印尼足球（agen bola, judi online, taruhan bola）</td><td>✅ 與 ys89 niche 100% 對齊</td></tr>
+        <tr><td>GSC 人工判決處罰</td><td>未偵測到任何問題</td><td>✅ 乾淨繼承</td></tr>
+      </tbody>
+    </table>
+    <div class="callout" style="margin-top:8px">
+      <strong>結論：</strong>$502 USD 撿到的老域名實際價值遠超 $5,000。前任主人是 2010-2016 印尼 SBOBET 博彩代理用 comment spam 建的反連，主題完美對齊 ys89。<strong>不要 disavow</strong>，讓 Google 重新爬完評估再決定。
+    </div>
+
+    <h3 style="margin-top:24px">🔗 反連流向（衛星策略 — 不直連 ys89.fun）</h3>
+    <table class="table">
+      <thead>
+        <tr><th>目標域名（衛星站）</th><th>連結數</th><th>目標 URL</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>ys89.me</strong></td><td>9 條</td><td>/live-104</td></tr>
+        <tr><td><strong>ys89.games</strong></td><td>6 條</td><td>/live-104</td></tr>
+        <tr><td><strong>ys89.biz</strong></td><td>4 條</td><td>/live-104</td></tr>
+        <tr><td><strong>ys89.info</strong></td><td>3 條</td><td>/live-104</td></tr>
+        <tr style="background:#fee"><td><strong>ys89.fun</strong>（主排名站）</td><td>0 條 ✋</td><td>不直連，避免 footprint</td></tr>
+        <tr><td><strong>合計</strong></td><td><strong>22 條</strong></td><td>全指 /live-104 世足直播頁</td></tr>
+      </tbody>
+    </table>
+    <div class="callout gold" style="margin-top:8px">
+      <strong>兩跳策略：</strong>bolalive77 → 衛星站（ys89.me/.games/.biz/.info）→ ys89.fun（兩跳傳遞，footprint 較自然）。<strong>未來不再加 bolalive77 → ys89.fun 直連</strong>，維持衛星中繼。
+    </div>
+
+    <h3 style="margin-top:24px">🛡️ 三層獨立帳號隔離</h3>
+    <table class="table">
+      <thead>
+        <tr><th>層級</th><th>bolalive77 用</th><th>其他 PBN 用</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Gmail</td><td>yuan5566520 全新獨立</td><td>ys89-main 系列</td></tr>
+        <tr><td>GitHub</td><td>yuan5566520（全新帳號）</td><td>ysyyds1688-maker</td></tr>
+        <tr><td>CF Pages 帳號</td><td>全新獨立</td><td>ys1688 共用</td></tr>
+        <tr><td>Firefox Container</td><td>bolalive77</td><td>各自獨立 container</td></tr>
+        <tr><td>VPN</td><td>馬來西亞</td><td>各站對應國家</td></tr>
+        <tr><td>GoDaddy 域名</td><td>同帳號（Privacy + 加拿大虛擬卡蓋住）</td><td>同帳號</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:24px">⚠️ 灰帽改造清單（黑帽降級）</h3>
+    <table class="table">
+      <thead>
+        <tr><th>改造項目</th><th>改造前（黑帽）</th><th>改造後（灰帽）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>隱藏連結 4 層</td><td>height:1px / opacity:0 / -9999px 隱藏連結 + 關鍵字 stuffing</td><td>❌ 全部移除</td></tr>
+        <tr><td>隱藏圖片 stuffing</td><td>width:0;height:0;opacity:0 重複圖片</td><td>❌ 移除</td></tr>
+        <tr><td>站名定位矛盾</td><td>域名印尼風 vs 內容中文</td><td>✅ 馬華人 Lim Wei，吉隆坡，解釋為何域名印尼風</td></tr>
+        <tr><td>作者人設</td><td>新加坡華人</td><td>✅ 馬來西亞華人（吉隆坡）</td></tr>
+        <tr><td>反連方式</td><td>一半隱藏</td><td>✅ 22 條全部可見正常連結</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:24px">📅 預期時間表</h3>
+    <table class="table">
+      <thead>
+        <tr><th>時間</th><th>預期發生</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1-3 天</td><td>Google 開始爬 bolalive77（新 sitemap 提交）</td></tr>
+        <tr><td>3-7 天</td><td>22 條連結被加入 ys89.me/.games/.biz/.info 反連資料庫</td></tr>
+        <tr><td>1-2 週</td><td>4 個衛星站的 GSC「連結」報告出現 bolalive77</td></tr>
+        <tr><td>2-4 週</td><td>衛星站排名可能有變化 → 進一步傳遞給 ys89.fun</td></tr>
+        <tr><td>1-3 個月</td><td>ys89.fun 排名可能出現可見變化（從兩跳傳遞累積）</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:24px">🚫 之後不要做</h3>
+    <ul style="line-height:1.85">
+      <li>❌ <strong>不要建新反連到 bolalive77</strong>（已有 2.1K RD 紅利，再建只是錦上添花且風險）</li>
+      <li>❌ <strong>不要 disavow 老反連</strong>（先觀察 1-2 個月）</li>
+      <li>❌ <strong>不要從 bolalive77 直連 ys89.fun</strong>（維持兩跳）</li>
+      <li>❌ <strong>不要從 ys89.* 任何站連回 bolalive77</strong>（雙向 = 死）</li>
+      <li>❌ <strong>不要用 ys89 編輯人設（mark/阿奇等）寫 bolalive77 文章</strong></li>
+      <li>❌ <strong>不要在 bolalive77 container 登入任何 ys89 帳號</strong></li>
+    </ul>
+
+    <h3 style="margin-top:24px">✅ 之後可以做（選做）</h3>
+    <ul style="line-height:1.85">
+      <li>小幅加 1-2 篇含印尼語的文章（讓老 anchor 跟新內容對齊）</li>
+      <li>每月看 ys89 衛星站的 GSC 連結報告，確認 bolalive77 有出現</li>
+      <li>觀察 bolalive77 流量 / 排名是否被異常拉升或下降</li>
+      <li>如果出現懲罰警告 → 才考慮 disavow 部分明顯垃圾域名</li>
+    </ul>
   </section>
 
   <section class="section" id="summary">
