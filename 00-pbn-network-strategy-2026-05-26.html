@@ -701,6 +701,7 @@
     <div class="nav-group-label">運維</div>
     <a class="nav-item" href="#vpn-container">VPN × Container 對照</a>
     <a class="nav-item" href="#bolalive77">🎰 bolalive77 部署紀錄</a>
+    <a class="nav-item" href="#cannibalization-fix">⚡ 首頁吞排名修復</a>
   </div>
   <div class="nav-group">
     <div class="nav-group-label">總覽</div>
@@ -1975,6 +1976,72 @@ Step 5  評估是否有其他站與被識別站有足跡關聯
       <li>每月看 ys89 衛星站的 GSC 連結報告，確認 bolalive77 有出現</li>
       <li>觀察 bolalive77 流量 / 排名是否被異常拉升或下降</li>
       <li>如果出現懲罰警告 → 才考慮 disavow 部分明顯垃圾域名</li>
+    </ul>
+  </section>
+
+  <section class="section" id="cannibalization-fix">
+    <h2>⚡ ys89.fun 首頁吞排名 修復紀錄（2026-05-27）</h2>
+    <div class="callout" style="margin-bottom:14px">
+      <strong>問題：</strong>7 個品牌關鍵字全部排名 1，但全部指向 ys89.fun/ 首頁。長尾關鍵字（線上百家樂推薦、老虎機技巧）完全沒排名。
+      <br><strong>根因：</strong>首頁太強吞光所有 link juice + 內鏈過度集中在 5 篇 pillar（其中 1 篇 139 個內鏈）+ 文章標題與長尾詞沒對齊。
+    </div>
+
+    <h3 style="margin-top:18px">📊 修復前內鏈分布</h3>
+    <table class="table">
+      <thead><tr><th>文章</th><th>內鏈數</th><th>評估</th></tr></thead>
+      <tbody>
+        <tr><td>2026 娛樂城推薦排行 TOP10</td><td>139</td><td>🔴 過度集中</td></tr>
+        <tr><td>夜色娛樂城評測（YS89 真實評價）</td><td>65</td><td>🟡 偏多</td></tr>
+        <tr><td>夜色娛樂城評測（體驗金 368）</td><td>41</td><td>🟡</td></tr>
+        <tr><td>夜色娛樂城出金教學</td><td>38</td><td>🟡</td></tr>
+        <tr><td>夜色娛樂城體驗金</td><td>37</td><td>🟡</td></tr>
+        <tr><td>老虎機技巧 2026（目標排「老虎機技巧」）</td><td>7 → 17</td><td>✅ 已補強</td></tr>
+        <tr><td>真人百家樂（目標排「線上百家樂推薦」）</td><td>6 → 16</td><td>✅ 已補強</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:24px">✅ 已執行修復</h3>
+    <table class="table">
+      <thead><tr><th>動作</th><th>數量</th><th>影響</th></tr></thead>
+      <tbody>
+        <tr><td>批次修內鏈（/topic/baccarat → /games/baccarat/ 等）</td><td>30 個替換</td><td>消除自家 301</td></tr>
+        <tr><td>新增 MU plugin <code>ys-301-redirects.php</code></td><td>11 個 mapping</td><td>13 個 404 → 301 到 pillar</td></tr>
+        <tr><td>給 slot-machine-tips-2026 加 inline 內鏈</td><td>10 篇來源</td><td>內鏈 7 → 17</td></tr>
+        <tr><td>給 live-baccarat-guide 加 inline 內鏈</td><td>10 篇來源</td><td>內鏈 6 → 16</td></tr>
+        <tr><td>改 post 1286 標題對齊「線上百家樂推薦」</td><td>1 篇</td><td>+ Yoast + Rank Math meta 同步</td></tr>
+        <tr><td>修 post 758 SportsEvent schema（補 4 欄位）</td><td>1 篇</td><td>GSC 4 個警告即將消除</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:24px">🚫 未來 PBN 反連策略修正</h3>
+    <div class="callout gold">
+      <strong>不要再全部反連到 ys89.fun 首頁！</strong>
+      <ul style="margin:8px 0 0 18px;line-height:1.85">
+        <li>之前 bolalive77 22 條反連全給衛星 → ✅ 維持（衛星策略）</li>
+        <li><strong>未來新 PBN（pansurihotel、plainjanedesigners）的反連 → 開始直連到具體文章</strong></li>
+        <li>例：pansurihotel 旅遊內容 → 直連 <code>/world-cup-2026-streaming-taiwan/</code>、<code>/world-cup-2026-betting-guide/</code></li>
+        <li>例：plainjanedesigners 永續內容 → 直連 <code>/slot-machine-tips-2026/</code>（試運氣，不一定要強相關）</li>
+        <li><strong>內部文章獲得外部反連 = 它們才能突破首頁排名壟斷</strong></li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top:24px">📅 預期時間表</h3>
+    <table class="table">
+      <thead><tr><th>時間</th><th>預期</th></tr></thead>
+      <tbody>
+        <tr><td>3-7 天</td><td>Google 重新爬被修文章 + 重新計算內鏈分布</td></tr>
+        <tr><td>1-2 週</td><td>老虎機技巧 / 線上百家樂推薦 可能進入前 50 名</td></tr>
+        <tr><td>3-4 週</td><td>有機會進前 20 名（長尾競爭較弱）</td></tr>
+        <tr><td>1-3 個月</td><td>配合 PBN 直連策略 → 可能進前 10 名</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:24px">📌 後續待做</h3>
+    <ul style="line-height:1.85">
+      <li>掃描所有「無排名」的追蹤關鍵字 → 找對應文章 → 同樣做標題對齊 + 內鏈補強</li>
+      <li>檢查首頁是否過度塞「夜色」品牌詞（42 次過多）→ 適度減少，留空間給文章</li>
+      <li>建立「pillar 文章主動 outbound 連結」清單 → 從 5 篇強 pillar 連出到 50 篇弱文章</li>
+      <li>未來 PBN 部署規範：每站至少 3 條反連到具體文章（不是 ys89.fun/）</li>
     </ul>
   </section>
 
