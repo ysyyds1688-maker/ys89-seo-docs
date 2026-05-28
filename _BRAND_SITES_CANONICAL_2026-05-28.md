@@ -35,3 +35,21 @@ ys89.fun 實際在 **Singapore SGP1**(DO 4GB Basic,IP 152.42.250.98,server name 
 
 → 所有新 Cloudways 站 **絕對禁止選 SGP1**,否則 footprint 立即連結
 → 品牌 B 必選:🥇 FRA1(首選) / 🥈 LON1 / 🥉 TOR1 / AMS3
+
+---
+
+## 🚨 第二次修正(同日):provider 必須換 Vultr/Linode Tokyo,不是 DO
+
+**錯誤鏈**:
+1. 第一次:誤以為 ys89.fun 在 NYC1 → 推薦 SGP1 → 用戶截圖打臉(其實 ys89.fun 在 SGP1)
+2. 第二次:直接跳歐美 region → 沒考慮 TW 用戶 ping 200-300ms = LCP 紅燈
+
+**正解**:
+| 排名 | Provider | Region | 月費 | 為什麼 |
+|---|---|---|---|---|
+| 🥇 | Vultr High Frequency | Tokyo | $13 | TW ping 40ms + 不同 provider + 不同 region |
+| 🥈 | Linode | Tokyo | $12 | 同上 |
+
+**禁止**:DigitalOcean 全部 region(SGP1 衝突 / 其他 region 不是太遠就是太慢)
+
+**Cloudways 操作**:Add Server → 選 Vultr High Frequency(不要選 DigitalOcean) → Tokyo
