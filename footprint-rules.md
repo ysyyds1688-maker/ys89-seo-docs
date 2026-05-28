@@ -11,8 +11,8 @@
 |---|---|---|---|
 | hipgreenscene | plorunyuan@gmail.com | - | Tier4 既有 |
 | deckmatt | marsgarage0812@gmail.com | - | Tier4 既有 |
-| adviseist | (與 pansurihotel 共用) | US | Tier4 既有 |
-| pansurihotel | (與 adviseist 共用) | US | ✅ 已上線 |
+| adviseist | yaobenyuan.official@gmail.com | US | Tier4 既有 |
+| pansurihotel | yaobenyuan.official@gmail.com | US | ✅ 已上線 |
 | bolalive77 | yuan5566520 | - | ✅ 已上線 |
 | plainjanedesigners | yuan5566520 | - | ⏳ 待部署 |
 
@@ -29,7 +29,7 @@
 - ❌ 不可同一週內出鏈
 - ✅ 必須**錯開 3-5 天**，否則「同 CF 帳號 + 同時段出鏈」會變雙重 footprint 連結點
 
-**待補資訊**：adviseist 對應的 CF 帳號 email 還沒記錄（文件目前標「(與 pansurihotel 共用)」但沒列出實際 email）。
+**CF 帳號 email**：`yaobenyuan.official@gmail.com`（2026-05-28 用戶確認）— 與 ys89 主帳號（ysyyds1688/ysyyds0006）完全隔離 ✅
 
 ### bolalive77 + plainjanedesigners 共用 yuan5566520
 
