@@ -8,7 +8,7 @@
 | 站 | 域名 | 定位 | 模仿對象 | 主機方案 |
 |---|---|---|---|---|
 | **品牌官方 A — 信任型** | `ys89tw.com` | 夜色娛樂城官方 | at99c.com | Hostinger Premium 12 個月(已刷 A$74.28) |
-| **品牌官方 B — 轉換型** | `ys89.tw` | 體驗金/首儲/註冊 | at99.tw | Cloudways DO 1GB $14/月(待開,SGP1 或 FRA1) |
+| **品牌官方 B — 轉換型** | `ys89.tw` | 體驗金/首儲/註冊 | at99.tw | Cloudways DO 1GB $14/月(待開,**必 FRA1/LON1/TOR1 — 禁 SGP1**) |
 | **品牌官方 C — 活動/真人** | `168ys89.com` | 真人視訊/救援金/VIP | at99c1.com | 待定 |
 
 ## 內容差異化(防 cannibalize)
