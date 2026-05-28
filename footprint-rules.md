@@ -16,9 +16,24 @@
 | bolalive77 | yuan5566520 | - | ✅ 已上線 |
 | plainjanedesigners | yuan5566520 | - | ⏳ 待部署 |
 
-> **⚠️ 半隔離注意**：adviseist + pansurihotel 共用同 CF + 同 US 機房 → 主題語言不同（英文商業 vs 繁中旅遊）勉強降低 pattern 風險，但出鏈回 ys89 必須**錯開 3-5 天**，避免「同帳號 + 同時段」雙重 footprint。
->
-> bolalive77 + plainjanedesigners 共用 yuan5566520 帳號可接受 → 因為兩站都不直接連 ys89，是「反詐主題群」獨立網絡。
+### ⚠️ adviseist + pansurihotel 共用 CF — footprint 風險評估
+
+**風險定性**：不算理想，但屬於可接受的半隔離。
+
+**為什麼勉強可接受**：
+- adviseist = 商業諮詢主題（英文）
+- pansurihotel = 韓國旅遊（繁中）
+- 兩者**內容主題、語言、TG（Target Group）**完全不同 → Google 比較難 pattern 連結
+
+**操作鐵則 — 將來這兩站都要連回 ys89 時**：
+- ❌ 不可同一週內出鏈
+- ✅ 必須**錯開 3-5 天**，否則「同 CF 帳號 + 同時段出鏈」會變雙重 footprint 連結點
+
+**待補資訊**：adviseist 對應的 CF 帳號 email 還沒記錄（文件目前標「(與 pansurihotel 共用)」但沒列出實際 email）。
+
+### bolalive77 + plainjanedesigners 共用 yuan5566520
+
+可接受 → 因為兩站都不直接連 ys89，是「反詐主題群」獨立網絡，與娛樂城主體 footprint 切斷。
 
 ---
 
