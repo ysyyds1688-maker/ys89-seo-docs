@@ -5,6 +5,23 @@
 
 ---
 
+## 📋 PBN CF 帳號分配現況（2026-05-28 更新）
+
+| PBN | CF 帳號 | 機房 | 狀態 |
+|---|---|---|---|
+| hipgreenscene | plorunyuan@gmail.com | - | Tier4 既有 |
+| deckmatt | marsgarage0812@gmail.com | - | Tier4 既有 |
+| adviseist | (與 pansurihotel 共用) | US | Tier4 既有 |
+| pansurihotel | (與 adviseist 共用) | US | ✅ 已上線 |
+| bolalive77 | yuan5566520 | - | ✅ 已上線 |
+| plainjanedesigners | yuan5566520 | - | ⏳ 待部署 |
+
+> **⚠️ 半隔離注意**：adviseist + pansurihotel 共用同 CF + 同 US 機房 → 主題語言不同（英文商業 vs 繁中旅遊）勉強降低 pattern 風險，但出鏈回 ys89 必須**錯開 3-5 天**，避免「同帳號 + 同時段」雙重 footprint。
+>
+> bolalive77 + plainjanedesigners 共用 yuan5566520 帳號可接受 → 因為兩站都不直接連 ys89，是「反詐主題群」獨立網絡。
+
+---
+
 ## 🔴 致命違規（一犯就連坐）
 
 ### 1. Google Analytics tracking ID 共用

@@ -71,9 +71,11 @@ https://ys89.fun/?p=2770
 | 站別 | 要不要送 GSC？ |
 |---|---|
 | 5 PBN（PBN1/2/3/5/6 推 GitHub Pages）| ✅ 各站獨立 GSC 送自己的 URL |
-| pansurihotel | ✅ 拿到域名後送 |
-| plainjanedesigners | ❌ 不主動送（Tier 3 隱匿後盾） |
+| pansurihotel | ✅ 2026-05-28 已部署 + sitemap 提交成功（6 URL，DNS 驗證中） |
+| plainjanedesigners | ⏳ 已生成 19 URL 反詐騙站內容，待 CF Pages 部署 |
 | adviseist / deckmatt / hipgreenscene | ✅ 補的新文章送 |
+
+> **⚠️ Sitemap 部署踩坑（2026-05-28 記）**：CF Pages 直接拖資料夾部署時容易漏 `sitemap.xml` + `robots.txt`。`curl -sI` 看 content-type 必須是 `application/xml`（不是 `text/html`），否則 GSC 會吃「1個錯誤」。
 
 ---
 
