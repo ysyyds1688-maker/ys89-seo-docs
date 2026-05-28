@@ -26,3 +26,12 @@
 ## 域名購買狀態
 
 3 個域名均已購買,各 NT$399,目前狀態「待建站」。
+
+---
+
+## 🚨 重要修正(2026-05-28 補):ys89.fun 機房真實位置
+
+ys89.fun 實際在 **Singapore SGP1**(DO 4GB Basic,IP 152.42.250.98,server name YSwebsite,建於 2025-12-09)
+
+→ 所有新 Cloudways 站 **絕對禁止選 SGP1**,否則 footprint 立即連結
+→ 品牌 B 必選:🥇 FRA1(首選) / 🥈 LON1 / 🥉 TOR1 / AMS3
