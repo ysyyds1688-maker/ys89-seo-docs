@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚔️ YS89 公會戰況總覽 · 寒冰之冠攻略中</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap');
+
+:root {
+  /* WoW 稀有度配色 */
+  --legendary: #E5A00D;     /* 傳說橙 */
+  --epic: #A335EE;          /* 史詩紫 */
+  --rare: #0070DD;          /* 稀有藍 */
+  --uncommon: #1EFF00;      /* 優良綠 */
+  --common: #FFFFFF;        /* 普通白 */
+  --poor: #9D9D9D;          /* 粗劣灰 */
+
+  /* UI 配色 */
+  --bg-darkest: #0a0d14;
+  --bg-dark: #14181f;
+  --bg-card: #1a1f28;
+  --bg-card-hover: #232936;
+  --border-gold: #5a4a1f;
+  --border-purple: #4a2b6e;
+  --text-main: #d4c5a0;
+  --text-bright: #f5e9c8;
+  --text-muted: #8a7a5e;
+
+  /* 職業色 */
+  --warrior: #C69B6D;       /* 戰士棕 */
+  --paladin: #F48CBA;       /* 聖騎粉 */
+  --rogue: #FFF468;         /* 盜賊黃 */
+  --priest: #FFFFFF;        /* 牧師白 */
+  --mage: #3FC7EB;          /* 法師藍 */
+  --warlock: #8787ED;       /* 術士紫 */
+  --hunter: #AAD372;        /* 獵人綠 */
+  --druid: #FF7C0A;         /* 德魯伊橙 */
+  --shaman: #0070DD;        /* 薩滿藍 */
+  --dk: #C41E3A;            /* 死騎紅 */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Serif TC', 'Cinzel', serif;
+  background:
+    radial-gradient(ellipse at top, #1a1d3a 0%, #0a0d14 60%),
+    linear-gradient(to bottom, #0a0d14 0%, #14111f 100%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  line-height: 1.75;
+  font-size: 14.5px;
+  min-height: 100vh;
+}
+
+/* === 上方公會旗幟 === */
+.guild-banner {
+  background:
+    linear-gradient(135deg, rgba(229,160,13,0.15), rgba(163,53,238,0.15)),
+    radial-gradient(ellipse at center, rgba(229,160,13,0.08), transparent 70%);
+  border-bottom: 3px solid var(--border-gold);
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.guild-banner::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0, transparent 40px,
+      rgba(229,160,13,0.02) 40px, rgba(229,160,13,0.02) 80px);
+  pointer-events: none;
+}
+.guild-name {
+  font-size: 36px; font-weight: 900;
+  background: linear-gradient(135deg, var(--legendary) 0%, #fff6c8 50%, var(--legendary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  text-shadow: 0 0 30px rgba(229,160,13,0.3);
+}
+.guild-subtitle {
+  color: var(--text-muted); font-size: 14px;
+  letter-spacing: 6px; text-transform: uppercase;
+}
+.realm-tag {
+  display: inline-block; margin-top: 14px;
+  background: rgba(163,53,238,0.15);
+  border: 1px solid var(--epic);
+  color: var(--epic);
+  padding: 4px 14px; border-radius: 2px;
+  font-size: 12px; letter-spacing: 2px;
+}
+
+.wrap { max-width: 1280px; margin: 0 auto; padding: 30px 20px 80px; }
+
+/* === Section 標題 (Quest scroll) === */
+.section {
+  margin-bottom: 36px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.3);
+}
+.section-head {
+  background: linear-gradient(180deg, #2a2418 0%, #1a1612 100%);
+  padding: 14px 24px;
+  border-bottom: 2px solid var(--border-gold);
+  display: flex; align-items: center; gap: 14px;
+}
+.section-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #4a3a1f, #1a1612);
+  border: 1px solid var(--legendary);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.section-title {
+  font-size: 20px; font-weight: 700; color: var(--legendary);
+  letter-spacing: 2px;
+}
+.section-subtitle {
+  font-size: 12px; color: var(--text-muted); margin-left: auto;
+  letter-spacing: 1px;
+}
+.section-body { padding: 22px 24px; }
+
+/* === 戰況橫條（Status Bar） === */
+.status-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;
+  margin-bottom: 30px;
+}
+.status-card {
+  background: var(--bg-card);
+  border: 1px solid #2a3040;
+  border-left: 3px solid var(--rare);
+  padding: 14px 16px;
+  border-radius: 2px;
+}
+.status-card.epic { border-left-color: var(--epic); }
+.status-card.legendary { border-left-color: var(--legendary); }
+.status-card.danger { border-left-color: var(--dk); }
+.status-label {
+  font-size: 10px; color: var(--text-muted);
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
+}
+.status-value {
+  font-size: 22px; font-weight: 900; color: var(--text-bright);
+}
+.status-meta { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+/* === 職業卡片（角色） === */
+.class-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;
+}
+.class-card {
+  background: linear-gradient(180deg, var(--bg-card) 0%, #131820 100%);
+  border: 1px solid #2a3040;
+  border-radius: 3px;
+  padding: 16px;
+  transition: all .2s;
+  position: relative;
+}
+.class-card:hover {
+  border-color: var(--legendary);
+  box-shadow: 0 0 12px rgba(229,160,13,0.3);
+  transform: translateY(-2px);
+}
+.class-card.legendary { border: 1px solid var(--legendary); box-shadow: inset 0 0 20px rgba(229,160,13,0.1); }
+.class-card.epic { border: 1px solid var(--epic); }
+.class-head {
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid #2a3040; padding-bottom: 10px; margin-bottom: 10px;
+}
+.class-portrait {
+  width: 44px; height: 44px;
+  border: 2px solid var(--border-gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  background: radial-gradient(ellipse, #2a2418 30%, #0a0d14 100%);
+  flex-shrink: 0;
+}
+.class-portrait.warrior { border-color: var(--warrior); }
+.class-portrait.paladin { border-color: var(--paladin); }
+.class-portrait.rogue { border-color: var(--rogue); }
+.class-portrait.priest { border-color: var(--priest); }
+.class-portrait.mage { border-color: var(--mage); }
+.class-portrait.warlock { border-color: var(--warlock); }
+.class-portrait.hunter { border-color: var(--hunter); }
+.class-portrait.druid { border-color: var(--druid); }
+.class-portrait.dk { border-color: var(--dk); }
+.class-name { font-size: 15px; font-weight: 700; color: var(--text-bright); }
+.class-spec { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+.class-level {
+  margin-left: auto;
+  background: rgba(229,160,13,0.15);
+  border: 1px solid var(--legendary);
+  color: var(--legendary);
+  padding: 2px 8px; border-radius: 2px;
+  font-size: 11px; font-weight: 700;
+}
+.class-body { font-size: 12.5px; color: var(--text-main); line-height: 1.7; }
+.class-stats {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed #2a3040;
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.stat-pill {
+  font-size: 10.5px; color: var(--text-muted);
+}
+.stat-pill strong { color: var(--text-bright); font-weight: 700; }
+
+/* === Boss 卡片（敵人） === */
+.boss-card {
+  background: linear-gradient(180deg, #1a0e10 0%, #14181f 100%);
+  border: 1px solid var(--dk);
+  border-radius: 3px;
+  padding: 18px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.boss-card::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, rgba(196,30,58,0.2), transparent 70%);
+  border-radius: 50%;
+}
+.boss-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 12px; padding-bottom: 12px;
+  border-bottom: 1px solid rgba(196,30,58,0.3);
+}
+.boss-icon {
+  width: 50px; height: 50px;
+  background: radial-gradient(circle, #3a1015, #14181f);
+  border: 2px solid var(--dk);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.boss-name { font-size: 18px; font-weight: 900; color: #ff6b7a; letter-spacing: 1px; }
+.boss-tier { font-size: 11px; color: var(--text-muted); letter-spacing: 2px; }
+.boss-hp {
+  margin-left: auto; text-align: right;
+}
+.boss-hp-label { font-size: 10px; color: var(--text-muted); letter-spacing: 1px; }
+.boss-hp-value { font-size: 16px; color: var(--dk); font-weight: 700; }
+.boss-abilities { display: grid; gap: 8px; margin-top: 10px; }
+.boss-ability {
+  background: rgba(0,0,0,0.3);
+  border-left: 2px solid var(--dk);
+  padding: 6px 12px;
+  font-size: 12.5px;
+}
+.boss-ability strong { color: #ff8a96; }
+
+/* === 任務板 (Quest Log) === */
+.quest-list { display: grid; gap: 10px; }
+.quest-item {
+  background: var(--bg-card);
+  border: 1px solid #2a3040;
+  border-left: 3px solid var(--uncommon);
+  padding: 12px 16px;
+  border-radius: 2px;
+  display: grid; grid-template-columns: auto 1fr auto auto; gap: 14px; align-items: center;
+}
+.quest-item.daily { border-left-color: var(--rare); }
+.quest-item.weekly { border-left-color: var(--epic); }
+.quest-item.legendary { border-left-color: var(--legendary); }
+.quest-item.failed { border-left-color: var(--dk); opacity: 0.7; }
+.quest-icon { font-size: 18px; }
+.quest-name { font-size: 13.5px; color: var(--text-bright); font-weight: 600; }
+.quest-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.quest-status {
+  font-size: 10.5px; padding: 3px 10px; border-radius: 2px;
+  letter-spacing: 1px; font-weight: 700;
+}
+.qs-done    { background: rgba(30,255,0,0.15); color: var(--uncommon); border: 1px solid var(--uncommon); }
+.qs-doing   { background: rgba(229,160,13,0.15); color: var(--legendary); border: 1px solid var(--legendary); }
+.qs-pending { background: rgba(157,157,157,0.15); color: var(--poor); border: 1px solid var(--poor); }
+.qs-blocked { background: rgba(196,30,58,0.15); color: var(--dk); border: 1px solid var(--dk); }
+.quest-reward {
+  font-size: 11px; color: var(--legendary);
+  white-space: nowrap;
+}
+
+/* === 裝備欄 (Armory) === */
+.gear-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px;
+}
+.gear-item {
+  background: var(--bg-card);
+  border: 1px solid #2a3040;
+  border-radius: 3px;
+  padding: 12px 14px;
+}
+.gear-item.legendary { border-color: var(--legendary); background: linear-gradient(180deg, rgba(229,160,13,0.05), var(--bg-card)); }
+.gear-item.epic { border-color: var(--epic); background: linear-gradient(180deg, rgba(163,53,238,0.05), var(--bg-card)); }
+.gear-item.rare { border-color: var(--rare); }
+.gear-item.uncommon { border-color: var(--uncommon); }
+.gear-item.poor { border-color: var(--poor); opacity: 0.7; }
+.gear-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.gear-item.legendary .gear-name { color: var(--legendary); }
+.gear-item.epic .gear-name { color: var(--epic); }
+.gear-item.rare .gear-name { color: var(--rare); }
+.gear-item.uncommon .gear-name { color: var(--uncommon); }
+.gear-item.poor .gear-name { color: var(--poor); }
+.gear-slot { font-size: 10px; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 6px; }
+.gear-stats { font-size: 11.5px; color: var(--text-main); }
+.gear-binding { font-size: 10px; color: var(--text-muted); margin-top: 6px; font-style: italic; }
+
+/* === 天賦 / 決策卡 === */
+.talent-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+  margin-bottom: 20px;
+}
+.talent-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 3px;
+  padding: 16px;
+  position: relative;
+}
+.talent-card.recommended {
+  border: 2px solid var(--legendary);
+  box-shadow: 0 0 18px rgba(229,160,13,0.25);
+}
+.talent-card.recommended::before {
+  content: '⭐ 軍師推薦';
+  position: absolute; top: -10px; left: 12px;
+  background: var(--legendary); color: #14181f;
+  padding: 2px 10px; border-radius: 2px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+}
+.talent-name {
+  font-size: 14px; font-weight: 700; color: var(--text-bright);
+  margin-bottom: 8px;
+}
+.talent-desc { font-size: 12px; color: var(--text-main); line-height: 1.7; margin-bottom: 8px; }
+.talent-cost {
+  font-size: 11px; color: var(--legendary);
+  margin-top: 8px; padding-top: 8px; border-top: 1px dashed #2a3040;
+}
+
+/* === 副本進度條 === */
+.raid-phase {
+  background: var(--bg-card);
+  border: 1px solid #2a3040;
+  border-left: 4px solid var(--rare);
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  border-radius: 2px;
+}
+.raid-phase.current { border-left-color: var(--legendary); box-shadow: 0 0 12px rgba(229,160,13,0.15); }
+.raid-phase.done { border-left-color: var(--uncommon); opacity: 0.7; }
+.raid-phase.locked { border-left-color: var(--poor); opacity: 0.5; }
+.raid-phase-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 6px;
+}
+.raid-phase-num {
+  background: var(--rare); color: #fff;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+.raid-phase.current .raid-phase-num { background: var(--legendary); color: #14181f; }
+.raid-phase.done .raid-phase-num { background: var(--uncommon); color: #14181f; }
+.raid-phase-name { font-size: 14px; font-weight: 700; color: var(--text-bright); }
+.raid-phase-time { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+.raid-phase-desc { font-size: 12.5px; color: var(--text-main); padding-left: 36px; }
+
+/* === 軍師留言 === */
+.advisor-box {
+  background: linear-gradient(135deg, rgba(163,53,238,0.1), rgba(229,160,13,0.05));
+  border: 1px solid var(--epic);
+  border-radius: 3px;
+  padding: 18px 22px;
+  margin: 24px 0;
+  position: relative;
+}
+.advisor-box::before {
+  content: '🧙';
+  position: absolute; top: -12px; left: 18px;
+  background: var(--bg-dark);
+  padding: 0 8px;
+  font-size: 22px;
+}
+.advisor-label {
+  font-size: 11px; color: var(--epic);
+  letter-spacing: 2px; margin-bottom: 8px;
+  font-weight: 700;
+}
+.advisor-text { font-size: 13.5px; color: var(--text-bright); line-height: 1.85; }
+
+/* === 預算分配 (Quartermaster) === */
+.budget-bar {
+  background: var(--bg-card);
+  border: 1px solid #2a3040;
+  padding: 12px 14px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.budget-bar-head {
+  display: flex; justify-content: space-between;
+  font-size: 12.5px; margin-bottom: 6px;
+}
+.budget-bar-name { color: var(--text-bright); font-weight: 600; }
+.budget-bar-amount { color: var(--legendary); font-weight: 700; }
+.budget-bar-track {
+  height: 8px; background: #0a0d14;
+  border-radius: 2px; overflow: hidden;
+}
+.budget-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--legendary), #fff6c8);
+  border-radius: 2px;
+}
+
+/* === 戰場地圖 === */
+.map-canvas {
+  background:
+    radial-gradient(ellipse at top, rgba(229,160,13,0.08), transparent 60%),
+    var(--bg-darkest);
+  border: 1px solid var(--border-gold);
+  border-radius: 3px;
+  padding: 28px;
+  position: relative;
+  min-height: 480px;
+}
+.map-tier {
+  display: flex; align-items: center; gap: 12px;
+  margin: 14px 0;
+}
+.map-tier-label {
+  background: rgba(229,160,13,0.15);
+  border: 1px solid var(--legendary);
+  color: var(--legendary);
+  padding: 4px 10px; border-radius: 2px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  white-space: nowrap; width: 100px; text-align: center;
+}
+.map-tier-units { display: flex; gap: 8px; flex-wrap: wrap; }
+.map-unit {
+  background: var(--bg-card);
+  border: 1px solid #2a3040;
+  padding: 6px 12px; border-radius: 2px;
+  font-size: 12px;
+}
+.map-unit.commander { border-color: var(--legendary); color: var(--legendary); font-weight: 700; }
+.map-unit.tank { border-color: var(--warrior); color: var(--warrior); }
+.map-unit.guard { border-color: var(--paladin); color: var(--paladin); }
+.map-unit.spy { border-color: var(--rogue); color: var(--rogue); }
+.map-unit.healer { border-color: var(--priest); color: var(--priest); }
+.map-unit.dps { border-color: var(--mage); color: var(--mage); }
+.map-unit.druid { border-color: var(--druid); color: var(--druid); }
+
+/* === 連結到其他 doc === */
+.doc-links {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px; margin-top: 14px;
+}
+.doc-link {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  padding: 12px 14px;
+  border-radius: 2px;
+  color: var(--text-main);
+  text-decoration: none;
+  display: block;
+  transition: all .15s;
+}
+.doc-link:hover {
+  border-color: var(--legendary);
+  background: var(--bg-card-hover);
+  color: var(--text-bright);
+}
+.doc-link-title { font-size: 13px; color: var(--legendary); font-weight: 700; margin-bottom: 3px; }
+.doc-link-desc { font-size: 11.5px; color: var(--text-muted); }
+
+/* === Footer === */
+.footer {
+  margin-top: 50px; padding: 24px;
+  text-align: center;
+  border-top: 1px solid var(--border-gold);
+  color: var(--text-muted);
+  font-size: 11px; letter-spacing: 2px;
+}
+.footer .seal { color: var(--legendary); font-size: 14px; margin-bottom: 6px; }
+
+/* RWD */
+@media (max-width: 900px) {
+  .guild-name { font-size: 28px; letter-spacing: 2px; }
+  .talent-row { grid-template-columns: 1fr; }
+  .quest-item { grid-template-columns: auto 1fr; }
+  .quest-status, .quest-reward { grid-column: 2; padding-left: 0; }
+  .map-tier { flex-direction: column; align-items: stretch; }
+  .map-tier-label { width: auto; text-align: left; }
+}
+@media (max-width: 640px) {
+  .section-body { padding: 16px 14px; }
+  .class-grid { grid-template-columns: 1fr; }
+  .gear-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ 公會旗幟 ═══════════ -->
+<div class="guild-banner">
+  <div class="guild-name">⚔️ YS89 公會戰況總覽</div>
+  <div class="guild-subtitle">YS89 GUILD · WAR ROOM · v1.0</div>
+  <div class="realm-tag">伺服器：台灣繁中區 · 主城：夜色帝國</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ═══════════ 戰況條 ═══════════ -->
+  <div class="status-row">
+    <div class="status-card legendary">
+      <div class="status-label">⭐ 公會等級</div>
+      <div class="status-value">Lv. 7</div>
+      <div class="status-meta">已戰役 8 個月 · 累計戰績優</div>
+    </div>
+    <div class="status-card epic">
+      <div class="status-label">🏰 領地數量</div>
+      <div class="status-value">20 域</div>
+      <div class="status-meta">17 舊 + 3 今早採購</div>
+    </div>
+    <div class="status-card">
+      <div class="status-label">⚔️ 在編戰士</div>
+      <div class="status-value">11 站</div>
+      <div class="status-meta">含主帥 / 坦克 / 武將 / 軍師</div>
+    </div>
+    <div class="status-card danger">
+      <div class="status-label">💀 當前 Boss</div>
+      <div class="status-value">3 個</div>
+      <div class="status-meta">競爭對手 + Google + 鄉民</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 軍師留言 ═══════════ -->
+  <div class="advisor-box">
+    <div class="advisor-label">🧙 軍師（AK Audit）緊急情報</div>
+    <div class="advisor-text">
+      凌晨 1 點外援軍師送來完整 audit + 自動化軍械庫（pbn-command-center）。情報指出當前戰場有 <strong>3 個關鍵戰術衝突</strong>需要會長決議。同時警告：<strong>ys89.* 旗幟過於集中</strong>，Google 大魔王的 SpamBrain 機制可能已經在暗中標記我方位置。建議會長：先讀完情報、決議三大天賦點，再下令出兵。
+    </div>
+  </div>
+
+  <!-- ═══════════ 1. 公會職業圖鑑 ═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">⚔️</div>
+      <div class="section-title">公會職業圖鑑</div>
+      <div class="section-subtitle">8 大兵種 · 各司其職</div>
+    </div>
+    <div class="section-body">
+
+      <div class="class-grid">
+
+        <!-- 主帥 -->
+        <div class="class-card legendary">
+          <div class="class-head">
+            <div class="class-portrait" style="border-color:var(--legendary)">👑</div>
+            <div>
+              <div class="class-name">ys89.bet</div>
+              <div class="class-spec">主帥｜EMPEROR · 永不上場</div>
+            </div>
+            <div class="class-level">Max</div>
+          </div>
+          <div class="class-body">
+            真正的轉換最終站。所有戰功（流量+權重）都流向他。<strong>不做 SEO、不開放索引、不被攻擊</strong>。整場戰爭的勝負就看他是否安全。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>HP</strong> ∞</span>
+            <span class="stat-pill"><strong>ATK</strong> 0</span>
+            <span class="stat-pill"><strong>DEF</strong> Max</span>
+          </div>
+        </div>
+
+        <!-- 坦克 -->
+        <div class="class-card legendary">
+          <div class="class-head">
+            <div class="class-portrait warrior">🛡️</div>
+            <div>
+              <div class="class-name">ys89.fun</div>
+              <div class="class-spec">坦克｜防護戰士 · 主拉怪</div>
+            </div>
+            <div class="class-level">Lv 8</div>
+          </div>
+          <div class="class-body">
+            站在最前線承受所有品牌詞 SEO 攻擊。<strong>249 篇文章生命值</strong>，3 個月目標 400 篇。承受所有 Google 演算法的火力，保護後方主帥。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>HP</strong> 18.4K</span>
+            <span class="stat-pill"><strong>承傷</strong> 全公會 70%</span>
+            <span class="stat-pill"><strong>嘲諷</strong> 永久</span>
+          </div>
+        </div>
+
+        <!-- 親衛隊（3 站，需建） -->
+        <div class="class-card epic">
+          <div class="class-head">
+            <div class="class-portrait paladin">✨</div>
+            <div>
+              <div class="class-name">ys89.tw / ys89tw.com / 168ys89.com</div>
+              <div class="class-spec">親衛隊｜聖騎士 × 3 · 神聖系</div>
+            </div>
+            <div class="class-level">Lv 1</div>
+          </div>
+          <div class="class-body">
+            守在主帥身邊，把<strong>「夜色娛樂城」搜尋結果第 2、3、4 名</strong>全部佔住。對手連想攻擊都找不到位置。<strong>今日狀態：域名已徵召，盔甲（建站）未發配</strong>。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>HP</strong> 0/3</span>
+            <span class="stat-pill"><strong>BUFF</strong> 品牌防護</span>
+            <span class="stat-pill"><strong>狀態</strong> 待裝備</span>
+          </div>
+        </div>
+
+        <!-- 反詐騙站（軍師） -->
+        <div class="class-card epic">
+          <div class="class-head">
+            <div class="class-portrait priest">🕯️</div>
+            <div>
+              <div class="class-name">plainjanedesigners.com</div>
+              <div class="class-spec">反間軍師｜暗影牧師 · 驅散負面</div>
+            </div>
+            <div class="class-level">Lv 1</div>
+          </div>
+          <div class="class-body">
+            專職 <strong>Dispel 驅散 debuff</strong>。對手寫的「ys 詐騙」「夜色詐騙」負面 SERP，由她接手解析、巧妙置入「真相是仿冒站」，反向洗白主帥。<strong>今日狀態：法袍已縫好（19 檔案完成），結界未啟動（雲端未部署）</strong>。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>Spell</strong> 暗影護盾</span>
+            <span class="stat-pill"><strong>負面控制</strong> 75%</span>
+            <span class="stat-pill"><strong>狀態</strong> 等部署</span>
+          </div>
+        </div>
+
+        <!-- 雙面諜（第三方評測站，待派） -->
+        <div class="class-card">
+          <div class="class-head">
+            <div class="class-portrait rogue">🗡️</div>
+            <div>
+              <div class="class-name">第三方評測站</div>
+              <div class="class-spec">雙面諜｜盜賊 · 偽裝中立</div>
+            </div>
+            <div class="class-level">Lv 0</div>
+          </div>
+          <div class="class-body">
+            <strong>軍師建議新派</strong>的兵種。偽裝成完全跟我方無關的客觀評測站，評 10 家娛樂城，讓 ys89 排第 2-3 名（不能第 1，會穿幫）。<strong>潛行傳遞權重到主帥</strong>，敵人偵測不到。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>潛行</strong> 待覺醒</span>
+            <span class="stat-pill"><strong>傳權</strong> ⭐⭐⭐⭐⭐</span>
+            <span class="stat-pill"><strong>成本</strong> NT$20K</span>
+          </div>
+        </div>
+
+        <!-- 武將 PBN 群 -->
+        <div class="class-card">
+          <div class="class-head">
+            <div class="class-portrait mage">🔮</div>
+            <div>
+              <div class="class-name">deckmatt / adviseist / hipgreenscene</div>
+              <div class="class-spec">武將群｜法師 × 3 · 元素傷害</div>
+            </div>
+            <div class="class-level">Lv 3-5</div>
+          </div>
+          <div class="class-body">
+            T4 PBN 三老將。各駐紮在不同主題（撲克 / 戶外裝備 / 永續旅遊），<strong>分別灌反連到衛星站</strong>，再經兩跳傳到坦克。DA 9-17，已穩定輸出。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>DA</strong> 10/9/17</span>
+            <span class="stat-pill"><strong>外連</strong> 3 條/月</span>
+            <span class="stat-pill"><strong>狀態</strong> 在役</span>
+          </div>
+        </div>
+
+        <!-- pansurihotel -->
+        <div class="class-card">
+          <div class="class-head">
+            <div class="class-portrait hunter">🏹</div>
+            <div>
+              <div class="class-name">pansurihotel.com</div>
+              <div class="class-spec">武將｜獵人 · 旅遊地形</div>
+            </div>
+            <div class="class-level">Lv 2</div>
+          </div>
+          <div class="class-body">
+            世足城市旅遊主題，剛上線。Allen 林志雄人設駐紮。狙擊「世足旅遊 / 看球住宿」這條冷門戰線。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>狀態</strong> GSC 待驗</span>
+            <span class="stat-pill"><strong>掛載</strong> adviseist 帳號</span>
+          </div>
+        </div>
+
+        <!-- bolalive77 灰帽老兵 -->
+        <div class="class-card epic">
+          <div class="class-head">
+            <div class="class-portrait dk">💀</div>
+            <div>
+              <div class="class-name">bolalive77.com</div>
+              <div class="class-spec">灰帽老兵｜死亡騎士 · 復活老靈魂</div>
+            </div>
+            <div class="class-level">Lv 11</div>
+          </div>
+          <div class="class-body">
+            復活的 2.1K RD 老域名。曾經是黑帽老兵（隱藏連結），改良後變灰帽。<strong>22 條反連分配給衛星武將 + 4 條給 fifa 特種部隊</strong>。死靈系專精，能召喚已死的歷史權重。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>DR</strong> 11</span>
+            <span class="stat-pill"><strong>RD</strong> 2,100</span>
+            <span class="stat-pill"><strong>外連</strong> 26 條</span>
+          </div>
+        </div>
+
+        <!-- ys89.me/games/biz/info -->
+        <div class="class-card">
+          <div class="class-head">
+            <div class="class-portrait warlock">⚡</div>
+            <div>
+              <div class="class-name">ys89.me / .games / .biz / .info</div>
+              <div class="class-spec">衛星武將｜術士 × 4 · 召喚惡魔</div>
+            </div>
+            <div class="class-level">Lv 2-6</div>
+          </div>
+          <div class="class-body">
+            4 個 ys89 系列衛星站。承接 bolalive77 反連、傳給坦克。<strong>⚠️ 軍師警告：旗幟太集中（都姓 ys89），可能被 SpamBrain 標記</strong>。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>DA</strong> 17/0/0/0</span>
+            <span class="stat-pill"><strong>狀態</strong> 在役但需檢討</span>
+          </div>
+        </div>
+
+        <!-- FIFA 特種部隊 -->
+        <div class="class-card">
+          <div class="class-head">
+            <div class="class-portrait druid">🌿</div>
+            <div>
+              <div class="class-name">fifa-worldcups.tw</div>
+              <div class="class-spec">特種部隊｜德魯伊 · 自然系獨立駐軍</div>
+            </div>
+            <div class="class-level">Lv 4</div>
+          </div>
+          <div class="class-body">
+            駐守在「世足」這個利基戰場。完全獨立，不跟主力部隊有組織交集。世足賽後可變形（變身）轉戰線。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>主題</strong> 2026 世足</span>
+            <span class="stat-pill"><strong>外連</strong> bolalive77 ×4</span>
+          </div>
+        </div>
+
+        <!-- 社群大軍 -->
+        <div class="class-card">
+          <div class="class-head">
+            <div class="class-portrait shaman">🪖</div>
+            <div>
+              <div class="class-name">12 個 IG / FB / Threads / Medium</div>
+              <div class="class-spec">大軍小兵｜薩滿 × 12 · 圖騰戰術</div>
+            </div>
+            <div class="class-level">Lv 1-3</div>
+          </div>
+          <div class="class-body">
+            數量取勝、品牌曝光、信任飛輪。<strong>不直接傳權重</strong>但提供 Brand Mention + 真實感。每個帳號都是一個圖騰，獨立存在但放大主軍威能。
+          </div>
+          <div class="class-stats">
+            <span class="stat-pill"><strong>數量</strong> 12 個</span>
+            <span class="stat-pill"><strong>用途</strong> 輿論戰</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ 2. Boss 圖鑑 ═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">💀</div>
+      <div class="section-title">當前 Boss 圖鑑</div>
+      <div class="section-subtitle">三面開戰 · 難度：英雄級</div>
+    </div>
+    <div class="section-body">
+
+      <div class="boss-card">
+        <div class="boss-head">
+          <div class="boss-icon">⚔️</div>
+          <div>
+            <div class="boss-name">競爭對手娛樂城</div>
+            <div class="boss-tier">PVP BOSS · 智力型 · 主動攻擊</div>
+          </div>
+          <div class="boss-hp">
+            <div class="boss-hp-label">威脅</div>
+            <div class="boss-hp-value">⚠️ 高</div>
+          </div>
+        </div>
+        <div class="boss-abilities">
+          <div class="boss-ability"><strong>負面 SEO 風暴：</strong>大量寫「ys 詐騙」文章污染你的品牌詞 SERP</div>
+          <div class="boss-ability"><strong>假冒網站幻象：</strong>仿你 LOGO 騙你客戶，受害者罵到你身上</div>
+          <div class="boss-ability"><strong>Disavow 投毒：</strong>買垃圾連結指向你，讓 Google 認為你買連結</div>
+          <div class="boss-ability"><strong>SERP 補位：</strong>你坦克倒地的瞬間立刻接管你的關鍵字位置</div>
+          <div class="boss-ability"><strong>檢舉炸彈：</strong>主動 spam report 你的 PBN 給 Google</div>
+        </div>
+      </div>
+
+      <div class="boss-card" style="border-color:#5a4a1f">
+        <div class="boss-head">
+          <div class="boss-icon">🤖</div>
+          <div>
+            <div class="boss-name">Google · 巫妖王</div>
+            <div class="boss-tier">RAID BOSS · 神之裁決 · 被動環境</div>
+          </div>
+          <div class="boss-hp">
+            <div class="boss-hp-label">威脅</div>
+            <div class="boss-hp-value" style="color:var(--legendary)">⚠️⚠️ 極高</div>
+          </div>
+        </div>
+        <div class="boss-abilities">
+          <div class="boss-ability"><strong>SpamBrain 全域掃描：</strong>偵測 PBN 模式 + 域名聚集</div>
+          <div class="boss-ability"><strong>Helpful Content System：</strong>抓 AI 量產低品質內容</div>
+          <div class="boss-ability"><strong>Manual Action：</strong>人工審查直接拉黑</div>
+          <div class="boss-ability"><strong>Core Update 大洗牌：</strong>季度演算法地震</div>
+          <div class="boss-ability"><strong>⚠️ 弱點：</strong>不是惡意但更可怕 — 不在乎你死活，棋盤本身就會吃子</div>
+        </div>
+      </div>
+
+      <div class="boss-card" style="border-color:#7a4a2f">
+        <div class="boss-head">
+          <div class="boss-icon">👁️</div>
+          <div>
+            <div class="boss-name">鄉民 / 媒體 / 公益團體</div>
+            <div class="boss-tier">WORLD BOSS · 隨機刷新 · 不可預測</div>
+          </div>
+          <div class="boss-hp">
+            <div class="boss-hp-label">威脅</div>
+            <div class="boss-hp-value" style="color:#FF7C0A">⚠️ 中</div>
+          </div>
+        </div>
+        <div class="boss-abilities">
+          <div class="boss-ability"><strong>受害者真實檢舉：</strong>多半是假冒站受害但歸咎你</div>
+          <div class="boss-ability"><strong>正義魔人：</strong>看到「博弈」就檢舉</div>
+          <div class="boss-ability"><strong>媒體挖題材：</strong>寫負面新聞炒流量</div>
+          <div class="boss-ability"><strong>對家假冒鄉民：</strong>偽裝受害者大量投訴</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ 3. 任務板 ═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">📜</div>
+      <div class="section-title">任務板（Quest Log）</div>
+      <div class="section-subtitle">昨日戰報 + 今日新令</div>
+    </div>
+    <div class="section-body">
+
+      <div style="margin-bottom:14px;color:var(--text-muted);font-size:12px;letter-spacing:1px">🌙 昨日未完成任務</div>
+      <div class="quest-list" style="margin-bottom:20px">
+        <div class="quest-item legendary">
+          <span class="quest-icon">🕯️</span>
+          <div>
+            <div class="quest-name">部署反詐騙站到雲端</div>
+            <div class="quest-meta">19 檔案完成 · 等推 GitHub + CF Pages · yuan5566520 帳號</div>
+          </div>
+          <span class="quest-status qs-doing">執行中</span>
+          <span class="quest-reward">+ 軍師覺醒</span>
+        </div>
+        <div class="quest-item weekly">
+          <span class="quest-icon">💰</span>
+          <div>
+            <div class="quest-name">Hostinger 採購</div>
+            <div class="quest-meta">12 月方案 NT$3,047 · 帳號 ys1688</div>
+          </div>
+          <span class="quest-status qs-pending">待付款</span>
+          <span class="quest-reward">+ 親衛隊裝備</span>
+        </div>
+        <div class="quest-item weekly">
+          <span class="quest-icon">✨</span>
+          <div>
+            <div class="quest-name">親衛隊 3 站建站</div>
+            <div class="quest-meta">ys89.tw / ys89tw.com / 168ys89.com · 域名已採購</div>
+          </div>
+          <span class="quest-status qs-pending">待建</span>
+          <span class="quest-reward">+ 品牌詞防護</span>
+        </div>
+        <div class="quest-item daily">
+          <span class="quest-icon">🎴</span>
+          <div>
+            <div class="quest-name">巴風特 + 雷神 cluster</div>
+            <div class="quest-meta">25 篇規劃完成 · 內容未寫</div>
+          </div>
+          <span class="quest-status qs-pending">待量產</span>
+          <span class="quest-reward">+ 大字佔領</span>
+        </div>
+        <div class="quest-item legendary">
+          <span class="quest-icon">⚙️</span>
+          <div>
+            <div class="quest-name">AI 自動發文 pipeline</div>
+            <div class="quest-meta">昨夜外援軍師（AK）已建完 pbn-command-center.zip</div>
+          </div>
+          <span class="quest-status qs-done">已完成</span>
+          <span class="quest-reward">+ 自動化軍械庫</span>
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;color:var(--text-muted);font-size:12px;letter-spacing:1px">☀️ 今日新令（來自 audit）</div>
+      <div class="quest-list">
+        <div class="quest-item legendary">
+          <span class="quest-icon">🗡️</span>
+          <div>
+            <div class="quest-name">派出雙面諜 — 第三方評測站</div>
+            <div class="quest-meta">最高 ROI 戰略 · 全新非品牌域名 + 33+ 篇 · NT$20K 預算</div>
+          </div>
+          <span class="quest-status qs-pending">待會長決議</span>
+          <span class="quest-reward">⭐⭐⭐⭐⭐</span>
+        </div>
+        <div class="quest-item weekly">
+          <span class="quest-icon">⚖️</span>
+          <div>
+            <div class="quest-name">調整旗幟集中度 — 非品牌衛星</div>
+            <div class="quest-meta">新買 2-3 個非 ys89 域名做衛星 · 分散 SpamBrain 偵測</div>
+          </div>
+          <span class="quest-status qs-pending">待會長決議</span>
+          <span class="quest-reward">+ 隱身能力</span>
+        </div>
+        <div class="quest-item daily">
+          <span class="quest-icon">📉</span>
+          <div>
+            <div class="quest-name">降低發文速度 — 持久戰</div>
+            <div class="quest-meta">5 篇/天 → 2-3 篇/天 · 避免 Helpful Content 攻擊</div>
+          </div>
+          <span class="quest-status qs-pending">待會長決議</span>
+          <span class="quest-reward">+ 坦克續命</span>
+        </div>
+        <div class="quest-item weekly">
+          <span class="quest-icon">🛡️</span>
+          <div>
+            <div class="quest-name">部署 Defense Mechanism（audit Section 10-12）</div>
+            <div class="quest-meta">Nginx Rate Limit + Cloudflare IP Whitelist + Fail2Ban + WP 防護</div>
+          </div>
+          <span class="quest-status qs-pending">技術 SOP 已備</span>
+          <span class="quest-reward">+ 全公會防禦</span>
+        </div>
+        <div class="quest-item">
+          <span class="quest-icon">📊</span>
+          <div>
+            <div class="quest-name">啟動 pbn-command-center 軍械庫</div>
+            <div class="quest-meta">填 API keys + 跑 monitor.py / quality-checker.py + cron 排程</div>
+          </div>
+          <span class="quest-status qs-pending">外援程式已建</span>
+          <span class="quest-reward">+ 自動戰力</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ 4. 天賦樹（三大衝突）═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">🌲</div>
+      <div class="section-title">公會天賦樹 · 三大決策點</div>
+      <div class="section-subtitle">會長需親自點選 · 不可逆</div>
+    </div>
+    <div class="section-body">
+
+      <div style="margin-bottom:18px;color:var(--text-bright);font-weight:700;font-size:14px">⚔️ 衝突 1：發文速度 — 速戰 vs 持久戰</div>
+      <div class="talent-row">
+        <div class="talent-card">
+          <div class="talent-name">⚡ 速攻流（5 篇/天）</div>
+          <div class="talent-desc">昨日計畫。3 個月 700 篇。<br>火力全開、彈藥消耗大。</div>
+          <div class="talent-cost">風險：Helpful Content 抓 → 坦克倒地</div>
+        </div>
+        <div class="talent-card recommended">
+          <div class="talent-name">🛡️ 持久流（2-3 篇/天）</div>
+          <div class="talent-desc">audit 建議。3 個月 400 篇。<br>節制輸出、活下來才能贏。</div>
+          <div class="talent-cost">每篇過 12 項 checklist · GSC 監控</div>
+        </div>
+        <div class="talent-card">
+          <div class="talent-name">🐌 龜縮流（1 篇/天）</div>
+          <div class="talent-desc">超保守。3 個月 90 篇。<br>幾乎不會被罰但成長慢。</div>
+          <div class="talent-cost">適合：覺得 Google 嚴打期</div>
+        </div>
+      </div>
+
+      <div style="margin:24px 0 18px;color:var(--text-bright);font-weight:700;font-size:14px">🏴 衝突 2：ys89.* 旗幟策略 — 集中 vs 分散</div>
+      <div class="talent-row">
+        <div class="talent-card">
+          <div class="talent-name">🏰 集中流（保留所有 ys89.*）</div>
+          <div class="talent-desc">11 個 ys89.* 全留。<br>品牌記憶最強。</div>
+          <div class="talent-cost">風險：SpamBrain 偵測機率高</div>
+        </div>
+        <div class="talent-card recommended">
+          <div class="talent-name">⚖️ 混合流（保留品牌 + 新買非品牌衛星）</div>
+          <div class="talent-desc">audit 建議。<br>保留 ys89.fun + 親衛隊 + 主力衛星，<br>新買 2-3 個通用名衛星補充。</div>
+          <div class="talent-cost">預算：NT$5K 新域名</div>
+        </div>
+        <div class="talent-card">
+          <div class="talent-name">🥷 完全偽裝流（替換所有衛星）</div>
+          <div class="talent-desc">所有衛星改非品牌名。<br>最隱蔽但要重建。</div>
+          <div class="talent-cost">放棄 ys89.me/.games 既有權重</div>
+        </div>
+      </div>
+
+      <div style="margin:24px 0 18px;color:var(--text-bright);font-weight:700;font-size:14px">🗡️ 衝突 3：派不派雙面諜 — 評測站</div>
+      <div class="talent-row">
+        <div class="talent-card recommended">
+          <div class="talent-name">🗡️ 派出雙面諜</div>
+          <div class="talent-desc">audit 強推。預算最高 ROI 項目。<br>新買域名 + 33 篇內容 + 獨立 VPS</div>
+          <div class="talent-cost">投資 NT$20K · 月效益 ⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="talent-card">
+          <div class="talent-name">⏸️ 觀望（Q2 再說）</div>
+          <div class="talent-desc">先把現有戰役打好。<br>等 ys89.fun 穩定再開新戰場。</div>
+          <div class="talent-cost">代價：對手繼續用負評打你</div>
+        </div>
+        <div class="talent-card">
+          <div class="talent-name">❌ 不派</div>
+          <div class="talent-desc">完全靠現有架構。<br>省 NT$20K。</div>
+          <div class="talent-cost">代價：品牌詞 SERP 少佔 1 格</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ 5. 戰場地圖 ═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title">戰場地圖 · 兵力部署</div>
+      <div class="section-subtitle">當前戰線：3 個戰場同時開打</div>
+    </div>
+    <div class="section-body">
+
+      <div class="map-canvas">
+
+        <div class="map-tier">
+          <div class="map-tier-label">主城</div>
+          <div class="map-tier-units">
+            <span class="map-unit commander">👑 ys89.bet（主帥不出場）</span>
+          </div>
+        </div>
+
+        <div class="map-tier">
+          <div class="map-tier-label">中央軍</div>
+          <div class="map-tier-units">
+            <span class="map-unit tank">🛡️ ys89.fun（坦克）</span>
+          </div>
+        </div>
+
+        <div class="map-tier">
+          <div class="map-tier-label">親衛隊</div>
+          <div class="map-tier-units">
+            <span class="map-unit guard">✨ ys89.tw</span>
+            <span class="map-unit guard">✨ ys89tw.com</span>
+            <span class="map-unit guard">✨ 168ys89.com</span>
+          </div>
+        </div>
+
+        <div class="map-tier">
+          <div class="map-tier-label">細作</div>
+          <div class="map-tier-units">
+            <span class="map-unit spy">🗡️ 評測站（待派）</span>
+            <span class="map-unit healer">🕯️ plainjanedesigners（反詐騙軍師）</span>
+          </div>
+        </div>
+
+        <div class="map-tier">
+          <div class="map-tier-label">衛星武將</div>
+          <div class="map-tier-units">
+            <span class="map-unit dps">⚡ ys89.me</span>
+            <span class="map-unit dps">⚡ ys89.games</span>
+            <span class="map-unit dps">⚡ ys89.biz</span>
+            <span class="map-unit dps">⚡ ys89.info</span>
+            <span class="map-unit druid">🌿 fifa-worldcups.tw</span>
+          </div>
+        </div>
+
+        <div class="map-tier">
+          <div class="map-tier-label">外圍 PBN</div>
+          <div class="map-tier-units">
+            <span class="map-unit dps">🔮 deckmatt</span>
+            <span class="map-unit dps">🔮 adviseist</span>
+            <span class="map-unit dps">🔮 hipgreenscene</span>
+            <span class="map-unit dps">🏹 pansurihotel</span>
+            <span class="map-unit dps" style="border-color:var(--dk);color:var(--dk)">💀 bolalive77（灰帽老兵）</span>
+          </div>
+        </div>
+
+        <div class="map-tier">
+          <div class="map-tier-label">輿論大軍</div>
+          <div class="map-tier-units">
+            <span class="map-unit">🪖 12 個 IG / FB / Threads / Medium</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ 6. 副本進度 ═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">🏰</div>
+      <div class="section-title">副本進度（戰役階段）</div>
+      <div class="section-subtitle">目前進入 Phase 1</div>
+    </div>
+    <div class="section-body">
+
+      <div class="raid-phase done">
+        <div class="raid-phase-head">
+          <div class="raid-phase-num">0</div>
+          <div class="raid-phase-name">Phase 0 — 公會建立與基礎建設</div>
+          <div class="raid-phase-time">~ 2026-05-26</div>
+        </div>
+        <div class="raid-phase-desc">17 個域名儲備 / 主帥 + 坦克上線 / 武將群部署 / 灰帽老兵復活 / footprint 隔離完成</div>
+      </div>
+
+      <div class="raid-phase current">
+        <div class="raid-phase-head">
+          <div class="raid-phase-num">1</div>
+          <div class="raid-phase-name">Phase 1 — 親衛隊就位 + 軍師覺醒（本週）</div>
+          <div class="raid-phase-time">2026-05-28 起</div>
+        </div>
+        <div class="raid-phase-desc">部署反詐騙站（軍師上線）/ 安裝 pbn-command-center（軍械庫啟動）/ 採購 Hostinger / 建親衛隊 3 站</div>
+      </div>
+
+      <div class="raid-phase">
+        <div class="raid-phase-head">
+          <div class="raid-phase-num">2</div>
+          <div class="raid-phase-name">Phase 2 — 雙面諜出動（下週）</div>
+          <div class="raid-phase-time">2026-06 第 1 週</div>
+        </div>
+        <div class="raid-phase-desc">如會長決議派出雙面諜：採購新評測站域名 + 33 篇客觀內容 + 獨立 VPS / 帳號</div>
+      </div>
+
+      <div class="raid-phase">
+        <div class="raid-phase-head">
+          <div class="raid-phase-num">3</div>
+          <div class="raid-phase-name">Phase 3 — 旗幟分散 + 內容量產</div>
+          <div class="raid-phase-time">2026-06 月內</div>
+        </div>
+        <div class="raid-phase-desc">新買 2-3 個非品牌衛星 / 巴風特 + 雷神 cluster 完成 / ys89.fun 達 400 篇</div>
+      </div>
+
+      <div class="raid-phase locked">
+        <div class="raid-phase-head">
+          <div class="raid-phase-num">4</div>
+          <div class="raid-phase-name">Phase 4 — 持久戰 + 退場準備</div>
+          <div class="raid-phase-time">Month 4-12</div>
+        </div>
+        <div class="raid-phase-desc">每月持續發文 + 監控 / WC 結束 ys89.games/me 轉用途 / 評估退場 SOP（如達閾值）</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ 7. 軍械庫 / 裝備欄 ═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">🎒</div>
+      <div class="section-title">軍械庫 · 領地裝備</div>
+      <div class="section-subtitle">20 個域名按稀有度排序</div>
+    </div>
+    <div class="section-body">
+
+      <div class="gear-grid">
+        <div class="gear-item legendary">
+          <div class="gear-name">ys89.com</div>
+          <div class="gear-slot">主帥跳轉裝</div>
+          <div class="gear-stats">估值 $2,146 · 17 域之最</div>
+          <div class="gear-binding">綁定 · 不可變賣</div>
+        </div>
+        <div class="gear-item legendary">
+          <div class="gear-name">ys89.fun</div>
+          <div class="gear-slot">坦克主武</div>
+          <div class="gear-stats">249 篇 · 17 個品牌詞排第 1</div>
+          <div class="gear-binding">綁定 · SEO 主戰場</div>
+        </div>
+        <div class="gear-item epic">
+          <div class="gear-name">bolalive77.com</div>
+          <div class="gear-slot">死靈武器</div>
+          <div class="gear-stats">DR 11 · RD 2,100 · 老域名復活</div>
+          <div class="gear-binding">綁定 · 灰帽特化</div>
+        </div>
+        <div class="gear-item epic">
+          <div class="gear-name">ys89.games</div>
+          <div class="gear-slot">術士法杖</div>
+          <div class="gear-stats">DA 17 · 衛星武將最強</div>
+          <div class="gear-binding">綁定 · 接 bolalive77 連結</div>
+        </div>
+        <div class="gear-item rare">
+          <div class="gear-name">ys89.tw</div>
+          <div class="gear-slot">親衛隊裝</div>
+          <div class="gear-stats">2026-05-28 採購 NT$399</div>
+          <div class="gear-binding">待鍛造</div>
+        </div>
+        <div class="gear-item rare">
+          <div class="gear-name">ys89tw.com</div>
+          <div class="gear-slot">親衛隊裝</div>
+          <div class="gear-stats">2026-05-28 採購 NT$399</div>
+          <div class="gear-binding">待鍛造</div>
+        </div>
+        <div class="gear-item rare">
+          <div class="gear-name">168ys89.com</div>
+          <div class="gear-slot">親衛隊裝</div>
+          <div class="gear-stats">2026-05-28 採購 NT$399 · 幸運號 168</div>
+          <div class="gear-binding">待鍛造</div>
+        </div>
+        <div class="gear-item rare">
+          <div class="gear-name">hipgreenscene.com</div>
+          <div class="gear-slot">武將武器</div>
+          <div class="gear-stats">DA 17 · PBN 三老將之首</div>
+          <div class="gear-binding">綁定</div>
+        </div>
+        <div class="gear-item rare">
+          <div class="gear-name">deckmatt.com</div>
+          <div class="gear-slot">武將武器</div>
+          <div class="gear-stats">DA 10 · 撲克主題</div>
+          <div class="gear-binding">綁定</div>
+        </div>
+        <div class="gear-item rare">
+          <div class="gear-name">adviseist.com</div>
+          <div class="gear-slot">武將武器</div>
+          <div class="gear-stats">DA 9 · 戶外裝備主題</div>
+          <div class="gear-binding">綁定</div>
+        </div>
+        <div class="gear-item uncommon">
+          <div class="gear-name">pansurihotel.com</div>
+          <div class="gear-slot">武將武器</div>
+          <div class="gear-stats">DA 新 · 世足旅遊</div>
+          <div class="gear-binding">綁定</div>
+        </div>
+        <div class="gear-item uncommon">
+          <div class="gear-name">plainjanedesigners.com</div>
+          <div class="gear-slot">軍師法袍</div>
+          <div class="gear-stats">19 檔案完成 · 待部署</div>
+          <div class="gear-binding">綁定</div>
+        </div>
+        <div class="gear-item uncommon">
+          <div class="gear-name">fifa-worldcups.tw</div>
+          <div class="gear-slot">德魯伊變形</div>
+          <div class="gear-stats">世足獨立駐軍</div>
+          <div class="gear-binding">綁定</div>
+        </div>
+        <div class="gear-item uncommon">
+          <div class="gear-name">ys89.me / .biz / .info</div>
+          <div class="gear-slot">術士法杖 × 3</div>
+          <div class="gear-stats">DA 0 衛星 · 接反連</div>
+          <div class="gear-binding">綁定</div>
+        </div>
+        <div class="gear-item poor">
+          <div class="gear-name">ys89.bet</div>
+          <div class="gear-slot">主帥之印</div>
+          <div class="gear-stats">不開放索引 · noindex</div>
+          <div class="gear-binding">綁定 · 隱藏</div>
+        </div>
+        <div class="gear-item poor">
+          <div class="gear-name">ys89.win / 16888win / worldgoals.live</div>
+          <div class="gear-slot">儲備裝備</div>
+          <div class="gear-stats">尚未指派角色</div>
+          <div class="gear-binding">未綁定</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ 8. 補給站（預算） ═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">💰</div>
+      <div class="section-title">補給站 · 軍餉分配（NT$100,000）</div>
+      <div class="section-subtitle">audit 建議分配</div>
+    </div>
+    <div class="section-body">
+
+      <div class="budget-bar">
+        <div class="budget-bar-head">
+          <span class="budget-bar-name">⚔️ Niche Edit 外連戰役（10-15 條）</span>
+          <span class="budget-bar-amount">NT$30,000 · 30%</span>
+        </div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:30%"></div></div>
+      </div>
+
+      <div class="budget-bar">
+        <div class="budget-bar-head">
+          <span class="budget-bar-name">📜 AI 內容 + 人工審核（Claude API + 外包）</span>
+          <span class="budget-bar-amount">NT$30,000 · 30%</span>
+        </div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:30%"></div></div>
+      </div>
+
+      <div class="budget-bar">
+        <div class="budget-bar-head">
+          <span class="budget-bar-name">🏰 VPS 主機（3 個供應商分散）</span>
+          <span class="budget-bar-amount">NT$15,000 · 15%</span>
+        </div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:15%"></div></div>
+      </div>
+
+      <div class="budget-bar">
+        <div class="budget-bar-head">
+          <span class="budget-bar-name">⚡ PBN 內容維護（每站每月 2-3 篇）</span>
+          <span class="budget-bar-amount">NT$10,000 · 10%</span>
+        </div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:10%"></div></div>
+      </div>
+
+      <div class="budget-bar">
+        <div class="budget-bar-head">
+          <span class="budget-bar-name">🔍 Ahrefs 監控（排名 + 連結健康）</span>
+          <span class="budget-bar-amount">NT$10,000 · 10%</span>
+        </div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:10%"></div></div>
+      </div>
+
+      <div class="budget-bar">
+        <div class="budget-bar-head">
+          <span class="budget-bar-name">🗡️ 雙面諜域名（5 個非品牌衛星）</span>
+          <span class="budget-bar-amount">NT$5,000 · 5%</span>
+        </div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:5%"></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ 9. 公會文件庫 ═══════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">📚</div>
+      <div class="section-title">公會文件庫 · 戰略卷軸</div>
+      <div class="section-subtitle">所有先前情報</div>
+    </div>
+    <div class="section-body">
+
+      <div class="doc-links">
+        <a href="00-pbn-network-strategy-2026-05-26.html" class="doc-link">
+          <div class="doc-link-title">📖 Master 全網絡策略</div>
+          <div class="doc-link-desc">含完整站別組織圖 + v2 更新摘要</div>
+        </a>
+        <a href="00-strategy-blueprint-2026-05-27.html" class="doc-link">
+          <div class="doc-link-title">📖 戰略藍圖（v2）</div>
+          <div class="doc-link-desc">五層架構 + P0/P1/P2/P3 任務</div>
+        </a>
+        <a href="01-brand-sites-plan-2026-05-27.html" class="doc-link">
+          <div class="doc-link-title">📖 品牌官方雙站規劃</div>
+          <div class="doc-link-desc">VPS / 域名 / 25 篇首批內容</div>
+        </a>
+        <a href="02-antifraud-site-plan-2026-05-27.html" class="doc-link">
+          <div class="doc-link-title">📖 165 反詐騙站規劃</div>
+          <div class="doc-link-desc">編輯部 / 15 篇 / 控評置入</div>
+        </a>
+        <a href="03-ai-auto-publish-pipeline-2026-05-27.html" class="doc-link">
+          <div class="doc-link-title">📖 AI 自動發文 Pipeline</div>
+          <div class="doc-link-desc">已被 pbn-command-center 實作</div>
+        </a>
+        <a href="04-research-at99-antifraud-2026-05-27.html" class="doc-link">
+          <div class="doc-link-title">📖 AT99 + 反詐騙研究</div>
+          <div class="doc-link-desc">5 站矩陣分析 + 範例參考</div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 軍師最後一段話 -->
+  <div class="advisor-box">
+    <div class="advisor-label">🧙 軍師最終建議</div>
+    <div class="advisor-text">
+      會長，這場戰爭打了 8 個月，我們從零做到 20 個領地、11 個在編戰士、外加灰帽老兵的 2,100 RD 歷史權重。情勢比表面更好——我們有的不只是軍力，是<strong>架構</strong>。<br><br>
+
+      但接下來這 3 個月是關鍵：<strong>Google 大魔王正在更新副本機制</strong>（Helpful Content + SpamBrain 持續強化），同時對手也在進化。我們不能再用蠻力推。<br><br>
+
+      我建議——<strong>選持久流 + 派雙面諜 + 旗幟適度分散</strong>。這是 audit 跟我所有經驗的交集點。一年後回頭看，這場仗會贏在<strong>「我們活下來而對手陣亡」</strong>。<br><br>
+
+      會長下令的瞬間，我立刻調兵遣將。
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="seal">✦ YS89 GUILD · WAR ROOM ✦</div>
+    <div>Internal Strategy Document · Confidential · 2026-05-28</div>
+    <div style="margin-top:6px">For the Guild! ⚔️</div>
+  </div>
+
+</div>
+
+</body>
+</html>
