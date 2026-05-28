@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YS89 SEO 網路戰略簡報 · 2026-05-28</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f5f7fa;
+  --bg-card: #ffffff;
+  --bg-section: #fafbfc;
+  --border: #e3e8ef;
+  --border-strong: #cbd5e1;
+  --primary: #1e40af;
+  --primary-dark: #1e3a8a;
+  --accent: #f59e0b;
+  --success: #059669;
+  --warn: #d97706;
+  --danger: #dc2626;
+  --neutral: #64748b;
+  --text: #1f2937;
+  --text-light: #4b5563;
+  --text-muted: #6b7280;
+  --heading: #0f172a;
+}
+body {
+  font-family: 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 14.5px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── 頁首 ── */
+.page-header {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  color: #fff;
+  padding: 32px 20px;
+  border-bottom: 4px solid var(--accent);
+}
+.page-header-inner {
+  max-width: 1280px; margin: 0 auto;
+}
+.page-eyebrow {
+  font-size: 12px; letter-spacing: 3px; opacity: 0.85;
+  margin-bottom: 8px; text-transform: uppercase;
+}
+.page-title {
+  font-size: 28px; font-weight: 700;
+  letter-spacing: 0.5px; margin-bottom: 4px;
+}
+.page-subtitle {
+  font-size: 14px; opacity: 0.85;
+}
+.page-meta {
+  margin-top: 14px; display: flex; gap: 18px; flex-wrap: wrap;
+  font-size: 12px; opacity: 0.85;
+}
+.page-meta span { padding: 3px 10px; background: rgba(255,255,255,0.15); border-radius: 3px; }
+
+/* ── 主容器 ── */
+.wrap { max-width: 1280px; margin: 0 auto; padding: 28px 20px 60px; }
+
+/* ── KPI 卡片 ── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.kpi {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px 20px;
+  border-top: 3px solid var(--primary);
+}
+.kpi.success { border-top-color: var(--success); }
+.kpi.warn { border-top-color: var(--warn); }
+.kpi.danger { border-top-color: var(--danger); }
+.kpi-label {
+  font-size: 12px; color: var(--text-muted);
+  margin-bottom: 6px; letter-spacing: 0.3px;
+}
+.kpi-value {
+  font-size: 26px; font-weight: 700; color: var(--heading);
+  letter-spacing: -0.5px;
+}
+.kpi-value .unit { font-size: 14px; font-weight: 500; color: var(--text-muted); margin-left: 3px; }
+.kpi-trend { font-size: 11.5px; color: var(--text-muted); margin-top: 4px; }
+.kpi-trend.up { color: var(--success); }
+.kpi-trend.down { color: var(--danger); }
+
+/* ── Section ── */
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.section-head {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-section);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+.section-title {
+  font-size: 17px; font-weight: 700; color: var(--heading);
+  letter-spacing: 0.3px;
+}
+.section-title .num {
+  display: inline-block;
+  background: var(--primary); color: #fff;
+  width: 24px; height: 24px;
+  border-radius: 3px;
+  text-align: center; line-height: 24px;
+  font-size: 13px; margin-right: 10px;
+}
+.section-meta { font-size: 12.5px; color: var(--text-muted); }
+.section-body { padding: 24px; }
+
+/* ── 表格 ── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--bg-card);
+}
+.tbl th {
+  background: #f1f5f9;
+  color: var(--heading);
+  font-weight: 700;
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--border-strong);
+  letter-spacing: 0.3px;
+  font-size: 12.5px;
+}
+.tbl td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.tbl tr:hover td { background: #f8fafc; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.tbl .center { text-align: center; }
+.tbl strong { color: var(--heading); }
+
+/* ── 標籤 ── */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+}
+.tag-primary { background: #dbeafe; color: var(--primary-dark); }
+.tag-success { background: #d1fae5; color: var(--success); }
+.tag-warn { background: #fef3c7; color: var(--warn); }
+.tag-danger { background: #fee2e2; color: var(--danger); }
+.tag-neutral { background: #f1f5f9; color: var(--neutral); }
+.tag-gold { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+
+/* ── 狀態圓點 ── */
+.dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 6px;
+  vertical-align: middle;
+}
+.dot-on { background: var(--success); }
+.dot-prep { background: var(--warn); }
+.dot-off { background: var(--neutral); }
+.dot-danger { background: var(--danger); }
+
+/* ── 決策卡 ── */
+.decision-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+}
+.decision-card {
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+  position: relative;
+}
+.decision-card.rec {
+  border: 2px solid var(--success);
+  background: linear-gradient(180deg, #ecfdf5 0%, var(--bg-section) 100%);
+}
+.decision-card.rec::before {
+  content: '建議';
+  position: absolute; top: -10px; left: 14px;
+  background: var(--success); color: #fff;
+  padding: 2px 10px; border-radius: 3px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+}
+.decision-name { font-size: 14px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+.decision-desc { font-size: 12.5px; color: var(--text-light); margin-bottom: 10px; }
+.decision-pros, .decision-cons {
+  font-size: 12px; padding: 6px 0; line-height: 1.7;
+}
+.decision-pros { color: var(--success); }
+.decision-cons { color: var(--danger); }
+
+/* ── 任務列表 ── */
+.task-list { list-style: none; }
+.task-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+}
+.task-item:last-child { border-bottom: none; }
+.task-priority {
+  width: 32px; height: 24px;
+  background: #f1f5f9;
+  border-radius: 3px;
+  text-align: center; line-height: 24px;
+  font-size: 11px; font-weight: 700; color: var(--text-light);
+}
+.task-priority.p0 { background: var(--danger); color: #fff; }
+.task-priority.p1 { background: var(--warn); color: #fff; }
+.task-priority.p2 { background: var(--primary); color: #fff; }
+.task-name { color: var(--text); }
+.task-name strong { color: var(--heading); display: block; margin-bottom: 2px; }
+.task-meta { font-size: 11.5px; color: var(--text-muted); }
+.task-eta { font-size: 12px; color: var(--text-muted); }
+.task-status { white-space: nowrap; }
+
+/* ── 架構圖 ── */
+.arch-canvas {
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 22px;
+}
+.arch-row {
+  display: grid; grid-template-columns: 110px 1fr;
+  gap: 16px; padding: 12px 0;
+  border-bottom: 1px dashed var(--border);
+  align-items: start;
+}
+.arch-row:last-child { border-bottom: none; }
+.arch-label {
+  font-weight: 700; color: var(--heading);
+  font-size: 13px; padding-top: 4px;
+}
+.arch-label .sub { font-size: 11px; color: var(--text-muted); font-weight: 500; display: block; margin-top: 2px; }
+.arch-nodes { display: flex; flex-wrap: wrap; gap: 6px; }
+.arch-node {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 3px;
+  font-size: 12.5px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.arch-node.t0 { border-left: 3px solid var(--accent); }
+.arch-node.t1 { border-left: 3px solid var(--primary); }
+.arch-node.brand { border-left: 3px solid var(--success); }
+.arch-node.review { border-left: 3px solid #7c3aed; }
+.arch-node.defense { border-left: 3px solid #db2777; }
+.arch-node.satellite { border-left: 3px solid var(--neutral); }
+.arch-node.pbn { border-left: 3px solid var(--warn); }
+
+/* ── 預算 ── */
+.budget-row {
+  display: grid; grid-template-columns: 1fr auto auto;
+  gap: 16px; padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px; align-items: center;
+}
+.budget-row:last-child { border-bottom: none; }
+.budget-bar {
+  width: 100%; height: 6px;
+  background: #f1f5f9;
+  border-radius: 3px;
+  overflow: hidden; margin-top: 6px;
+}
+.budget-fill {
+  height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 3px;
+}
+.budget-amount { font-weight: 700; color: var(--heading); white-space: nowrap; }
+.budget-pct { color: var(--text-muted); font-size: 12px; white-space: nowrap; }
+
+/* ── 補充說明 ── */
+.note {
+  background: #fef9e7;
+  border: 1px solid #fcd34d;
+  border-left: 4px solid var(--warn);
+  border-radius: 3px;
+  padding: 12px 16px;
+  margin: 14px 0;
+  font-size: 13px;
+}
+.note strong { color: #78350f; }
+.note.info { background: #eff6ff; border-color: #93c5fd; border-left-color: var(--primary); }
+.note.info strong { color: var(--primary-dark); }
+
+/* ── 連結卡 ── */
+.link-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.link-card {
+  display: block;
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  padding: 12px 14px;
+  border-radius: 3px;
+  color: var(--text);
+  text-decoration: none;
+  transition: all .15s;
+}
+.link-card:hover { background: #f1f5f9; text-decoration: none; }
+.link-card strong { color: var(--primary-dark); display: block; font-size: 13px; margin-bottom: 3px; }
+.link-card span { font-size: 11.5px; color: var(--text-muted); }
+
+/* ── 頁尾 ── */
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* RWD */
+@media (max-width: 900px) {
+  .decision-row { grid-template-columns: 1fr; }
+  .arch-row { grid-template-columns: 1fr; }
+  .arch-label { padding-top: 0; }
+  .task-item { grid-template-columns: auto 1fr; }
+  .task-eta, .task-status { grid-column: 2; padding-left: 0; }
+  .tbl { font-size: 12px; }
+  .tbl th, .tbl td { padding: 8px 10px; }
+}
+@media (max-width: 640px) {
+  .page-title { font-size: 22px; }
+  .kpi-value { font-size: 22px; }
+  .section-body { padding: 16px; }
+  .tbl { display: block; overflow-x: auto; white-space: nowrap; }
+  .tbl th, .tbl td { white-space: normal; }
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Internal Strategy Briefing</div>
+    <h1 class="page-title">YS89 SEO 網路戰略簡報</h1>
+    <div class="page-subtitle">站別數據總覽 · 戰略決策點 · 執行優先順序</div>
+    <div class="page-meta">
+      <span>編製日期：2026-05-28</span>
+      <span>版本：v1.0</span>
+      <span>適用：內部團隊 + 業主簡報</span>
+      <span>機密等級：受限</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ───── 1. KPI 總覽 ───── -->
+  <div class="kpi-row">
+    <div class="kpi success">
+      <div class="kpi-label">在編站點</div>
+      <div class="kpi-value">11<span class="unit">/ 20 域名</span></div>
+      <div class="kpi-trend">11 站運作中、9 個域名待建/待用</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">主站文章數</div>
+      <div class="kpi-value">249<span class="unit">篇</span></div>
+      <div class="kpi-trend">ys89.fun · 目標 3 個月 400 篇</div>
+    </div>
+    <div class="kpi success">
+      <div class="kpi-label">總反向連結數</div>
+      <div class="kpi-value">42.6K<span class="unit">條</span></div>
+      <div class="kpi-trend">主要來自 bolalive77 老域名繼承</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">總 Referring Domains</div>
+      <div class="kpi-value">3.8K<span class="unit">個</span></div>
+      <div class="kpi-trend">2.1K 來自 bolalive77、1.4K 來自 hipgreenscene</div>
+    </div>
+    <div class="kpi warn">
+      <div class="kpi-label">待決策項</div>
+      <div class="kpi-value">3<span class="unit">個</span></div>
+      <div class="kpi-trend">速度 / 旗幟 / 評測站</div>
+    </div>
+  </div>
+
+  <!-- ───── 2. 站別總表（核心） ───── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">1</span>站別總表 · 數據快照</div>
+      <div class="section-meta">DR/RD 來自 Ahrefs；DA 來自 Ubersuggest（2026-05 數據）</div>
+    </div>
+    <div class="section-body" style="padding:0">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:24%">站點</th>
+            <th>角色</th>
+            <th>主題</th>
+            <th class="center">DR / DA</th>
+            <th class="num">Referring Domains</th>
+            <th class="num">Backlinks</th>
+            <th class="num">文章數</th>
+            <th class="center">狀態</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ys89.bet</strong></td>
+            <td>主平台（真實娛樂城）</td>
+            <td>—</td>
+            <td class="center">不索引</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>ys89.fun</strong></td>
+            <td>主 SEO 站（坦克）</td>
+            <td>娛樂城評測 + 攻略</td>
+            <td class="center">DA 2</td>
+            <td class="num">15</td>
+            <td class="num">20</td>
+            <td class="num">249</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>ys89.com</strong></td>
+            <td>301 跳轉 → 主平台</td>
+            <td>—</td>
+            <td class="center">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr style="background:#f0fdf4">
+            <td><strong>ys89.tw</strong> <span class="tag tag-gold">新</span></td>
+            <td>品牌官方 B（轉換型）</td>
+            <td>體驗金 / 首儲</td>
+            <td class="center">新</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="center"><span class="dot dot-prep"></span>待建站</td>
+          </tr>
+          <tr style="background:#f0fdf4">
+            <td><strong>ys89tw.com</strong> <span class="tag tag-gold">新</span></td>
+            <td>品牌官方 A（信任型）</td>
+            <td>夜色娛樂城官方</td>
+            <td class="center">新</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="center"><span class="dot dot-prep"></span>待建站</td>
+          </tr>
+          <tr style="background:#f0fdf4">
+            <td><strong>168ys89.com</strong> <span class="tag tag-gold">新</span></td>
+            <td>品牌官方 C（活動型）</td>
+            <td>VIP / 救援金 / 活動</td>
+            <td class="center">新</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="center"><span class="dot dot-prep"></span>待建站</td>
+          </tr>
+          <tr style="background:#fdf4ff">
+            <td><strong>plainjanedesigners.com</strong></td>
+            <td>反詐騙資訊站（控評）</td>
+            <td>165 反詐騙資訊整合</td>
+            <td class="center">DA 0</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="num">19</td>
+            <td class="center"><span class="dot dot-prep"></span>待部署</td>
+          </tr>
+          <tr>
+            <td><strong>ys89.me</strong></td>
+            <td>世足直播衛星</td>
+            <td>世足賽程 / 直播</td>
+            <td class="center">DA 6</td>
+            <td class="num">42</td>
+            <td class="num">128</td>
+            <td class="num">~30</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>ys89.games</strong></td>
+            <td>世足直播衛星</td>
+            <td>球迷直播 / 觀賽</td>
+            <td class="center">DA 17</td>
+            <td class="num">186</td>
+            <td class="num">490</td>
+            <td class="num">~25</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>ys89.biz</strong></td>
+            <td>衛星 / 待改 PBN 餵評測站</td>
+            <td>商業分析 / 賠率</td>
+            <td class="center">DA 0</td>
+            <td class="num">8</td>
+            <td class="num">14</td>
+            <td class="num">~15</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>ys89.info</strong></td>
+            <td>衛星</td>
+            <td>世足投注 / 賠率</td>
+            <td class="center">DA 0</td>
+            <td class="num">12</td>
+            <td class="num">26</td>
+            <td class="num">~10</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>ys89.win</strong></td>
+            <td>待用</td>
+            <td>—</td>
+            <td class="center">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="center"><span class="dot dot-off"></span>未確認</td>
+          </tr>
+          <tr>
+            <td><strong>fifa-worldcups.tw</strong></td>
+            <td>世足獨立站（特種）</td>
+            <td>2026 世界盃完整資訊</td>
+            <td class="center">DA 1</td>
+            <td class="num">1</td>
+            <td class="num">1</td>
+            <td class="num">~20</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>deckmatt.com</strong></td>
+            <td>PBN（白帽 - 撲克）</td>
+            <td>撲克 / 桌遊</td>
+            <td class="center">DA 10</td>
+            <td class="num">57</td>
+            <td class="num">734</td>
+            <td class="num">18</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>adviseist.com</strong></td>
+            <td>PBN（白帽 - 戶外裝備）</td>
+            <td>戶外裝備評測</td>
+            <td class="center">DA 9</td>
+            <td class="num">159</td>
+            <td class="num">457</td>
+            <td class="num">17</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>hipgreenscene.com</strong></td>
+            <td>PBN（白帽 - 永續旅遊）</td>
+            <td>永續旅遊</td>
+            <td class="center">DA 17</td>
+            <td class="num">1,426</td>
+            <td class="num">3,353</td>
+            <td class="num">18</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>pansurihotel.com</strong></td>
+            <td>PBN（白帽 - 旅遊雜誌）</td>
+            <td>世足城市旅遊</td>
+            <td class="center">新</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="num">6</td>
+            <td class="center"><span class="dot dot-prep"></span>GSC 待驗</td>
+          </tr>
+          <tr style="background:#fef2f2">
+            <td><strong>bolalive77.com</strong> <span class="tag tag-danger">灰帽</span></td>
+            <td>PBN（灰帽 - 老域名）</td>
+            <td>印尼世足直播</td>
+            <td class="center">DR 11</td>
+            <td class="num">2,100</td>
+            <td class="num">38,000</td>
+            <td class="num">6</td>
+            <td class="center"><span class="dot dot-on"></span>運作</td>
+          </tr>
+          <tr>
+            <td><strong>16888win.com</strong></td>
+            <td>待用</td>
+            <td>—</td>
+            <td class="center">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="center"><span class="dot dot-off"></span>未指派</td>
+          </tr>
+          <tr>
+            <td><strong>worldgoals.live</strong></td>
+            <td>待用</td>
+            <td>—</td>
+            <td class="center">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td class="center"><span class="dot dot-off"></span>未指派</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note info">
+    <strong>數據說明：</strong>DA（Domain Authority，0-100）為 Ubersuggest 評分標準；DR（Domain Rating，0-100）為 Ahrefs 評分標準。兩者非相同指標，僅能在同一工具內部比較。Backlinks 為單一網址連結數，Referring Domains 為不重複網域連結數（後者更重要）。<strong>bolalive77 數據</strong>為老域名繼承（2010-2025 年累積），多數為印尼博弈相關歷史連結。
+  </div>
+
+  <!-- ───── 3. 整體網絡架構 ───── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">2</span>網絡架構分層</div>
+      <div class="section-meta">五層架構 · 各層獨立隔離</div>
+    </div>
+    <div class="section-body">
+      <div class="arch-canvas">
+
+        <div class="arch-row">
+          <div class="arch-label">主平台<span class="sub">Tier 0</span></div>
+          <div class="arch-nodes">
+            <span class="arch-node t0"><strong>ys89.bet</strong> · 真實娛樂城平台</span>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-label">主 SEO 站<span class="sub">Tier 1（坦克）</span></div>
+          <div class="arch-nodes">
+            <span class="arch-node t1"><strong>ys89.fun</strong> · 主動承受品牌詞 SEO 攻擊</span>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-label">品牌官方<span class="sub">Tier 1.5</span></div>
+          <div class="arch-nodes">
+            <span class="arch-node brand">ys89.tw（轉換）</span>
+            <span class="arch-node brand">ys89tw.com（信任）</span>
+            <span class="arch-node brand">168ys89.com（活動）</span>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-label">反詐控評<span class="sub">獨立層</span></div>
+          <div class="arch-nodes">
+            <span class="arch-node defense">plainjanedesigners.com · 反詐騙資訊站</span>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-label">衛星站<span class="sub">Tier 2</span></div>
+          <div class="arch-nodes">
+            <span class="arch-node satellite">ys89.me</span>
+            <span class="arch-node satellite">ys89.games</span>
+            <span class="arch-node satellite">ys89.biz</span>
+            <span class="arch-node satellite">ys89.info</span>
+            <span class="arch-node satellite">fifa-worldcups.tw（獨立）</span>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-label">PBN 站群<span class="sub">Tier 3-4</span></div>
+          <div class="arch-nodes">
+            <span class="arch-node pbn">deckmatt.com</span>
+            <span class="arch-node pbn">adviseist.com</span>
+            <span class="arch-node pbn">hipgreenscene.com</span>
+            <span class="arch-node pbn">pansurihotel.com</span>
+            <span class="arch-node pbn" style="border-left-color:var(--danger)">bolalive77.com（灰帽）</span>
+          </div>
+        </div>
+
+        <div class="arch-row">
+          <div class="arch-label">輿論支援<span class="sub">社群</span></div>
+          <div class="arch-nodes">
+            <span class="arch-node" style="border-left:3px solid #ec4899">12 個 IG / FB / Threads / Medium 帳號</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── 4. 待決策（3 大衝突） ───── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">3</span>待決策事項</div>
+      <div class="section-meta">需業主／會長拍板</div>
+    </div>
+    <div class="section-body">
+
+      <h3 style="margin-bottom:14px;color:var(--heading);font-size:15px">決策 1 · 內容發文速度</h3>
+      <div class="decision-row" style="margin-bottom:20px">
+        <div class="decision-card">
+          <div class="decision-name">A. 速攻流（5 篇/天）</div>
+          <div class="decision-desc">3 個月達 700 篇</div>
+          <div class="decision-pros">+ 內容覆蓋最快、長尾關鍵字機會最多</div>
+          <div class="decision-cons">− 可能觸發 Helpful Content System 降權</div>
+        </div>
+        <div class="decision-card rec">
+          <div class="decision-name">B. 持久流（2-3 篇/天）</div>
+          <div class="decision-desc">3 個月達 400 篇</div>
+          <div class="decision-pros">+ 安全、可持續、每篇可過 12 項 QA</div>
+          <div class="decision-cons">− 內容速度較慢</div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-name">C. 龜縮流（1 篇/天）</div>
+          <div class="decision-desc">3 個月達 90 篇</div>
+          <div class="decision-pros">+ 風險最低</div>
+          <div class="decision-cons">− 成長慢、競爭詞難拿</div>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom:14px;color:var(--heading);font-size:15px">決策 2 · ys89.* 域名集中度</h3>
+      <div class="decision-row" style="margin-bottom:20px">
+        <div class="decision-card">
+          <div class="decision-name">A. 完全集中（保留所有 11 個 ys89.*）</div>
+          <div class="decision-desc">不新增非品牌域名</div>
+          <div class="decision-pros">+ 品牌記憶最強</div>
+          <div class="decision-cons">− Google SpamBrain 偵測站群機率高</div>
+        </div>
+        <div class="decision-card rec">
+          <div class="decision-name">B. 混合策略</div>
+          <div class="decision-desc">保留品牌 + 新買 2-3 個非品牌衛星</div>
+          <div class="decision-pros">+ 平衡品牌與隱蔽性、預算可控（~NT$5K）</div>
+          <div class="decision-cons">− 需採購新域名 + 建站時間</div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-name">C. 完全偽裝</div>
+          <div class="decision-desc">所有衛星改非 ys89 名</div>
+          <div class="decision-pros">+ 最隱蔽、難被識破</div>
+          <div class="decision-cons">− 放棄 ys89.me/games 既有權重（很高）</div>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom:14px;color:var(--heading);font-size:15px">決策 3 · 是否新建第三方評測站</h3>
+      <div class="decision-row">
+        <div class="decision-card rec">
+          <div class="decision-name">A. 立即執行</div>
+          <div class="decision-desc">新域名 + 33+ 篇客觀評測 + 獨立 VPS</div>
+          <div class="decision-pros">+ 第三方權威背書、Brand SERP 多佔 1 位、ROI 最高</div>
+          <div class="decision-cons">− 初期投資 ~NT$20K + 內容工程</div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-name">B. 觀望（Q3 再議）</div>
+          <div class="decision-desc">先把現有架構打穩</div>
+          <div class="decision-pros">+ 資源集中、現金流壓力低</div>
+          <div class="decision-cons">− 對手持續用負評洗 SERP</div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-name">C. 不做</div>
+          <div class="decision-desc">完全靠現有架構</div>
+          <div class="decision-pros">+ 省下 NT$20K</div>
+          <div class="decision-cons">− 品牌詞 SERP 少佔 1 格、防禦力較弱</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───── 5. 任務優先順序 ───── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">4</span>本週執行任務</div>
+      <div class="section-meta">優先級 P0 / P1 / P2</div>
+    </div>
+    <div class="section-body">
+      <ul class="task-list">
+        <li class="task-item">
+          <span class="task-priority p0">P0</span>
+          <div class="task-name">
+            <strong>反詐騙站雲端部署</strong>
+            <span class="task-meta">19 個檔案完整 · 推 GitHub + Cloudflare Pages · 用 yuan5566520 帳號</span>
+          </div>
+          <span class="task-eta">今日</span>
+          <span class="task-status"><span class="tag tag-warn">執行中</span></span>
+        </li>
+        <li class="task-item">
+          <span class="task-priority p0">P0</span>
+          <div class="task-name">
+            <strong>安裝 pbn-command-center 自動化系統</strong>
+            <span class="task-meta">填 API keys · 跑 monitor.py / quality-checker.py · 設 cron</span>
+          </div>
+          <span class="task-eta">今日</span>
+          <span class="task-status"><span class="tag tag-neutral">待啟動</span></span>
+        </li>
+        <li class="task-item">
+          <span class="task-priority p1">P1</span>
+          <div class="task-name">
+            <strong>Hostinger 採購（12 個月方案）</strong>
+            <span class="task-meta">NT$3,047 · 給品牌站 A 用 · 帳號 ys1688</span>
+          </div>
+          <span class="task-eta">本週</span>
+          <span class="task-status"><span class="tag tag-neutral">待付款</span></span>
+        </li>
+        <li class="task-item">
+          <span class="task-priority p1">P1</span>
+          <div class="task-name">
+            <strong>品牌官方 3 站建站</strong>
+            <span class="task-meta">ys89.tw / ys89tw.com / 168ys89.com · WordPress 建站</span>
+          </div>
+          <span class="task-eta">本週</span>
+          <span class="task-status"><span class="tag tag-neutral">待建</span></span>
+        </li>
+        <li class="task-item">
+          <span class="task-priority p1">P1</span>
+          <div class="task-name">
+            <strong>Defense Mechanism 部署</strong>
+            <span class="task-meta">Cloudflare IP Whitelist · Nginx Rate Limit · Fail2Ban · WP 防護</span>
+          </div>
+          <span class="task-eta">本週</span>
+          <span class="task-status"><span class="tag tag-neutral">SOP 已備</span></span>
+        </li>
+        <li class="task-item">
+          <span class="task-priority p2">P2</span>
+          <div class="task-name">
+            <strong>巴風特 + 雷神 cluster 內容</strong>
+            <span class="task-meta">25 篇 · 用 AI pipeline 自動生成 + 人工審核</span>
+          </div>
+          <span class="task-eta">下週</span>
+          <span class="task-status"><span class="tag tag-neutral">待量產</span></span>
+        </li>
+        <li class="task-item">
+          <span class="task-priority p2">P2</span>
+          <div class="task-name">
+            <strong>第三方評測站建立（如決策通過）</strong>
+            <span class="task-meta">採購新域名 + 設定獨立 VPS + 33+ 篇內容</span>
+          </div>
+          <span class="task-eta">下週</span>
+          <span class="task-status"><span class="tag tag-neutral">待決策</span></span>
+        </li>
+        <li class="task-item">
+          <span class="task-priority p2">P2</span>
+          <div class="task-name">
+            <strong>採購 2-3 個非品牌衛星域名（如決策通過）</strong>
+            <span class="task-meta">通用名稱 · 分散 ys89.* 集中度 · Namecheap/Porkbun</span>
+          </div>
+          <span class="task-eta">下週</span>
+          <span class="task-status"><span class="tag tag-neutral">待決策</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ───── 6. 預算分配 ───── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">5</span>預算分配（NT$100,000）</div>
+      <div class="section-meta">audit 建議 · 季度預算</div>
+    </div>
+    <div class="section-body" style="padding:0">
+      <div class="budget-row">
+        <div>
+          <strong>Niche Edit 外連</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">10-15 條高質量外連、分散到不同層</div>
+          <div class="budget-bar"><div class="budget-fill" style="width:30%"></div></div>
+        </div>
+        <div class="budget-amount">NT$30,000</div>
+        <div class="budget-pct">30%</div>
+      </div>
+      <div class="budget-row">
+        <div>
+          <strong>AI 內容 + 人工審核</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Claude API 月費 + 外包編輯審核</div>
+          <div class="budget-bar"><div class="budget-fill" style="width:30%"></div></div>
+        </div>
+        <div class="budget-amount">NT$30,000</div>
+        <div class="budget-pct">30%</div>
+      </div>
+      <div class="budget-row">
+        <div>
+          <strong>VPS 主機（3 個供應商分散）</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Cloudways + Hostinger + Vultr · 年費</div>
+          <div class="budget-bar"><div class="budget-fill" style="width:15%"></div></div>
+        </div>
+        <div class="budget-amount">NT$15,000</div>
+        <div class="budget-pct">15%</div>
+      </div>
+      <div class="budget-row">
+        <div>
+          <strong>PBN 內容維護</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">每站每月 2-3 篇外包寫手</div>
+          <div class="budget-bar"><div class="budget-fill" style="width:10%"></div></div>
+        </div>
+        <div class="budget-amount">NT$10,000</div>
+        <div class="budget-pct">10%</div>
+      </div>
+      <div class="budget-row">
+        <div>
+          <strong>Ahrefs 監控訂閱</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">排名追蹤 + 連結健康監測</div>
+          <div class="budget-bar"><div class="budget-fill" style="width:10%"></div></div>
+        </div>
+        <div class="budget-amount">NT$10,000</div>
+        <div class="budget-pct">10%</div>
+      </div>
+      <div class="budget-row">
+        <div>
+          <strong>新域名採購（如決策通過）</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">評測站 + 2-3 個非品牌衛星</div>
+          <div class="budget-bar"><div class="budget-fill" style="width:5%"></div></div>
+        </div>
+        <div class="budget-amount">NT$5,000</div>
+        <div class="budget-pct">5%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── 7. 風險摘要 ───── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">6</span>主要風險摘要</div>
+      <div class="section-meta">需持續監控</div>
+    </div>
+    <div class="section-body" style="padding:0">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>風險項</th>
+            <th>來源</th>
+            <th>等級</th>
+            <th>緩解措施</th>
+            <th class="center">狀態</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ys89.* 域名聚集</strong></td>
+            <td>Google SpamBrain</td>
+            <td><span class="tag tag-danger">高</span></td>
+            <td>新買 2-3 個非品牌衛星分散旗幟</td>
+            <td class="center"><span class="dot dot-prep"></span>待決策</td>
+          </tr>
+          <tr>
+            <td><strong>AI 內容量產過快</strong></td>
+            <td>Helpful Content System</td>
+            <td><span class="tag tag-danger">高</span></td>
+            <td>降速至 2-3 篇/天 + 12 項 QA checklist</td>
+            <td class="center"><span class="dot dot-prep"></span>待決策</td>
+          </tr>
+          <tr>
+            <td><strong>競爭對手負面 SEO</strong></td>
+            <td>對手主動攻擊</td>
+            <td><span class="tag tag-warn">中</span></td>
+            <td>反詐騙站控評 + 品牌官方多站佔位</td>
+            <td class="center"><span class="dot dot-prep"></span>建置中</td>
+          </tr>
+          <tr>
+            <td><strong>假冒網站損害品牌</strong></td>
+            <td>仿冒站</td>
+            <td><span class="tag tag-warn">中</span></td>
+            <td>反詐騙站「假冒網站案例」教育文章</td>
+            <td class="center"><span class="dot dot-prep"></span>建置中</td>
+          </tr>
+          <tr>
+            <td><strong>單一 registrar (GoDaddy)</strong></td>
+            <td>Footprint</td>
+            <td><span class="tag tag-warn">中</span></td>
+            <td>新買域名分散到 Namecheap/Porkbun/CF</td>
+            <td class="center"><span class="dot dot-off"></span>規劃中</td>
+          </tr>
+          <tr>
+            <td><strong>單一付款帳號 footprint</strong></td>
+            <td>Footprint</td>
+            <td><span class="tag tag-success">低</span></td>
+            <td>已用加拿大虛擬卡 + WHOIS Privacy 全開</td>
+            <td class="center"><span class="dot dot-on"></span>已緩解</td>
+          </tr>
+          <tr>
+            <td><strong>單一 Manual Action 全站連坐</strong></td>
+            <td>Google 人工審查</td>
+            <td><span class="tag tag-warn">中</span></td>
+            <td>多帳號隔離（GitHub / CF / Gmail / VPN）</td>
+            <td class="center"><span class="dot dot-on"></span>已緩解</td>
+          </tr>
+          <tr>
+            <td><strong>負面反向連結攻擊（毒鏈）</strong></td>
+            <td>對手 + 隨機</td>
+            <td><span class="tag tag-warn">中</span></td>
+            <td>GSC Disavow 工具 + 每月外連審計</td>
+            <td class="center"><span class="dot dot-prep"></span>規劃中</td>
+          </tr>
+          <tr>
+            <td><strong>DDoS 攻擊</strong></td>
+            <td>對手</td>
+            <td><span class="tag tag-success">低</span></td>
+            <td>Cloudflare Under Attack Mode + IP Whitelist</td>
+            <td class="center"><span class="dot dot-prep"></span>SOP 已備</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ───── 8. 相關文件 ───── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">7</span>相關策略文件</div>
+      <div class="section-meta">完整文件庫</div>
+    </div>
+    <div class="section-body">
+      <div class="link-grid">
+        <a href="00-pbn-network-strategy-2026-05-26.html" class="link-card">
+          <strong>00 · 完整網絡架構 (Master)</strong>
+          <span>站別組織圖 + v2 升級摘要</span>
+        </a>
+        <a href="00-strategy-blueprint-2026-05-27.html" class="link-card">
+          <strong>00 · 戰略藍圖 v2</strong>
+          <span>五層架構 · P0-P3 任務</span>
+        </a>
+        <a href="01-brand-sites-plan-2026-05-27.html" class="link-card">
+          <strong>01 · 品牌官方雙站規劃</strong>
+          <span>VPS / 域名 / 內容</span>
+        </a>
+        <a href="02-antifraud-site-plan-2026-05-27.html" class="link-card">
+          <strong>02 · 反詐騙站規劃</strong>
+          <span>編輯部 / 控評置入</span>
+        </a>
+        <a href="03-ai-auto-publish-pipeline-2026-05-27.html" class="link-card">
+          <strong>03 · AI 自動發文 Pipeline</strong>
+          <span>已被 pbn-command-center 實作</span>
+        </a>
+        <a href="04-research-at99-antifraud-2026-05-27.html" class="link-card">
+          <strong>04 · AT99 + 反詐騙研究</strong>
+          <span>5 站矩陣 + 範例參考</span>
+        </a>
+        <a href="05-war-room-wow-2026-05-28.html" class="link-card">
+          <strong>05 · War Room（魔獸風）</strong>
+          <span>內部會議簡易版</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    YS89 SEO 網路戰略簡報 · v1.0 · 2026-05-28 · 內部資料 · 機密等級：受限
+  </div>
+
+</div>
+
+</body>
+</html>
