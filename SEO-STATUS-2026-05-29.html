@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 SEO 全網絡狀態總覽 — 2026-05-29 完整快照</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2128;--border:#30363d;
+  --green:#3fb950;--blue:#58a6ff;--yellow:#d29922;--red:#f85149;
+  --purple:#bc8cff;--orange:#f0883e;--cyan:#39d3f5;--pink:#ff7eb6;
+  --gold:#ffd700;
+  --text:#e6edf3;--muted:#8b949e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang TC','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+header{background:#010409;border-bottom:2px solid var(--gold);padding:20px 28px}
+header h1{color:var(--gold);font-size:1.5em;margin-bottom:4px}
+header .meta{color:var(--muted);font-size:0.85em;font-family:monospace}
+
+.page{max-width:1280px;margin:0 auto;padding:28px 20px 60px}
+
+/* HERO STATS */
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:30px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;text-align:center}
+.stat-val{font-size:2em;font-weight:900;color:var(--gold)}
+.stat-lbl{font-size:0.78em;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.stat-sub{font-size:0.72em;color:var(--green);margin-top:6px}
+
+/* SECTIONS */
+.sec{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:24px;overflow:hidden}
+.sec-head{padding:16px 22px;border-bottom:1px solid var(--border);background:#222831}
+.sec-head h2{font-size:1.1em;color:var(--gold);margin:0}
+.sec-head .sub{color:var(--muted);font-size:0.82em;margin-top:4px}
+.sec-body{padding:18px 22px}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:0.88em}
+th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:700;font-size:0.78em;border-bottom:2px solid var(--border);text-transform:uppercase;letter-spacing:.04em}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover{background:rgba(192,160,96,0.04)}
+td code{font-family:monospace;background:rgba(192,160,96,.08);padding:2px 6px;border-radius:3px;color:var(--gold);font-size:0.9em}
+
+/* BADGES */
+.badge{display:inline-block;font-size:0.7em;padding:2px 8px;border-radius:10px;font-weight:700;margin-left:6px}
+.b-ok{background:rgba(63,185,80,.15);color:var(--green);border:1px solid rgba(63,185,80,.3)}
+.b-todo{background:rgba(210,153,34,.15);color:var(--yellow);border:1px solid rgba(210,153,34,.3)}
+.b-new{background:rgba(57,211,245,.15);color:var(--cyan);border:1px solid rgba(57,211,245,.3)}
+.b-warn{background:rgba(248,81,73,.15);color:var(--red);border:1px solid rgba(248,81,73,.3)}
+.b-info{background:rgba(88,166,255,.15);color:var(--blue);border:1px solid rgba(88,166,255,.3)}
+
+/* TAGS */
+.tag-group{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.tag{font-size:0.7em;padding:2px 8px;border-radius:10px;background:rgba(192,160,96,.06);border:1px solid rgba(192,160,96,.2);color:var(--gold);font-family:monospace}
+
+/* GRID CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:#181d24;border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.card h4{font-size:0.92em;color:var(--text);margin-bottom:6px}
+.card .meta{color:var(--muted);font-size:0.78em;line-height:1.5}
+.card a{font-size:0.82em}
+
+/* NAV */
+.toc{background:#181d24;border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:24px}
+.toc h3{color:var(--gold);font-size:0.95em;margin-bottom:10px}
+.toc ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 14px}
+.toc a{font-size:0.84em}
+
+.alert{background:rgba(240,136,62,.08);border-left:4px solid var(--orange);padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:20px}
+.alert strong{color:var(--orange)}
+
+.muted{color:var(--muted);font-size:0.85em}
+.gold{color:var(--gold)}
+.right{text-align:right}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🏆 YS89 SEO 全網絡狀態總覽</h1>
+<div class="meta">最後更新：2026-05-29 ・ 含 36 個今日 task ・ 取代舊 SITE-TABS.html 部分內容</div>
+</header>
+
+<div class="page">
+
+<div class="alert">
+<strong>📊 Ahrefs 6 站最新數據（2026-05-29）：</strong>
+<table style="width:100%;margin-top:12px;font-size:0.9em">
+<thead><tr><th>站</th><th>DR</th><th>Backlinks</th><th>dofollow %</th><th>Linking domains</th><th>狀態</th></tr></thead>
+<tbody>
+<tr><td><strong class="gold">ys89.fun</strong></td><td><strong class="gold">30</strong></td><td><strong>506</strong></td><td>15%</td><td>150 (22% dofollow)</td><td><span class="badge b-ok">主力，強</span></td></tr>
+<tr><td><strong>ys89.games</strong></td><td><strong>17</strong></td><td>295</td><td>37%</td><td>39 (5%)</td><td><span class="badge b-info">第二強</span></td></tr>
+<tr><td>ys89.biz</td><td>0</td><td>93</td><td>51%</td><td>38 (3%)</td><td><span class="badge b-new">新站起步</span></td></tr>
+<tr><td>ys89.info</td><td>0</td><td>90</td><td>52%</td><td>37 (3%)</td><td><span class="badge b-new">新站起步</span></td></tr>
+<tr><td>fifa-worldcups.tw</td><td>0</td><td>62</td><td>76%</td><td>2 (50%)</td><td><span class="badge b-new">高 dofollow %</span></td></tr>
+<tr><td>ys89.me</td><td>0</td><td>54</td><td>87%</td><td>8 (13%)</td><td><span class="badge b-new">最高 dofollow %</span></td></tr>
+<tr style="background:rgba(255,215,0,.08)"><td><strong>合計</strong></td><td>—</td><td><strong class="gold">1,100</strong></td><td>—</td><td><strong class="gold">274</strong></td><td>👉 真實 SEO 資產</td></tr>
+</tbody>
+</table>
+<br>→ 比舊 SITE-TABS 紀錄「104 backlinks 全 spam」進步**10 倍**。<strong class="gold">ys89.fun DR 30 + ys89.games DR 17 = 主力雙引擎</strong>。<br>
+→ ys89.me 87% / fifa-worldcups.tw 76% dofollow → 雖然 backlinks 數少但「質純」，是 ys89.fun 重要的 link juice 來源。
+</div>
+
+<!-- HERO STATS -->
+<div class="hero-stats">
+<div class="stat"><div class="stat-val">36</div><div class="stat-lbl">今日完成 task</div><div class="stat-sub">↑ 全綠</div></div>
+<div class="stat"><div class="stat-val">DR 30</div><div class="stat-lbl">ys89.fun DR</div><div class="stat-sub">+ games DR 17</div></div>
+<div class="stat"><div class="stat-val">1,100</div><div class="stat-lbl">全站總 backlinks</div><div class="stat-sub">6 站合計</div></div>
+<div class="stat"><div class="stat-val">274</div><div class="stat-lbl">總 linking domains</div><div class="stat-sub">6 站合計</div></div>
+<div class="stat"><div class="stat-val">6</div><div class="stat-lbl">Tier 4 PBN 站</div><div class="stat-sub">部署中</div></div>
+<div class="stat"><div class="stat-val">14</div><div class="stat-lbl">今日新長尾文</div><div class="stat-sub">6 品牌 + 8 非品牌</div></div>
+<div class="stat"><div class="stat-val">87</div><div class="stat-lbl">論壇坦克文章</div><div class="stat-sub">隱形 + 自動 CTA</div></div>
+<div class="stat"><div class="stat-val">13</div><div class="stat-lbl">活躍 mu-plugin</div><div class="stat-sub">自動化架構</div></div>
+<div class="stat"><div class="stat-val">9</div><div class="stat-lbl">品牌變體覆蓋</div><div class="stat-sub">YS夜色/夜色YS+</div></div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+<h3>📋 本頁導覽</h3>
+<ul>
+<li>▸ <a href="#section-brand">1. 品牌叢集 6 頁</a></li>
+<li>▸ <a href="#section-pbn">2. PBN 6 個 Tier 4 站</a></li>
+<li>▸ <a href="#section-longtail">3. 今日新長尾文 14 篇</a></li>
+<li>▸ <a href="#section-forum">4. 論壇坦克 87 篇</a></li>
+<li>▸ <a href="#section-pillar">5. Pillar Page 大綱頁</a></li>
+<li>▸ <a href="#section-plugin">6. mu-plugin 13 個</a></li>
+<li>▸ <a href="#section-social">7. 社群與 sameAs</a></li>
+<li>▸ <a href="#section-cta">8. CTA 分流追蹤</a></li>
+<li>▸ <a href="#section-next">9. 下一步 Action Items</a></li>
+</ul>
+</div>
+
+<!-- SECTION 1: BRAND CLUSTER -->
+<div class="sec" id="section-brand">
+<div class="sec-head"><h2>🏆 1. 品牌叢集 6 頁（互鏈完成）</h2><div class="sub">每頁底部都有「夜色娛樂城 YS89 品牌完整資訊」叢集導覽，含 6 頁互鏈</div></div>
+<div class="sec-body">
+<table>
+<thead><tr><th>角色</th><th>URL</th><th>Focus Keywords</th><th>狀態</th></tr></thead>
+<tbody>
+<tr>
+<td>主品牌頁</td>
+<td><code>/ys89-casino/</code></td>
+<td>夜色娛樂城, YS89夜色, YS89, YS夜色, 夜色YS</td>
+<td><span class="badge b-ok">✓ 上線</span></td>
+</tr>
+<tr>
+<td>官網入口</td>
+<td><code>/yesei-casino/</code></td>
+<td>夜色娛樂城官網</td>
+<td><span class="badge b-ok">✓</span></td>
+</tr>
+<tr>
+<td>YS夜色變體</td>
+<td><code>/ys-nightcolor/</code></td>
+<td>YS夜色, 夜色娛樂城 YS89</td>
+<td><span class="badge b-ok">✓</span></td>
+</tr>
+<tr>
+<td>夜色YS變體</td>
+<td><code>/night-color-ys/</code></td>
+<td>夜色YS, 夜色娛樂城 YS89</td>
+<td><span class="badge b-ok">✓</span></td>
+</tr>
+<tr>
+<td>YS娛樂城</td>
+<td><code>/ys-entertainment/</code></td>
+<td>YS娛樂城, ys娛樂城, YS夜色娛樂城</td>
+<td><span class="badge b-ok">✓</span></td>
+</tr>
+<tr>
+<td>官網防詐騙</td>
+<td><code>/ys89-official-website-2026/</code></td>
+<td>夜色娛樂城官網, ys89官網, ys89.bet</td>
+<td><span class="badge b-ok">✓</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- SECTION 2: PBN -->
+<div class="sec" id="section-pbn">
+<div class="sec-head"><h2>🚀 2. Tier 4 PBN 6 個（部署中）</h2><div class="sub">外鏈品牌變體錨點：YS夜色 / 夜色YS / YS89夜色（共 9+ 條新精準品牌錨）</div></div>
+<div class="sec-body">
+<table>
+<thead><tr><th>PBN 站</th><th>主題</th><th>人設</th><th>CF 帳號</th><th>新文章</th><th>VPN</th><th>狀態</th></tr></thead>
+<tbody>
+<tr>
+<td><code>hipgreenscene.com</code></td>
+<td>永續旅遊</td>
+<td>Maya</td>
+<td>plorunyuan + ysyyds1688-maker (GitHub)</td>
+<td>2 篇 + 5+ 條 ys89 鏈</td>
+<td><span class="badge b-ok">不用</span></td>
+<td><span class="badge b-new">待 push</span></td>
+</tr>
+<tr>
+<td><code>deckmatt.com</code></td>
+<td>卡牌個人筆記</td>
+<td>Matt</td>
+<td>marsgarage0812</td>
+<td>2 篇 + 4 條 ys89 鏈</td>
+<td>待確認</td>
+<td><span class="badge b-new">待 push</span></td>
+</tr>
+<tr>
+<td><code>adviseist.com</code></td>
+<td>戶外裝備</td>
+<td>Tony</td>
+<td>yaobenyuan US</td>
+<td>2 篇 + 4 條 ys89 鏈</td>
+<td>待確認</td>
+<td><span class="badge b-new">待 push</span></td>
+</tr>
+<tr>
+<td><code>pansurihotel.com</code></td>
+<td>韓國旅遊飯店</td>
+<td>Allen 林志雄</td>
+<td>yaobenyuan US</td>
+<td>2 篇 + 5+ 條 ys89 鏈</td>
+<td>待確認</td>
+<td><span class="badge b-new">待 push</span></td>
+</tr>
+<tr>
+<td><code>bolalive77.com</code></td>
+<td>東南亞球迷</td>
+<td>Lim Wei</td>
+<td>yuan5566520</td>
+<td>1 新文 + 既有 13 鏈</td>
+<td>待確認</td>
+<td><span class="badge b-new">待 push</span></td>
+</tr>
+<tr>
+<td><code>plainjanedesigners.com</code></td>
+<td>反詐騙警示站</td>
+<td>未指定</td>
+<td>yuan5566520</td>
+<td>4 篇修改 + 5 條 ys89 鏈</td>
+<td>待確認</td>
+<td><span class="badge b-new">待 push</span></td>
+</tr>
+</tbody>
+</table>
+<p class="muted" style="margin-top:14px">⚠️ Footprint 鐵則：同 CF 帳號（yaobenyuan 含 adviseist+pansurihotel、yuan5566520 含 bolalive77+plainjanedesigners）<strong>必須間隔 3-5 天</strong></p>
+</div>
+</div>
+
+<!-- SECTION 3: LONGTAIL -->
+<div class="sec" id="section-longtail">
+<div class="sec-head"><h2>📝 3. 今日新長尾文 14 篇</h2><div class="sub">6 篇含品牌變體（D5）+ 8 篇純非品牌（D8）— 標題不含品牌字</div></div>
+<div class="sec-body">
+
+<h4 style="margin-bottom:10px;color:var(--gold)">D5 品牌變體長尾（6 篇）</h4>
+<table>
+<thead><tr><th>URL</th><th>主打字</th></tr></thead>
+<tbody>
+<tr><td><code>/ys-nightcolor-withdrawal-guide-2026/</code></td><td>YS夜色出金</td></tr>
+<tr><td><code>/night-color-ys-bonus-guide-2026/</code></td><td>夜色YS體驗金</td></tr>
+<tr><td><code>/ys-casino-ptt-review-2026/</code></td><td>ys娛樂城PTT</td></tr>
+<tr><td><code>/ys89-nightcolor-register-guide-2026/</code></td><td>YS89夜色註冊</td></tr>
+<tr><td><code>/ys-nightcolor-safety-analysis-2026/</code></td><td>YS夜色安全</td></tr>
+<tr><td><code>/night-color-ys-fastest-withdrawal-2026/</code></td><td>夜色YS出金最快</td></tr>
+</tbody>
+</table>
+
+<h4 style="margin:20px 0 10px;color:var(--gold)">D8 純非品牌長尾（8 篇，標題 0 品牌字）</h4>
+<table>
+<thead><tr><th>URL</th><th>主打字</th><th>月搜量</th><th>SD</th></tr></thead>
+<tbody>
+<tr><td><code>/casino-bonus-real-test-2026/</code></td><td>娛樂城體驗金</td><td>12,100</td><td>15</td></tr>
+<tr><td><code>/casino-fraud-complete-guide-2026/</code></td><td>娛樂城詐騙</td><td>1,600</td><td>13</td></tr>
+<tr><td><code>/casino-first-deposit-compare-2026/</code></td><td>娛樂城首儲</td><td>1,000</td><td>10</td></tr>
+<tr><td><code>/casino-withdrawal-time-test-2026/</code></td><td>娛樂城出金</td><td>480</td><td>9</td></tr>
+<tr><td><code>/casino-register-guide-2026/</code></td><td>娛樂城註冊</td><td>260</td><td>12</td></tr>
+<tr><td><code>/slot-machine-tips-rtp-2026/</code></td><td>老虎機技巧</td><td>260</td><td>20</td></tr>
+<tr><td><code>/baccarat-tutorial-30min-2026/</code></td><td>百家樂教學</td><td>210</td><td>6</td></tr>
+<tr><td><code>/online-casino-legal-taiwan-2026/</code></td><td>線上娛樂城合法</td><td>—</td><td>25</td></tr>
+</tbody>
+</table>
+
+</div>
+</div>
+
+<!-- SECTION 4: FORUM TANK -->
+<div class="sec" id="section-forum">
+<div class="sec-head"><h2>🛡️ 4. 論壇坦克 87 篇（隱形）</h2><div class="sub">標題不含品牌字（YS / 夜色），mu-plugin 自動文末加品牌訊號 + CTA + 內鏈</div></div>
+<div class="sec-body">
+<table>
+<thead><tr><th>位置</th><th>數量</th><th>追蹤短碼</th><th>UTM</th></tr></thead>
+<tbody>
+<tr><td><code>/forum/*/</code></td><td>87 篇</td><td><code>lihi2.me/j8SWS</code></td><td>forum + tank + brand_evergreen</td></tr>
+</tbody>
+</table>
+<p class="muted" style="margin-top:12px">→ 透過 <code>ys-forum-tank-cta.php</code> mu-plugin 自動注入：8 品牌變體編輯備註 + lihi CTA + 5 條內鏈 + DiscussionForumPosting schema</p>
+</div>
+</div>
+
+<!-- SECTION 5: PILLAR -->
+<div class="sec" id="section-pillar">
+<div class="sec-head"><h2>🏆 5. Pillar Page 大綱頁</h2></div>
+<div class="sec-body">
+<table>
+<tbody>
+<tr><td><code>/taiwan-casino-2026-complete-guide/</code></td><td>2026 台灣娛樂城完整指南 ・ 8 大主題 ・ 50+ 內鏈</td><td><span class="badge b-ok">✓ 已上線</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- SECTION 6: MU PLUGINS -->
+<div class="sec" id="section-plugin">
+<div class="sec-head"><h2>⚙️ 6. mu-plugin 自動化架構 13 個</h2></div>
+<div class="sec-body">
+<table>
+<thead><tr><th>Plugin</th><th>功能</th></tr></thead>
+<tbody>
+<tr><td><code>ys-brand-cluster.php</code></td><td>全站 Organization schema sameAs（含 YouTube）+ 6 品牌頁互鏈</td></tr>
+<tr><td><code>ys-forum-tank-cta.php</code></td><td>87 篇論壇自動注入 8 品牌變體 + lihi CTA + schema</td></tr>
+<tr><td><code>ys-anchor-variants.php</code></td><td>全站 anchor 30% 隨機變體（YS夜色/夜色YS/YS89夜色）+ 隱形 mention</td></tr>
+<tr><td><code>ys-topic-cluster.php</code></td><td>9 個 pillar 頁底部自動「深度延伸閱讀」</td></tr>
+<tr><td><code>ys-speakable.php</code></td><td>SpeakableSpecification schema（Siri / Google 助理）</td></tr>
+<tr><td><code>ys-indexnow.php</code></td><td>IndexNow → Bing/Yandex 60 秒索引</td></tr>
+<tr><td><code>ys-geo-tldr.php</code></td><td>H2 後自動加 TL;DR 短答案區塊（AI engine 友善）</td></tr>
+<tr><td><code>ys-cron-sitemap-ping.php</code></td><td>每日 + 發文即 ping Google sitemap</td></tr>
+<tr><td><code>ys-article-table-rwd.php</code></td><td>文章表格手機 RWD（橫向滑動）</td></tr>
+<tr><td><code>ys-img-alt-safety.php</code></td><td>圖片缺 alt 自動補 fallback</td></tr>
+<tr><td><code>ys-sitemap-forum-fix.php</code></td><td>sitemap_index 強制含 forum_topic</td></tr>
+<tr><td><code>ys-page-fallback-css.php</code></td><td>page 內容樣式 fallback</td></tr>
+<tr><td><code>force-url-replace.php</code></td><td>legacy LINE 連結 → 新 UTM</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- SECTION 7: SOCIAL -->
+<div class="sec" id="section-social">
+<div class="sec-head"><h2>📱 7. 社群帳號與 Organization sameAs</h2></div>
+<div class="sec-body">
+<table>
+<thead><tr><th>類型</th><th>帳號</th><th>狀態</th></tr></thead>
+<tbody>
+<tr><td>YouTube</td><td><code>https://www.youtube.com/@YS89_fun</code></td><td><span class="badge b-ok">✓ 在 sameAs</span></td></tr>
+<tr><td>主域名</td><td>ys89.fun + ys89.bet + ys89.games/info/biz/me</td><td><span class="badge b-ok">✓</span></td></tr>
+<tr><td>世足專屬</td><td>fifa-worldcups.tw + worldgoals.live</td><td><span class="badge b-ok">✓</span></td></tr>
+</tbody>
+</table>
+<p class="muted" style="margin-top:12px">→ 全部都在 ys-brand-cluster.php 的 Organization schema sameAs，每頁載入</p>
+</div>
+</div>
+
+<!-- SECTION 8: CTA TRACKING -->
+<div class="sec" id="section-cta">
+<div class="sec-head"><h2>🎯 8. CTA UTM 分流追蹤</h2><div class="sub">全站統一 ys89.bet?proxy=cysc9m&utm_*，GA4 outbound_click 可分流</div></div>
+<div class="sec-body">
+<table>
+<thead><tr><th>utm_content</th><th>來源頁面</th></tr></thead>
+<tbody>
+<tr><td><code>header_register</code></td><td>全站 header</td></tr>
+<tr><td><code>footer_register</code></td><td>全站 mobile menu</td></tr>
+<tr><td><code>homepage</code></td><td>首頁主 CTA</td></tr>
+<tr><td><code>ranking</code></td><td>casino-ranking 頁</td></tr>
+<tr><td><code>review_detail</code></td><td>各 casino 評測 detail</td></tr>
+<tr><td><code>bonus_368 / bonus_168</code></td><td>體驗金頁</td></tr>
+<tr><td><code>first_deposit / rebate</code></td><td>首儲 / 返水</td></tr>
+<tr><td><code>promo</code></td><td>優惠專區</td></tr>
+<tr><td><code>games_baccarat / poker / sports / ...</code></td><td>10+ 遊戲類別頁</td></tr>
+<tr><td><code>guides / guides_register</code></td><td>教學區</td></tr>
+<tr><td><code>article</code></td><td>文章內 262 處</td></tr>
+<tr><td><code>longtail_no_brand</code></td><td>D8 純非品牌長尾 8 篇</td></tr>
+<tr><td><code>forum + tank</code></td><td>論壇坦克 j8SWS（單獨追蹤）</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- SECTION 9: NEXT -->
+<div class="sec" id="section-next">
+<div class="sec-head"><h2>🚀 9. 下一步 Action Items</h2></div>
+<div class="sec-body">
+
+<h4 style="color:var(--green);margin-bottom:10px">✅ 立即（這週）</h4>
+<ul style="list-style:none;padding-left:0;margin-bottom:18px">
+<li style="padding:6px 0">▸ 推 6 個 PBN 新文章到 GitHub（錯開 3-5 天）</li>
+<li style="padding:6px 0">▸ GSC URL Inspection 重要 URL 一次性提交</li>
+<li style="padding:6px 0">▸ 在各 PBN 自己的 GSC 提交 sitemap</li>
+</ul>
+
+<h4 style="color:var(--yellow);margin-bottom:10px">🟡 1 個月內</h4>
+<ul style="list-style:none;padding-left:0;margin-bottom:18px">
+<li style="padding:6px 0">▸ Wikipedia「YS89」disambiguation 投稿（草稿已寫）</li>
+<li style="padding:6px 0">▸ Medium / Blogspot / Substack 開帳號 PO 文補 dofollow</li>
+<li style="padding:6px 0">▸ PTT 自然提及（5-10 條/月）</li>
+<li style="padding:6px 0">▸ YouTube 頻道發 4 支短片</li>
+</ul>
+
+<h4 style="color:var(--blue);margin-bottom:10px">🟢 3 個月後再驗收</h4>
+<ul style="list-style:none;padding-left:0">
+<li style="padding:6px 0">▸ 重跑 Ahrefs：DR 應 30 → 40+</li>
+<li style="padding:6px 0">▸ GSC「夜色娛樂城」/「YS夜色」impressions 應開始有數據</li>
+<li style="padding:6px 0">▸ Ubersuggest 追蹤 57 字應有部分進 Top 100</li>
+<li style="padding:6px 0">▸ 8 篇純長尾文應有部分進 Top 50</li>
+</ul>
+
+</div>
+</div>
+
+<p class="muted" style="text-align:center;margin-top:30px">本文件取代 SITE-TABS.html 的部分內容 ・ 2026-05-29 ・ 由今日 36 個 task 整理</p>
+
+</div>
+</body>
+</html>
