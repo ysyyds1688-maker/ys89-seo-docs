@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="googlebot" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>YS89 UTM/GA4 完整追蹤指南 — 夜色娛樂城</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang TC','Microsoft JhengHei',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.65;padding:0;min-height:100vh}
+  .header{background:#161b22;border-bottom:1px solid #30363d;padding:20px 30px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  .header-inner{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  h1{font-size:24px;color:#f0c674;margin:0}
+  .subtitle{font-size:13px;color:#8b949e;margin-top:2px}
+  .tab-bar{display:flex;gap:8px;flex-wrap:wrap}
+  .tab{background:#0d1117;color:#8b949e;border:1px solid #30363d;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit}
+  .tab:hover{color:#c9d1d9;border-color:#58a6ff}
+  .tab.active{background:#1d3d5d;color:#79c0ff;border-color:#58a6ff}
+  .wrap{max-width:1300px;margin:0 auto;padding:30px 20px}
+  .page{display:none}
+  .page.active{display:block}
+  h2{font-size:22px;color:#79c0ff;margin:32px 0 14px;padding-bottom:8px;border-bottom:1px solid #30363d;display:flex;align-items:center;gap:8px}
+  h2:first-child{margin-top:0}
+  h3{font-size:17px;color:#d2a8ff;margin:22px 0 12px}
+  p{margin:8px 0}
+  .lead{color:#8b949e;font-size:14px;margin-bottom:20px}
+  code{background:#161b22;color:#79c0ff;padding:2px 6px;border-radius:4px;font-family:'SF Mono','Menlo',monospace;font-size:13px;border:1px solid #30363d}
+  pre{background:#161b22;border:1px solid #30363d;padding:12px 16px;border-radius:8px;overflow-x:auto;font-family:'SF Mono',monospace;font-size:13px;color:#c9d1d9;margin:10px 0;white-space:pre-wrap;word-break:break-all}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#0d1117}
+  th,td{padding:10px 12px;text-align:left;border:1px solid #30363d;vertical-align:top}
+  th{background:#161b22;color:#79c0ff;font-weight:600}
+  tr:nth-child(even) td{background:#11161d}
+  .tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;margin-right:4px}
+  .tag-good{background:#1a4d2e;color:#7ee787}
+  .tag-bad{background:#5d1d1d;color:#ff7b72}
+  .tag-warn{background:#5d4416;color:#f0c674}
+  .tag-info{background:#1d3d5d;color:#79c0ff}
+  .box{border:1px solid #30363d;border-radius:8px;padding:16px 20px;margin:14px 0;background:#11161d}
+  .box.danger{border-left:4px solid #f85149;background:#311317}
+  .box.warn{border-left:4px solid #d29922;background:#2b210b}
+  .box.ok{border-left:4px solid #2ea043;background:#0f291b}
+  .box.info{border-left:4px solid #58a6ff;background:#0c1e35}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+  .tile{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px 16px}
+  .tile h4{color:#f0c674;font-size:14px;margin-bottom:6px}
+  .tile .v{font-size:13px;color:#8b949e}
+  .strikethrough{text-decoration:line-through;color:#8b949e}
+  .arrow{color:#d29922;font-weight:700;margin:0 6px}
+  .toc{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:18px 22px;margin-bottom:24px}
+  .toc h3{margin-top:0;color:#79c0ff;font-size:14px}
+  .toc ol{margin-left:20px;color:#c9d1d9}
+  .toc li{margin:3px 0}
+  .toc a{color:#79c0ff;text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  .meta{font-size:12px;color:#8b949e;margin-top:32px;padding-top:14px;border-top:1px solid #30363d;text-align:center}
+  .url-example{font-family:'SF Mono',monospace;font-size:12px;background:#161b22;padding:8px 10px;border-radius:4px;word-break:break-all;border:1px solid #30363d}
+  ul,ol{margin-left:24px;margin-top:8px}
+  li{margin:4px 0}
+  details summary{cursor:pointer;color:#79c0ff;padding:8px 0;font-weight:600;font-size:15px}
+  details summary:hover{color:#a5d6ff}
+  details[open] summary{margin-bottom:10px}
+  .prio{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;margin-right:6px}
+  .prio-1{background:#5d1d1d;color:#ff7b72}
+  .prio-2{background:#5d4416;color:#f0c674}
+  .prio-3{background:#1d3d5d;color:#79c0ff}
+  .prio-4{background:#383838;color:#8b949e}
+  .url-old{color:#ff7b72;text-decoration:line-through;font-family:'SF Mono',monospace;font-size:12px;display:block;padding:4px 0;word-break:break-all}
+  .url-new{color:#7ee787;font-family:'SF Mono',monospace;font-size:12px;display:block;padding:4px 0;word-break:break-all;font-weight:600}
+  .short-code{font-family:'SF Mono',monospace;font-size:14px;font-weight:700;color:#f0c674;background:#161b22;padding:4px 10px;border-radius:4px;display:inline-block;border:1px solid #30363d}
+  .deploy{font-size:12px;color:#8b949e;font-style:italic;margin:4px 0 8px}
+  .checkbox{margin-right:8px;cursor:pointer;transform:scale(1.2);vertical-align:middle}
+  .item-done h3{opacity:.4;text-decoration:line-through}
+  .item-done .url-new,.item-done .url-old,.item-done .deploy{opacity:.5}
+  .step{counter-reset:step-counter;list-style:none;padding-left:0}
+  .step li{position:relative;padding:10px 14px 10px 50px;background:#161b22;border-radius:6px;margin-bottom:8px;border:1px solid #30363d}
+  .step li::before{counter-increment:step-counter;content:counter(step-counter);position:absolute;left:14px;top:10px;width:24px;height:24px;background:#1d3d5d;color:#79c0ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  .copy-btn{display:inline-block;font-size:11px;color:#58a6ff;background:#11161d;border:1px solid #30363d;border-radius:4px;padding:3px 10px;cursor:pointer;margin-left:6px;font-family:inherit;transition:all .15s}
+  .copy-btn:hover{background:#1d3d5d;border-color:#58a6ff;color:#a5d6ff}
+  .copy-btn.copied{background:#0f291b;border-color:#2ea043;color:#7ee787}
+  .copy-url-btn{font-size:13px;background:#1d3d5d;border:1px solid #58a6ff;border-radius:4px;padding:4px 10px;cursor:pointer;color:#79c0ff;font-family:inherit;transition:all .15s;font-weight:600}
+  .copy-url-btn:hover{background:#58a6ff;color:#0d1117}
+  .copy-url-btn.copied{background:#0f291b;border-color:#2ea043;color:#7ee787}
+  .copy-all-btn{display:inline-block;background:#1d3d5d;color:#79c0ff;border:1px solid #58a6ff;border-radius:6px;padding:8px 16px;cursor:pointer;font-family:inherit;font-weight:600;margin:8px 0;transition:all .15s;font-size:13px}
+  .copy-all-btn:hover{background:#58a6ff;color:#0d1117}
+  .copy-all-btn.copied{background:#0f291b;border-color:#2ea043;color:#7ee787}
+  body.light .copy-url-btn{background:#ddf4ff;border-color:#0969da;color:#0969da}
+  body.light .copy-url-btn:hover{background:#0969da;color:#fff}
+  body.light .copy-url-btn.copied{background:#dafbe1;border-color:#1a7f37;color:#1a7f37}
+  body.light .copy-all-btn{background:#ddf4ff;border-color:#0969da;color:#0969da}
+  body.light .copy-all-btn:hover{background:#0969da;color:#fff}
+  .url-line{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:4px 0}
+  .progress-bar{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px 16px;margin:14px 0;display:flex;align-items:center;justify-content:space-between;font-size:13px}
+  .progress-fill{background:#1a4d2e;height:6px;border-radius:3px;margin-top:6px;width:0%;transition:width .3s;display:block}
+  .legend{display:flex;gap:14px;margin:12px 0;flex-wrap:wrap;font-size:12px;color:#8b949e}
+  .reset-btn{background:#5d1d1d;color:#ff7b72;border:1px solid #ff7b72;border-radius:4px;padding:4px 12px;cursor:pointer;font-size:11px;font-family:inherit}
+  .reset-btn:hover{background:#7d2d2d}
+  /* ===== 主題切換 ===== */
+  .theme-toggle{background:transparent;color:#8b949e;border:1px solid #30363d;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:13px;font-family:inherit}
+  .theme-toggle:hover{color:#c9d1d9;border-color:#58a6ff}
+  /* ===== 搜尋 ===== */
+  .search-box{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 16px;margin:14px 0 18px;position:sticky;top:90px;z-index:50;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,.4)}
+  .search-box input{background:#0d1117;border:1px solid #30363d;color:#c9d1d9;padding:10px 14px;border-radius:6px;font-size:14px;font-family:inherit;width:100%}
+  .search-box input:focus{outline:none;border-color:#58a6ff}
+  .search-info{font-size:12px;color:#8b949e;margin-top:6px}
+  .item.search-hidden{display:none!important}
+  details.search-empty{display:none}
+  /* ===== 淺色主題 ===== */
+  body.light{background:#f6f8fa;color:#24292f}
+  body.light .header{background:#fff;border-bottom-color:#d0d7de;box-shadow:0 2px 8px rgba(140,149,159,.15)}
+  body.light h1{color:#bf6c00}
+  body.light .subtitle{color:#57606a}
+  body.light .tab{background:#f6f8fa;color:#57606a;border-color:#d0d7de}
+  body.light .tab.active{background:#ddf4ff;color:#0969da;border-color:#0969da}
+  body.light h2{color:#0969da;border-bottom-color:#d0d7de}
+  body.light h3{color:#8250df}
+  body.light .lead{color:#57606a}
+  body.light code{background:#f6f8fa;color:#0969da;border-color:#d0d7de}
+  body.light pre{background:#f6f8fa;border-color:#d0d7de;color:#24292f}
+  body.light table{background:#fff}
+  body.light th{background:#f6f8fa;color:#0969da}
+  body.light tr:nth-child(even) td{background:#f6f8fa}
+  body.light th,body.light td{border-color:#d0d7de}
+  body.light .box{background:#f6f8fa;border-color:#d0d7de}
+  body.light .box.danger{background:#ffebe9;border-left-color:#cf222e}
+  body.light .box.warn{background:#fff8c5;border-left-color:#bf8700}
+  body.light .box.ok{background:#dafbe1;border-left-color:#1a7f37}
+  body.light .box.info{background:#ddf4ff;border-left-color:#0969da}
+  body.light .tile{background:#fff;border-color:#d0d7de}
+  body.light .tile h4{color:#bf6c00}
+  body.light .tile .v{color:#57606a}
+  body.light .toc{background:#fff;border-color:#d0d7de}
+  body.light .toc h3,body.light .toc a{color:#0969da}
+  body.light .url-old{color:#cf222e}
+  body.light .url-new{color:#1a7f37}
+  body.light .short-code{background:#fff;color:#bf6c00;border-color:#d0d7de}
+  body.light .url-example{background:#f6f8fa;border-color:#d0d7de}
+  body.light .deploy{color:#57606a}
+  body.light details summary{color:#0969da}
+  body.light details summary:hover{color:#0550ae}
+  body.light .step li{background:#fff;border-color:#d0d7de}
+  body.light .step li::before{background:#ddf4ff;color:#0969da}
+  body.light .copy-btn{background:#fff;color:#0969da;border-color:#d0d7de}
+  body.light .copy-btn:hover{background:#ddf4ff;border-color:#0969da}
+  body.light .copy-btn.copied{background:#dafbe1;border-color:#1a7f37;color:#1a7f37}
+  body.light .progress-bar{background:#fff;border-color:#d0d7de}
+  body.light .progress-fill{background:#dafbe1}
+  body.light .legend{color:#57606a}
+  body.light .reset-btn{background:#ffebe9;color:#cf222e;border-color:#cf222e}
+  body.light .meta{color:#57606a;border-top-color:#d0d7de}
+  body.light .search-box{background:#fff;border-color:#d0d7de}
+  body.light .search-box input{background:#f6f8fa;border-color:#d0d7de;color:#24292f}
+  body.light .theme-toggle{color:#57606a;border-color:#d0d7de}
+  body.light .theme-toggle:hover{color:#24292f;border-color:#0969da}
+  body.light .prio-1{background:#ffebe9;color:#cf222e}
+  body.light .prio-2{background:#fff8c5;color:#bf8700}
+  body.light .prio-3{background:#ddf4ff;color:#0969da}
+  body.light .prio-4{background:#f6f8fa;color:#57606a}
+  body.light .tag-good{background:#dafbe1;color:#1a7f37}
+  body.light .tag-bad{background:#ffebe9;color:#cf222e}
+  body.light .tag-warn{background:#fff8c5;color:#bf8700}
+  body.light .tag-info{background:#ddf4ff;color:#0969da}
+  @media (max-width:768px){
+    .grid,.grid-3{grid-template-columns:1fr}
+    .header-inner{flex-direction:column;align-items:flex-start}
+    h1{font-size:20px}
+    table{font-size:11px}
+    th,td{padding:6px 8px}
+  }
+  @media print{
+    body{background:#fff;color:#000;padding:0}
+    .header{position:static;background:#fff;border-bottom:2px solid #000;box-shadow:none}
+    .tab-bar{display:none}
+    .page{display:block!important;page-break-before:always}
+    .page:first-of-type{page-break-before:auto}
+    h1,h2,h3{color:#000}
+    .box,.tile,table,th,code,pre,.url-example{background:#f5f5f5;color:#000;border-color:#ccc}
+    .url-new{color:#0a5c1f}
+    .url-old{color:#8b1a1a}
+    .copy-btn,.reset-btn{display:none}
+    .short-code{background:#fff;border:1px solid #000;color:#000}
+    a{color:#0066cc}
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div>
+      <h1>📘 YS89 UTM 完整指南</h1>
+      <div class="subtitle">給社群負責人｜YS89 World Cup 2026｜GA4 G-THDJFGXCZ7</div>
+    </div>
+    <div class="tab-bar">
+      <button class="tab active" onclick="showPage('learn')">📚 學習篇</button>
+      <button class="tab" onclick="showPage('ops')">🛠 操作篇</button>
+      <button class="tab" onclick="showPage('wc')">🌐 4 衛星站+世足</button>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切換主題">🌓</button>
+      
+    </div>
+  </div>
+</header>
+
+<!-- ============================ PAGE 1: 學習篇 ============================ -->
+<div class="wrap">
+<div id="learn" class="page active">
+
+<div class="toc">
+  <h3>學習篇目錄</h3>
+  <ol>
+    <li><a href="#concept">核心觀念：UTM × lihi × GA4 怎麼配合</a></li>
+    <li><a href="#rules">🚨 命名規則鐵則（含禁用中文）</a></li>
+    <li><a href="#source">Source 清單（流量來源）</a></li>
+    <li><a href="#medium">Medium 清單（流量類型）</a></li>
+    <li><a href="#campaign">Campaign 命名建議</a></li>
+    <li><a href="#wrong">常見錯誤對照</a></li>
+    <li><a href="#table">30 條核心 UTM 對照表</a></li>
+    <li><a href="#sop">工作流 SOP</a></li>
+  </ol>
+</div>
+
+<h2 id="concept">1. 核心觀念：UTM × lihi × GA4 怎麼配合</h2>
+
+<div class="box info">
+  <p><strong>一句話：</strong>UTM 是貼在目的地網址上的「標籤」；lihi 是中轉站；GA4 是收標籤的人。</p>
+</div>
+
+<pre>[廣告/社群連結]    →   [lihi 中轉]    →   [你的網站]   →   GA4 讀標籤
+(短網址 / 長 URL)      (lihi 後台統計)     (UTM 跟著到)    (GA4 後台分類)</pre>
+
+<div class="grid-3">
+  <div class="tile">
+    <h4>UTM 標籤</h4>
+    <div class="v">貼在「目的地網址」尾巴，GA4 讀來分類流量來源。</div>
+  </div>
+  <div class="tile">
+    <h4>lihi 短網址</h4>
+    <div class="v">中轉站，提供「點擊統計」+「漂亮短連結」。lihi 跳轉時會保留 UTM。</div>
+  </div>
+  <div class="tile">
+    <h4>GA4</h4>
+    <div class="v">裝在你的網站上。瀏覽器打開帶 UTM 的網址後，GA4 自動讀取並歸類。</div>
+  </div>
+</div>
+
+<h2 id="rules">2. 🚨 命名規則鐵則</h2>
+
+<div class="box danger">
+  <h3 style="color:#ff7b72;margin-top:0">❌ 禁用清單（違反 = 報表壞掉）</h3>
+  <table>
+    <thead><tr><th>禁用</th><th>原因</th><th>正確做法</th></tr></thead>
+    <tbody>
+      <tr><td><code>中文</code>（任何欄位）</td><td>瀏覽器 URL encode 後變 %E9%98%BF... 報表變天書</td><td>用英文小寫拼音，如 <code>akki</code> 不是 <code>阿奇</code></td></tr>
+      <tr><td><code>#符號</code></td><td># 在 URL 是「錨點」，會把後面內容切掉</td><td>標籤用 lihi 內建標籤功能，不要塞 utm</td></tr>
+      <tr><td><code>空格</code></td><td>URL 空格變 %20 醜爆</td><td>用底線 <code>_</code> 連接，如 <code>banner_a</code></td></tr>
+      <tr><td>大寫 <code>Facebook</code></td><td>GA4 區分大小寫：facebook ≠ Facebook 算 2 個來源</td><td>一律小寫</td></tr>
+      <tr><td><code>medium=ads</code></td><td>GA4 不識別，付費流量歸 Unassigned</td><td>付費廣告統一用 <code>cpc</code></td></tr>
+      <tr><td><code>medium=promotion</code></td><td>promotion 不是 medium，是 campaign 概念</td><td>medium 用 cpc/post/social...campaign 才寫 promotion</td></tr>
+      <tr><td>站名當 source（如 <code>wc_site</code>）</td><td>「自己的站」不算「流量來源」</td><td>用具體站名 <code>ys89_me</code> + medium=<code>referral</code></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="box ok">
+  <h3 style="color:#7ee787;margin-top:0">✅ 標準寫法</h3>
+  <ul>
+    <li>全部 <strong>英文小寫</strong></li>
+    <li>單字之間用 <strong>底線 <code>_</code></strong> 連接</li>
+    <li>日期格式：<strong>YYYYMM</strong>（例：<code>202605</code>）</li>
+    <li>長度建議 ≤ 20 字元</li>
+  </ul>
+</div>
+
+<h2 id="source">3. Source 清單</h2>
+<p class="lead">utm_source = 「<strong>誰</strong>把人帶來的」</p>
+
+<h3>3.1 廣告平台（4 個）</h3>
+<table>
+  <thead><tr><th>值</th><th>意思</th><th>典型搭配 medium</th></tr></thead>
+  <tbody>
+    <tr><td><code>facebook</code></td><td>FB 平台</td><td>cpc / post / story / bio</td></tr>
+    <tr><td><code>instagram</code></td><td>IG 平台</td><td>cpc / post / story / bio</td></tr>
+    <tr><td><code>google</code></td><td>Google 廣告</td><td>cpc</td></tr>
+    <tr><td><code>line</code></td><td>LINE 平台</td><td>chat / menu / direct</td></tr>
+  </tbody>
+</table>
+
+<h3>3.2 影音/內容平台（4 個）</h3>
+<table>
+  <thead><tr><th>值</th><th>意思</th><th>典型搭配 medium</th></tr></thead>
+  <tbody>
+    <tr><td><code>youtube</code></td><td>YouTube</td><td>video / bio</td></tr>
+    <tr><td><code>threads</code></td><td>Threads</td><td>post / bio</td></tr>
+    <tr><td><code>tiktok</code></td><td>TikTok</td><td>video / bio</td></tr>
+    <tr><td><code>edm</code></td><td>電子報</td><td>email</td></tr>
+  </tbody>
+</table>
+
+<h3>3.3 人設（5 個）</h3>
+<table>
+  <thead><tr><th>值</th><th>對應人設</th><th>主推站</th></tr></thead>
+  <tbody>
+    <tr><td><code>akki</code></td><td>阿奇</td><td>ys89.games/live-104</td></tr>
+    <tr><td><code>crab</code></td><td>蟹蟹世足觀測站</td><td>ys89.me/live-104</td></tr>
+    <tr><td><code>god</code></td><td>世足大財神</td><td>ys89.biz/live-104</td></tr>
+    <tr><td><code>uncle</code></td><td>強棒大叔</td><td>ys89.info/live-104</td></tr>
+    <tr><td><code>kk</code></td><td>kk</td><td>fifa-worldcups.tw</td></tr>
+  </tbody>
+</table>
+
+<h3>3.4 自家衛星站（5 個，跨站推薦時用）</h3>
+<table>
+  <thead><tr><th>值</th><th>意思</th></tr></thead>
+  <tbody>
+    <tr><td><code>ys89_me</code></td><td>從 ys89.me 送過去</td></tr>
+    <tr><td><code>ys89_fun</code></td><td>從 ys89.fun 論壇送過去</td></tr>
+    <tr><td><code>ys89_games</code></td><td>從 ys89.games 送過去</td></tr>
+    <tr><td><code>ys89_info</code></td><td>從 ys89.info 送過去</td></tr>
+    <tr><td><code>ys89_biz</code></td><td>從 ys89.biz 送過去</td></tr>
+  </tbody>
+</table>
+
+<h2 id="medium">4. Medium 清單</h2>
+<p class="lead">utm_medium = 「<strong>用什麼形式</strong>把人帶過來」</p>
+
+<table>
+  <thead><tr><th>值</th><th>使用場景</th><th>GA4 自動歸類</th></tr></thead>
+  <tbody>
+    <tr><td><code>cpc</code></td><td>付費廣告（FB/IG/Google）</td><td>Paid Social / Paid Search</td></tr>
+    <tr><td><code>social</code></td><td>社群自然貼文（不付費）</td><td>Organic Social</td></tr>
+    <tr><td><code>post</code></td><td>社群貼文裡的連結</td><td>Organic Social</td></tr>
+    <tr><td><code>story</code></td><td>IG 限動連結貼紙</td><td>Organic Social</td></tr>
+    <tr><td><code>bio</code></td><td>IG/FB 個人簡介連結</td><td>Organic Social</td></tr>
+    <tr><td><code>chat</code></td><td>LINE OA 推播訊息</td><td>Other / 自訂</td></tr>
+    <tr><td><code>menu</code></td><td>LINE OA 圖文選單按鈕</td><td>Other / 自訂</td></tr>
+    <tr><td><code>video</code></td><td>YouTube/TikTok 影片描述</td><td>Other / 自訂</td></tr>
+    <tr><td><code>email</code></td><td>電子報</td><td>Email</td></tr>
+    <tr><td><code>sms</code></td><td>簡訊</td><td>Other / 自訂</td></tr>
+    <tr><td><code>direct</code></td><td>直發群組 / QR code</td><td>Direct / Other</td></tr>
+    <tr><td><code>referral</code></td><td>跨站推薦（自家站連自家站）</td><td>Referral</td></tr>
+  </tbody>
+</table>
+
+<h2 id="campaign">5. Campaign 命名</h2>
+<div class="grid">
+  <div class="box ok">
+    <h3 style="color:#7ee787;margin-top:0">✅ 推薦</h3>
+    <ul>
+      <li><code>wc2026</code> — 整個世足週期統一</li>
+      <li><code>wc2026_launch</code> — 上線首發</li>
+      <li><code>202606_368bonus</code> — 月度+主題</li>
+    </ul>
+  </div>
+  <div class="box warn">
+    <h3 style="color:#f0c674;margin-top:0">⚠️ 避免</h3>
+    <ul>
+      <li><code>promotion</code> — 太泛</li>
+      <li><code>group</code> / <code>schedule</code> — 像頁面名，放 utm_content</li>
+      <li><code>test</code> — 容易忘改</li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="wrong">6. 常見錯誤對照</h2>
+
+<div class="box danger">
+  <h3 style="color:#ff7b72;margin-top:0">錯誤 1：lin.ee 後面用 & 不是 ?</h3>
+  <p class="url-example"><span class="strikethrough">https://lin.ee/pD3SOZ6&utm_source=threads&...</span></p>
+  <p>→ URL 結構壞掉跑不通。lin.ee 後 UTM 失效，直接刪。</p>
+</div>
+
+<div class="box danger">
+  <h3 style="color:#ff7b72;margin-top:0">錯誤 2：人設誤標 instagram</h3>
+  <p class="url-example"><span class="strikethrough">utm_source=instagram&utm_term=%23阿奇ig到ys89</span></p>
+  <p>正確：<span class="url-example">utm_source=akki&utm_medium=bio&utm_campaign=wc2026</span></p>
+</div>
+
+<div class="box danger">
+  <h3 style="color:#ff7b72;margin-top:0">錯誤 3：站名當 source、cta 當 medium</h3>
+  <p class="url-example"><span class="strikethrough">utm_source=wc_site&utm_medium=cta&utm_campaign=group</span></p>
+  <p>正確：<span class="url-example">utm_source=ys89_me&utm_medium=referral&utm_campaign=wc2026&utm_content=group_page</span></p>
+</div>
+
+<div class="box danger">
+  <h3 style="color:#ff7b72;margin-top:0">錯誤 4：medium=ads（GA4 不認）</h3>
+  <p class="url-example"><span class="strikethrough">utm_medium=ads</span></p>
+  <p>→ GA4 看不懂 <code>ads</code>，掉 Unassigned。改 <code>cpc</code>。</p>
+</div>
+
+<h2 id="table">7. 30 條核心 UTM 對照表</h2>
+<p class="lead">這 30 條覆蓋 90% 場景。</p>
+
+<h3>🎯 A 區：付費廣告（6 條）</h3>
+<table>
+  <thead><tr><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>content</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>fb_wc_games</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>ys89.games/live-104</td></tr>
+    <tr><td>fb_wc_info</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>ys89.info/live-104</td></tr>
+    <tr><td>fb_wc_biz</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>fb_wc_me</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>ys89.me/live-104</td></tr>
+    <tr><td>fb_wc_wg</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>worldgoals.live</td></tr>
+    <tr><td>ig_wc_wg</td><td>instagram</td><td>cpc</td><td>wc2026</td><td>story_a</td><td>worldgoals.live</td></tr>
+  </tbody>
+</table>
+
+<h3>🎯 B 區：5 個人設社群（10 條）</h3>
+<table>
+  <thead><tr><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>akki_bio</td><td>akki</td><td>bio</td><td>wc2026</td><td>ys89.games/live-104</td></tr>
+    <tr><td>akki_post</td><td>akki</td><td>post</td><td>wc2026</td><td>ys89.games/live-104</td></tr>
+    <tr><td>crab_bio</td><td>crab</td><td>bio</td><td>wc2026</td><td>ys89.me/live-104</td></tr>
+    <tr><td>crab_post</td><td>crab</td><td>post</td><td>wc2026</td><td>ys89.me/live-104</td></tr>
+    <tr><td>god_bio</td><td>god</td><td>bio</td><td>wc2026</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>god_post</td><td>god</td><td>post</td><td>wc2026</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>uncle_bio</td><td>uncle</td><td>bio</td><td>wc2026</td><td>ys89.info/live-104</td></tr>
+    <tr><td>uncle_post</td><td>uncle</td><td>post</td><td>wc2026</td><td>ys89.info/live-104</td></tr>
+    <tr><td>kk_bio</td><td>kk</td><td>bio</td><td>wc2026</td><td>fifa-worldcups.tw</td></tr>
+    <tr><td>kk_post</td><td>kk</td><td>post</td><td>wc2026</td><td>fifa-worldcups.tw</td></tr>
+  </tbody>
+</table>
+
+<h3>🎯 C 區：LINE OA（6 條）</h3>
+<table>
+  <thead><tr><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>line_menu_watch</td><td>line</td><td>menu</td><td>wc2026</td><td>worldgoals.live</td></tr>
+    <tr><td>line_menu_368</td><td>line</td><td>menu</td><td>wc2026</td><td>ys89.bet?proxy=pm3u87</td></tr>
+    <tr><td>line_menu_sch</td><td>line</td><td>menu</td><td>wc2026</td><td>ys89.me/schedule</td></tr>
+    <tr><td>line_menu_odds</td><td>line</td><td>menu</td><td>wc2026</td><td>ys89.me/odds</td></tr>
+    <tr><td>line_menu_cs</td><td>line</td><td>menu</td><td>wc2026</td><td>direct.lc.chat/19427745</td></tr>
+    <tr><td>line_menu_vip</td><td>line</td><td>menu</td><td>wc2026</td><td>ys89.bet?proxy=d83wfg</td></tr>
+  </tbody>
+</table>
+
+<h3>🎯 D 區：影音 / Threads / TikTok（6 條）</h3>
+<table>
+  <thead><tr><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>yt_video_fun</td><td>youtube</td><td>video</td><td>wc2026</td><td>ys89.fun</td></tr>
+    <tr><td>yt_video_bet</td><td>youtube</td><td>video</td><td>wc2026</td><td>ys89.bet?proxy=cysc9m</td></tr>
+    <tr><td>th_bio_fun</td><td>threads</td><td>bio</td><td>wc2026</td><td>ys89.fun</td></tr>
+    <tr><td>th_post_me</td><td>threads</td><td>post</td><td>wc2026</td><td>ys89.me/live-104</td></tr>
+    <tr><td>tt_bio_fun</td><td>tiktok</td><td>bio</td><td>wc2026</td><td>ys89.fun</td></tr>
+    <tr><td>tt_video_bet</td><td>tiktok</td><td>video</td><td>wc2026</td><td>ys89.bet?proxy=cysc9m</td></tr>
+  </tbody>
+</table>
+
+<h3>🎯 E 區：衛星站內部 CTA → 平台（2 條）</h3>
+<table>
+  <thead><tr><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>content</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>wc_cta_odds</td><td>ys89_me</td><td>referral</td><td>wc2026</td><td>odds_page</td><td>ys89.bet?proxy=pm3u87</td></tr>
+    <tr><td>wc_cta_sch</td><td>ys89_me</td><td>referral</td><td>wc2026</td><td>schedule_page</td><td>ys89.bet?proxy=pm3u87</td></tr>
+  </tbody>
+</table>
+
+<h2 id="sop">8. 工作流 SOP</h2>
+
+<div class="box info">
+  <h3 style="color:#79c0ff;margin-top:0">A. 付費廣告（給代操商）</h3>
+  <ol>
+    <li>從 A 區 6 條挑要投的</li>
+    <li><strong>不用包 lihi</strong>，直接給長 URL（FB/IG/Google 都會擋 shortener）</li>
+    <li>同活動換素材 → 改 utm_content（banner_a → banner_b）</li>
+    <li>跨檔期 → 改 utm_campaign（wc2026 → wc2026_final）</li>
+  </ol>
+</div>
+
+<div class="box info">
+  <h3 style="color:#79c0ff;margin-top:0">B. 社群人員（5 人設）</h3>
+  <ol>
+    <li>從 B 區挑對應人設的連結</li>
+    <li>IG bio = <strong>直接放長 URL</strong>（lihi 可能降權）</li>
+    <li>IG 貼文/限動 = 可以包 lihi（lihi 後台多看點擊數）</li>
+    <li>所有人設用同一個 <code>utm_campaign=wc2026</code> 方便加總</li>
+  </ol>
+</div>
+
+<div class="box info">
+  <h3 style="color:#79c0ff;margin-top:0">C. LINE OA 管理</h3>
+  <ol>
+    <li>圖文選單 6 顆按鈕全部包 lihi（已用）</li>
+    <li>lihi 目的地填 C 區對應 URL</li>
+    <li>除了 LINE 推播訊息也走 medium=chat</li>
+  </ol>
+</div>
+
+<div class="box ok">
+  <h3 style="color:#7ee787;margin-top:0">驗證 SOP</h3>
+  <ol>
+    <li>新連結發出前，<strong>自己用無痕視窗開一次</strong></li>
+    <li>進 GA4 即時報表（資源「WC 4 sites」）</li>
+    <li>看「使用者依事件來源/媒介」是否出現 source/medium</li>
+    <li>看到 = 通過，可以發給代操商/社群</li>
+    <li>沒看到 = URL 寫錯，回頭檢查</li>
+  </ol>
+</div>
+
+</div><!-- end learn -->
+
+<!-- ============================ PAGE 2: 操作篇 ============================ -->
+<div id="ops" class="page">
+
+<div class="search-box">
+  <input type="text" id="search-input" placeholder="🔍 搜尋短碼 / 部署位置 / 站名（例：line_menu、ys89.games、阿奇）" oninput="filterItems(this.value)">
+  <div class="search-info" id="search-info">輸入關鍵字即時篩選 22 條短碼</div>
+</div>
+
+<div class="box info">
+  <h3 style="color:#79c0ff;margin-top:0">📋 操作原則</h3>
+  <ol class="step">
+    <li>進 lihi 後台 → 找對應短碼 → 點「修改」</li>
+    <li>把目的地網址整段複製貼上下方「✅ 改為」</li>
+    <li>儲存 → 該短碼從此導向新 UTM</li>
+    <li><strong>短碼本身不變</strong>，已部署的網站/LINE 選單/IG bio 繼續有效</li>
+    <li>改完該條打勾追蹤進度（自動儲存在瀏覽器）</li>
+  </ol>
+  <div class="legend">
+    <span><span class="prio prio-1">🔴 P1</span> 線上廣告用、流量大</span>
+    <span><span class="prio prio-2">🟡 P2</span> 站內 CTA、轉換漏斗</span>
+    <span><span class="prio prio-3">🔵 P3</span> 內容文章 CTA</span>
+  </div>
+</div>
+
+<div class="progress-bar">
+  <div>
+    <strong>進度：</strong><span id="progress-text">0 / 22 條完成</span>
+    <span class="progress-fill" id="progress-fill"></span>
+  </div>
+  <button class="reset-btn" onclick="resetProgress()">重置進度</button>
+</div>
+
+<!-- 區塊 A -->
+<h2>🟢 區塊 A：worldgoals.live</h2>
+<details open>
+<summary>2 條短碼</summary>
+
+<div class="item" data-id="Zhg2R">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/Zhg2R</span> <span class="prio prio-1">P1</span></h3>
+<p class="deploy">部署：worldgoals.live + ys89.me 多頁面共用（加 LINE 主入口）</p>
+<span class="url-old">原：https://lin.ee/pD3S0Z6（加 LINE，UTM 失效）</span>
+<span class="url-new">✅ 維持 lin.ee/pD3S0Z6 不加 UTM（lihi 後台已統計點擊）</span>
+<div class="box ok"><strong>🎯 這條不用改</strong>，確認 lihi 後台點擊統計正常即可</div>
+</div>
+
+<div class="item" data-id="gv981">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/gv981</span> <span class="prio prio-1">P1</span></h3>
+<p class="deploy">部署：worldgoals.live「立即註冊夜色領 NT$368」按鈕</p>
+<span class="url-old">原：https://ys89.bet?proxy=d83wfg&utm_source=web&utm_medium=ads&utm_campaign=註冊</span>
+<div class="url-line">
+  <span class="url-new" id="url-gv981">✅ https://ys89.bet?proxy=d83wfg&utm_source=worldgoals&utm_medium=cta&utm_campaign=wc2026&utm_content=member_modal</span>
+  <button class="copy-btn" onclick="copyText('url-gv981',this)">複製</button>
+</div>
+<div class="box warn"><strong>3 處改：</strong>source web→worldgoals、medium ads→cta、campaign 中文→wc2026</div>
+</div>
+
+</details>
+
+<!-- 區塊 B -->
+<h2>🟢 區塊 B：4 衛星站 live-104「加 LINE」</h2>
+<details>
+<summary>4 條短碼</summary>
+
+<div class="box info"><strong>共通說明：</strong>目的地都是 lin.ee/pD3S0Z6（加 LINE OA）。不需要 UTM（lin.ee 後 GA4 收不到），價值在 lihi 後台分站別統計。</div>
+
+<div class="item" data-id="ORVMx">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/ORVMx</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.games/live-104 加 LINE 按鈕</p>
+<span class="url-new">✅ 維持 lin.ee/pD3S0Z6（標籤建議：#ys89.games #加LINE）</span>
+</div>
+
+<div class="item" data-id="LnJBl">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/LnJBl</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.info/live-104 + index.html 加 LINE 按鈕</p>
+<span class="url-old">原：https://lin.ee/pD3S0Z6?utm_source=web&utm_medium=104-live</span>
+<div class="url-line">
+  <span class="url-new" id="url-LnJBl">✅ https://lin.ee/pD3S0Z6（拿掉無用 UTM）</span>
+  <button class="copy-btn" onclick="copyText('url-LnJBl',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="tr2LB">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/tr2LB</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.biz/live-104 + index.html + schedule.html</p>
+<span class="url-old">原：https://lin.ee/pD3S0Z6?utm_source=web&utm_medium=104-live</span>
+<div class="url-line">
+  <span class="url-new" id="url-tr2LB">✅ https://lin.ee/pD3S0Z6（拿掉無用 UTM）</span>
+  <button class="copy-btn" onclick="copyText('url-tr2LB',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="Zhg2R_b">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/Zhg2R</span> <span class="prio prio-4">已處理</span></h3>
+<p class="deploy">⚠️ 跟區塊 A 同一短碼，不用重複改</p>
+</div>
+
+</details>
+
+<!-- 區塊 C -->
+<h2>🟡 區塊 C：ys89.games 站內 CTA → 平台（fu002）</h2>
+<details>
+<summary>9 條短碼</summary>
+
+<div class="box info">原本都是 <code>utm_source=wc_site&utm_medium=cta</code> 要全部改</div>
+
+<div class="item" data-id="vrDxN">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/vrDxN</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.games 首頁 (index)</p>
+<span class="url-old">原：https://ys89.bet?proxy=pm3u87&utm_source=wc_site&utm_medium=cta&utm_campaign=index</span>
+<div class="url-line">
+  <span class="url-new" id="url-vrDxN">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=home</span>
+  <button class="copy-btn" onclick="copyText('url-vrDxN',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="wTd66">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/wTd66</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.games 賠率頁 /odds</p>
+<span class="url-old">原：utm_source=wc_site&utm_medium=cta&utm_campaign=odds</span>
+<div class="url-line">
+  <span class="url-new" id="url-wTd66">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=odds</span>
+  <button class="copy-btn" onclick="copyText('url-wTd66',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="9Qqmk">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/9Qqmk</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.games 預測頁 /prediction</p>
+<div class="url-line">
+  <span class="url-new" id="url-9Qqmk">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=prediction</span>
+  <button class="copy-btn" onclick="copyText('url-9Qqmk',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="4ncNq">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/4ncNq</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.games 賽程頁 /schedule</p>
+<div class="url-line">
+  <span class="url-new" id="url-4ncNq">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=schedule</span>
+  <button class="copy-btn" onclick="copyText('url-4ncNq',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="l0rF7">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/l0rF7</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.games 部落格 /blog</p>
+<div class="url-line">
+  <span class="url-new" id="url-l0rF7">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=blog</span>
+  <button class="copy-btn" onclick="copyText('url-l0rF7',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="6rGhK">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/6rGhK</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">ys89.games 分組賽程 /group-*</p>
+<div class="url-line">
+  <span class="url-new" id="url-6rGhK">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=group</span>
+  <button class="copy-btn" onclick="copyText('url-6rGhK',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="K3gjC">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/K3gjC</span> <span class="prio prio-3">P3</span></h3>
+<p class="deploy">ys89.games（具體頁面待你確認）</p>
+<div class="url-line">
+  <span class="url-new" id="url-K3gjC">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=待填</span>
+  <button class="copy-btn" onclick="copyText('url-K3gjC',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="GDmr8">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/GDmr8</span> <span class="prio prio-3">P3</span></h3>
+<p class="deploy">ys89.games（具體頁面待你確認）</p>
+<div class="url-line">
+  <span class="url-new" id="url-GDmr8">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=待填</span>
+  <button class="copy-btn" onclick="copyText('url-GDmr8',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="0iLbG">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/0iLbG</span> <span class="prio prio-3">P3</span></h3>
+<p class="deploy">ys89.games（具體頁面待你確認）</p>
+<div class="url-line">
+  <span class="url-new" id="url-0iLbG">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_games&utm_medium=referral&utm_campaign=wc2026&utm_content=待填</span>
+  <button class="copy-btn" onclick="copyText('url-0iLbG',this)">複製</button>
+</div>
+</div>
+
+</details>
+
+<!-- 區塊 D -->
+<h2>🟡 區塊 D：阿奇人設 → 平台（fu003 = dvjhkv）</h2>
+<details>
+<summary>4 條短碼</summary>
+
+<div class="item" data-id="1q0xn">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/1q0xn</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">阿奇 → 平台</p>
+<div class="url-line">
+  <span class="url-new" id="url-1q0xn">✅ https://ys89.bet?proxy=dvjhkv&utm_source=akki&utm_medium=referral&utm_campaign=wc2026</span>
+  <button class="copy-btn" onclick="copyText('url-1q0xn',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="uehKZ">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/uehKZ</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">阿奇 → 平台</p>
+<div class="url-line">
+  <span class="url-new" id="url-uehKZ">✅ https://ys89.bet?proxy=dvjhkv&utm_source=akki&utm_medium=referral&utm_campaign=wc2026</span>
+  <button class="copy-btn" onclick="copyText('url-uehKZ',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="3GVHv">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/3GVHv</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">阿奇 → 平台</p>
+<div class="url-line">
+  <span class="url-new" id="url-3GVHv">✅ https://ys89.bet?proxy=dvjhkv&utm_source=akki&utm_medium=referral&utm_campaign=wc2026</span>
+  <button class="copy-btn" onclick="copyText('url-3GVHv',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="7yjyK">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/7yjyK</span> <span class="prio prio-2">P2</span></h3>
+<p class="deploy">player-one-site 文章（fraud-detect / maispin-review / ranking / trial / withdraw）</p>
+<div class="url-line">
+  <span class="url-new" id="url-7yjyK">✅ https://ys89.bet?proxy=dvjhkv&utm_source=playerone&utm_medium=referral&utm_campaign=wc2026&utm_content=article_cta</span>
+  <button class="copy-btn" onclick="copyText('url-7yjyK',this)">複製</button>
+</div>
+</div>
+
+</details>
+
+<!-- 區塊 E -->
+<h2>🔵 區塊 E：ys89.me 子頁面</h2>
+<details>
+<summary>2 條短碼</summary>
+
+<div class="item" data-id="Cs2Af">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/Cs2Af</span> <span class="prio prio-3">P3</span></h3>
+<p class="deploy">ys89.me/news/ 球員新聞（梅西、三笘薰、Vinicius）</p>
+<div class="url-line">
+  <span class="url-new" id="url-Cs2Af">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_me&utm_medium=referral&utm_campaign=wc2026&utm_content=player_news</span>
+  <button class="copy-btn" onclick="copyText('url-Cs2Af',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="rbtE5">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/rbtE5</span> <span class="prio prio-3">P3</span></h3>
+<p class="deploy">ys89.me/&lt;country&gt;.html 30+ 國家頁</p>
+<div class="url-line">
+  <span class="url-new" id="url-rbtE5">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_me&utm_medium=referral&utm_campaign=wc2026&utm_content=country_page</span>
+  <button class="copy-btn" onclick="copyText('url-rbtE5',this)">複製</button>
+</div>
+</div>
+
+</details>
+
+<!-- 區塊 F -->
+<h2>🔵 區塊 F：跨站文章 CTA</h2>
+<details>
+<summary>2 條短碼</summary>
+
+<div class="item" data-id="LiqMX">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/LiqMX</span> <span class="prio prio-3">P3</span></h3>
+<p class="deploy">player-one-site/ys89-bonus, usdt, vip + ys89-tw-brand-b</p>
+<div class="url-line">
+  <span class="url-new" id="url-LiqMX">✅ https://ys89.bet?proxy=pm3u87&utm_source=playerone&utm_medium=referral&utm_campaign=wc2026&utm_content=brand_article</span>
+  <button class="copy-btn" onclick="copyText('url-LiqMX',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="SGvyv">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/SGvyv</span> <span class="prio prio-3">P3</span></h3>
+<p class="deploy">ys89.info 多篇新聞 + ys89.biz/group-b.html</p>
+<div class="url-line">
+  <span class="url-new" id="url-SGvyv">✅ https://ys89.bet?proxy=pm3u87&utm_source=ys89_info&utm_medium=referral&utm_campaign=wc2026&utm_content=broadcast_article</span>
+  <button class="copy-btn" onclick="copyText('url-SGvyv',this)">複製</button>
+</div>
+</div>
+
+</details>
+
+<!-- 區塊 G -->
+<h2>🟢 區塊 G：LINE OA 圖文選單</h2>
+<details open>
+<summary>4 條短碼（短碼不在程式碼，在 LINE OA 後台設定）</summary>
+
+<div class="box warn"><strong>注意：</strong>這 4 條改 lihi 後台目的地一樣有效，LINE 那邊不用改。</div>
+
+<div class="item" data-id="5pN0b">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/5pN0b</span> <span class="prio prio-1">P1</span></h3>
+<p class="deploy">LINE 圖文選單「⚡ 立即觀賽 104 場」</p>
+<span class="url-old">原：https://worldgoals.live?utm_source=line&utm_medium=chat</span>
+<div class="url-line">
+  <span class="url-new" id="url-5pN0b">✅ https://worldgoals.live?utm_source=line&utm_medium=menu&utm_campaign=wc2026&utm_content=watch_104</span>
+  <button class="copy-btn" onclick="copyText('url-5pN0b',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="kkmbG">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/kkmbG</span> <span class="prio prio-1">P1</span></h3>
+<p class="deploy">LINE 圖文選單「💎 領 NT$368 體驗金」</p>
+<span class="url-old">原：https://ys89.bet?proxy=d83wfg&utm_source=line&utm_medium=promotion</span>
+<div class="url-line">
+  <span class="url-new" id="url-kkmbG">✅ https://ys89.bet?proxy=d83wfg&utm_source=line&utm_medium=menu&utm_campaign=wc2026&utm_content=bonus_368</span>
+  <button class="copy-btn" onclick="copyText('url-kkmbG',this)">複製</button>
+</div>
+</div>
+
+<div class="item" data-id="dbCzj">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/dbCzj</span> <span class="prio prio-1">P1</span></h3>
+<p class="deploy">LINE 圖文選單「💬 專屬客服」</p>
+<span class="url-old">原：https://direct.lc.chat/19427745/?utm_source=line&utm_medium=promotion&utm_campaign=客服</span>
+<div class="url-line">
+  <span class="url-new" id="url-dbCzj">✅ https://direct.lc.chat/19427745/?utm_source=line&utm_medium=menu&utm_campaign=wc2026&utm_content=customer_service</span>
+  <button class="copy-btn" onclick="copyText('url-dbCzj',this)">複製</button>
+</div>
+<div class="box danger"><strong>⚠️ 必改：</strong>campaign=客服（中文）會 URL encode 變天書</div>
+</div>
+
+<div class="item" data-id="6cBcH">
+<h3><input type="checkbox" class="checkbox" onchange="toggleDone(this)"> <span class="short-code">lihi2.me/6cBcH</span> <span class="prio prio-1">P1</span></h3>
+<p class="deploy">LINE 圖文選單「🎁 VIP 優惠專區」</p>
+<span class="url-old">原：https://ys89.bet?proxy=d83wfg&utm_source=line&utm_medium=promotion&utm_campaign=vip優惠專區</span>
+<div class="url-line">
+  <span class="url-new" id="url-6cBcH">✅ https://ys89.bet?proxy=d83wfg&utm_source=line&utm_medium=menu&utm_campaign=wc2026&utm_content=vip_zone</span>
+  <button class="copy-btn" onclick="copyText('url-6cBcH',this)">複製</button>
+</div>
+<div class="box danger"><strong>⚠️ 必改：</strong>campaign=vip優惠專區（中文）</div>
+</div>
+
+</details>
+
+<!-- Excel 額外 -->
+<h2>⚪ Excel 裡的其他短碼（看狀況刪/改）</h2>
+<details>
+<summary>14 條額外</summary>
+
+<table>
+  <thead><tr><th>短碼</th><th>Excel 目的地</th><th>建議</th></tr></thead>
+  <tbody>
+    <tr><td><code>z3Qpz</code></td><td>ys89.fun (utm_medium=promotion)</td><td>FB 廣告用過？改 medium=cpc</td></tr>
+    <tr><td><code>jUJTi</code></td><td>ys89.bet (utm_medium=promotion)</td><td>同上</td></tr>
+    <tr><td><code>yOhjI</code></td><td>ys89.bet?proxy=cysc9m (中文 content)</td><td>content 是中文要改</td></tr>
+    <tr><td><code>wARuS</code></td><td>http://https//ys89.bet (URL 壞掉)</td><td>🔴 必刪重建</td></tr>
+    <tr><td><code>9Ubyr</code></td><td>ys89.fun (instagram)</td><td>缺 medium，補上</td></tr>
+    <tr><td><code>ByUqS</code></td><td>ys89.fun (th 簡寫)</td><td>source=th 改 threads</td></tr>
+    <tr><td><code>xwPhE</code></td><td>ys89.bet (th 簡寫)</td><td>同上</td></tr>
+    <tr><td><code>opA2b</code></td><td>ys89.fun (YouTube)</td><td>medium=promotion 改 video</td></tr>
+    <tr><td><code>uVL3q, RANtc</code></td><td>ys89.bet (YouTube)</td><td>同上</td></tr>
+    <tr><td><code>NFR8J</code></td><td>direct.lc.chat 客服</td><td>medium=chat 改 menu（如果是選單）</td></tr>
+    <tr><td><code>ZKwdj</code></td><td>ys89.bet?proxy=cysc9m</td><td>缺 source，補上</td></tr>
+    <tr><td><code>kTaI0</code></td><td>direct.lc.chat 客服</td><td>缺 medium，補上</td></tr>
+    <tr><td><code>0ABfk</code></td><td>ys89.bet?proxy=dvjhkv (阿奇)</td><td>source instagram 改 akki</td></tr>
+    <tr><td><code>mCf92</code></td><td>ys89.me/live-104 (instagram)</td><td>缺 medium，補上</td></tr>
+  </tbody>
+</table>
+</details>
+
+</div><!-- end ops -->
+
+<!-- ============================ PAGE 3: 4 衛星站+世足 ============================ -->
+<div id="wc" class="page">
+
+<div class="box info">
+  <h3 style="color:#79c0ff;margin-top:0">🌐 YS89 World Cup 2026 完整 UTM 交付（45 條）</h3>
+  <p><strong>GA4 屬性：</strong>YS89 World Cup 2026（<code>G-THDJFGXCZ7</code>）</p>
+  <p><strong>5 個站共用同一 GA4：</strong>ys89.games / ys89.info / ys89.biz / ys89.me / worldgoals.live + fifa-worldcups.tw（kk 推）</p>
+  <p><strong>主轉換站：</strong>worldgoals.live（看直播+註冊）</p>
+  <div class="legend" style="margin-top:10px">
+    <span>🎯 <strong>代操商</strong> 區 A：10 條</span>
+    <span>📱 <strong>社群人員</strong> 區 B+C：25 條</span>
+    <span>💬 <strong>LINE 管理員</strong> 區 D：7 條</span>
+    <span>🎬 <strong>影音</strong> 區 E：3 條</span>
+  </div>
+</div>
+
+<h2>🎯 A 區：付費廣告（10 條）— 給代操商</h2>
+
+<div class="box warn">
+  <strong>說明：</strong>20 個買來的粉專共用這 10 條 UTM（用 utm_content 區分版本即可，不用每粉專一條 UTM）。⭐ A1/A2 為主推 worldgoals.live，A3-A10 是備援。
+</div>
+
+<details open>
+<summary>10 條付費廣告 UTM</summary>
+<table>
+  <thead><tr><th>#</th><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>content</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>A1 ⭐</td><td>fb_wg_main</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>worldgoals.live</td></tr>
+    <tr><td>A2 ⭐</td><td>ig_wg_main</td><td>instagram</td><td>cpc</td><td>wc2026</td><td>story_a</td><td>worldgoals.live</td></tr>
+    <tr><td>A3</td><td>fb_games</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>ys89.games/live-104</td></tr>
+    <tr><td>A4</td><td>fb_info</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>ys89.info/live-104</td></tr>
+    <tr><td>A5</td><td>fb_biz</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>A6</td><td>fb_me</td><td>facebook</td><td>cpc</td><td>wc2026</td><td>banner_a</td><td>ys89.me/live-104</td></tr>
+    <tr><td>A7</td><td>ig_games</td><td>instagram</td><td>cpc</td><td>wc2026</td><td>story_a</td><td>ys89.games/live-104</td></tr>
+    <tr><td>A8</td><td>ig_info</td><td>instagram</td><td>cpc</td><td>wc2026</td><td>story_a</td><td>ys89.info/live-104</td></tr>
+    <tr><td>A9</td><td>ig_biz</td><td>instagram</td><td>cpc</td><td>wc2026</td><td>story_a</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>A10</td><td>ig_me</td><td>instagram</td><td>cpc</td><td>wc2026</td><td>story_a</td><td>ys89.me/live-104</td></tr>
+  </tbody>
+</table>
+</details>
+
+<h2>📱 B 區：5 人設 IG（15 條）— 給社群人員</h2>
+<details open>
+<summary>5 人設 × 3 medium(bio/post/story)</summary>
+<table>
+  <thead><tr><th>#</th><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>B1</td><td>akki_ig_bio</td><td>akki</td><td>bio</td><td>wc2026</td><td>ys89.games/live-104</td></tr>
+    <tr><td>B2</td><td>akki_ig_post</td><td>akki</td><td>post</td><td>wc2026</td><td>ys89.games/live-104</td></tr>
+    <tr><td>B3</td><td>akki_ig_story</td><td>akki</td><td>story</td><td>wc2026</td><td>ys89.games/live-104</td></tr>
+    <tr><td>B4</td><td>crab_ig_bio</td><td>crab</td><td>bio</td><td>wc2026</td><td>ys89.me/live-104</td></tr>
+    <tr><td>B5</td><td>crab_ig_post</td><td>crab</td><td>post</td><td>wc2026</td><td>ys89.me/live-104</td></tr>
+    <tr><td>B6</td><td>crab_ig_story</td><td>crab</td><td>story</td><td>wc2026</td><td>ys89.me/live-104</td></tr>
+    <tr><td>B7</td><td>god_ig_bio</td><td>god</td><td>bio</td><td>wc2026</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>B8</td><td>god_ig_post</td><td>god</td><td>post</td><td>wc2026</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>B9</td><td>god_ig_story</td><td>god</td><td>story</td><td>wc2026</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>B10</td><td>uncle_ig_bio</td><td>uncle</td><td>bio</td><td>wc2026</td><td>ys89.info/live-104</td></tr>
+    <tr><td>B11</td><td>uncle_ig_post</td><td>uncle</td><td>post</td><td>wc2026</td><td>ys89.info/live-104</td></tr>
+    <tr><td>B12</td><td>uncle_ig_story</td><td>uncle</td><td>story</td><td>wc2026</td><td>ys89.info/live-104</td></tr>
+    <tr><td>B13</td><td>kk_ig_bio</td><td>kk</td><td>bio</td><td>wc2026</td><td>fifa-worldcups.tw</td></tr>
+    <tr><td>B14</td><td>kk_ig_post</td><td>kk</td><td>post</td><td>wc2026</td><td>fifa-worldcups.tw</td></tr>
+    <tr><td>B15</td><td>kk_ig_story</td><td>kk</td><td>story</td><td>wc2026</td><td>fifa-worldcups.tw</td></tr>
+  </tbody>
+</table>
+</details>
+
+<h2>📱 C 區：5 人設 Threads（10 條）— 給社群人員</h2>
+<details open>
+<summary>5 人設 × 2 medium(bio/post)</summary>
+<table>
+  <thead><tr><th>#</th><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>C1</td><td>akki_th_bio</td><td>akki</td><td>bio</td><td>wc2026</td><td>ys89.games/live-104</td></tr>
+    <tr><td>C2</td><td>akki_th_post</td><td>akki</td><td>post</td><td>wc2026</td><td>ys89.games/live-104</td></tr>
+    <tr><td>C3</td><td>crab_th_bio</td><td>crab</td><td>bio</td><td>wc2026</td><td>ys89.me/live-104</td></tr>
+    <tr><td>C4</td><td>crab_th_post</td><td>crab</td><td>post</td><td>wc2026</td><td>ys89.me/live-104</td></tr>
+    <tr><td>C5</td><td>god_th_bio</td><td>god</td><td>bio</td><td>wc2026</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>C6</td><td>god_th_post</td><td>god</td><td>post</td><td>wc2026</td><td>ys89.biz/live-104</td></tr>
+    <tr><td>C7</td><td>uncle_th_bio</td><td>uncle</td><td>bio</td><td>wc2026</td><td>ys89.info/live-104</td></tr>
+    <tr><td>C8</td><td>uncle_th_post</td><td>uncle</td><td>post</td><td>wc2026</td><td>ys89.info/live-104</td></tr>
+    <tr><td>C9</td><td>kk_th_bio</td><td>kk</td><td>bio</td><td>wc2026</td><td>fifa-worldcups.tw</td></tr>
+    <tr><td>C10</td><td>kk_th_post</td><td>kk</td><td>post</td><td>wc2026</td><td>fifa-worldcups.tw</td></tr>
+  </tbody>
+</table>
+</details>
+
+<h2>💬 D 區：LINE OA（7 條）— 給 LINE 管理員</h2>
+<details open>
+<summary>圖文選單 6 顆按鈕 + 1 條推播範本</summary>
+<table>
+  <thead><tr><th>#</th><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>content</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>D1</td><td>line_menu_watch</td><td>line</td><td>menu</td><td>wc2026</td><td>watch_104</td><td>worldgoals.live</td></tr>
+    <tr><td>D2</td><td>line_menu_368</td><td>line</td><td>menu</td><td>wc2026</td><td>bonus_368</td><td>ys89.bet?proxy=pm3u87</td></tr>
+    <tr><td>D3</td><td>line_menu_sch</td><td>line</td><td>menu</td><td>wc2026</td><td>schedule</td><td>ys89.me/schedule</td></tr>
+    <tr><td>D4</td><td>line_menu_odds</td><td>line</td><td>menu</td><td>wc2026</td><td>odds</td><td>ys89.me/odds</td></tr>
+    <tr><td>D5</td><td>line_menu_cs</td><td>line</td><td>menu</td><td>wc2026</td><td>customer_service</td><td>direct.lc.chat/19427745</td></tr>
+    <tr><td>D6</td><td>line_menu_vip</td><td>line</td><td>menu</td><td>wc2026</td><td>vip_zone</td><td>ys89.bet?proxy=d83wfg</td></tr>
+    <tr><td>D7</td><td>line_push_match</td><td>line</td><td>chat</td><td>wc2026</td><td>match_alert</td><td>worldgoals.live</td></tr>
+  </tbody>
+</table>
+</details>
+
+<h2>🎬 E 區：影音平台（3 條）— 給影音管理</h2>
+<details open>
+<summary>YouTube + TikTok</summary>
+<table>
+  <thead><tr><th>#</th><th>短碼</th><th>source</th><th>medium</th><th>campaign</th><th>目的地</th></tr></thead>
+  <tbody>
+    <tr><td>E1</td><td>yt_video_wg</td><td>youtube</td><td>video</td><td>wc2026</td><td>worldgoals.live</td></tr>
+    <tr><td>E2</td><td>yt_video_bet</td><td>youtube</td><td>video</td><td>wc2026</td><td>ys89.bet?proxy=cysc9m</td></tr>
+    <tr><td>E3</td><td>tt_video_wg</td><td>tiktok</td><td>video</td><td>wc2026</td><td>worldgoals.live</td></tr>
+  </tbody>
+</table>
+</details>
+
+<h2>🎯 worldgoals.live 內部 CTA（GA4 事件，不需要 UTM）</h2>
+
+<div class="box info">
+  <strong>說明：</strong>這些是用戶<strong>進站後</strong>的點擊行為，用 GA4 event 追蹤，已預埋在 live-104.html / index.html。不需要 UTM。
+</div>
+
+<details open>
+<summary>6 個內部 CTA + 1 個轉換事件</summary>
+<table>
+  <thead><tr><th>CTA 位置</th><th>按鈕文字</th><th>GA4 事件</th><th>cta_source 參數</th><th>跳轉到</th></tr></thead>
+  <tbody>
+    <tr><td>FOMO 卡片</td><td>立即報名・搶先體驗</td><td>line_oa_click</td><td>fomo</td><td>LINE OA</td></tr>
+    <tr><td>頂部固定條</td><td>加入 LINE</td><td>line_oa_click</td><td>topnag</td><td>LINE OA</td></tr>
+    <tr><td>會員 modal</td><td>立即註冊夜色領 NT$368</td><td>platform_register_click</td><td>wg_member_modal</td><td>ys89.bet?proxy=d83wfg</td></tr>
+    <tr><td>Banner</td><td>註冊優惠</td><td>line_oa_click</td><td>banner</td><td>LINE OA</td></tr>
+    <tr><td>直播軟閘門</td><td>加 LINE 解鎖</td><td>line_oa_click</td><td>lock</td><td>LINE OA</td></tr>
+    <tr><td>worldgoals.live 註冊頁</td><td>(註冊成功自動觸發)</td><td>sign_up</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
+</details>
+
+<h2>📊 GA4 設定要點（這個屬性要做的事）</h2>
+
+<div class="box ok">
+  <h3 style="color:#7ee787;margin-top:0">✅ 已完成</h3>
+  <ul>
+    <li>建立 GA4 屬性 + 5 站接入</li>
+    <li>跨網域評估設定（6 個域名）</li>
+    <li>worldgoals.live 註冊事件 sign_up 預埋</li>
+  </ul>
+</div>
+
+<div class="box warn">
+  <h3 style="color:#f0c674;margin-top:0">⚠️ 還要做（在 G-THDJFGXCZ7 屬性裡）</h3>
+  <ol>
+    <li><strong>建 2 個自訂維度</strong>：管理員 → 自訂定義 → 建立自訂維度
+      <table style="margin-top:8px">
+        <tr><th>維度名稱</th><th>範圍</th><th>事件參數</th></tr>
+        <tr><td><code>cta_source</code></td><td>事件</td><td><code>cta_source</code></td></tr>
+        <tr><td><code>link_url</code></td><td>事件</td><td><code>link_url</code></td></tr>
+      </table>
+    </li>
+    <li><strong>標記轉換事件</strong>（事件出現後在事件清單把開關打開）：
+      <ul>
+        <li><code>sign_up</code> 🔴 最重要</li>
+        <li><code>line_oa_click</code> 🟡 軟轉換</li>
+        <li><code>platform_register_click</code> 🟡 軟轉換</li>
+      </ul>
+    </li>
+    <li><strong>延長保留期</strong>：管理員 → 資料保留 → 改 14 個月</li>
+    <li><strong>排除自己 IP</strong>：避免測試污染</li>
+  </ol>
+</div>
+
+<h2>🚀 完整漏斗探索範例</h2>
+
+<details>
+<summary>漏斗 A：廣告→註冊 完整 funnel</summary>
+<pre>步驟 1: page_view（進站）
+步驟 2: page_view + 主機名稱=worldgoals.live（進直播站）
+步驟 3: line_oa_click 或 platform_register_click（點 CTA）
+步驟 4: sign_up（註冊成功）
+
+細分維度：utm_source / utm_campaign
+看哪個來源轉換最好</pre>
+</details>
+
+<details>
+<summary>漏斗 B：跨域追蹤 衛星站→主站</summary>
+<pre>步驟 1: page_view + 主機名稱 包含 ys89.games/info/biz/me
+步驟 2: page_view + 主機名稱=worldgoals.live
+步驟 3: sign_up
+
+細分維度：主機名稱
+看哪個衛星站轉換最好</pre>
+</details>
+
+<h2>🚨 footprint 隔離鐵則（18+ 內容適用）</h2>
+
+<div class="box danger">
+  <ol>
+    <li>🚨 <strong>5 人設 IG/Threads</strong> 帳號 → 不要在同一台機器/同 IP 連續切換登入。用各自的手機 / 不同瀏覽器 profile</li>
+    <li>🚨 <strong>20 個買來的粉專</strong>：代操商管理，但廣告連結用同一套 UTM</li>
+    <li>🚨 <strong>主帳跟副帳 CF/GitHub</strong>：不從同 IP 操作</li>
+    <li>🚨 <strong>fifa Google 帳號</strong>：跟其他帳號隔離</li>
+  </ol>
+</div>
+
+</div><!-- end wc -->
+
+<div class="meta">
+  YS89 World Cup 2026 · GA4 G-THDJFGXCZ7 · 制定 2026-05-29<br>
+  雙擊在瀏覽器查看 · Cmd+P 可列印 · 進度自動儲存在瀏覽器
+</div>
+
+</div><!-- end wrap -->
+
+<script>
+const STORAGE_KEY = 'ys89_utm_progress';
+const THEME_KEY = 'ys89_utm_theme';
+
+function toggleTheme(){
+  document.body.classList.toggle('light');
+  try{ localStorage.setItem(THEME_KEY, document.body.classList.contains('light')?'light':'dark') }catch(e){}
+}
+
+function loadTheme(){
+  try{
+    if(localStorage.getItem(THEME_KEY)==='light') document.body.classList.add('light');
+  }catch(e){}
+}
+
+function filterItems(query){
+  const q = query.trim().toLowerCase();
+  const items = document.querySelectorAll('#ops .item');
+  let visible = 0;
+  items.forEach(item=>{
+    const text = item.textContent.toLowerCase();
+    if(!q || text.includes(q)){
+      item.classList.remove('search-hidden');
+      visible++;
+    } else {
+      item.classList.add('search-hidden');
+    }
+  });
+  document.querySelectorAll('#ops details').forEach(d=>{
+    const visibleInside = d.querySelectorAll('.item:not(.search-hidden)').length;
+    d.classList.toggle('search-empty', q && visibleInside === 0);
+    if(q && visibleInside > 0 && !d.open) d.open = true;
+  });
+  const info = document.getElementById('search-info');
+  if(info){
+    info.textContent = q ? `找到 ${visible} 條符合「${query}」` : `輸入關鍵字即時篩選 22 條短碼`;
+  }
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(event && event.target) event.target.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function buildUtmUrl(source, medium, campaign, content, dest){
+  if(!dest) return null;
+  if(!dest.startsWith('http')) dest = 'https://' + dest;
+  const params = [];
+  if(source) params.push('utm_source=' + encodeURIComponent(source));
+  if(medium) params.push('utm_medium=' + encodeURIComponent(medium));
+  if(campaign) params.push('utm_campaign=' + encodeURIComponent(campaign));
+  if(content) params.push('utm_content=' + encodeURIComponent(content));
+  if(!params.length) return dest;
+  const sep = dest.includes('?') ? '&' : '?';
+  return dest + sep + params.join('&');
+}
+
+function setupCopyButtons(){
+  document.querySelectorAll('table').forEach(table => {
+    if(table.dataset.copySetup) return;
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+    const colMap = {};
+    headers.forEach((h, i) => {
+      if(h === 'source') colMap.source = i;
+      else if(h === 'medium') colMap.medium = i;
+      else if(h === 'campaign') colMap.campaign = i;
+      else if(h === 'content') colMap.content = i;
+      else if(h === '目的地') colMap.dest = i;
+    });
+    if(colMap.source === undefined || colMap.medium === undefined || colMap.campaign === undefined || colMap.dest === undefined) return;
+    table.dataset.copySetup = '1';
+    const headRow = table.querySelector('thead tr');
+    const th = document.createElement('th');
+    th.textContent = '📋';
+    th.style.minWidth = '50px';
+    th.style.textAlign = 'center';
+    headRow.appendChild(th);
+    const allUrls = [];
+    table.querySelectorAll('tbody tr').forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const source = cells[colMap.source]?.textContent.trim() || '';
+      const medium = cells[colMap.medium]?.textContent.trim() || '';
+      const campaign = cells[colMap.campaign]?.textContent.trim() || '';
+      const content = colMap.content !== undefined ? (cells[colMap.content]?.textContent.trim() || '') : '';
+      const dest = cells[colMap.dest]?.textContent.trim() || '';
+      const td = document.createElement('td');
+      td.style.textAlign = 'center';
+      if(source && dest){
+        const url = buildUtmUrl(source, medium, campaign, content, dest);
+        allUrls.push(url);
+        const btn = document.createElement('button');
+        btn.className = 'copy-url-btn';
+        btn.textContent = '複製';
+        btn.title = url;
+        btn.dataset.url = url;
+        btn.onclick = function(e){
+          e.stopPropagation();
+          navigator.clipboard.writeText(this.dataset.url).then(() => {
+            this.textContent = '✓';
+            this.classList.add('copied');
+            setTimeout(() => { this.textContent = '複製'; this.classList.remove('copied'); }, 1500);
+          });
+        };
+        td.appendChild(btn);
+      } else {
+        td.textContent = '—';
+      }
+      row.appendChild(td);
+    });
+    // 加「本表全部複製」按鈕
+    if(allUrls.length > 1){
+      const allBtn = document.createElement('button');
+      allBtn.className = 'copy-all-btn';
+      allBtn.textContent = `📋 複製本表全部 ${allUrls.length} 條 URL`;
+      allBtn.onclick = function(e){
+        e.stopPropagation();
+        navigator.clipboard.writeText(allUrls.join('\n')).then(() => {
+          this.textContent = `✓ 已複製 ${allUrls.length} 條（每行 1 條）`;
+          this.classList.add('copied');
+          setTimeout(() => { this.textContent = `📋 複製本表全部 ${allUrls.length} 條 URL`; this.classList.remove('copied'); }, 2500);
+        });
+      };
+      table.parentNode.insertBefore(allBtn, table.nextSibling);
+    }
+  });
+}
+
+function toggleDone(checkbox){
+  const item = checkbox.closest('.item');
+  if(item){
+    item.classList.toggle('item-done', checkbox.checked);
+    saveProgress();
+    updateProgressBar();
+  }
+}
+
+function copyText(elementId, btn){
+  const el = document.getElementById(elementId);
+  let text = el.textContent.replace(/^✅\s*/, '');
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent = '✓ 已複製';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='複製';btn.classList.remove('copied')},2000);
+  });
+}
+
+function saveProgress(){
+  const done = [];
+  document.querySelectorAll('.checkbox').forEach((cb, i)=>{
+    if(cb.checked){
+      const item = cb.closest('.item');
+      if(item) done.push(item.dataset.id);
+    }
+  });
+  try{localStorage.setItem(STORAGE_KEY, JSON.stringify(done))}catch(e){}
+}
+
+function loadProgress(){
+  try{
+    const done = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    done.forEach(id=>{
+      const item = document.querySelector(`.item[data-id="${id}"]`);
+      if(item){
+        item.classList.add('item-done');
+        const cb = item.querySelector('.checkbox');
+        if(cb) cb.checked = true;
+      }
+    });
+  }catch(e){}
+  updateProgressBar();
+}
+
+function updateProgressBar(){
+  const total = document.querySelectorAll('.checkbox').length;
+  const done = document.querySelectorAll('.checkbox:checked').length;
+  const pct = total ? Math.round(done/total*100) : 0;
+  const el = document.getElementById('progress-text');
+  const fill = document.getElementById('progress-fill');
+  if(el) el.textContent = `${done} / ${total} 條完成（${pct}%）`;
+  if(fill) fill.style.width = pct + '%';
+}
+
+function resetProgress(){
+  if(confirm('確定要重置所有進度嗎？')){
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.checkbox').forEach(cb=>cb.checked=false);
+    document.querySelectorAll('.item-done').forEach(el=>el.classList.remove('item-done'));
+    updateProgressBar();
+  }
+}
+
+loadTheme();
+setupCopyButtons();
+loadProgress();
+</script>
+
+</body>
+</html>
