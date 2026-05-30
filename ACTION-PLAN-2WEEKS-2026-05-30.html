@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YS89 接下來 2 週執行清單 — 2026-05-30 起</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#0d1117;--surface:#161b22;--card:#1c2128;--border:#30363d;
+--green:#3fb950;--blue:#58a6ff;--yellow:#d29922;--red:#f85149;
+--purple:#bc8cff;--orange:#f0883e;--cyan:#39d3f5;--gold:#ffd700;
+--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang TC','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:14px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+header{background:#010409;border-bottom:2px solid var(--gold);padding:18px 28px}
+header h1{color:var(--gold);font-size:1.4em}
+header .meta{color:var(--muted);font-size:0.82em;font-family:monospace;margin-top:4px}
+.page{max-width:1000px;margin:0 auto;padding:24px 20px 60px}
+
+.week{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:24px;overflow:hidden}
+.week-head{padding:14px 22px;background:#222831;border-bottom:1px solid var(--border)}
+.week-head h2{font-size:1.15em;color:var(--gold)}
+.week-head .sub{color:var(--muted);font-size:0.82em;margin-top:2px}
+.week-body{padding:8px 0}
+
+.item{display:flex;gap:14px;padding:14px 22px;border-bottom:1px solid var(--border);align-items:flex-start}
+.item:last-child{border-bottom:none}
+.item:hover{background:rgba(192,160,96,0.03)}
+.chk{width:22px;height:22px;border:2px solid var(--border);border-radius:5px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--green)}
+.item-body{flex:1}
+.item-title{font-weight:700;font-size:0.98em;margin-bottom:3px}
+.item-desc{color:var(--muted);font-size:0.85em;line-height:1.5}
+.item-meta{margin-top:5px;display:flex;gap:6px;flex-wrap:wrap}
+
+.who{font-size:0.7em;padding:2px 8px;border-radius:10px;font-weight:700}
+.who-user{background:rgba(248,81,73,.15);color:var(--red);border:1px solid rgba(248,81,73,.3)}
+.who-auto{background:rgba(63,185,80,.15);color:var(--green);border:1px solid rgba(63,185,80,.3)}
+.who-both{background:rgba(210,153,34,.15);color:var(--yellow);border:1px solid rgba(210,153,34,.3)}
+.prio{font-size:0.7em;padding:2px 8px;border-radius:10px;font-weight:700}
+.p0{background:rgba(248,81,73,.15);color:var(--red)}
+.p1{background:rgba(210,153,34,.15);color:var(--yellow)}
+.p2{background:rgba(88,166,255,.15);color:var(--blue)}
+
+.alert{background:rgba(255,215,0,.08);border-left:4px solid var(--gold);padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:22px}
+.alert strong{color:var(--gold)}
+.note{background:rgba(88,166,255,.06);border-left:3px solid var(--blue);padding:10px 16px;border-radius:0 6px 6px 0;margin:8px 22px;font-size:0.85em;color:var(--muted)}
+code{font-family:monospace;background:rgba(192,160,96,.08);padding:1px 6px;border-radius:3px;color:var(--gold);font-size:0.9em}
+.muted{color:var(--muted)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px;font-size:0.82em;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+<h1>📅 YS89 接下來 2 週執行清單</h1>
+<div class="meta">2026-05-30 起 ・ 51 task 已完成站內工程 ・ 現在瓶頸 = 部署 + 等爬蟲</div>
+</header>
+
+<div class="page">
+
+<div class="alert">
+<strong>⚠️ 核心觀念：</strong>站內（on-page）已做到極致。接下來 2 週的勝負關鍵 = <strong>把已建好的資產部署上線</strong> + <strong>等 Google 爬完</strong>。不要再急著加內容，反而要把現有的推出去發揮作用。
+</div>
+
+<div class="legend">
+<span><span class="who who-user">🧑 你做</span> 需要你親自操作</span>
+<span><span class="who who-auto">🤖 我做</span> 下次叫我即可</span>
+<span><span class="who who-both">🟡 協作</span> 我準備你執行</span>
+</div>
+
+<!-- WEEK 1 -->
+<div class="week">
+<div class="week-head"><h2>📆 第 1 週（5/30 - 6/5）— 部署啟動</h2><div class="sub">把今天建好的資產全部推上線</div></div>
+<div class="week-body">
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">1. GSC 重新提交 sitemap（剛修好的）</div>
+<div class="item-desc">今天修好 Rank Math sitemap cache（卡 8 天）。去 GSC → Sitemaps，重新提交 <code>sitemap_index.xml</code> + <code>forum_topic-sitemap.xml</code>。讓 Google 抓到過去 8 天所有新文（含 29 篇今日新文）。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span><span class="prio p0">P0 最急</span><span class="muted" style="font-size:0.78em">5 分鐘</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">2. 推 hipgreenscene PBN（可本地直推，不用 VPN）</div>
+<div class="item-desc">GitHub <code>ysyyds1688-maker/hipgreenscene-site</code> 上傳 2 新文 + sitemap。CF 自動部署。完成後去 hipgreenscene 的 GSC 提交 sitemap。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span><span class="prio p0">P0</span><span class="muted" style="font-size:0.78em">10 分鐘</span></div>
+</div>
+</div>
+
+<div class="note">📁 hipgreenscene 新檔：<code>sustainable-fan-home-rituals.html</code> + <code>sustainable-fan-online-options.html</code> + <code>sitemap.xml</code></div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">3. 推 deckmatt PBN（VPN 加拿大/英國）</div>
+<div class="item-desc">先確認 CF Pages 該專案 GitHub 連動帳號（主帳→本地直推 / 子帳→VPN）。上傳 2 新文 + sitemap。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span><span class="prio p1">P1</span><span class="muted" style="font-size:0.78em">隔 1 天</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">4. 推 adviseist PBN（VPN，跟 pansurihotel 錯開 3-5 天）</div>
+<div class="item-desc">⚠️ adviseist + pansurihotel 同 CF 帳號 yaobenyuan，不可同天推。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span><span class="prio p1">P1</span><span class="muted" style="font-size:0.78em">隔 2-3 天</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">5. GSC URL Inspection 重點頁（手動加速索引）</div>
+<div class="item-desc">挑 P0 提交：6 品牌叢集頁 + 6 雷神文 + 8 個 D8 非品牌長尾 + Pillar 頁。每個 Request Indexing。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span><span class="prio p1">P1</span><span class="muted" style="font-size:0.78em">20 分鐘</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">6. 掛 ys89tw.com（信任型，Hostinger）</div>
+<div class="item-desc">檔案已備好（I1 完成）。Hostinger 已刷 12 個月。上傳 static HTML 即可。⚠️ 帳號用 ysyyds0006，不連 ys89.fun。CTA proxy 待你提供後我手動換。</div>
+<div class="item-meta"><span class="who who-both">🟡 協作</span><span class="prio p1">P1</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">7. 掛 ys89.tw（轉換型，Cloudways WP）</div>
+<div class="item-desc">先開 Cloudways → <strong>Vultr High Frequency → Tokyo</strong>（鐵則，不可用 DO/SGP）。裝 WP 後用我準備的內容包匯入（I2 完成）。⚠️ App name 不用 ys89.fun 字樣，DNS 接 CF proxy 藏 IP。</div>
+<div class="item-meta"><span class="who who-both">🟡 協作</span><span class="prio p1">P1</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- WEEK 2 -->
+<div class="week">
+<div class="week-head"><h2>📆 第 2 週（6/6 - 6/12）— 補站外訊號 + 世足前衝刺</h2><div class="sub">⚽ 世足 6/12 開幕，世足站要在這週準備好</div></div>
+<div class="week-body">
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">8. 推 bolalive77 + plainjanedesigners（VPN，互相錯開）</div>
+<div class="item-desc">⚠️ 兩站同 yuan5566520 帳號，間隔 3-5 天。bolalive77 推新文 ys-nightcolor-fan-observation.html；plainjanedesigners 推 4 個修改過 HTML（已含 5 條品牌錨）。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span><span class="prio p1">P1</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">9. 推 pansurihotel（VPN 韓國/日本）</div>
+<div class="item-desc">2 新文 + sitemap。跟 adviseist 已錯開即可。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span><span class="prio p1">P1</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">10. 掛 168ys89.com（活動/真人視訊型）</div>
+<div class="item-desc">檔案已備好（J3 完成，10 頁）。主機避開 SGP1 + ys89.tw 同機房。</div>
+<div class="item-meta"><span class="who who-both">🟡 協作</span><span class="prio p2">P2</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">11. Web 2.0 補 dofollow（Medium / Blogspot / Substack）</div>
+<div class="item-desc">主站 dofollow % 偏低（15%）。開 3-5 個免費平台帳號，發品牌文補 dofollow 外鏈。文章我可以寫好給你發。</div>
+<div class="item-meta"><span class="who who-both">🟡 協作</span><span class="prio p2">P2</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">12. YouTube 頻道發 2-4 支短片</div>
+<div class="item-desc">@YS89_fun 已在 schema sameAs。發出金教學/體驗金短片，補社群訊號 + SERP 版位。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span><span class="prio p2">P2</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">13. 世足站最後檢查（6/12 開幕前）</div>
+<div class="item-desc">ys89.games / .info / .biz / .me / fifa-worldcups.tw 確認賽程資料、賠率走勢、live-104 入口都正常。自動更新腳本（每 3 小時）確認在跑。</div>
+<div class="item-meta"><span class="who who-both">🟡 協作</span><span class="prio p0">P0 世足</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ONGOING -->
+<div class="week">
+<div class="week-head"><h2>🔄 持續監控（每週看一次）</h2></div>
+<div class="week-body">
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">14. GSC Performance 看品牌字 impressions</div>
+<div class="item-desc">看「夜色娛樂城」「YS夜色」「夜色YS」「ys89」的 impressions 有沒有開始上升（4-8 週後明顯）。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">15. lihi 後台看 j8SWS（論壇坦克）點擊</div>
+<div class="item-desc">論壇 87 篇的隱形 CTA 貢獻多少點擊。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span></div>
+</div>
+</div>
+
+<div class="item">
+<div class="chk">☐</div>
+<div class="item-body">
+<div class="item-title">16. Ahrefs 重跑（3-4 週後）看 DR 變化</div>
+<div class="item-desc">PBN 推完 + 新文爬完後，DR 應該從 30 往 35-40 走。</div>
+<div class="item-meta"><span class="who who-user">🧑 你做</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- 等之後 -->
+<div class="week">
+<div class="week-head"><h2>🟢 行有餘力再做（不急）</h2></div>
+<div class="week-body">
+<div class="item"><div class="chk">☐</div><div class="item-body"><div class="item-title">Wikipedia「YS89」disambiguation 投稿</div><div class="item-desc">草稿備好。需先養帳號 4 天 + VPN + 2-3 個第三方媒體報導才能投。長線最高價值版位。</div><div class="item-meta"><span class="who who-user">🧑 你做</span></div></div></div>
+<div class="item"><div class="chk">☐</div><div class="item-body"><div class="item-title">PTT / Dcard 自然提及（5-10 條/月）</div><div class="item-desc">自然回文時帶連結，補真實社群訊號。</div><div class="item-meta"><span class="who who-user">🧑 你做</span></div></div></div>
+<div class="item"><div class="chk">☐</div><div class="item-body"><div class="item-title">GSC 30 天後 CTR 優化</div><div class="item-desc">有數據後，找低 CTR 的頁面重寫 title/meta description。我做。</div><div class="item-meta"><span class="who who-auto">🤖 我做</span></div></div></div>
+</div>
+</div>
+
+<p class="muted" style="text-align:center;margin-top:30px">2026-05-30 ・ 接續 51 task 站內工程 ・ 重點：部署 > 加碼</p>
+
+</div>
+</body>
+</html>
