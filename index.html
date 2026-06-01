@@ -455,43 +455,26 @@ footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;co
 <script>
 (function(){
   const tabs = document.querySelectorAll('.tab-btn');
-  const sections = Array.from(tabs).map(t => document.getElementById(t.dataset.target));
-
-  // 點擊跳轉 + 設定 active
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = document.getElementById(tab.dataset.target);
-      if (target) {
-        const offset = 60;
-        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({top, behavior:'smooth'});
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-      }
+  // 一個分類 = sec-label + 後面那個 doc-grid
+  function secEls(id){
+    const label = document.getElementById(id);
+    if(!label) return [];
+    const arr=[label];
+    const grid = label.nextElementSibling;
+    if(grid && grid.classList && grid.classList.contains('doc-grid')) arr.push(grid);
+    return arr;
+  }
+  function show(id){
+    tabs.forEach(t=>{
+      const on = (t.dataset.target===id);
+      t.classList.toggle('active', on);
+      secEls(t.dataset.target).forEach(e=>{ e.style.display = on ? '' : 'none'; });
     });
-  });
-
-  // 滾動時自動高亮對應 tab
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const scrollPos = window.pageYOffset + 100;
-        let currentIdx = 0;
-        sections.forEach((sec, i) => {
-          if (sec && sec.offsetTop <= scrollPos) currentIdx = i;
-        });
-        tabs.forEach((t, i) => t.classList.toggle('active', i === currentIdx));
-        // auto scroll tab into view
-        const activeTab = tabs[currentIdx];
-        if (activeTab) {
-          activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
-        }
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  tabs.forEach(tab=> tab.addEventListener('click', ()=> show(tab.dataset.target)));
+  // 初始：只顯示第一個分類（最新總結）
+  if(tabs.length) show(tabs[0].dataset.target);
 })();
 </script>
 
