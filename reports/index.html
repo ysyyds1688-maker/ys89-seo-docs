@@ -34,6 +34,8 @@
   .tab{flex:1;padding:14px 10px;text-align:center;font-size:16px;font-weight:800;color:var(--mut);cursor:pointer;border-radius:12px 12px 0 0;background:#e7ebf2;border:1px solid var(--line);border-bottom:none}
   .tab.active.forum{background:linear-gradient(135deg,#1e7a46,#0f5132);color:#fff}
   .tab.active.sat{background:linear-gradient(135deg,#7c3aed,#4c1d95);color:#fff}
+  .tab.active.seo{background:linear-gradient(135deg,#e8742c,#b5530f);color:#fff}
+  .seo-sub{font-size:16px;font-weight:800;margin:20px 0 6px;padding-left:10px;border-left:5px solid #e8742c}
   .panel{display:none}.panel.active{display:block}
   .vfun{padding:6px 0}
   .vstep{margin:0 auto;border-radius:8px;color:#fff;text-align:center;padding:13px 8px;font-weight:700;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
@@ -78,6 +80,7 @@
 <div class="tabs">
   <div class="tab forum active" onclick="sw('forum',this)">🌱 論壇資源（母站）</div>
   <div class="tab sat" onclick="sw('sat',this)">🔥 世足衛星站</div>
+  <div class="tab seo" onclick="sw('seo',this)">🔍 SEO 排名</div>
 </div>
 
 <!-- ===== 論壇資源(母站)分頁 ===== -->
@@ -126,51 +129,7 @@
     <div class="barrow"><div class="lab">ChatGPT 🤖</div><div class="track"><div class="fill" style="width:3%;background:#10a37f"></div></div><div class="val">1</div></div>
   </div>
 
-  <!--SEO_KW_START-->
-  <div class="card">
-    <h4 style="font-size:13px;color:var(--mut)">🔍 SEO 關鍵字排名（GSC 近 3 個月）</h4>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px">
-      <div style="flex:1;min-width:72px;text-align:center;background:#f0f7f2;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#1e7a46">215</div><div style="font-size:11px;color:#6b7280">點擊</div></div>
-      <div style="flex:1;min-width:72px;text-align:center;background:#f0f7f2;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#1e7a46">486</div><div style="font-size:11px;color:#6b7280">曝光</div></div>
-      <div style="flex:1;min-width:72px;text-align:center;background:#f0f7f2;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#1e7a46">44%</div><div style="font-size:11px;color:#6b7280">點閱率</div></div>
-      <div style="flex:1;min-width:72px;text-align:center;background:#f0f7f2;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#1e7a46">2.7</div><div style="font-size:11px;color:#6b7280">平均排名</div></div>
-    </div>
-    <table>
-      <tr><th>關鍵字</th><th class="n">排名</th><th class="n">點擊</th><th class="n">曝光</th></tr>
-      <tr><td>ys娛樂城</td><td class="n">🥇 1.0</td><td class="n">86</td><td class="n">152</td></tr>
-      <tr><td>ys夜色娛樂城</td><td class="n">🥇 1.0</td><td class="n">42</td><td class="n">46</td></tr>
-      <tr><td>ys89</td><td class="n">1.4</td><td class="n">28</td><td class="n">39</td></tr>
-      <tr><td>夜色娛樂城</td><td class="n">5.5 🎯</td><td class="n">7</td><td class="n">84</td></tr>
-      <tr><td>xy娛樂城</td><td class="n">40</td><td class="n">0</td><td class="n">1</td></tr>
-    </table>
-    <div class="note">💪 品牌字全制霸（ys娛樂城／ys夜色／ys89 都 #1）。🎯 機會：「夜色娛樂城」排 5.5、曝光 84 但只 7 點擊 → 衝進前 3 可大增點擊。<br><span style="opacity:.7">※ 4 個權限加好後，此區會由 GSC 自動更新。</span></div>
-  </div>
-  <!--SEO_KW_END-->
 
-  <div class="card">
-    <h4 style="font-size:13px;color:var(--mut)">📈 Ubersuggest 排名追蹤（57 字・手動快照）</h4>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px">
-      <div style="flex:1;min-width:70px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#e8742c">57</div><div style="font-size:11px;color:#6b7280">追蹤字</div></div>
-      <div style="flex:1;min-width:70px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#16a34a">7</div><div style="font-size:11px;color:#6b7280">進前 3</div></div>
-      <div style="flex:1;min-width:70px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#16a34a">4 ▲</div><div style="font-size:11px;color:#6b7280">本月上升</div></div>
-      <div style="flex:1;min-width:70px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#e8742c">10.4</div><div style="font-size:11px;color:#6b7280">平均排位</div></div>
-    </div>
-    <div style="font-size:13px;font-weight:700;color:#e8742c;margin:8px 0 2px">🚀 本月爬升最多</div>
-    <table>
-      <tr><th>關鍵字</th><th class="n">變化</th><th class="n">現在排名</th></tr>
-      <tr><td>夜色娛樂城出金</td><td class="n" style="color:#16a34a">▲ +99</td><td class="n">🥇 1</td></tr>
-      <tr><td>ys89娛樂城</td><td class="n" style="color:#16a34a">▲ +99</td><td class="n">🥇 1</td></tr>
-      <tr><td>夜色娛樂城體驗金</td><td class="n" style="color:#16a34a">▲ +87</td><td class="n">13 🎯</td></tr>
-      <tr><td>ys出金速度</td><td class="n" style="color:#16a34a">▲ +24</td><td class="n">76</td></tr>
-    </table>
-    <div style="font-size:13px;font-weight:700;color:#1e7a46;margin:10px 0 2px">💪 穩居 #1 的品牌字</div>
-    <table>
-      <tr><th>關鍵字</th><th class="n">排名</th></tr>
-      <tr><td>ys89.fun ・ ys娛樂城 ・ ys娛樂城推薦</td><td class="n">🥇 1</td></tr>
-      <tr><td>ys89 評價 ・ ys娛樂城評價</td><td class="n">🥇 1</td></tr>
-    </table>
-    <div class="note">📌 Ubersuggest 是「自選 57 字」追蹤(在你另一個帳號)，<b>手動更新</b>；上方 GSC 那塊才是自動。亮點：夜色娛樂城相關長尾字一個月內從沒排名衝上 #1／#13 🚀</div>
-  </div>
 
   <div class="card">
     <h4 style="font-size:13px;color:var(--mut)">CTA 實際點擊（離站去平台/LINE）</h4>
@@ -276,6 +235,83 @@
     量大（games 89%）但點擊率低（10%）、手機尤其低。<b>建議：手機 CTA 做更大更早出現把點擊率拉高、資源集中 games、趁世足加碼社群+廣告</b>，並看平台註冊/入金算真實 ROI。</div>
   </div>
 </div>
+
+<!-- ===== 🔍 SEO 排名 分頁 ===== -->
+<div class="panel seo" id="p-seo">
+  <div class="seo-sub">🌱 母站 ys89.fun（品牌字制霸）</div>
+  <!--SEO_KW_START-->
+  <div class="card">
+    <h4 style="font-size:13px;color:var(--mut)">🔍 SEO 關鍵字排名（GSC 近 3 個月）</h4>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px">
+      <div style="flex:1;min-width:72px;text-align:center;background:#f0f7f2;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#1e7a46">215</div><div style="font-size:11px;color:#6b7280">點擊</div></div>
+      <div style="flex:1;min-width:72px;text-align:center;background:#f0f7f2;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#1e7a46">486</div><div style="font-size:11px;color:#6b7280">曝光</div></div>
+      <div style="flex:1;min-width:72px;text-align:center;background:#f0f7f2;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#1e7a46">44%</div><div style="font-size:11px;color:#6b7280">點閱率</div></div>
+      <div style="flex:1;min-width:72px;text-align:center;background:#f0f7f2;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#1e7a46">2.7</div><div style="font-size:11px;color:#6b7280">平均排名</div></div>
+    </div>
+    <table>
+      <tr><th>關鍵字</th><th class="n">排名</th><th class="n">點擊</th><th class="n">曝光</th></tr>
+      <tr><td>ys娛樂城</td><td class="n">🥇 1.0</td><td class="n">86</td><td class="n">152</td></tr>
+      <tr><td>ys夜色娛樂城</td><td class="n">🥇 1.0</td><td class="n">42</td><td class="n">46</td></tr>
+      <tr><td>ys89</td><td class="n">1.4</td><td class="n">28</td><td class="n">39</td></tr>
+      <tr><td>夜色娛樂城</td><td class="n">5.5 🎯</td><td class="n">7</td><td class="n">84</td></tr>
+      <tr><td>xy娛樂城</td><td class="n">40</td><td class="n">0</td><td class="n">1</td></tr>
+    </table>
+    <div class="note">💪 品牌字全制霸（ys娛樂城／ys夜色／ys89 都 #1）。🎯 機會：「夜色娛樂城」排 5.5、曝光 84 但只 7 點擊 → 衝進前 3 可大增點擊。<br><span style="opacity:.7">※ 4 個權限加好後，此區會由 GSC 自動更新。</span></div>
+  </div>
+  <!--SEO_KW_END-->
+
+  <div class="card">
+    <h4 style="font-size:13px;color:var(--mut)">📈 Ubersuggest 排名追蹤（57 字・手動快照）</h4>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px">
+      <div style="flex:1;min-width:70px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#e8742c">57</div><div style="font-size:11px;color:#6b7280">追蹤字</div></div>
+      <div style="flex:1;min-width:70px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#16a34a">7</div><div style="font-size:11px;color:#6b7280">進前 3</div></div>
+      <div style="flex:1;min-width:70px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#16a34a">4 ▲</div><div style="font-size:11px;color:#6b7280">本月上升</div></div>
+      <div style="flex:1;min-width:70px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#e8742c">10.4</div><div style="font-size:11px;color:#6b7280">平均排位</div></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:#e8742c;margin:8px 0 2px">🚀 本月爬升最多</div>
+    <table>
+      <tr><th>關鍵字</th><th class="n">變化</th><th class="n">現在排名</th></tr>
+      <tr><td>夜色娛樂城出金</td><td class="n" style="color:#16a34a">▲ +99</td><td class="n">🥇 1</td></tr>
+      <tr><td>ys89娛樂城</td><td class="n" style="color:#16a34a">▲ +99</td><td class="n">🥇 1</td></tr>
+      <tr><td>夜色娛樂城體驗金</td><td class="n" style="color:#16a34a">▲ +87</td><td class="n">13 🎯</td></tr>
+      <tr><td>ys出金速度</td><td class="n" style="color:#16a34a">▲ +24</td><td class="n">76</td></tr>
+    </table>
+    <div style="font-size:13px;font-weight:700;color:#1e7a46;margin:10px 0 2px">💪 穩居 #1 的品牌字</div>
+    <table>
+      <tr><th>關鍵字</th><th class="n">排名</th></tr>
+      <tr><td>ys89.fun ・ ys娛樂城 ・ ys娛樂城推薦</td><td class="n">🥇 1</td></tr>
+      <tr><td>ys89 評價 ・ ys娛樂城評價</td><td class="n">🥇 1</td></tr>
+    </table>
+    <div class="note">📌 Ubersuggest 是「自選 57 字」追蹤(在你另一個帳號)，<b>手動更新</b>；上方 GSC 那塊才是自動。亮點：夜色娛樂城相關長尾字一個月內從沒排名衝上 #1／#13 🚀</div>
+  </div>
+
+  <div class="seo-sub">🔥 世足衛星站 ys89.games（世足長尾字）</div>
+  <!--SEO_KW2_START-->
+  <div class="card">
+    <h4 style="font-size:13px;color:var(--mut)">🔍 ys89.games 關鍵字排名（GSC 近 3 個月）</h4>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px">
+      <div style="flex:1;min-width:72px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#7c3aed">9</div><div style="font-size:11px;color:#6b7280">點擊</div></div>
+      <div style="flex:1;min-width:72px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#7c3aed">316</div><div style="font-size:11px;color:#6b7280">曝光</div></div>
+      <div style="flex:1;min-width:72px;text-align:center;background:#fff3ec;border-radius:10px;padding:11px"><div style="font-size:21px;font-weight:800;color:#7c3aed">14.1</div><div style="font-size:11px;color:#6b7280">平均排名</div></div>
+    </div>
+    <table>
+      <tr><th>關鍵字</th><th class="n">排名</th><th class="n">點擊</th><th class="n">曝光</th></tr>
+      <tr><td>世足賠率表</td><td class="n">21.1</td><td class="n">2</td><td class="n">7</td></tr>
+      <tr><td>世足主題曲 2026</td><td class="n">20.0</td><td class="n">1</td><td class="n">1</td></tr>
+      <tr><td>世足新手下注</td><td class="n">24.0</td><td class="n">0</td><td class="n">13</td></tr>
+      <tr><td>烏茲別克 世界盃</td><td class="n">10.0 🎯</td><td class="n">0</td><td class="n">2</td></tr>
+      <tr><td>2026世界盃主題曲</td><td class="n">16.7</td><td class="n">0</td><td class="n">3</td></tr>
+      <tr><td>世界盃冠軍預測</td><td class="n">29.3</td><td class="n">0</td><td class="n">3</td></tr>
+    </table>
+    <div class="note">🎯 衛星站主攻「世足／世界盃」長尾字(排名 10-45)，曝光多(316)點擊少(9) → 衝進前 10 可放大流量。</div>
+  </div>
+  <!--SEO_KW2_END-->
+
+  <div class="card" style="background:linear-gradient(135deg,#b5530f,#e8742c);color:#fff">
+    <div style="font-size:14px;line-height:1.7"><b>🎯 SEO 兩線作戰：</b>母站搶「品牌字」(ys娛樂城/夜色娛樂城 全 #1)穩住自家流量；衛星站搶「世足長尾字」(世足賠率/主題曲…排名 10-45)拉新客。<br><span style="opacity:.85">GSC 區塊每週一自動更新；Ubersuggest 為母站手動快照。</span></div>
+  </div>
+</div>
+
 
 
 
