@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GA4 後台逐步設定教學 — YS89 站群 2026-06-01</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#0d1117;--card:#1c2128;--border:#30363d;--green:#3fb950;--blue:#58a6ff;
+--yellow:#d29922;--red:#f85149;--purple:#bc8cff;--gold:#ffd700;--cyan:#39d3f5;
+--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang TC','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+header{background:#010409;border-bottom:2px solid var(--gold);padding:20px 28px}
+header h1{color:var(--gold);font-size:1.4em}
+header .meta{color:var(--muted);font-size:0.82em;font-family:monospace;margin-top:4px}
+.page{max-width:1000px;margin:0 auto;padding:24px 20px 60px}
+.sec{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:24px;overflow:hidden}
+.sec-head{padding:16px 22px;background:#222831;border-bottom:1px solid var(--border)}
+.sec-head h2{font-size:1.1em;color:var(--gold)}
+.sec-head .why{color:var(--muted);font-size:0.85em;margin-top:4px}
+.sec-body{padding:18px 22px}
+.step{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+.step-num{background:var(--blue);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
+.step-body{flex:1}
+.step-body b{color:var(--text)}
+.path{font-family:monospace;background:rgba(57,211,245,.08);border:1px solid rgba(57,211,245,.2);padding:8px 12px;border-radius:6px;color:var(--cyan);font-size:0.86em;margin:6px 0;display:inline-block}
+code{font-family:monospace;background:rgba(192,160,96,.08);padding:1px 6px;border-radius:3px;color:var(--gold);font-size:0.9em}
+.alert{background:rgba(255,215,0,.08);border-left:4px solid var(--gold);padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:20px}
+.alert strong{color:var(--gold)}
+.warn{background:rgba(248,81,73,.08);border-left:4px solid var(--red);padding:12px 16px;border-radius:0 6px 6px 0;margin:10px 0}
+.warn strong{color:var(--red)}
+.ok{background:rgba(63,185,80,.08);border-left:4px solid var(--green);padding:12px 16px;border-radius:0 6px 6px 0;margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:0.88em;margin:10px 0}
+th{text-align:left;padding:8px 10px;color:var(--muted);font-size:0.78em;border-bottom:2px solid var(--border)}
+td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+.muted{color:var(--muted)}.gold{color:var(--gold)}
+.toc{background:#181d24;border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:24px}
+.toc a{display:block;padding:3px 0;font-size:0.9em}
+</style>
+</head>
+<body>
+<header>
+<h1>📊 GA4 後台逐步設定教學</h1>
+<div class="meta">YS89 站群 ・ 2026-06-01 ・ 給「不熟 GA4 介面但要看懂數據」的人</div>
+</header>
+<div class="page">
+
+<div class="alert">
+<strong>📌 先懂這件事：</strong>你的真轉換在 ys89.bet（站外），GA4 看不到。GA4 能追到的「最接近轉換」= <code>outbound_click</code>（點 CTA 跳 ys89.bet 那一下）。所以下面所有設定都圍繞著「把 outbound_click 當轉換指標」來建漏斗。
+</div>
+
+<div class="toc">
+<b class="gold">本頁 4 大設定（照順序做）</b>
+<a href="#s1">1️⃣ 把 outbound_click 設成「關鍵事件」（轉換）— 5 分鐘，最重要</a>
+<a href="#s2">2️⃣ 跨網域排除 referral（衛星站 → ys89.fun 不洗來源）— 5 分鐘</a>
+<a href="#s3">3️⃣ 註冊自訂維度（link_url / cta_source 等）— 5 分鐘</a>
+<a href="#s4">4️⃣ 建 5 個探索漏斗（Exploration）— 20 分鐘</a>
+</div>
+
+<!-- 1 -->
+<div class="sec" id="s1">
+<div class="sec-head"><h2>1️⃣ 把 outbound_click 設成「關鍵事件」（轉換）</h2><div class="why">為什麼：這是你能看到的最接近轉換的指標。設成關鍵事件後，所有報表/漏斗才能算「轉換率」</div></div>
+<div class="sec-body">
+<div class="step"><div class="step-num">1</div><div class="step-body">進 GA4 → 選 <b>ys89.fun</b> 資源（G-SJ8XP724HN）</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body">左下角齒輪 <b>「管理」</b> → 中間欄「資料顯示」→ <b>「關鍵事件」</b><div class="path">管理 → 資料顯示 → 關鍵事件</div></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-body">右上「<b>新增關鍵事件</b>」→ 輸入事件名稱 <code>outbound_click</code> → 儲存</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-body">同樣再加 <code>share</code>（社群分享）當次要轉換</div></div>
+<div class="ok">✅ 設好後，「報表 → 參與 → 轉換」會出現 outbound_click，你就能看到「哪個來源帶最多 CTA 點擊」</div>
+<div class="warn"><strong>注意：</strong>事件名稱要<b>完全一樣</b>（小寫 outbound_click），打錯字 GA4 會當成不同事件。</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="sec" id="s2">
+<div class="sec-head"><h2>2️⃣ 跨網域排除 referral（隱形殺手）</h2><div class="why">為什麼：用戶從 ys89.games 點內鏈到 ys89.fun 時，會被算成「ys89.games 介紹來的流量」，真實來源（Google/社群）被洗掉，漏斗斷裂</div></div>
+<div class="sec-body">
+<div class="step"><div class="step-num">1</div><div class="step-body"><b>管理</b> → 「資料收集和修改」→ <b>「資料串流」</b><div class="path">管理 → 資料串流 → 點 ys89.fun 那條串流</div></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body">往下找 <b>「設定代碼」</b>（Configure tag settings）→ 點開</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-body">找 <b>「列出不視為參照連結的網域」</b>（List unwanted referrals）→ 點開</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-body">「比對類型」選「<b>包含</b>」，依序加入：
+<table><tbody>
+<tr><td><code>ys89.games</code></td><td><code>ys89.info</code></td></tr>
+<tr><td><code>ys89.biz</code></td><td><code>ys89.me</code></td></tr>
+<tr><td><code>worldgoals.live</code></td><td><code>lihi2.me</code></td></tr>
+</tbody></table>
+（lihi2.me 加進去，避免短網址跳轉被當成來源）</div></div>
+<div class="ok">✅ 設好後，衛星站來的流量會保留真實來源（Google/社群），漏斗才完整</div>
+<div class="warn"><strong>footprint 注意：</strong>❌ <b>不要把 fifa-worldcups.tw 加進去</b>。fifa 是隔離 PBN，跟 ys89.* 在 GA4 設定裡有任何關聯都會洩漏網絡。</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="sec" id="s3">
+<div class="sec-head"><h2>3️⃣ 註冊自訂維度（看得到 outbound_click 的細節）</h2><div class="why">為什麼：你的 outbound_click 帶了 link_url / link_text / source_path 參數，但 GA4 預設不顯示，要先「註冊」才看得到</div></div>
+<div class="sec-body">
+<div class="step"><div class="step-num">1</div><div class="step-body"><b>管理</b> → 「資料顯示」→ <b>「自訂定義」</b><div class="path">管理 → 資料顯示 → 自訂定義 → 建立自訂維度</div></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body">逐一建立這 4 個（範圍都選「<b>事件</b>」）：
+<table>
+<thead><tr><th>維度名稱（自取）</th><th>事件參數（要對）</th></tr></thead>
+<tbody>
+<tr><td>外連網址</td><td><code>link_url</code></td></tr>
+<tr><td>外連文字</td><td><code>link_text</code></td></tr>
+<tr><td>來源頁面</td><td><code>source_path</code></td></tr>
+<tr><td>外連網域</td><td><code>link_domain</code></td></tr>
+</tbody></table></div></div>
+<div class="ok">✅ 設好後（24-48hr 後有資料），你能在探索看到「哪一頁的哪個連結被點最多」</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="sec" id="s4">
+<div class="sec-head"><h2>4️⃣ 建 5 個探索漏斗（Exploration）</h2><div class="why">為什麼：raw event 像食材，Exploration 像料理。建好這 5 個才看得懂數據動向</div></div>
+<div class="sec-body">
+<div class="step"><div class="step-num">0</div><div class="step-body">左側選單 <b>「探索」</b>（Explore）→ 每個漏斗都從這裡「+ 新增探索」<div class="path">左側選單 → 探索 → 空白</div></div></div>
+
+<h3 style="color:var(--cyan);margin:18px 0 8px">漏斗 1：轉換漏斗（最重要）</h3>
+<p class="muted" style="font-size:0.88em">技巧選「<b>漏斗探索</b>」，步驟設：</p>
+<table><tbody>
+<tr><td>步驟 1</td><td><code>session_start</code>（工作階段開始）</td></tr>
+<tr><td>步驟 2</td><td><code>page_view</code>（看了頁面）</td></tr>
+<tr><td>步驟 3</td><td><code>scroll</code>（往下滑＝有興趣）</td></tr>
+<tr><td>步驟 4</td><td><code>outbound_click</code>（點 CTA＝準轉換）</td></tr>
+</tbody></table>
+<p class="muted" style="font-size:0.85em">→ 看每步流失率，哪步掉最多人就優化那步</p>
+
+<h3 style="color:var(--cyan);margin:18px 0 8px">漏斗 2：哪個 CTA 帶最多點擊</h3>
+<p class="muted" style="font-size:0.88em">技巧選「<b>自由形式</b>」表格：</p>
+<table><tbody>
+<tr><td>列（維度）</td><td>來源頁面 <code>source_path</code></td></tr>
+<tr><td>值（指標）</td><td>事件計數（篩 outbound_click）</td></tr>
+</tbody></table>
+<p class="muted" style="font-size:0.85em">→ 看 header / ranking / article / <b>forum_tank</b> 哪個頁面 CTA 最有效</p>
+
+<h3 style="color:var(--cyan);margin:18px 0 8px">漏斗 3：來源比較（品牌 vs 非品牌 vs 社群）</h3>
+<p class="muted" style="font-size:0.88em">技巧「自由形式」，加區隔：</p>
+<table><tbody>
+<tr><td>列</td><td>工作階段來源/媒介（session source/medium）</td></tr>
+<tr><td>值</td><td>工作階段數 + outbound_click 轉換率</td></tr>
+</tbody></table>
+<p class="muted" style="font-size:0.85em">→ 看自然搜尋 vs 社群（utm_medium=ig_bio/th_bio）哪個品質高</p>
+
+<h3 style="color:var(--cyan);margin:18px 0 8px">漏斗 4：路徑探索（用戶走法）</h3>
+<p class="muted" style="font-size:0.88em">技巧「<b>路徑探索</b>」，起點選「登陸頁」→ 看後續流向。找出「死路頁」（進來就跳出）。</p>
+
+<h3 style="color:var(--cyan);margin:18px 0 8px">漏斗 5：回訪黏著度</h3>
+<p class="muted" style="font-size:0.88em">技巧「<b>同類群組探索</b>」（Cohort）→ 看首訪後 7 天內回訪比例。代表品牌記憶度。</p>
+</div>
+</div>
+
+<!-- 驗證 -->
+<div class="sec">
+<div class="sec-head"><h2>✅ 設定完怎麼驗證資料對不對</h2></div>
+<div class="sec-body">
+<div class="step"><div class="step-num">1</div><div class="step-body"><b>即時報表</b>（Realtime）→ 自己手機點一個 CTA → 應該 30 秒內看到 outbound_click +1</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body"><b>lihi 點擊數 ÷ GA4 outbound_click</b> → 兩個數字應該接近（差太多 = 有追蹤漏，多半是 IG 內建瀏覽器擋 GA4）</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-body"><b>ys89.bet 後台 proxy <code>cysc9m</code> 註冊數</b> = 真轉換。GA4 outbound_click 是「點擊」，後台 proxy 是「成交」，兩個對照才完整</div></div>
+</div>
+</div>
+
+<p class="muted" style="text-align:center;margin-top:30px">由 /ga4-audit 指令產出 ・ 2026-06-01</p>
+</div>
+</body>
+</html>
