@@ -44,6 +44,11 @@
   .barrow .track{flex:1;background:#f0f2f7;border-radius:6px;height:22px;overflow:hidden}
   .barrow .fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
   .barrow .val{width:60px;flex-shrink:0;text-align:left;font-variant-numeric:tabular-nums;font-weight:700}
+  .lab.tip{cursor:help;border-bottom:1px dotted #9aa3b2}
+  .lab.tip{position:static}
+  .barrow{position:relative}
+  .lab.tip:hover::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 4px);background:#161b2e;color:#fff;font-size:12px;font-weight:400;line-height:1.45;padding:8px 11px;border-radius:8px;width:min(260px,80vw);z-index:20;box-shadow:0 6px 18px rgba(0,0,0,.25);text-align:left;white-space:normal}
+  .lab.tip:hover::before{content:"";position:absolute;left:14px;top:100%;border:6px solid transparent;border-bottom-color:#161b2e;z-index:21}
   .engine{border-radius:14px;padding:18px;color:#fff;margin:12px 0}
   .eng-seo{background:linear-gradient(135deg,#1e7a46,#0f5132)}.eng-soc{background:linear-gradient(135deg,#7c3aed,#4c1d95)}
   .engine h3{font-size:15px}.engine .pct{font-size:40px;font-weight:800;line-height:1.1}.engine .d{font-size:12.5px;opacity:.92}.engine ul{margin:6px 0 0 16px;font-size:12.5px;opacity:.95}
@@ -122,11 +127,11 @@
 
   <div class="card">
     <h4 style="font-size:13px;color:var(--mut)">CTA 實際點擊（離站去平台/LINE）</h4>
-    <div class="barrow"><div class="lab">母站入口按鈕（LiqMX）</div><div class="track"><div class="fill" style="width:100%;background:#e63946">162</div></div><div class="val">162</div></div>
-    <div class="barrow"><div class="lab">文章內 CTA（ho943）</div><div class="track"><div class="fill" style="width:35%;background:#f0717c">57</div></div><div class="val">57</div></div>
-    <div class="barrow"><div class="lab">世足文章 CTA（yOhjI）</div><div class="track"><div class="fill" style="width:20%;background:#f59aa3"></div></div><div class="val">32</div></div>
-    <div class="barrow"><div class="lab">論壇坦克 CTA（j8SWS）</div><div class="track"><div class="fill" style="width:2%;background:#fcc"></div></div><div class="val">2</div></div>
-    <div class="barrow"><div class="lab">客服連結（kTaI0）</div><div class="track"><div class="fill" style="width:3%;background:#fcc"></div></div><div class="val">5</div></div>
+    <div class="barrow"><div class="lab tip" data-tip="位置：首頁／全站主要入口按鈕　·　點了 → 夜色平台 ys89.bet">母站入口按鈕（LiqMX）</div><div class="track"><div class="fill" style="width:100%;background:#e63946">162</div></div><div class="val">162</div></div>
+    <div class="barrow"><div class="lab tip" data-tip="位置：文章內容裡的 CTA　·　點了 → 夜色平台 ys89.bet">文章內 CTA（ho943）</div><div class="track"><div class="fill" style="width:35%;background:#f0717c">57</div></div><div class="val">57</div></div>
+    <div class="barrow"><div class="lab tip" data-tip="位置：世足主題文章裡　·　點了 → 夜色平台 ys89.bet">世足文章 CTA（yOhjI）</div><div class="track"><div class="fill" style="width:20%;background:#f59aa3"></div></div><div class="val">32</div></div>
+    <div class="barrow"><div class="lab tip" data-tip="位置：自動出現在論壇「每一篇討論串」裡　·　點了 → 夜色平台 ys89.bet">論壇坦克 CTA（j8SWS）</div><div class="track"><div class="fill" style="width:2%;background:#fcc"></div></div><div class="val">2</div></div>
+    <div class="barrow"><div class="lab tip" data-tip="位置：客服按鈕　·　點了 → LINE 線上客服（LiveChat）">客服連結（kTaI0）</div><div class="track"><div class="fill" style="width:3%;background:#fcc"></div></div><div class="val">5</div></div>
   </div>
 
   <div class="verdict">
