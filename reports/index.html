@@ -35,6 +35,7 @@
   .tab.active.forum{background:linear-gradient(135deg,#1e7a46,#0f5132);color:#fff}
   .tab.active.sat{background:linear-gradient(135deg,#7c3aed,#4c1d95);color:#fff}
   .tab.active.seo{background:linear-gradient(135deg,#e8742c,#b5530f);color:#fff}
+  .tab.active.seosat{background:linear-gradient(135deg,#6d28d9,#4c1d95);color:#fff}
   .seo-sub{font-size:16px;font-weight:800;margin:20px 0 6px;padding-left:10px;border-left:5px solid #e8742c}
   .panel{display:none}.panel.active{display:block}
   .vfun{padding:6px 0}
@@ -62,7 +63,7 @@
   .wklink{display:inline-block;color:var(--blue);font-weight:600;text-decoration:none;font-size:13px}
   code{background:#eef;padding:1px 5px;border-radius:4px;font-size:12px}
   footer{text-align:center;color:var(--mut);font-size:12px;margin-top:34px}
-  @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.flow{flex-direction:column}.farr{transform:rotate(90deg)}.chip{min-width:100%}.barrow .lab{width:96px;font-size:11.5px}.tab{font-size:14px;padding:11px 6px}
+  @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.flow{flex-direction:column}.farr{transform:rotate(90deg)}.chip{min-width:100%}.barrow .lab{width:96px;font-size:11.5px}.tabs{flex-wrap:wrap;gap:6px}.tab{font-size:13px;padding:10px 4px;flex:1 1 46%;border-radius:10px}
     .vstep{width:100%!important;font-size:13.5px;padding:12px 10px;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}}
 </style>
 </head>
@@ -80,7 +81,8 @@
 <div class="tabs">
   <div class="tab forum active" onclick="sw('forum',this)">🌱 論壇資源（母站）</div>
   <div class="tab sat" onclick="sw('sat',this)">🔥 世足衛星站</div>
-  <div class="tab seo" onclick="sw('seo',this)">🔍 SEO 排名</div>
+  <div class="tab seo" onclick="sw('seo',this)">🔍 論壇 SEO</div>
+  <div class="tab seosat" onclick="sw('seosat',this)">🔍 衛星 SEO</div>
 </div>
 
 <!-- ===== 論壇資源(母站)分頁 ===== -->
@@ -285,7 +287,13 @@
     <div class="note">📌 Ubersuggest 是「自選 57 字」追蹤(在你另一個帳號)，<b>手動更新</b>；上方 GSC 那塊才是自動。亮點：夜色娛樂城相關長尾字一個月內從沒排名衝上 #1／#13 🚀</div>
   </div>
 
-  <div class="seo-sub">🔥 世足衛星站 ys89.games（世足長尾字）</div>
+  <div class="card" style="background:linear-gradient(135deg,#1e7a46,#27a35c);color:#fff">
+    <div style="font-size:14px;line-height:1.7"><b>🌱 論壇/母站 SEO 結論：</b>品牌字全制霸（ys娛樂城／ys夜色／ys89 全 #1），自家流量穩住。🎯 機會字「夜色娛樂城」排 5.5、曝光 84 但只 7 點擊 → 衝進前 3 可大增點擊。<br><span style="opacity:.85">GSC 每週一自動更新；Ubersuggest 為手動快照。</span></div>
+  </div>
+</div>
+
+<div class="panel seosat" id="p-seosat">
+  <div class="seo-sub">🔥 主衛星站 ys89.games（世足長尾字）</div>
   <!--SEO_KW2_START-->
   <div class="card">
     <h4 style="font-size:13px;color:var(--mut)">🔍 ys89.games 關鍵字排名（GSC 近 3 個月）</h4>
@@ -307,26 +315,32 @@
   </div>
   <!--SEO_KW2_END-->
 
-  <div class="seo-sub">🛰️ 其他衛星站 ys89.biz / ys89.info / ys89.me</div>
+  <div class="seo-sub">🛰️ 其他衛星站 ys89.biz / ys89.info / ys89.me（GSC 近 3 個月）</div>
   <!--SEO_KW3_START-->
-  <div class="card" style="border:1px dashed #c9a">
-    <h4 style="font-size:13px;color:var(--mut)">🔍 biz / info / me 關鍵字排名</h4>
-    <div class="note" style="background:#fff7ed;border-left:3px solid #e8742c;padding:10px 12px;border-radius:8px">
-      ⏳ <b>尚未在 GSC 驗證擁有權</b>，目前抓不到關鍵字／排名資料。<br>
-      已驗證的只有 <b>ys89.fun</b>（母站）與 <b>ys89.games</b>（衛星）兩站。<br>
-      👉 下一步：把 biz / info / me 三站加進 GSC（這三站已裝 GA4，可用「Google Analytics」方式快速驗證），驗證後本區塊即可比照 games 自動帶入數字。
-    </div>
+  <div class="card">
+    <h4 style="font-size:13px;color:var(--mut)">🔍 三站總覽</h4>
     <table>
-      <tr><th>站點</th><th class="n">GSC 狀態</th><th class="n">關鍵字資料</th></tr>
-      <tr><td>ys89.biz</td><td class="n">未驗證</td><td class="n">—</td></tr>
-      <tr><td>ys89.info</td><td class="n">未驗證</td><td class="n">—</td></tr>
-      <tr><td>ys89.me</td><td class="n">未驗證</td><td class="n">—</td></tr>
+      <tr><th>站點</th><th class="n">點擊</th><th class="n">曝光</th><th class="n">點閱率</th><th class="n">平均排名</th></tr>
+      <tr><td>ys89.me</td><td class="n">16</td><td class="n">346</td><td class="n">4.6%</td><td class="n">10.5 🎯</td></tr>
+      <tr><td>ys89.info</td><td class="n">8</td><td class="n">284</td><td class="n">2.8%</td><td class="n">12.4</td></tr>
+      <tr><td>ys89.biz</td><td class="n">3</td><td class="n">114</td><td class="n">2.6%</td><td class="n">9.4</td></tr>
     </table>
+    <div style="font-size:13px;font-weight:700;color:#7c3aed;margin:10px 0 2px">🔑 各站代表關鍵字（曝光最多）</div>
+    <table>
+      <tr><th>站</th><th>關鍵字</th><th class="n">點擊</th><th class="n">曝光</th></tr>
+      <tr><td>me</td><td>摩洛哥世足</td><td class="n">1</td><td class="n">14</td></tr>
+      <tr><td>me</td><td>世界盃賠率表</td><td class="n">0</td><td class="n">8</td></tr>
+      <tr><td>info</td><td>世足盤口預測</td><td class="n">0</td><td class="n">13</td></tr>
+      <tr><td>info</td><td>世足賠率表</td><td class="n">0</td><td class="n">4</td></tr>
+      <tr><td>biz</td><td>世足冠軍預測下注</td><td class="n">0</td><td class="n">1</td></tr>
+      <tr><td>biz</td><td>德國對日本賠率</td><td class="n">0</td><td class="n">1</td></tr>
+    </table>
+    <div class="note">🛰️ 三站都吃「世足/世界盃＋國家隊」長尾字，<b>me 最強</b>（16 點擊・排名 10.5）。曝光夠但點擊偏少 → 優化標題/描述拉點閱率最划算。<br><span style="opacity:.7">※ 此三站為 URL-prefix property，service account 尚未加入，目前為<b>手動快照</b>（驗證 SA 後可改自動）。</span></div>
   </div>
   <!--SEO_KW3_END-->
 
-  <div class="card" style="background:linear-gradient(135deg,#b5530f,#e8742c);color:#fff">
-    <div style="font-size:14px;line-height:1.7"><b>🎯 SEO 兩線作戰：</b>母站搶「品牌字」(ys娛樂城/夜色娛樂城 全 #1)穩住自家流量；衛星站搶「世足長尾字」(世足賠率/主題曲…排名 10-45)拉新客。<br><span style="opacity:.85">GSC 區塊每週一自動更新；Ubersuggest 為母站手動快照。</span></div>
+  <div class="card" style="background:linear-gradient(135deg,#6d28d9,#7c3aed);color:#fff">
+    <div style="font-size:14px;line-height:1.7"><b>🔥 衛星站 SEO 結論：</b>4 站全攻「世足/世界盃長尾字」（賠率表/盤口/主題曲/國家隊…排名 10-29）。曝光合計上千、點擊少 → 重點是把排名 10-15 的字<b>推進前 10</b>＋優化點閱率，就能把搜尋流量灌進來。<br><span style="opacity:.85">games 為自動更新；biz/info/me 為手動快照。</span></div>
   </div>
 </div>
 
