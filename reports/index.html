@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YS89 數據成效報告｜2026 世足</title>
+<style>
+  :root{--red:#e63946;--dark:#161b2e;--mut:#7a818f;--bg:#eef1f6;--card:#fff;--line:#e8eaef;--ok:#16a34a;--warn:#d97706;--blue:#2563eb;--purple:#7c3aed}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--dark);line-height:1.55;padding-bottom:50px}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,#161b2e,#2b3556 55%,#3b2a52);color:#fff;padding:32px 0 26px}
+  header .wrap{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+  header h1{font-size:25px}
+  header .sub{opacity:.82;font-size:13px;margin-top:4px}
+  .badge{background:rgba(255,255,255,.14);padding:5px 12px;border-radius:20px;font-size:13px}
+  h2{font-size:18px;margin:26px 0 8px;display:flex;align-items:center;gap:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:12px 0;box-shadow:0 2px 8px rgba(20,25,50,.05)}
+  .verdict{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .chip{flex:1;min-width:230px;border-radius:10px;padding:10px 14px;font-size:13.5px}
+  .chip.now{background:#f1f5f9;border-left:4px solid var(--blue)}
+  .chip.next{background:#fff7f7;border-left:4px solid var(--red)}
+  .chip b{display:block;font-size:11px;letter-spacing:.5px;margin-bottom:2px;opacity:.7}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 12px;text-align:center}
+  .kpi .big{font-size:30px;font-weight:800;color:var(--red);line-height:1}
+  .kpi .lbl{font-size:12px;color:var(--mut);margin-top:6px}
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .fnode{flex:1;min-width:130px;background:#f7f9fc;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+  .fnode .t{font-size:12px;color:var(--blue);font-weight:700}.fnode .n{font-size:24px;font-weight:800;margin:2px 0}.fnode .s{font-size:11px;color:var(--mut)}
+  .farr{display:flex;align-items:center;justify-content:center;font-size:20px;color:#c2c8d4;padding:0 4px}
+  /* tabs */
+  .tabs{display:flex;gap:8px;margin:22px 0 4px;border-bottom:2px solid var(--line)}
+  .tab{flex:1;padding:14px 10px;text-align:center;font-size:16px;font-weight:800;color:var(--mut);cursor:pointer;border-radius:12px 12px 0 0;background:#e7ebf2;border:1px solid var(--line);border-bottom:none}
+  .tab.active{color:#fff}
+  .tab.active.forum{background:linear-gradient(135deg,#1e7a46,#0f5132)}
+  .tab.active.sat{background:linear-gradient(135deg,#7c3aed,#4c1d95)}
+  .panel{display:none}.panel.active{display:block}
+  .vfun{padding:6px 0}
+  .vstep{margin:0 auto;border-radius:8px;color:#fff;text-align:center;padding:13px 8px;font-weight:700;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .vstep small{font-weight:500;opacity:.9}
+  .vdrop{text-align:center;font-size:12.5px;color:var(--red);padding:5px 0;font-weight:600}
+  .barrow{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13.5px}
+  .barrow .lab{width:150px;flex-shrink:0;text-align:right;color:#444}
+  .barrow .track{flex:1;background:#f0f2f7;border-radius:6px;height:22px;overflow:hidden}
+  .barrow .fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
+  .barrow .val{width:60px;flex-shrink:0;text-align:left;font-variant-numeric:tabular-nums;font-weight:700}
+  .engine{border-radius:14px;padding:18px;color:#fff;margin:12px 0}
+  .eng-seo{background:linear-gradient(135deg,#1e7a46,#0f5132)}.eng-soc{background:linear-gradient(135deg,#7c3aed,#4c1d95)}
+  .engine h3{font-size:15px}.engine .pct{font-size:40px;font-weight:800;line-height:1.1}.engine .d{font-size:12.5px;opacity:.92}.engine ul{margin:6px 0 0 16px;font-size:12.5px;opacity:.95}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:14px}
+  th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}th{background:#f9fafb;font-size:12.5px;color:var(--mut)}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .note{font-size:12.5px;color:var(--mut);background:#f3f4f6;border-radius:9px;padding:9px 13px;margin-top:10px}
+  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11.5px;font-weight:700}.warn{background:#fef3c7;color:var(--warn)}.info{background:#dbeafe;color:var(--blue)}
+  .wklink{display:inline-block;margin-top:6px;color:var(--blue);font-weight:600;text-decoration:none;font-size:13px}
+  code{background:#eef;padding:1px 5px;border-radius:4px;font-size:12px}
+  footer{text-align:center;color:var(--mut);font-size:12px;margin-top:34px}
+  @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.flow{flex-direction:column}.farr{transform:rotate(90deg)}.chip{min-width:100%}.barrow .lab{width:96px;font-size:11.5px}.tab{font-size:14px;padding:11px 6px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div><h1>📈 YS89 數據成效報告</h1><div class="sub">2026 世足專案 ｜ 論壇(母站) + 世足衛星站 ｜ GA4 × GSC × Lihi</div></div>
+  <div class="badge">📅 2026/05/04 – 05/31</div>
+</div></header>
+
+<div class="wrap">
+
+<!-- 總覽(共用) -->
+<h2>📊 總覽</h2>
+<div class="kpis">
+  <div class="kpi"><div class="big">345</div><div class="lbl">總進站</div></div>
+  <div class="kpi"><div class="big">40</div><div class="lbl">點 CTA</div></div>
+  <div class="kpi"><div class="big">11%</div><div class="lbl">轉換率</div></div>
+  <div class="kpi"><div class="big">7</div><div class="lbl">站全上 GA4</div></div>
+</div>
+<div class="card">
+  <div class="flow">
+    <div class="fnode"><div class="t">① 搜尋曝光</div><div class="n">GSC</div><div class="s">關鍵字 <span class="pill info">48hr後</span></div></div>
+    <div class="farr">▶</div>
+    <div class="fnode"><div class="t">② 進站</div><div class="n">345</div><div class="s">GA4 使用者</div></div>
+    <div class="farr">▶</div>
+    <div class="fnode"><div class="t">③ 點 CTA</div><div class="n">40</div><div class="s">去 LINE/平台</div></div>
+    <div class="farr">▶</div>
+    <div class="fnode" style="opacity:.65;border-style:dashed"><div class="t">④ 平台轉換</div><div class="n">？</div><div class="s">註冊/入金 <span class="pill warn">後台補</span></div></div>
+  </div>
+  <a class="wklink" href="weekly/">📅 每週自動報告列表 →</a>
+</div>
+
+<!-- 分頁 -->
+<div class="tabs">
+  <div class="tab forum active" onclick="sw('forum',this)">🌱 論壇資源（母站）</div>
+  <div class="tab sat" onclick="sw('sat',this)">🔥 世足衛星站</div>
+</div>
+
+<!-- ===== 論壇資源 分頁 ===== -->
+<div class="panel forum active" id="p-forum">
+  <div class="engine eng-seo">
+    <h3>母站 ys89.fun = SEO 引擎</h3>
+    <div class="pct">70%</div><div class="d">流量來自 Google 自然搜尋</div>
+    <ul><li>33 進站・連 ChatGPT 都來訪</li><li>慢但精準、長期資產</li></ul>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:15px;color:var(--red);margin-bottom:6px">論壇轉換漏斗</h3>
+    <div class="vfun">
+      <div class="vstep" style="width:100%;background:linear-gradient(135deg,#1e7a46,#14532d)">進站　43　<small>100%</small></div>
+      <div class="vdrop">↓ 流失 34（79%）</div>
+      <div class="vstep" style="width:42%;background:linear-gradient(135deg,#2563eb,#1e40af)">瀏覽論壇 9 <small>21%</small></div>
+      <div class="vdrop">↓ 流失 1（22%）</div>
+      <div class="vstep" style="width:33%;background:#e63946">點CTA去平台 8 <small>論壇者78%</small></div>
+    </div>
+    <div class="note">進論壇就 78% 會點，破口＝進論壇的人太少。</div>
+  </div>
+
+  <div class="card">
+    <h4 style="font-size:13px;color:var(--mut)">流量來源（工作階段）</h4>
+    <div class="barrow"><div class="lab">Google 自然搜尋</div><div class="track"><div class="fill" style="width:100%;background:#1e7a46">33</div></div><div class="val">33</div></div>
+    <div class="barrow"><div class="lab">直接進站</div><div class="track"><div class="fill" style="width:24%;background:#64748b"></div></div><div class="val">8</div></div>
+    <div class="barrow"><div class="lab">Google 搜尋頁</div><div class="track"><div class="fill" style="width:6%;background:#94a3b8"></div></div><div class="val">2</div></div>
+    <div class="barrow"><div class="lab">ChatGPT 🤖</div><div class="track"><div class="fill" style="width:3%;background:#10a37f"></div></div><div class="val">1</div></div>
+  </div>
+
+  <div class="card">
+    <h4 style="font-size:13px;color:var(--mut)">CTA 實際點擊（離站去平台/LINE）</h4>
+    <div class="barrow"><div class="lab">母站入口按鈕</div><div class="track"><div class="fill" style="width:100%;background:#e63946">162</div></div><div class="val">162</div></div>
+    <div class="barrow"><div class="lab">文章內 CTA</div><div class="track"><div class="fill" style="width:35%;background:#f0717c">57</div></div><div class="val">57</div></div>
+    <div class="barrow"><div class="lab">世足文章 CTA</div><div class="track"><div class="fill" style="width:20%;background:#f59aa3"></div></div><div class="val">32</div></div>
+    <div class="barrow"><div class="lab">論壇坦克 CTA</div><div class="track"><div class="fill" style="width:2%;background:#fcc"></div></div><div class="val">2</div></div>
+    <div class="barrow"><div class="lab">客服連結</div><div class="track"><div class="fill" style="width:3%;background:#fcc"></div></div><div class="val">5</div></div>
+  </div>
+
+  <div class="verdict">
+    <div class="chip now"><b>🔵 現狀</b>母站靠 SEO 穩定獲客（70% 自然搜尋），論壇成交力強但進的人少。</div>
+    <div class="chip next"><b>➡️ 下一步</b>首頁/文章多放論壇入口把人導進論壇；持續養 SEO 長尾文。</div>
+  </div>
+</div>
+
+<!-- ===== 世足衛星站 分頁 ===== -->
+<div class="panel sat" id="p-sat">
+  <div class="engine eng-soc">
+    <h3>衛星站 = 社群引擎</h3>
+    <div class="pct">70%</div><div class="d">流量來自社群（Threads 主力）</div>
+    <ul><li>312 進站・ys89.games 佔 89%</li><li>爆發快、黏著低（停留 4 秒）</li></ul>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:15px;color:var(--red);margin-bottom:6px">衛星站轉換漏斗</h3>
+    <div class="vfun">
+      <div class="vstep" style="width:100%;background:linear-gradient(135deg,#7c3aed,#5b21b6)">進站　312　<small>100%</small></div>
+      <div class="vdrop">↓ 流失 280（89.7%）</div>
+      <div class="vstep" style="width:18%;background:#e63946">點CTA 32 <small>10.3%</small></div>
+    </div>
+    <div class="note">桌機轉換 17.6% ＞ 手機 9.6%，手機 CTA 要更顯眼。</div>
+  </div>
+
+  <div class="card">
+    <h4 style="font-size:13px;color:var(--mut)">各站貢獻（進站）</h4>
+    <div class="barrow"><div class="lab">ys89.games</div><div class="track"><div class="fill" style="width:89%;background:#7c3aed">278</div></div><div class="val">278</div></div>
+    <div class="barrow"><div class="lab">worldgoals.live</div><div class="track"><div class="fill" style="width:6%;background:#8b5cf6"></div></div><div class="val">19</div></div>
+    <div class="barrow"><div class="lab">ys89.me</div><div class="track"><div class="fill" style="width:1.6%;background:#a78bfa"></div></div><div class="val">5</div></div>
+    <div class="barrow"><div class="lab">ys89.biz 🔥66.7%</div><div class="track"><div class="fill" style="width:1%;background:#c4b5fd"></div></div><div class="val">3</div></div>
+    <div class="barrow"><div class="lab">ys89.info</div><div class="track"><div class="fill" style="width:1%;background:#c4b5fd"></div></div><div class="val">3</div></div>
+    <div class="barrow"><div class="lab">fifa（已修復）</div><div class="track"><div class="fill" style="width:0.5%;background:#d1d5db"></div></div><div class="val">0</div></div>
+    <div class="note">fifa 原 GA4 被關掉（0流量），已 6/1 修復，下月有數據。biz 量小但轉換最高。</div>
+  </div>
+
+  <div class="card">
+    <h4 style="font-size:13px;color:var(--mut)">流量來源（工作階段）</h4>
+    <div class="barrow"><div class="lab">Threads</div><div class="track"><div class="fill" style="width:65%;background:#0ea5e9">217</div></div><div class="val">217</div></div>
+    <div class="barrow"><div class="lab">直接進站</div><div class="track"><div class="fill" style="width:29%;background:#64748b">98</div></div><div class="val">98</div></div>
+    <div class="barrow"><div class="lab">FB 廣告</div><div class="track"><div class="fill" style="width:4%;background:#1877f2"></div></div><div class="val">7</div></div>
+    <div class="barrow"><div class="lab">LINE</div><div class="track"><div class="fill" style="width:4%;background:#06c755"></div></div><div class="val">7</div></div>
+    <div class="barrow"><div class="lab">Instagram</div><div class="track"><div class="fill" style="width:2%;background:#e1306c"></div></div><div class="val">4</div></div>
+    <div class="note">✅ FB 廣告已被 GA4 正確認成付費社群 → 廣告數字會準。</div>
+  </div>
+
+  <div class="verdict">
+    <div class="chip now"><b>🔵 現狀</b>衛星站量大（games 89%）但點擊低（10%），手機尤其低。</div>
+    <div class="chip next"><b>➡️ 下一步</b>手機 CTA 更大更早出現、測彈窗文案；資源集中 games。</div>
+  </div>
+</div>
+
+<!-- 平台(共用) -->
+<h2>🎰 平台轉換（待平台後台填）</h2>
+<div class="card" style="border-style:dashed;opacity:.9">
+  <table>
+    <tr style="color:var(--mut);font-size:12px"><td>代理連結</td><td>對應</td><td class="n">註冊</td><td class="n">入金</td></tr>
+    <tr><td>母站+論壇</td><td><code>cysc9m</code></td><td class="n">—</td><td class="n">—</td></tr>
+    <tr><td>games+biz</td><td><code>pm3u87</code></td><td class="n">—</td><td class="n">—</td></tr>
+    <tr><td>worldgoals</td><td><code>d83wfg</code></td><td class="n">—</td><td class="n">—</td></tr>
+  </table>
+  <div class="note">GA4 只追到「離站」，點進去後的註冊/入金請從 ys89.bet 後台依代理連結填入。</div>
+</div>
+
+<h2>🎯 一句總結</h2>
+<div class="card" style="background:linear-gradient(135deg,#161b2e,#2b3556);color:#fff">
+  <div style="font-size:15px;line-height:1.7"><b>地基已打好，現在是「開水龍頭」的時候。</b><br>
+  論壇靠 SEO 穩定累積、衛星站趁世足衝社群與廣告 → 重點把<b>衛星站 11% 的 CTA 點擊率拉高</b>，並補上<b>平台註冊/入金</b>數據看真實 ROI。</div>
+</div>
+
+<footer>YS89 世足 2026 ｜ 更新 2026-06-01 ｜ 每週一自動更新數字</footer>
+</div>
+
+<script>
+function sw(id, el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p-'+id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
