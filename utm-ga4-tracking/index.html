@@ -368,23 +368,38 @@
 <h2 id="medium">4. Medium 清單</h2>
 <p class="lead">utm_medium = 「<strong>用什麼形式</strong>把人帶過來」</p>
 
+<div class="box" style="border-left:4px solid #f85149;background:rgba(248,81,73,.08);padding:14px 18px;border-radius:8px;margin:14px 0">
+<strong style="color:#f85149">🚨 2026-06-01 重大修正:medium 只能用 4 個標準值</strong><br>
+GA4 的「管道歸類」<strong>只認得下面 4 個 medium</strong>。之前用的 <code>bio / post / story / menu / chat / video / promotion / ads / 104</code> <strong>全部會掉進 Unassigned(無法歸類)</strong>!<br>
+✅ 正確觀念:<strong>medium 一律用下表 4 個</strong>,「貼文/限動/bio」這種「位置」改放到 <code>utm_content</code>。
+</div>
+
 <table>
-  <thead><tr><th>值</th><th>使用場景</th><th>GA4 自動歸類</th></tr></thead>
+  <thead><tr><th>✅ 標準 medium(只用這4個)</th><th>用在哪</th><th>GA4 歸類</th></tr></thead>
   <tbody>
-    <tr><td><code>cpc</code></td><td>付費廣告（FB/IG/Google）</td><td>Paid Social / Paid Search</td></tr>
-    <tr><td><code>social</code></td><td>社群自然貼文（不付費）</td><td>Organic Social</td></tr>
-    <tr><td><code>post</code></td><td>社群貼文裡的連結</td><td>Organic Social</td></tr>
-    <tr><td><code>story</code></td><td>IG 限動連結貼紙</td><td>Organic Social</td></tr>
-    <tr><td><code>bio</code></td><td>IG/FB 個人簡介連結</td><td>Organic Social</td></tr>
-    <tr><td><code>chat</code></td><td>LINE OA 推播訊息</td><td>Other / 自訂</td></tr>
-    <tr><td><code>menu</code></td><td>LINE OA 圖文選單按鈕</td><td>Other / 自訂</td></tr>
-    <tr><td><code>video</code></td><td>YouTube/TikTok 影片描述</td><td>Other / 自訂</td></tr>
-    <tr><td><code>email</code></td><td>電子報</td><td>Email</td></tr>
-    <tr><td><code>sms</code></td><td>簡訊</td><td>Other / 自訂</td></tr>
-    <tr><td><code>direct</code></td><td>直發群組 / QR code</td><td>Direct / Other</td></tr>
-    <tr><td><code>referral</code></td><td>跨站推薦（自家站連自家站）</td><td>Referral</td></tr>
+    <tr><td><code>social</code></td><td><strong>所有社群自然連結</strong> — IG / FB / Threads / YouTube / TikTok 的<strong>貼文、限動、bio、影片描述全部</strong></td><td>Organic Social ✅</td></tr>
+    <tr><td><code>cpc</code></td><td>付費廣告(FB/IG/Google Ads)</td><td>Paid Social / Paid Search ✅</td></tr>
+    <tr><td><code>referral</code></td><td>跨站推薦(自家站連自家站) + <strong>LINE 連結點擊</strong></td><td>Referral ✅</td></tr>
+    <tr><td><code>email</code></td><td>電子報 / EDM</td><td>Email ✅</td></tr>
   </tbody>
 </table>
+
+<p class="lead" style="margin-top:16px"><strong>位置/變體 → 放 <code>utm_content</code>(不是 medium!)</strong></p>
+<table>
+  <thead><tr><th>原本錯的 medium</th><th>→ medium 改成</th><th>位置改放這</th></tr></thead>
+  <tbody>
+    <tr><td><code>bio</code></td><td><code>social</code></td><td><code>utm_content=bio</code></td></tr>
+    <tr><td><code>post</code></td><td><code>social</code></td><td><code>utm_content=post</code></td></tr>
+    <tr><td><code>story</code></td><td><code>social</code></td><td><code>utm_content=story</code></td></tr>
+    <tr><td><code>video</code></td><td><code>social</code></td><td><code>utm_content=video_desc</code></td></tr>
+    <tr><td><code>menu</code> / <code>chat</code>(LINE)</td><td><code>referral</code></td><td><code>utm_content=menu</code> / <code>push</code></td></tr>
+    <tr><td><code>ads</code> / <code>promotion</code></td><td><code>cpc</code></td><td>廣告活動名放 utm_campaign</td></tr>
+    <tr><td><code>104</code></td><td><code>referral</code></td><td><code>utm_content=watch_104</code></td></tr>
+  </tbody>
+</table>
+<div class="box info" style="margin-top:12px"><strong>範例:IG bio 連到論壇</strong><br>
+❌ 舊:<code>ys89.fun?utm_source=instagram&utm_medium=bio</code> → Unassigned<br>
+✅ 新:<code>ys89.fun/forum/?utm_source=instagram&utm_medium=social&utm_campaign=bio&utm_content=forum</code> → Organic Social</div>
 
 <h2 id="campaign">5. Campaign 命名</h2>
 <div class="grid">
