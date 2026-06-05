@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026世足廣告 — 漏斗對帳表</title>
+<style>
+:root{--bg:#0b0617;--card:#160d2e;--card2:#1a1035;--line:#3a2a66;--cyan:#00d4ff;--mag:#ff2d78;--gold:#ffd66e;--text:#ece6ff;--muted:#a99fcf;--green:#34d399;--amber:#fbbf24;--red:#ff4d6d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1000px 500px at 50% -10%,rgba(255,45,120,.10),transparent 60%),var(--bg);color:var(--text);font-family:'PingFang TC','Noto Sans TC',sans-serif;padding:26px 16px 80px;line-height:1.55}
+.wrap{max-width:1200px;margin:0 auto}
+h1{font-size:22px;text-align:center;margin-bottom:4px}
+h1 .b{color:var(--cyan);text-shadow:0 0 10px rgba(0,212,255,.5)}
+.sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin-bottom:22px;box-shadow:0 0 30px rgba(0,212,255,.05)}
+.card h2{font-size:15px;color:var(--gold);margin-bottom:14px;letter-spacing:1px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:center}
+.flow .step{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center;min-width:120px;flex:1}
+.flow .step .n{font-size:11px;color:var(--cyan);font-weight:800}
+.flow .step .t{font-size:13px;font-weight:700;margin:3px 0}
+.flow .step .src{font-size:11px;color:var(--muted)}
+.flow .arrow{color:var(--mag);font-size:20px;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line)}
+th{color:var(--cyan);font-weight:700;font-size:12px;background:rgba(0,212,255,.04)}
+th .h{font-size:10px;color:var(--muted);display:block;font-weight:400}
+td:first-child,th:first-child{text-align:left}
+input{background:var(--bg);border:1px solid var(--line);color:#fff;border-radius:7px;padding:6px 5px;text-align:center;font-size:13px;font-family:inherit}
+input.num{width:74px}input.txt{width:96px;text-align:left}
+input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 8px rgba(0,212,255,.3)}
+.out{font-weight:800}
+.g{color:var(--green)}.a{color:var(--amber)}.r{color:var(--red)}
+.cpa{font-size:15px;font-weight:900}
+.win{box-shadow:inset 0 0 0 2px var(--green)}
+.win-tag{background:var(--green);color:#04231a;font-size:10px;padding:1px 6px;border-radius:20px;font-weight:800;margin-left:5px}
+.del{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:6px;cursor:pointer;padding:4px 8px;font-size:12px}
+.del:hover{border-color:var(--red);color:var(--red)}
+.btn{background:linear-gradient(135deg,var(--mag),#9b4dff);border:none;color:#fff;font-weight:800;padding:9px 16px;border-radius:9px;cursor:pointer;font-size:13px;box-shadow:0 0 14px rgba(255,45,120,.4);margin-top:12px}
+ul{margin:8px 0 0 18px}li{margin:5px 0;font-size:13px}
+.diag b.r{color:var(--red)}.diag b.c{color:var(--cyan)}
+.warn{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:12px 14px;font-size:13px;color:#f6e3b0}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+.scroll{overflow-x:auto}
+</style></head>
+<body><div class="wrap">
+<h1>2026 世足廣告 · <span class="b">漏斗對帳表</span></h1>
+<div class="sub">白框可改、可新增素材列 → 自動算各段漏量 / CPC / CPA，紅色=該段漏</div>
+
+<div class="card">
+  <h2>客人動線（五個觀測點）</h2>
+  <div class="flow">
+    <div class="step"><div class="n">① FB點擊</div><div class="t">看到→點擊</div><div class="src">廣告商後台</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">② lihi</div><div class="t">短網址跳轉</div><div class="src">lihi 後台</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">③ 到站</div><div class="t">落地頁瀏覽</div><div class="src">GA4</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">④ 點CTA</div><div class="t">outbound</div><div class="src">GA4</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">⑤ 註冊</div><div class="t">平台註冊</div><div class="src">平台 proxy</div></div>
+  </div>
+  <div class="note">對帳 key：<b style="color:var(--gold)">utm_campaign ↔ proxy</b>。現在 2 碼對「落地頁層」；上動態 proxy 後，每素材一碼 → 可對「素材層」（直接新增列即可）。</div>
+</div>
+
+<div class="card">
+  <h2>① 逐段對帳表（白框填數字；可改名稱/proxy、可新增列）</h2>
+  <div class="scroll">
+  <table id="tbl">
+    <thead><tr>
+      <th>落地頁/素材</th><th>proxy</th>
+      <th>FB點擊<span class="h">廣告商</span></th>
+      <th>lihi點擊<span class="h">你</span></th>
+      <th>GA4瀏覽<span class="h">你</span></th>
+      <th>GA4 outbound<span class="h">點CTA</span></th>
+      <th>proxy註冊<span class="h">平台</span></th>
+      <th>花費$<span class="h">廣告商</span></th>
+      <th></th>
+    </tr></thead>
+    <tbody id="inBody"></tbody>
+  </table>
+  </div>
+  <button class="btn" id="addRow">＋ 新增素材列</button>
+</div>
+
+<div class="card">
+  <h2>② 自動計算：各段漏量 + CPC + CPA</h2>
+  <div class="scroll">
+  <table id="calc">
+    <thead><tr>
+      <th>落地頁/素材</th>
+      <th>①→② lihi接收<span class="h">lihi÷FB</span></th>
+      <th>②→③ 跳轉到站<span class="h">GA4÷lihi ★新</span></th>
+      <th>③→④ 到CTA<span class="h">out÷GA4</span></th>
+      <th>④→⑤ 到註冊<span class="h">註冊÷out</span></th>
+      <th>總轉換<span class="h">註冊÷FB</span></th>
+      <th>CPC<span class="h">花費÷點擊</span></th>
+      <th>CPA<span class="h">花費÷註冊</span></th>
+    </tr></thead>
+    <tbody id="calcBody"></tbody>
+  </table>
+  </div>
+  <div class="note">🟢健康 🟡留意 🔴漏量/太貴。<b style="color:var(--cyan)">②→③ 是新加的跳轉漏量</b>：lihi 有接到、但沒到站 = 跳轉/載入掉量。CPA 綠框 = 全部列中最划算 → 預算往它加。</div>
+</div>
+
+<div class="card diag">
+  <h2>漏量判讀</h2>
+  <ul>
+    <li><b class="r">①→② 低</b>（FB點擊≫lihi）→ 點了沒進 lihi：可能假點擊 / 連結錯。</li>
+    <li><b class="r">②→③ 低</b>（lihi≫GA4瀏覽）→ <b class="c">跳轉漏</b>：lihi 接到卻沒到站（頁面慢、跳轉失敗、GA4 沒載）。</li>
+    <li><b class="r">③→④ 低</b> → 落地頁不夠力（內容/CTA）。</li>
+    <li><b class="r">④→⑤ 低</b> → 平台 註冊卡關，或 proxy 沒帶過去。</li>
+    <li><b class="r">⑤≫④</b> → 有非廣告來源共用同 proxy → 要更細的碼。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>兩個對帳陷阱</h2>
+  <div class="warn">⏰ <b>用「週」對帳</b>（今天點、明天才註冊，單日會對不平）。<br>🌐 <b>時區先對齊台灣時間</b>（FB／GA4／平台後台時區可能不同）。</div>
+</div>
+</div>
+
+<script>
+const SEED=[
+ {name:'104頁',pc:'104碼',clk:1000,lihi:950,ga:900,out:320,reg:48,spend:3000},
+ {name:'104_a 素材',pc:'104碼',clk:600,lihi:575,ga:545,out:205,reg:33,spend:1700},
+ {name:'直播頁',pc:'直播碼',clk:1500,lihi:1400,ga:1350,out:520,reg:75,spend:4000},
+];
+const inBody=document.getElementById('inBody');
+function rowHTML(d){
+  return `<td><input class="txt" data-k="name" value="${d.name}"></td>
+  <td><input class="txt" data-k="pc" value="${d.pc}" style="width:78px"></td>
+  <td><input class="num" data-k="clk" value="${d.clk}"></td>
+  <td><input class="num" data-k="lihi" value="${d.lihi}"></td>
+  <td><input class="num" data-k="ga" value="${d.ga}"></td>
+  <td><input class="num" data-k="out" value="${d.out}"></td>
+  <td><input class="num" data-k="reg" value="${d.reg}"></td>
+  <td><input class="num" data-k="spend" value="${d.spend}"></td>
+  <td><button class="del">✕</button></td>`;
+}
+function addRow(d){
+  const tr=document.createElement('tr'); tr.innerHTML=rowHTML(d||{name:'新素材',pc:'',clk:0,lihi:0,ga:0,out:0,reg:0,spend:0});
+  inBody.appendChild(tr);
+  tr.querySelectorAll('input').forEach(i=>i.addEventListener('input',recalc));
+  tr.querySelector('.del').addEventListener('click',()=>{tr.remove();recalc();});
+}
+function pct(a,b){return b>0?a/b*100:0;}
+function flag(v,good,ok){return v>=good?'g':(v>=ok?'a':'r');}
+function P(v,c){return `<span class="${c}">${v.toFixed(1)}%</span>`;}
+function recalc(){
+  const rows=[...inBody.querySelectorAll('tr')];
+  const data=rows.map(r=>{const g=k=>{const el=r.querySelector('[data-k="'+k+'"]');return el?(isNaN(+el.value)?el.value:+el.value):0;};
+    return {name:g('name'),clk:+g('clk'),lihi:+g('lihi'),ga:+g('ga'),out:+g('out'),reg:+g('reg'),spend:+g('spend')};});
+  const cpas=data.map(d=>d.reg>0?d.spend/d.reg:Infinity);
+  let minIdx=-1,minV=Infinity; cpas.forEach((c,i)=>{if(c<minV){minV=c;minIdx=i;}});
+  const body=document.getElementById('calcBody'); body.innerHTML='';
+  data.forEach((d,i)=>{
+    const s12=pct(d.lihi,d.clk), s23=pct(d.ga,d.lihi), s34=pct(d.out,d.ga), s45=pct(d.reg,d.out), tot=pct(d.reg,d.clk);
+    const cpc=d.clk>0?d.spend/d.clk:0, cpa=d.reg>0?d.spend/d.reg:0;
+    const win=(i===minIdx&&isFinite(minV))?' win':'';
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="out">${d.name}</td>
+      <td>${P(s12,flag(s12,85,70))}</td>
+      <td>${P(s23,flag(s23,85,70))}</td>
+      <td>${P(s34,flag(s34,25,12))}</td>
+      <td>${P(s45,flag(s45,12,6))}</td>
+      <td>${P(tot,flag(tot,4,2))}</td>
+      <td class="out">$${cpc.toFixed(1)}</td>
+      <td class="out${win}"><span class="cpa">$${isFinite(cpa)?cpa.toFixed(0):'—'}</span>${win?'<span class="win-tag">最划算</span>':''}</td>`;
+    body.appendChild(tr);
+  });
+}
+SEED.forEach(addRow);
+document.getElementById('addRow').addEventListener('click',()=>{addRow();});
+recalc();
+</script>
+</body></html>
