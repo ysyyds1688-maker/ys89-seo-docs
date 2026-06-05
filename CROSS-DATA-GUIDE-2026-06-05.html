@@ -3,69 +3,89 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GA4 × 廣告商 × Proxy — 三方數據交叉解讀筆記</title>
 <style>
-:root{--bg:#0b0617;--card:#160d2e;--card2:#1a1035;--line:#3a2a66;--cyan:#00d4ff;--mag:#ff2d78;--gold:#ffd66e;--purple:#9b4dff;--text:#ece6ff;--muted:#a99fcf;--green:#34d399;--amber:#fbbf24;--red:#ff4d6d}
+:root{
+  --bg:#f5f6f8;--paper:#ffffff;--ink:#1f2430;--ink2:#4b5563;--mut:#6b7280;--line:#e5e7eb;
+  --blue:#2563eb;--pink:#db2777;--green:#16a34a;--amber:#d97706;--red:#dc2626;--gold:#b45309;
+  --blue-bg:#eff6ff;--green-bg:#f0fdf4;--amber-bg:#fffbeb;--red-bg:#fef2f2;--pink-bg:#fdf2f8;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:radial-gradient(1100px 560px at 50% -8%,rgba(255,45,120,.10),transparent 60%),radial-gradient(900px 500px at 50% 110%,rgba(0,212,255,.08),transparent 60%),var(--bg);color:var(--text);font-family:'PingFang TC','Noto Sans TC',sans-serif;padding:28px 16px 90px;line-height:1.65}
-.wrap{max-width:920px;margin:0 auto}
-h1{font-size:23px;text-align:center}
-h1 .b{color:var(--cyan);text-shadow:0 0 12px rgba(0,212,255,.5)}
-.sub{text-align:center;color:var(--muted);font-size:13px;margin:6px 0 26px}
-.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 18px;margin-bottom:22px;box-shadow:0 0 30px rgba(0,212,255,.05)}
-.sec h2{font-size:16px;color:var(--gold);margin-bottom:6px;letter-spacing:.5px}
-.sec .lead{color:var(--muted);font-size:13px;margin-bottom:16px}
-/* 三源卡 */
-.srcs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;line-height:1.7;padding:32px 16px 90px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto}
+.title{text-align:center;margin-bottom:28px}
+.title h1{font-size:25px;font-weight:800;letter-spacing:-.2px}
+.title h1 .b{color:var(--blue)}
+.title .sub{color:var(--mut);font-size:14px;margin-top:6px}
+.sec{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin-bottom:18px;box-shadow:0 1px 3px rgba(16,24,40,.04),0 1px 2px rgba(16,24,40,.03)}
+.sec h2{font-size:18px;font-weight:800;margin-bottom:4px;display:flex;align-items:baseline;gap:8px}
+.sec h2 .no{color:var(--blue);font-weight:900}
+.sec .lead{color:var(--ink2);font-size:14px;margin-bottom:18px}
+.sec .lead b{color:var(--ink)}
+/* 三源 */
+.srcs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 @media(max-width:680px){.srcs{grid-template-columns:1fr}}
-.src{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px;border-top:3px solid}
-.src.a{border-top-color:var(--cyan)}.src.b{border-top-color:var(--mag)}.src.c{border-top-color:var(--gold)}
-.src .t{font-weight:800;font-size:14px;margin-bottom:8px}
-.src .can{font-size:12.5px;color:var(--green);margin:3px 0}
-.src .cant{font-size:12.5px;color:var(--red);margin:3px 0}
-.src .who{font-size:11px;color:var(--muted);margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
+.src{border:1px solid var(--line);border-radius:12px;padding:16px;border-top:4px solid}
+.src.a{border-top-color:var(--blue)}.src.b{border-top-color:var(--pink)}.src.c{border-top-color:var(--green)}
+.src .t{font-weight:800;font-size:15px;margin-bottom:10px}
+.src .can{font-size:13.5px;color:var(--green);margin:4px 0}
+.src .cant{font-size:13.5px;color:var(--red);margin:4px 0}
+.src .who{font-size:12px;color:var(--mut);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
 /* funnel */
-.funnel{display:flex;flex-direction:column;gap:6px}
-.fstep{display:flex;align-items:center;gap:12px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 14px}
-.fstep .num{width:26px;height:26px;border-radius:50%;background:var(--purple);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;flex:none;font-size:13px}
+.funnel{display:flex;flex-direction:column;gap:0}
+.fstep{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfcfd}
+.fstep .num{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
 .fstep .main{flex:1}
-.fstep .main b{font-size:14px}
-.fstep .main .d{font-size:12px;color:var(--muted)}
-.fstep .src-tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
-.tag-a{background:rgba(0,212,255,.15);color:var(--cyan)}
-.tag-b{background:rgba(255,45,120,.15);color:var(--mag)}
-.tag-c{background:rgba(255,214,110,.15);color:var(--gold)}
-.fdrop{text-align:center;color:var(--mag);font-size:13px;font-weight:800;margin:1px 0}
-/* 接力檢查 */
-.relay{border-left:3px solid var(--cyan);padding:10px 14px;margin:10px 0;background:rgba(0,212,255,.04);border-radius:0 10px 10px 0}
-.relay .q{font-weight:800;font-size:14px;color:var(--cyan)}
-.relay .ok{color:var(--green);font-size:13px;margin-top:4px}
-.relay .bad{color:var(--red);font-size:13px;margin-top:2px}
-/* 指標卡 */
-.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fstep .main b{font-size:15px}
+.fstep .main .d{font-size:13px;color:var(--mut)}
+.fstep .st{font-size:12px;font-weight:800;padding:4px 11px;border-radius:20px;white-space:nowrap}
+.st-a{background:var(--blue-bg);color:var(--blue)}
+.st-b{background:var(--pink-bg);color:var(--pink)}
+.st-c{background:var(--green-bg);color:var(--green)}
+.fdrop{text-align:center;color:var(--mut);font-size:13px;padding:7px 0;font-weight:600}
+/* 接力 */
+.relay{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:13px 16px;margin:12px 0;background:#fcfcfd}
+.relay .q{font-weight:800;font-size:14.5px;color:var(--ink)}
+.relay .q small{color:var(--blue);font-weight:700}
+.relay .ok{color:var(--green);font-size:13.5px;margin-top:6px}
+.relay .bad{color:var(--red);font-size:13.5px;margin-top:3px}
+.relay b{color:var(--ink)}
+/* KPI */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:680px){.kpis{grid-template-columns:1fr}}
-.kpi{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px}
-.kpi .nm{font-weight:900;font-size:15px;color:var(--gold)}
-.kpi .fm{font-size:12px;color:var(--cyan);margin:3px 0 8px}
-.kpi .mn{font-size:13px}
-.kpi .rule{font-size:12px;color:var(--muted);margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
-/* 決策表 */
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--cyan);font-size:12px;background:rgba(0,212,255,.04)}
-td .sig{font-weight:800}
-.r{color:var(--red)}.g{color:var(--green)}.a{color:var(--amber)}.c{color:var(--cyan)}
-.warn{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:12px 14px;font-size:13px;color:#f6e3b0;margin-top:8px}
-ul{margin:6px 0 0 18px}li{margin:6px 0}
-.pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:20px;background:rgba(155,77,255,.2);color:#cbb3ff;margin-left:6px}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fcfcfd}
+.kpi.hot{border-color:#fcd34d;background:var(--amber-bg)}
+.kpi .nm{font-weight:800;font-size:16px}
+.kpi .fm{display:inline-block;font-size:12.5px;color:var(--blue);background:var(--blue-bg);padding:2px 8px;border-radius:6px;margin:6px 0 10px}
+.kpi .mn{font-size:14px}
+.kpi .rule{font-size:13px;color:var(--ink2);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+/* 表 */
+table{width:100%;border-collapse:collapse;font-size:14px;overflow:hidden;border-radius:10px}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:#f3f4f6;color:var(--ink2);font-size:13px;font-weight:700}
+tbody tr:last-child td{border-bottom:none}
+.sig{font-weight:800;display:inline-block;padding:2px 9px;border-radius:6px;font-size:13px}
+.sig.c{background:var(--blue-bg);color:var(--blue)}
+.sig.a{background:var(--amber-bg);color:var(--amber)}
+.sig.r{background:var(--red-bg);color:var(--red)}
+.sig.g{background:var(--green-bg);color:var(--green)}
+/* misc */
+.callout{background:var(--amber-bg);border:1px solid #fde68a;border-radius:10px;padding:13px 16px;font-size:13.5px;color:#854d0e;margin-top:8px}
+.callout b{color:#713f12}
+ul{margin:8px 0 0 20px}li{margin:8px 0;font-size:14px}
+li b{color:var(--red)}
+.g{color:var(--green)}.a{color:var(--amber)}.r{color:var(--red)}
+.foot{text-align:center;color:var(--mut);font-size:12.5px;margin-top:14px}
 </style></head>
 <body><div class="wrap">
 
-<h1>GA4 × 廣告商 × Proxy <span class="b">三方數據交叉解讀</span></h1>
-<div class="sub">看懂「客人怎麼跑、錢花得值不值」的一頁筆記 · 2026-06-05</div>
+<div class="title">
+  <h1>GA4 × 廣告商 × Proxy <span class="b">三方數據交叉解讀</span></h1>
+  <div class="sub">看懂「客人怎麼跑、錢花得值不值」的一頁筆記 · 2026-06-05</div>
+</div>
 
-<!-- 1 三源各看什麼 -->
+<!-- 1 -->
 <div class="sec">
-  <h2>① 三個數據源，各自只看得到一段</h2>
-  <div class="lead">重點觀念：<b style="color:var(--text)">沒有任何一個源能看完全程</b>。要把三段接起來才看得到完整客人。</div>
+  <h2><span class="no">①</span> 三個數據源，各自只看得到一段</h2>
+  <div class="lead">核心觀念：<b>沒有任何一個源能看完全程</b>。要把三段接起來，才看得到完整的客人。</div>
   <div class="srcs">
     <div class="src a">
       <div class="t">🟦 廣告商後台（FB）</div>
@@ -85,7 +105,7 @@ ul{margin:6px 0 0 18px}li{margin:6px 0}
       <div class="who">看的是「人到你站上做了什麼」</div>
     </div>
     <div class="src c">
-      <div class="t">🟨 Proxy 後台（平台）</div>
+      <div class="t">🟩 Proxy 後台（平台）</div>
       <div class="can">✓ 註冊數</div>
       <div class="can">✓ 入金人數 / 入金額</div>
       <div class="cant">✗ 人從哪來</div>
@@ -95,75 +115,75 @@ ul{margin:6px 0 0 18px}li{margin:6px 0}
   </div>
 </div>
 
-<!-- 2 漏斗 五階段誰負責 -->
+<!-- 2 -->
 <div class="sec">
-  <h2>② 客人漏斗五階段 — 每段由「誰」記錄</h2>
+  <h2><span class="no">②</span> 客人漏斗五階段 — 每段由「誰」記錄</h2>
   <div class="lead">把三個源按客人順序排好，就是一條完整漏斗：</div>
   <div class="funnel">
-    <div class="fstep"><div class="num">1</div><div class="main"><b>看到廣告 → 點擊</b><div class="d">FB 上有多少人點了你的廣告</div></div><span class="src-tag tag-a">廣告商</span></div>
+    <div class="fstep"><div class="num">1</div><div class="main"><b>看到廣告 → 點擊</b><div class="d">FB 上有多少人點了你的廣告</div></div><span class="st st-a">廣告商</span></div>
     <div class="fdrop">▼ 有沒有人點了卻沒跳成功？</div>
-    <div class="fstep"><div class="num">2</div><div class="main"><b>lihi 跳轉</b><div class="d">短連結接到幾次點擊</div></div><span class="src-tag tag-b">lihi（你）</span></div>
+    <div class="fstep"><div class="num">2</div><div class="main"><b>lihi 跳轉</b><div class="d">短連結接到幾次點擊</div></div><span class="st st-b">lihi（你）</span></div>
     <div class="fdrop">▼ 有沒有跳了卻沒到站？</div>
-    <div class="fstep"><div class="num">3</div><div class="main"><b>到站（落地頁瀏覽）</b><div class="d">真的看到頁面的人</div></div><span class="src-tag tag-b">GA4（你）</span></div>
+    <div class="fstep"><div class="num">3</div><div class="main"><b>到站（落地頁瀏覽）</b><div class="d">真的看到頁面的人</div></div><span class="st st-b">GA4（你）</span></div>
     <div class="fdrop">▼ 到站後有沒有點 CTA？</div>
-    <div class="fstep"><div class="num">4</div><div class="main"><b>點 CTA（outbound）</b><div class="d">點「立即進場」跳去平台</div></div><span class="src-tag tag-b">GA4（你）</span></div>
+    <div class="fstep"><div class="num">4</div><div class="main"><b>點 CTA（outbound）</b><div class="d">點「立即進場」跳去平台</div></div><span class="st st-b">GA4（你）</span></div>
     <div class="fdrop">▼ 跳過去後有沒有註冊？</div>
-    <div class="fstep"><div class="num">5</div><div class="main"><b>註冊 / 入金</b><div class="d">真正完成、真正付錢</div></div><span class="src-tag tag-c">Proxy（平台）</span></div>
+    <div class="fstep"><div class="num">5</div><div class="main"><b>註冊 / 入金</b><div class="d">真正完成、真正付錢</div></div><span class="st st-c">Proxy（平台）</span></div>
   </div>
-  <div class="warn">🔑 串接 key：第 1～4 段用 <b>utm_campaign</b> 串；第 4→5 段用 <b>proxy 碼</b> 串。所以 campaign 命名 + proxy 一定要對好，整條才接得起來。</div>
+  <div class="callout">🔑 串接 key：第 1～4 段用 <b>utm_campaign</b> 串；第 4→5 段用 <b>proxy 碼</b> 串。所以 campaign 命名 + proxy 一定要對好，整條才接得起來。</div>
 </div>
 
-<!-- 3 接力檢查 -->
+<!-- 3 -->
 <div class="sec">
-  <h2>③ 交叉比對 = 檢查每一棒「接得順不順」</h2>
-  <div class="lead">把相鄰兩段的數字相除，看有沒有「漏接」。以下每段給你「正常 / 出事」怎麼讀：</div>
+  <h2><span class="no">③</span> 交叉比對 = 檢查每一棒「接得順不順」</h2>
+  <div class="lead">把相鄰兩段的數字相除，看有沒有「漏接」。每段給你「正常 / 出事」怎麼讀：</div>
 
   <div class="relay">
-    <div class="q">①→② 點擊接收　＝ lihi點擊 ÷ FB點擊</div>
+    <div class="q">①→② 點擊接收　<small>＝ lihi點擊 ÷ FB點擊</small></div>
     <div class="ok">🟢 接近 100%：FB 說的點擊，lihi 都有接到。</div>
-    <div class="bad">🔴 明顯偏低：FB 灌的點擊沒進 lihi → 可能<b>假點擊</b>或連結錯。（這時別急著怪落地頁）</div>
+    <div class="bad">🔴 明顯偏低：FB 灌的點擊沒進 lihi → 可能<b>假點擊</b>或連結錯。（別急著怪落地頁）</div>
   </div>
   <div class="relay">
-    <div class="q">②→③ 跳轉到站　＝ GA4瀏覽 ÷ lihi點擊</div>
+    <div class="q">②→③ 跳轉到站　<small>＝ GA4瀏覽 ÷ lihi點擊</small></div>
     <div class="ok">🟢 ≥85%：跳轉順、頁面有載出來。</div>
     <div class="bad">🔴 偏低：lihi 接到卻沒到站 → <b>跳轉失敗 / 頁面太慢 / GA4 沒載</b>。技術問題，不是內容問題。</div>
   </div>
   <div class="relay">
-    <div class="q">③→④ 到站點 CTA　＝ outbound ÷ GA4瀏覽</div>
+    <div class="q">③→④ 到站點 CTA　<small>＝ outbound ÷ GA4瀏覽</small></div>
     <div class="ok">🟢 越高越好：頁面有說服力。</div>
     <div class="bad">🔴 偏低：人來了不點 → <b>落地頁內容 / CTA 不夠力</b>。要改頁。</div>
   </div>
   <div class="relay">
-    <div class="q">④→⑤ 點了到註冊　＝ proxy註冊 ÷ outbound</div>
+    <div class="q">④→⑤ 點了到註冊　<small>＝ proxy註冊 ÷ outbound</small></div>
     <div class="ok">🟢 健康：跳過去的人多數有註冊。</div>
     <div class="bad">🔴 偏低：點出去卻沒註冊 → <b>平台註冊頁卡關，或 proxy 沒帶過去</b>（查 lihi / 落地頁帶碼）。</div>
   </div>
   <div class="relay" style="border-left-color:var(--gold)">
     <div class="q" style="color:var(--gold)">⑤ ＞ ④（怪現象）</div>
-    <div class="bad">註冊數比 outbound 還多 → 有<b>非廣告來源</b>也用同一個 proxy（自然流量/其他管道）→ proxy 不夠純，要更細的碼才分得開。</div>
+    <div class="bad">註冊比 outbound 還多 → 有<b>非廣告來源</b>也用同一個 proxy → proxy 不夠純，要更細的碼才分得開。</div>
   </div>
 </div>
 
-<!-- 4 指標解讀 -->
+<!-- 4 -->
 <div class="sec">
-  <h2>④ 四個關鍵指標：怎樣算好、該做什麼</h2>
+  <h2><span class="no">④</span> 四個關鍵指標：怎樣算好、該做什麼</h2>
   <div class="kpis">
     <div class="kpi"><div class="nm">CPC 每次點擊成本</div><div class="fm">花費 ÷ FB點擊</div><div class="mn">流量貴不貴。</div><div class="rule">太高 → 換素材 / 換受眾，或 CTR 太低拉高了成本。</div></div>
     <div class="kpi"><div class="nm">各段轉換率</div><div class="fm">相鄰兩段相除</div><div class="mn">漏斗哪一段在漏。</div><div class="rule">先補「最低的那一段」，補一段勝過全部微調。</div></div>
     <div class="kpi"><div class="nm">CPA 每註冊成本</div><div class="fm">花費 ÷ 註冊</div><div class="mn">抓一個會員多少錢。</div><div class="rule">兩落地頁比 CPA → 預算往低的加，高的收。</div></div>
-    <div class="kpi" style="border-color:var(--gold)"><div class="nm">ROAS 廣告投報 ⭐</div><div class="fm">入金額 ÷ 花費</div><div class="mn">賺不賺錢的終極數字。</div><div class="rule"><span class="g">≥2x 賺</span>　<span class="a">1–2x 回本</span>　<span class="r">&lt;1x 虧</span> → &lt;1 就該收或改。</div></div>
+    <div class="kpi hot"><div class="nm">ROAS 廣告投報 ⭐</div><div class="fm">入金額 ÷ 花費</div><div class="mn">賺不賺錢的終極數字。</div><div class="rule"><span class="g">≥2x 賺</span>　<span class="a">1–2x 回本</span>　<span class="r">&lt;1x 虧</span> → &lt;1 就該收或改。</div></div>
   </div>
 </div>
 
-<!-- 5 決策表 -->
+<!-- 5 -->
 <div class="sec">
-  <h2>⑤ 看到這樣 → 代表什麼 → 你該做什麼</h2>
+  <h2><span class="no">⑤</span> 看到這樣 → 代表什麼 → 你該做什麼</h2>
   <table>
     <thead><tr><th>你看到</th><th>代表</th><th>動作</th></tr></thead>
     <tbody>
       <tr><td><span class="sig c">點擊多、到站少</span></td><td>跳轉/技術漏（①→②或②→③低）</td><td>查 lihi 連結、落地頁載入速度，先別動文案</td></tr>
       <tr><td><span class="sig c">到站多、點CTA少</span></td><td>落地頁不夠力（③→④低）</td><td>改標題/CTA/版位，做 A/B</td></tr>
-      <tr><td><span class="sig c">點CTA多、註冊少</span></td><td>平台註冊卡關 或 proxy 沒帶（④→⑤低）</td><td>查 proxy 有沒有帶到、平台 註冊流程</td></tr>
+      <tr><td><span class="sig c">點CTA多、註冊少</span></td><td>平台註冊卡關 或 proxy 沒帶（④→⑤低）</td><td>查 proxy 有沒有帶到、平台註冊流程</td></tr>
       <tr><td><span class="sig a">CPA 偏高但 ROAS&gt;1</span></td><td>抓客貴，但客人有付錢、還賺</td><td>可續投，同時想辦法降 CPA</td></tr>
       <tr><td><span class="sig r">ROAS &lt; 1</span></td><td>花的比賺的多 → 虧</td><td>收掉這組，或大改素材/受眾/落地頁</td></tr>
       <tr><td><span class="sig g">某落地頁 CPA 低 + ROAS 高</span></td><td>這頁/這素材最會賺</td><td>預算往它加碼，複製它的做法</td></tr>
@@ -171,18 +191,18 @@ ul{margin:6px 0 0 18px}li{margin:6px 0}
   </table>
 </div>
 
-<!-- 6 陷阱 -->
+<!-- 6 -->
 <div class="sec">
-  <h2>⑥ 常見誤讀（會害你判斷錯）</h2>
+  <h2><span class="no">⑥</span> 常見誤讀（會害你判斷錯）</h2>
   <ul>
-    <li><b class="r">用單日硬對帳</b> → 有人今天點、明天才註冊，單日永遠對不平。<b>一律用「週」對。</b></li>
-    <li><b class="r">時區沒對齊</b> → FB / GA4 / 平台後台時區可能不同，先全部換台灣時間再比。</li>
-    <li><b class="r">只看點擊數多就高興</b> → 點擊多但 ROAS&lt;1 還是虧。<b>永遠以 ROAS 收尾判斷。</b></li>
-    <li><b class="r">素材層硬要對註冊</b> → 現在 proxy 只分到「落地頁層」，多素材共用一碼分不出。要對到素材層 → 要加動態 proxy。</li>
-    <li><b class="r">把『地推/水軍』當 FB 受眾</b> → 那是「來源管道」，用 utm_source 分；FB 受眾是廣泛/興趣/再行銷。</li>
+    <li><b>用單日硬對帳</b> → 有人今天點、明天才註冊，單日永遠對不平。一律用「週」對。</li>
+    <li><b>時區沒對齊</b> → FB / GA4 / 平台後台時區可能不同，先全部換台灣時間再比。</li>
+    <li><b>只看點擊數多就高興</b> → 點擊多但 ROAS&lt;1 還是虧。永遠以 ROAS 收尾判斷。</li>
+    <li><b>素材層硬要對註冊</b> → 現在 proxy 只分到「落地頁層」，多素材共用一碼分不出。要對到素材層 → 要加動態 proxy。</li>
+    <li><b>把『地推/水軍』當 FB 受眾</b> → 那是「來源管道」，用 utm_source 分；FB 受眾是廣泛/興趣/再行銷。</li>
   </ul>
 </div>
 
-<div class="sub" style="margin-top:8px">搭配工具：漏斗對帳表.html（把數字貼進去自動算）· 數據需求清單.txt（每檔活動要哪些料）</div>
+<div class="foot">搭配工具：漏斗對帳表.html（把數字貼進去自動算）· 數據需求清單.txt（每檔活動要哪些料）</div>
 
 </div></body></html>
