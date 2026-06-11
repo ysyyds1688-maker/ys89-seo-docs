@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YS89 AI 自動化閉環工作流 — 盤點與拼裝規劃</title>
+<style>
+  :root{--bg:#0f1320;--panel:#171c2e;--panel2:#1d2438;--line:#2a3148;--txt:#e7ebf5;--muted:#97a0bb;--dim:#6b7490;--accent:#5b8cff;--teal:#1fc8a3;--green:#2fd07a;--red:#ff5d6c;--amber:#f5a623;--purple:#a37bff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--txt);font-size:15px;line-height:1.75}
+  .wrap{max-width:980px;margin:0 auto;padding:36px 24px 80px}
+  h1{font-size:24px;margin-bottom:6px}
+  .meta{color:var(--dim);font-size:13px;margin-bottom:30px}
+  h2{font-size:18px;margin:38px 0 14px;padding-left:12px;border-left:4px solid var(--accent)}
+  h2 .n{color:var(--accent)}
+  p{color:var(--muted);margin-bottom:10px}
+  b{color:var(--txt)}
+  .panel{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0}
+  .t-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+  th{text-align:left;color:var(--dim);font-weight:500;font-size:12px;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px;border-bottom:1px solid rgba(42,49,72,.5);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  .tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:6px;white-space:nowrap}
+  .tg{color:var(--green);background:rgba(47,208,122,.13)}
+  .ty{color:var(--amber);background:rgba(245,166,35,.13)}
+  .tr{color:var(--red);background:rgba(255,93,108,.13)}
+  .big{background:rgba(91,140,255,.07);border:1px solid rgba(91,140,255,.3);border-radius:12px;padding:16px 20px;font-size:15px;margin:18px 0}
+  /* 閉環圖 */
+  .loop{display:flex;flex-direction:column;gap:0;margin:18px 0}
+  .step{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start}
+  .step .ico{font-size:22px;flex:none;width:36px;text-align:center}
+  .step .tt{font-weight:600;font-size:15px}
+  .step .tt .st{font-size:11px;font-weight:400;margin-left:8px}
+  .step .dd{font-size:13px;color:var(--muted);margin-top:2px}
+  .arr{text-align:center;color:var(--dim);font-size:16px;padding:2px 0}
+  .loopback{border:1px dashed rgba(31,200,163,.5);border-radius:12px;padding:8px 14px;color:var(--teal);font-size:12.5px;text-align:center;margin-top:6px}
+  .gate{border-color:rgba(245,166,35,.45)!important;background:rgba(245,166,35,.06)!important}
+  /* phases */
+  .phase{display:flex;gap:14px;margin-bottom:12px}
+  .phase .num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+  .phase .bd{flex:1}
+  .phase .bd b{font-size:15px}
+  .phase .bd p{font-size:13px;margin:2px 0 0}
+  .phase .bd .win{color:var(--teal);font-size:12.5px}
+  ol.ask{margin-left:22px;color:var(--muted)}
+  ol.ask li{margin-bottom:8px}
+  .foot{margin-top:42px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--dim)}
+  @media(max-width:640px){.wrap{padding:22px 14px 60px}h1{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>🔁 YS89 AI 自動化閉環工作流</h1>
+<div class="meta">盤點與拼裝規劃 · 2026-06-11 · 目標:整套流程由 AI 執行,人只在「批准」和「給後台數據」兩個點介入</div>
+
+<div class="big">💡 <b>核心結論:零件七成都有了,缺的不是工具,是把零件接成迴路的管線。</b><br>
+而且你有一張被低估的王牌——tg-relay 的「TG 按鈕 → 執行」模式,就是現成的人審閘門,整個執行迴路直接複用它。</div>
+
+<h2><span class="n">一、</span>現有資產盤點(你已經有什麼)</h2>
+<div class="panel t-scroll"><table>
+<thead><tr><th>#</th><th>環節</th><th>現有資產</th><th>自動化程度</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>架站</b></td><td>/建站 skill(站群建站總指揮)、PBN 部署腳本+交接包、CF Pages + wrangler 部署流、本地預覽</td><td><span class="tag ty">🟡 半自動</span></td></tr>
+<tr><td>2</td><td><b>寫文章</b></td><td>/寫文章 skill、文章 SOP(查事實→競品→結構→WP-CLI 發布)、5 編輯人設、禁編造鐵則</td><td><span class="tag ty">🟡 半自動</span></td></tr>
+<tr><td>3</td><td><b>SEO 工程</b></td><td>7 個 MU plugin(Schema/Breadcrumb/Review/GA4)、內鏈腳本、E-E-A-T 工程</td><td><span class="tag tg">🟢 站內已自動</span></td></tr>
+<tr><td>4</td><td><b>SEO Review</b></td><td>agentic-seo / seo-audit skills(251 規則)、seo_health.py(GSC 一鍵全站群)</td><td><span class="tag ty">🟡 要人觸發</span></td></tr>
+<tr><td>5</td><td><b>回去優化</b></td><td>WP-CLI via Cloudways SSH(改 title/內文/內鏈)、tg-relay 發佈按鈕(審核→執行雛形)</td><td><span class="tag tr">🔴 手動</span></td></tr>
+<tr><td>6</td><td><b>成效分析</b></td><td>✅ SEO 儀表板(collector→D1→4 視角+自動診斷+告警 owner,每日 01:30 cron)、Ahrefs 快照、/跑GA4報表</td><td><span class="tag tg">🟢 已閉環到診斷</span></td></tr>
+<tr><td>7</td><td><b>維護</b></td><td>Cloudways cron 數個、快取清除指令(6/1 Wordfence 事件靠人發現)</td><td><span class="tag tr">🔴 無監控</span></td></tr>
+<tr><td>8</td><td><b>通知/審核</b></td><td>@Seoys1688_bot TG 日報 + tg-relay Worker 按鈕(人審閘門模式已驗證)</td><td><span class="tag tg">🟢 模式可複用</span></td></tr>
+<tr><td>9</td><td><b>社群端數據</b></td><td>同事 ys89-system(GitHub Pages+Actions)、UTM 產生器(代理碼 人名-月日-序號)</td><td><span class="tag ty">🟡 未接入</span></td></tr>
+<tr><td>10</td><td><b>真實註冊</b></td><td>ys89.bet 後台(代理碼→註冊數),老闆人工提供;儀表板已留填入口</td><td><span class="tag tr">🔴 手動</span></td></tr>
+</tbody></table></div>
+
+<h2><span class="n">二、</span>目標閉環架構</h2>
+<div class="loop">
+  <div class="step"><div class="ico">📊</div><div><div class="tt">① 數據層 <span class="tag tg st">已完成 90%</span></div><div class="dd">GA4 + GSC + Ahrefs + <b style="color:var(--amber)">社群 API(缺)</b> + <b style="color:var(--amber)">註冊數(缺)</b> → D1 → 儀表板 / 自動診斷</div></div></div>
+  <div class="arr">▼</div>
+  <div class="step"><div class="ico">🧠</div><div><div class="tt">② 診斷 → 任務 <span class="tag ty st">缺排程</span></div><div class="dd">每日自動診斷 → 產生任務(改標題 / 補內鏈 / 寫新文 / 查下滑)→ 告警板 + TG 推播給 owner</div></div></div>
+  <div class="arr">▼</div>
+  <div class="step gate"><div class="ico">🚦</div><div><div class="tt">③ 人審閘門 <span class="tag tg st">模式已有 = tg-relay</span></div><div class="dd">TG 收到「建議把 X 頁標題改成 Y」→ 按 [批准] / [略過]。<b>這是人唯一要做的事</b></div></div></div>
+  <div class="arr">▼ 批准</div>
+  <div class="step"><div class="ico">🤖</div><div><div class="tt">④ 執行層 <span class="tag tg st">零件已有</span></div><div class="dd">改頁面 = WP-CLI ｜ 寫新文 = /寫文章 skill ｜ 建新站 = /建站 skill</div></div></div>
+  <div class="arr">▼</div>
+  <div class="step"><div class="ico">📈</div><div><div class="tt">⑤ 驗證層 <span class="tag tr st">缺</span></div><div class="dd">執行後 7 / 14 天自動回查該頁排名 / CTR / 流量 → 寫回儀表板「行動成效」</div></div></div>
+  <div class="loopback">⟲ 驗證結果回到 ① 數據層,形成下一圈 — 每一圈 = 數據→診斷→批准→執行→驗證→新數據</div>
+</div>
+
+<h2><span class="n">三、</span>缺口清單(按優先序)</h2>
+<div class="panel t-scroll"><table>
+<thead><tr><th>缺口</th><th>說明</th><th>解法</th><th>規模</th></tr></thead>
+<tbody>
+<tr><td><b>G1 社群數據 API</b></td><td>同事系統的貼文/曝光/水軍數據進不了儀表板</td><td>給她 AI 提示詞(已備好,見同資料夾另一檔),產 social-feed.json,collector 接入。<b>對接主鍵 = utm_content 代理碼</b></td><td><span class="tag tg">小</span></td></tr>
+<tr><td><b>G2 註冊數半自動</b></td><td>老闆手動看後台</td><td>老闆每週匯出 CSV 丟指定位置/TG,AI 自動解析入 D1(儀表板入口已留)</td><td><span class="tag tg">小</span></td></tr>
+<tr><td><b>G3 排程調度器</b></td><td>沒有「每天自動跑診斷→產任務」的中樞</td><td>Claude 雲端排程或 Cloudways cron 跑 CLI;產出寫進告警板 + TG</td><td><span class="tag ty">中</span></td></tr>
+<tr><td><b>G4 執行器+審核閘</b></td><td>AI 改站沒有安全迴路</td><td>復用 tg-relay:診斷產生具體 patch → TG 按鈕 → 批准才跑 WP-CLI</td><td><span class="tag ty">中</span></td></tr>
+<tr><td><b>G5 行動成效追蹤</b></td><td>改完沒人回頭看有沒有效</td><td>D1 加 actions 表(動作/日期/目標頁),7/14 天後自動對比,顯示在團隊視角</td><td><span class="tag ty">中</span></td></tr>
+<tr><td><b>G6 內容閉環</b></td><td>「關鍵字缺口 → 新文章」是斷的</td><td>診斷找非品牌缺口詞 → 自動產 brief → /寫文章 → 排程發佈 → G5 驗證</td><td><span class="tag tr">中大</span></td></tr>
+<tr><td><b>G7 維護監控</b></td><td>掛站/SSL/404/外掛出事沒人知(Wordfence 事件風險)</td><td>collector 加 uptime/SSL/sitemap 檢查,異常進告警板 + TG</td><td><span class="tag tg">小</span></td></tr>
+<tr><td><b>G8 儀表板鎖站</b></td><td>公開可寫(註冊數/指派誰都能改)</td><td>Cloudflare Access email 白名單(等你後台點一次)</td><td><span class="tag tg">小</span></td></tr>
+</tbody></table></div>
+
+<h2><span class="n">四、</span>拼裝順序(建議)</h2>
+<div class="panel">
+  <div class="phase"><div class="num">1</div><div class="bd"><b>本週 — 數據閉環補完</b><p>G1 社群 API(提示詞已備)+ G2 註冊 CSV 流程 + G7 維護監控 + G8 鎖站</p><p class="win">→ 儀表板 = 全貌(搜尋+社群+註冊+健康),診斷不再有盲區</p></div></div>
+  <div class="phase"><div class="num">2</div><div class="bd"><b>診斷自動推播</b><p>G3 排程每天跑自動診斷,異常 + 任務直接 TG 推給對的人(owner 機制已有)</p><p class="win">→ 不用開儀表板也知道今天該做什麼</p></div></div>
+  <div class="phase"><div class="num">3</div><div class="bd"><b>半自動執行</b><p>G4 審核閘 + 從低風險動作開始(改 title / 補內鏈),G5 成效追蹤同步上線</p><p class="win">→ 你按 TG 按鈕,AI 改站,7 天後自動告訴你有沒有效</p></div></div>
+  <div class="phase"><div class="num">4</div><div class="bd"><b>內容閉環</b><p>G6 缺口詞 → 自動寫文 → 發佈 → 驗證</p><p class="win">→ 非品牌詞戰略自動滾動,這是 DR / 流量成長的主引擎</p></div></div>
+  <div class="phase"><div class="num">5</div><div class="bd"><b>站群複製</b><p>以上迴路套到衛星站 / PBN(架站 skill 已有,只是接同一套管線)</p><p class="win">→ 一套管線,全站群共用</p></div></div>
+</div>
+
+<h2><span class="n">五、</span>需要你提供的(只有 5 件)</h2>
+<div class="panel"><ol class="ask">
+<li>✅ 把「給社群系統 AI 的提示詞」傳給社群負責人(同資料夾 <b>給社群系統AI的提示詞_social-feed-api.md</b>)</li>
+<li>老闆端:確認「每週一次代理碼註冊數」用什麼形式給(CSV / 截圖 / 打字都行,定一個就好)</li>
+<li>TG:確認推播進哪個群、誰收(沿用 @Seoys1688_bot?)</li>
+<li>Cloudflare Access 後台點一次(鎖儀表板)</li>
+<li>Phase 3 起的「批准權」:誰有權按按鈕(你?老闆?)</li>
+</ol></div>
+
+<div class="foot">YS89 內部文件 · 2026-06-11 · 配套儀表板:ys89-seo-dashboard.pages.dev ·
+原始 Markdown 版:同資料夾 AI自動化閉環工作流規劃_2026-06-11.md</div>
+</div>
+</body>
+</html>
